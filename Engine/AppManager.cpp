@@ -462,11 +462,23 @@ AppManager::loadFromArgs(const CLArgs& cl)
 
     //  QCoreApplication will hold a reference to that appManagerArgc integer until it dies.
     //  Thus ensure that the QCoreApplication is destroyed when returning this function.
+#if PY_MAJOR_VERSION >= 3
+    char* cmd = new char[wcslen(_imp->commandLineArgsWide.front()) + 1];
+    // char* cmd = malloc(wcslen(_imp->commandLineArgsWide.front()) + 1);
+    wcstombs(cmd, _imp->commandLineArgsWide.front(),  wcslen(_imp->commandLineArgsWide.front()));
+    initializeQApp(_imp->nArgs, &cmd); // calls QCoreApplication::QCoreApplication(), which calls setlocale()
+#else
     initializeQApp(_imp->nArgs, &_imp->commandLineArgsUtf8.front()); // calls QCoreApplication::QCoreApplication(), which calls setlocale()
+#endif
     // see C++ standard 23.2.4.2 vector capacity [lib.vector.capacity]
     // resizing to a smaller size doesn't free/move memory, so the data pointer remains valid
+#if PY_MAJOR_VERSION >= 3
+    assert(_imp->nArgs <= (int)_imp->commandLineArgsWide.size());
+    _imp->commandLineArgsWide.resize(_imp->nArgs); // Qt may have reduced the numlber of args
+#else
     assert(_imp->nArgs <= (int)_imp->commandLineArgsUtf8.size());
     _imp->commandLineArgsUtf8.resize(_imp->nArgs); // Qt may have reduced the numlber of args
+#endif
 
 #ifdef QT_CUSTOM_THREADPOOL
     // Set the global thread pool (pointed is owned and deleted by QThreadPool at exit)
@@ -3063,12 +3075,15 @@ NATRON_PYTHON_NAMESPACE::PyStringToStdString(PyObject* obj)
     assert( PyThreadState_Get() );
     std::string ret;
 
+#if PY_MAJOR_VERSION < 3
     if ( PyString_Check(obj) ) {
         char* buf = PyString_AsString(obj);
         if (buf) {
             ret += std::string(buf);
         }
-    } else if ( PyUnicode_Check(obj) ) {
+    } else
+#endif
+    if ( PyUnicode_Check(obj) ) {
         /*PyObject * temp_bytes = PyUnicode_AsEncodedString(obj, "ASCII", "strict"); // Owned reference
            if (temp_bytes != NULL) {
            char* cstr = PyBytes_AS_STRING(temp_bytes); // Borrowed pointer
@@ -3225,9 +3240,11 @@ AppManager::initPython()
 #     if 0//def __NATRON_WIN32__
         _wputenv_s(L"PYTHONPATH", StrUtils::utf8_to_utf16(pythonPath.toStdString()).c_str());
 #     else
+#     if PY_MAJOR_VERSION < 3
         std::string pythonPathString = pythonPath.toStdString();
         qputenv( "PYTHONPATH", pythonPathString.c_str() );
         //Py_SetPath( pythonPathString.c_str() ); // does not exist in Python 2
+#     endif
 #     endif
 #     if PY_MAJOR_VERSION >= 3
         std::wstring pythonPathString = StrUtils::utf8_to_utf16( pythonPath.toStdString() );
@@ -3292,7 +3309,7 @@ AppManager::initPython()
     //
 #if PY_MAJOR_VERSION >= 3
     // Python 3
-    PySys_SetArgv( argc, &_imp->args.front() ); /// relative module import
+    PySys_SetArgv( _imp->commandLineArgsWide.size(), &_imp->commandLineArgsWide.front() ); /// relative module import
 #else
     // Python 2
     PySys_SetArgv( _imp->commandLineArgsUtf8.size(), &_imp->commandLineArgsUtf8.front() ); /// relative module import
@@ -4012,14 +4029,22 @@ NATRON_PYTHON_NAMESPACE::interpretPythonScript(const std::string& script,
 
             PyObject* pyStr = PyObject_Str(pyExcValue);
             if (pyStr) {
+#if PY_MAJOR_VERSION >= 3
+                const char* str = PyUnicode_AS_DATA(pyStr);
+#else
                 const char* str = PyString_AsString(pyStr);
+#endif
                 if (error && str) {
                     *error += std::string("Python exception: ") + str + '\n';
                 }
                 Py_DECREF(pyStr);
 
                 // See if we can get a full traceback
+#if PY_MAJOR_VERSION >= 3
+                PyObject* module_name = PyUnicode_FromString("traceback");
+#else
                 PyObject* module_name = PyString_FromString("traceback");
+#endif
                 PyObject* pyth_module = PyImport_Import(module_name);
                 Py_DECREF(module_name);
 
@@ -4034,14 +4059,22 @@ NATRON_PYTHON_NAMESPACE::interpretPythonScript(const std::string& script,
                     if (pyth_func && PyCallable_Check(pyth_func)) {
                         PyObject *pyth_val = PyObject_CallFunctionObjArgs(pyth_func, pyExcType, pyExcValue, pyExcTraceback, NULL);
                         if (pyth_val) {
+#if PY_MAJOR_VERSION >= 3
+                            PyObject *emptyString = PyUnicode_FromString("");
+#else
                             PyObject *emptyString = PyString_FromString("");
+#endif
                             PyObject *strList = PyObject_CallMethod(emptyString, (char*)"join", (char*)"(O)", pyth_val);
                             Py_DECREF(emptyString);
                             Py_DECREF(pyth_val);
                             pyStr = PyObject_Str(strList);
                             Py_DECREF(strList);
                             if (pyStr) {
+#if PY_MAJOR_VERSION >= 3
+                                str = PyUnicode_AS_DATA(pyStr);
+#else
                                 str = PyString_AsString(pyStr);
+#endif
                                 if (error && str) {
                                     *error += std::string(str) + '\n';
                                 }

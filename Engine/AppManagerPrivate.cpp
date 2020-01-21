@@ -116,7 +116,11 @@ AppManagerPrivate::AppManagerPrivate()
     , nThreadsMutex()
     , runningThreadsCount()
     , lastProjectLoadedCreatedDuringRC2Or3(false)
+#if PY_MAJOR_VERSION >= 3
+    , commandLineArgsWide()
+#else
     , commandLineArgsUtf8()
+#endif
     , nArgs(0)
     , mainModule(0)
     , mainThreadState(0)
@@ -146,8 +150,13 @@ AppManagerPrivate::~AppManagerPrivate()
 {
     
 
+#if PY_MAJOR_VERSION >= 3
+    for (std::size_t i = 0; i < commandLineArgsWideOriginal.size(); ++i) {
+        free(commandLineArgsWideOriginal[i]);
+#else
     for (std::size_t i = 0; i < commandLineArgsUtf8Original.size(); ++i) {
         free(commandLineArgsUtf8Original[i]);
+#endif
     }
 #if PY_MAJOR_VERSION >= 3
     // Python 3
@@ -1010,22 +1019,25 @@ AppManagerPrivate::copyUtf8ArgsToMembers(const std::vector<std::string>& utf8Arg
 #if PY_MAJOR_VERSION >= 3
     // Python 3
     commandLineArgsWideOriginal.resize(utf8Args.size());
-#endif
+#else
     commandLineArgsUtf8Original.resize(utf8Args.size());
+#endif
     nArgs = (int)utf8Args.size();
     for (std::size_t i = 0; i < utf8Args.size(); ++i) {
-        commandLineArgsUtf8Original[i] = strdup(utf8Args[i].c_str());
 
         // Python 3 needs wchar_t arguments
 #if PY_MAJOR_VERSION >= 3
         // Python 3
-        commandLineArgsWideOriginal[i] = char2wchar(utf8Args[i].c_str());
+        mbstowcs(commandLineArgsWideOriginal[i], utf8Args[i].c_str(), strlen(utf8Args[i].c_str()));
+#else
+        commandLineArgsUtf8Original[i] = strdup(utf8Args[i].c_str());
 #endif
     }
-    commandLineArgsUtf8 = commandLineArgsUtf8Original;
 #if PY_MAJOR_VERSION >= 3
     // Python 3
     commandLineArgsWide = commandLineArgsWideOriginal;
+#else
+    commandLineArgsUtf8 = commandLineArgsUtf8Original;
 #endif
 }
 

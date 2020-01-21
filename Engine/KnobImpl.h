@@ -383,7 +383,11 @@ KnobHelper::pyObjectToType(PyObject* o)
 
         return ret;
     }
+#if PY_MAJOR_VERSION >= 3
+    char* s = PyUnicode_Check(o) ? strcpy(s, PyUnicode_AS_DATA(o)) : NULL;
+#else
     char* s = PyString_Check(o) ? PyString_AsString(o) : NULL;
+#endif
     return s != NULL ? std::string(s) : std::string();
 }
 
