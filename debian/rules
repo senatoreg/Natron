@@ -1,0 +1,56 @@
+#!/usr/bin/make -f
+# See debhelper(7) (uncomment to enable)
+# output every command that modifies files on the build system.
+#export DH_VERBOSE = 1
+
+
+# see FEATURE AREAS in dpkg-buildflags(1)
+#export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+
+# see ENVIRONMENT in dpkg-buildflags(1)
+# package maintainers to append CFLAGS
+#export DEB_CFLAGS_MAINT_APPEND  = -Wall -pedantic
+# package maintainers to append LDFLAGS
+#export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed
+
+OPENCOLORIO_VERSION=$(shell /usr/bin/dpkg-parsechangelog -S Version | cut -d. -f1-2)
+
+%:
+	dh $@
+
+
+# dh_make generated override targets
+# This is example for Cmake (See https://bugs.debian.org/641051 )
+#override_dh_auto_configure:
+#	dh_auto_configure -- #	-DCMAKE_LIBRARY_PATH=$(DEB_HOST_MULTIARCH)
+
+opencolorio-config:
+	test -f debian/OpenColorIO-Natron-v$(OPENCOLORIO_VERSION).tar.gz || wget -O debian/OpenColorIO-Natron-v$(OPENCOLORIO_VERSION).tar.gz  https://github.com/NatronGitHub/OpenColorIO-Configs/archive/Natron-v$(OPENCOLORIO_VERSION).tar.gz
+	if test -h OpenColorIO-Configs ; then \
+	   if ! test -d OpenColorIO-Configs-Natron-v$(OPENCOLORIO_VERSION) ; then \
+	      ln -s OpenColorIO-Configs-Natron-v$(OPENCOLORIO_VERSION) OpenColorIO-Configs ; \
+	   fi ; \
+	fi
+
+override_dh_auto_configure: opencolorio-config
+	cp debian/config.pri $(CURDIR)
+	mkdir build ; \
+	cd build ; \
+	qmake -r ../Project.pro PYTHON_CONFIG=/usr/bin/python3-config BUILD=stable OpenGL_GL_PREFERENCE=GLVND  PREFIX=/usr CONFIG+=release DEFINES+=QT_NO_DEBUG_OUTPUT QMAKE_CC=/usr/bin/gcc-8 QMAKE_CXX=/usr/bin/g++-8
+
+override_dh_auto_build:
+	mkdir build ; \
+	cd build ; \
+	bear make
+
+override_dh_auto_clean:
+	rm -rf build OpenColorIO-Configs-Natron-v$(OPENCOLORIO_VERSION)
+	rm -f config.pri OpenColorIO-Configs debian/OpenColorIO-Natron-v$(OPENCOLORIO_VERSION).tar.gz
+
+override_dh_clean:
+	dh_clean --exclude=.orig --exclude=.rej
+
+override_dh_auto_install:
+	cd build ; \
+	make INSTALL_ROOT=$(CURDIR)/debian/natron install
+

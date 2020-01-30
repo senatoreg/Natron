@@ -1,0 +1,42 @@
+Source: natron
+Section: video
+Priority: optional
+Maintainer: Giovanni Senatore <giovanni.senatore@gmail.com>
+Build-Depends: debhelper (>= 11),
+# libqt4-dev,
+ qtbase5-dev,
+ libboost-serialization-dev,
+ libboost-system-dev,
+ libexpat1-dev,
+ libcairo2-dev,
+ python-dev,
+# python-pyside,
+ python-pyside2.qtcore,
+ python-pyside2.qtgui,
+ python-pyside2.qtwidgets,
+ libpyside2-dev,
+ libshiboken2-dev,
+ tinydir-dev,
+# libqt4-opengl-dev
+ libqt5opengl5-dev,
+  bear
+Standards-Version: 4.1.3
+Homepage: https://natrongithub.github.io/
+#Vcs-Browser: https://salsa.debian.org/debian/natron
+#Vcs-Git: https://salsa.debian.org/debian/natron.git
+
+Package: natron
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Open Source Compositing Software For VFX and Motion Graphics.
+ CROSS PLATFORM & OPEN-SOURCE COMPOSITOR FOR VISUAL EFFECTS
+ AND MOTION GRAPHICS INDUSTRY
+ .
+ Natron is a powerful Digital Compositor that can handle of
+ your 2D/2.5D needs. Its robust OIIO file formats and OpenFX
+ architecture is what make Natron the most flexible open
+ source compositor for the visual effects community. Its
+ interface and functionally are the same across all platforms
+ such as MacOS, Linux and Windows. Natron has a powerful keying,
+ roto/rotopaint, 2D tracking tools that are staple for all current
+ film production project that requires visual effects.
