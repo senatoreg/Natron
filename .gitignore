@@ -209,6 +209,7 @@ CrashReporterCLI/NatronRendererCrashReporter
 *repo.sh*
 *local.sh*
 OpenColorIO-Configs
+OpenColorIO-Configs*
 PortIndex
 PortIndex.quick
 *.7z*
@@ -275,3 +276,7 @@ Gui/Resources/etc/fonts/fonts.conf
 
 # VS Code
 .vscode/
+
+# emacs + lsp-mode + ccls
+.ccls-cache
+compile_commands.json
