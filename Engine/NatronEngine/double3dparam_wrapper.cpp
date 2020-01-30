@@ -11,9 +11,12 @@ GCC_DIAG_UNUSED_LOCAL_TYPEDEFS_OFF
 #include <pysidesignal.h>
 #include <pysideproperty.h>
 #include <pyside.h>
+#if SHIBOKEN_MAJOR_VERSION < 2
 #include <typeresolver.h>
+#endif
 #include <typeinfo>
 #include "natronengine_python.h"
+#include "natron_helper.h"
 
 #include "double3dparam_wrapper.h"
 
@@ -104,8 +107,12 @@ static PyObject* Sbk_Double3DParamFunc_get(PyObject* self, PyObject* args)
     return pyResult;
 
     Sbk_Double3DParamFunc_get_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.Double3DParam.get");
+#else
         const char* overloads[] = {"", "float", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.Double3DParam.get", overloads);
+#endif
         return 0;
 }
 
@@ -201,8 +208,12 @@ static PyObject* Sbk_Double3DParamFunc_set(PyObject* self, PyObject* args)
     Py_RETURN_NONE;
 
     Sbk_Double3DParamFunc_set_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.Double3DParam.set");
+#else
         const char* overloads[] = {"float, float, float", "float, float, float, float", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.Double3DParam.set", overloads);
+#endif
         return 0;
 }
 
@@ -217,14 +228,57 @@ static PyMethodDef Sbk_Double3DParam_methods[] = {
 
 static int Sbk_Double3DParam_traverse(PyObject* self, visitproc visit, void* arg)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    return reinterpret_cast<PyTypeObject *>(SbkObject_TypeF())->tp_traverse(self, visit, arg);
+#else
     return reinterpret_cast<PyTypeObject*>(&SbkObject_Type)->tp_traverse(self, visit, arg);
+#endif
 }
 static int Sbk_Double3DParam_clear(PyObject* self)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    return reinterpret_cast<PyTypeObject *>(SbkObject_TypeF())->tp_clear(self);
+#else
     return reinterpret_cast<PyTypeObject*>(&SbkObject_Type)->tp_clear(self);
+#endif
 }
 // Class Definition -----------------------------------------------
 extern "C" {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+static SbkObjectType *_Sbk_Double3DParam_Type = nullptr;
+static SbkObjectType *Sbk_Double3DParam_TypeF(void)
+{
+    return _Sbk_Double3DParam_Type;
+}
+
+static PyType_Slot Sbk_Double3DParam_slots[] = {
+    {Py_tp_base,        nullptr}, // inserted by introduceWrapperType
+    {Py_tp_dealloc,     reinterpret_cast<void*>(&SbkDeallocWrapper)},
+    {Py_tp_repr,        nullptr},
+    {Py_tp_hash,        nullptr},
+    {Py_tp_call,        nullptr},
+    {Py_tp_str,         nullptr},
+    {Py_tp_getattro,    nullptr},
+    {Py_tp_setattro,    nullptr},
+    {Py_tp_traverse,    reinterpret_cast<void*>(Sbk_Double3DParam_traverse)},
+    {Py_tp_clear,       reinterpret_cast<void*>(Sbk_Double3DParam_clear)},
+    {Py_tp_richcompare, nullptr},
+    {Py_tp_iter,        nullptr},
+    {Py_tp_iternext,    nullptr},
+    {Py_tp_methods,     reinterpret_cast<void*>(Sbk_Double3DParam_methods)},
+    {Py_tp_getset,      nullptr},
+    {Py_tp_init,        nullptr},
+    {Py_tp_new,         reinterpret_cast<void*>(SbkDummyNew /* PYSIDE-595: Prevent replacement of "0" with base->tp_new. */)},
+    {0, nullptr}
+};
+static PyType_Spec Sbk_Double3DParam_spec = {
+    "NatronEngine.Double3DParam",
+    sizeof(SbkObject),
+    0,
+    Py_TPFLAGS_DEFAULT|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_GC,
+    Sbk_Double3DParam_slots
+};
+#else
 static SbkObjectType Sbk_Double3DParam_Type = { { {
     PyVarObject_HEAD_INIT(&SbkObjectType_Type, 0)
     /*tp_name*/             "NatronEngine.Double3DParam",
@@ -274,6 +328,7 @@ static SbkObjectType Sbk_Double3DParam_Type = { { {
 }, },
     /*priv_data*/           0
 };
+#endif
 } //extern
 
 static void* Sbk_Double3DParam_typeDiscovery(void* cptr, SbkObjectType* instanceType)
@@ -288,12 +343,20 @@ static void* Sbk_Double3DParam_typeDiscovery(void* cptr, SbkObjectType* instance
 
 // Python to C++ pointer conversion - returns the C++ object of the Python wrapper (keeps object identity).
 static void Double3DParam_PythonToCpp_Double3DParam_PTR(PyObject* pyIn, void* cppOut) {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    Shiboken::Conversions::pythonToCppPointer(Sbk_Double3DParam_TypeF(), pyIn, cppOut);
+#else
     Shiboken::Conversions::pythonToCppPointer(&Sbk_Double3DParam_Type, pyIn, cppOut);
+#endif
 }
 static PythonToCppFunc is_Double3DParam_PythonToCpp_Double3DParam_PTR_Convertible(PyObject* pyIn) {
     if (pyIn == Py_None)
         return Shiboken::Conversions::nonePythonToCppNullPtr;
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    if (PyObject_TypeCheck(pyIn, (PyTypeObject*)Sbk_Double3DParam_TypeF()))
+#else
     if (PyObject_TypeCheck(pyIn, (PyTypeObject*)&Sbk_Double3DParam_Type))
+#endif
         return Double3DParam_PythonToCpp_Double3DParam_PTR;
     return 0;
 }
@@ -305,21 +368,67 @@ static PyObject* Double3DParam_PTR_CppToPython_Double3DParam(const void* cppIn) 
         Py_INCREF(pyOut);
         return pyOut;
     }
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    bool changedTypeName = false;
+    auto tCppIn = reinterpret_cast<const ::Double3DParam *>(cppIn);
+    const char *typeName = typeid(*tCppIn).name();
+    auto sbkType = Shiboken::ObjectType::typeForTypeName(typeName);
+    if (sbkType && Shiboken::ObjectType::hasSpecialCastFunction(sbkType)) {
+        typeName = typeNameOf(tCppIn);
+        changedTypeName = true;
+     }
+    PyObject *result = Shiboken::Object::newObject(Sbk_Double3DParam_TypeF(), const_cast<void*>(cppIn), false, /* exactType */ changedTypeName, typeName);
+    if (changedTypeName)
+        delete [] typeName;
+    return result;
+#else
     const char* typeName = typeid(*((::Double3DParam*)cppIn)).name();
     return Shiboken::Object::newObject(&Sbk_Double3DParam_Type, const_cast<void*>(cppIn), false, false, typeName);
+#endif
 }
+
+#if SHIBOKEN_MAJOR_VERSION >= 2
+// The signatures string for the functions.
+// Multiple signatures have their index "n:" in front.
+static const char *Double3DParam_SignatureStrings[] = {
+    "0:NatronEngine.Double3DParam.get()->NatronEngine.Double3DTuple",
+    "1:NatronEngine.Double3DParam.get(frame:double)->NatronEngine.Double3DTuple",
+    "0:NatronEngine.Double3DParam.set(x:double,y:double,z:double)",
+    "1:NatronEngine.Double3DParam.set(x:double,y:double,z:double,frame:double)",
+    nullptr}; // Sentinel
+#endif
 
 void init_Double3DParam(PyObject* module)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    _Sbk_Double3DParam_Type = Shiboken::ObjectType::introduceWrapperType(
+        module,
+        "Double3DParam",
+        "Double3DParam*",
+        &Sbk_Double3DParam_spec,
+        Double3DParam_SignatureStrings,
+        &Shiboken::callCppDestructor< ::Double3DParam >,
+        reinterpret_cast<SbkObjectType *>(SbkNatronEngineTypes[SBK_DOUBLE2DPARAM_IDX]),
+        0,
+        0    );
+
+    SbkNatronEngineTypes[SBK_DOUBLE3DPARAM_IDX]
+        = reinterpret_cast<PyTypeObject*>(Sbk_Double3DParam_TypeF());
+#else
     SbkNatronEngineTypes[SBK_DOUBLE3DPARAM_IDX] = reinterpret_cast<PyTypeObject*>(&Sbk_Double3DParam_Type);
 
     if (!Shiboken::ObjectType::introduceWrapperType(module, "Double3DParam", "Double3DParam*",
         &Sbk_Double3DParam_Type, &Shiboken::callCppDestructor< ::Double3DParam >, (SbkObjectType*)SbkNatronEngineTypes[SBK_DOUBLE2DPARAM_IDX])) {
         return;
     }
+#endif
 
     // Register Converter
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    SbkConverter* converter = Shiboken::Conversions::createConverter(Sbk_Double3DParam_TypeF(),
+#else
     SbkConverter* converter = Shiboken::Conversions::createConverter(&Sbk_Double3DParam_Type,
+#endif
         Double3DParam_PythonToCpp_Double3DParam_PTR,
         is_Double3DParam_PythonToCpp_Double3DParam_PTR_Convertible,
         Double3DParam_PTR_CppToPython_Double3DParam);
@@ -331,7 +440,11 @@ void init_Double3DParam(PyObject* module)
     Shiboken::Conversions::registerConverterName(converter, typeid(::Double3DParamWrapper).name());
 
 
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    Shiboken::ObjectType::setTypeDiscoveryFunctionV2(Sbk_Double3DParam_TypeF(), &Sbk_Double3DParam_typeDiscovery);
+#else
     Shiboken::ObjectType::setTypeDiscoveryFunctionV2(&Sbk_Double3DParam_Type, &Sbk_Double3DParam_typeDiscovery);
+#endif
 
 
     Double3DParamWrapper::pysideInitQtMetaTypes();

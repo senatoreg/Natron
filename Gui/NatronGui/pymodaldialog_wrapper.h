@@ -21,16 +21,26 @@ public:
     virtual void childEvent(QChildEvent * arg__1);
     inline void closeEvent_protected(QCloseEvent * arg__1) { PyModalDialog::closeEvent(arg__1); }
     virtual void closeEvent(QCloseEvent * arg__1);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
+    inline void connectNotify_protected(const QMetaMethod & signal) { PyModalDialog::connectNotify(signal); }
+    virtual void connectNotify(const QMetaMethod & signal);
+#else
     inline void connectNotify_protected(const char * signal) { PyModalDialog::connectNotify(signal); }
     virtual void connectNotify(const char * signal);
+#endif
     inline void contextMenuEvent_protected(QContextMenuEvent * arg__1) { PyModalDialog::contextMenuEvent(arg__1); }
     virtual void contextMenuEvent(QContextMenuEvent * arg__1);
     inline void customEvent_protected(QEvent * arg__1) { PyModalDialog::customEvent(arg__1); }
     virtual void customEvent(QEvent * arg__1);
     inline void destroy_protected(bool destroyWindow = true, bool destroySubWindows = true) { PyModalDialog::destroy(destroyWindow, destroySubWindows); }
     virtual int devType() const;
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
+    inline void disconnectNotify_protected(const QMetaMethod & signal) { PyModalDialog::disconnectNotify(signal); }
+    virtual void disconnectNotify(const QMetaMethod & signal);
+#else
     inline void disconnectNotify_protected(const char * signal) { PyModalDialog::disconnectNotify(signal); }
     virtual void disconnectNotify(const char * signal);
+#endif
     virtual void done(int arg__1);
     inline void dragEnterEvent_protected(QDragEnterEvent * event) { PyModalDialog::dragEnterEvent(event); }
     virtual void dragEnterEvent(QDragEnterEvent * event);
@@ -64,8 +74,10 @@ public:
     virtual void keyPressEvent(QKeyEvent * arg__1);
     inline void keyReleaseEvent_protected(QKeyEvent * event) { PyModalDialog::keyReleaseEvent(event); }
     virtual void keyReleaseEvent(QKeyEvent * event);
+#if QT_VERSION < QT_VERSION_CHECK(5, 0, 0)
     inline void languageChange_protected() { PyModalDialog::languageChange(); }
     virtual void languageChange();
+#endif
     inline void leaveEvent_protected(QEvent * event) { PyModalDialog::leaveEvent(event); }
     virtual void leaveEvent(QEvent * event);
     virtual const QMetaObject * metaObject() const;
@@ -86,7 +98,9 @@ public:
     inline void paintEvent_protected(QPaintEvent * event) { PyModalDialog::paintEvent(event); }
     virtual void paintEvent(QPaintEvent * event);
     virtual void reject();
+#if QT_VERSION < QT_VERSION_CHECK(5, 0, 0)
     inline void resetInputContext_protected() { PyModalDialog::resetInputContext(); }
+#endif
     inline void resizeEvent_protected(QResizeEvent * arg__1) { PyModalDialog::resizeEvent(arg__1); }
     virtual void resizeEvent(QResizeEvent * arg__1);
     virtual void setVisible(bool visible);

@@ -11,9 +11,12 @@ GCC_DIAG_UNUSED_LOCAL_TYPEDEFS_OFF
 #include <pysidesignal.h>
 #include <pysideproperty.h>
 #include <pyside.h>
+#if SHIBOKEN_MAJOR_VERSION < 2
 #include <typeresolver.h>
+#endif
 #include <typeinfo>
 #include "natronengine_python.h"
+#include "natron_helper.h"
 
 #include "pageparam_wrapper.h"
 
@@ -76,8 +79,12 @@ static PyObject* Sbk_PageParamFunc_addParam(PyObject* self, PyObject* pyArg)
     Py_RETURN_NONE;
 
     Sbk_PageParamFunc_addParam_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.PageParam.addParam");
+#else
         const char* overloads[] = {"NatronEngine.Param", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.PageParam.addParam", overloads);
+#endif
         return 0;
 }
 
@@ -91,14 +98,57 @@ static PyMethodDef Sbk_PageParam_methods[] = {
 
 static int Sbk_PageParam_traverse(PyObject* self, visitproc visit, void* arg)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    return reinterpret_cast<PyTypeObject *>(SbkObject_TypeF())->tp_traverse(self, visit, arg);
+#else
     return reinterpret_cast<PyTypeObject*>(&SbkObject_Type)->tp_traverse(self, visit, arg);
+#endif
 }
 static int Sbk_PageParam_clear(PyObject* self)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    return reinterpret_cast<PyTypeObject *>(SbkObject_TypeF())->tp_clear(self);
+#else
     return reinterpret_cast<PyTypeObject*>(&SbkObject_Type)->tp_clear(self);
+#endif
 }
 // Class Definition -----------------------------------------------
 extern "C" {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+static SbkObjectType *_Sbk_PageParam_Type = nullptr;
+static SbkObjectType *Sbk_PageParam_TypeF(void)
+{
+    return _Sbk_PageParam_Type;
+}
+
+static PyType_Slot Sbk_PageParam_slots[] = {
+    {Py_tp_base,        nullptr}, // inserted by introduceWrapperType
+    {Py_tp_dealloc,     reinterpret_cast<void*>(&SbkDeallocWrapper)},
+    {Py_tp_repr,        nullptr},
+    {Py_tp_hash,        nullptr},
+    {Py_tp_call,        nullptr},
+    {Py_tp_str,         nullptr},
+    {Py_tp_getattro,    nullptr},
+    {Py_tp_setattro,    nullptr},
+    {Py_tp_traverse,    reinterpret_cast<void*>(Sbk_PageParam_traverse)},
+    {Py_tp_clear,       reinterpret_cast<void*>(Sbk_PageParam_clear)},
+    {Py_tp_richcompare, nullptr},
+    {Py_tp_iter,        nullptr},
+    {Py_tp_iternext,    nullptr},
+    {Py_tp_methods,     reinterpret_cast<void*>(Sbk_PageParam_methods)},
+    {Py_tp_getset,      nullptr},
+    {Py_tp_init,        nullptr},
+    {Py_tp_new,         reinterpret_cast<void*>(SbkDummyNew /* PYSIDE-595: Prevent replacement of "0" with base->tp_new. */)},
+    {0, nullptr}
+};
+static PyType_Spec Sbk_PageParam_spec = {
+    "NatronEngine.PageParam",
+    sizeof(SbkObject),
+    0,
+    Py_TPFLAGS_DEFAULT|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_GC,
+    Sbk_PageParam_slots
+};
+#else
 static SbkObjectType Sbk_PageParam_Type = { { {
     PyVarObject_HEAD_INIT(&SbkObjectType_Type, 0)
     /*tp_name*/             "NatronEngine.PageParam",
@@ -148,6 +198,7 @@ static SbkObjectType Sbk_PageParam_Type = { { {
 }, },
     /*priv_data*/           0
 };
+#endif
 } //extern
 
 static void* Sbk_PageParam_typeDiscovery(void* cptr, SbkObjectType* instanceType)
@@ -162,12 +213,20 @@ static void* Sbk_PageParam_typeDiscovery(void* cptr, SbkObjectType* instanceType
 
 // Python to C++ pointer conversion - returns the C++ object of the Python wrapper (keeps object identity).
 static void PageParam_PythonToCpp_PageParam_PTR(PyObject* pyIn, void* cppOut) {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    Shiboken::Conversions::pythonToCppPointer(Sbk_PageParam_TypeF(), pyIn, cppOut);
+#else
     Shiboken::Conversions::pythonToCppPointer(&Sbk_PageParam_Type, pyIn, cppOut);
+#endif
 }
 static PythonToCppFunc is_PageParam_PythonToCpp_PageParam_PTR_Convertible(PyObject* pyIn) {
     if (pyIn == Py_None)
         return Shiboken::Conversions::nonePythonToCppNullPtr;
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    if (PyObject_TypeCheck(pyIn, reinterpret_cast<PyTypeObject*>(Sbk_PageParam_TypeF())))
+#else
     if (PyObject_TypeCheck(pyIn, (PyTypeObject*)&Sbk_PageParam_Type))
+#endif
         return PageParam_PythonToCpp_PageParam_PTR;
     return 0;
 }
@@ -179,21 +238,64 @@ static PyObject* PageParam_PTR_CppToPython_PageParam(const void* cppIn) {
         Py_INCREF(pyOut);
         return pyOut;
     }
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    bool changedTypeName = false;
+    auto tCppIn = reinterpret_cast<const ::PageParam *>(cppIn);
+    const char *typeName = typeid(*tCppIn).name();
+    auto sbkType = Shiboken::ObjectType::typeForTypeName(typeName);
+    if (sbkType && Shiboken::ObjectType::hasSpecialCastFunction(sbkType)) {
+        typeName = typeNameOf(tCppIn);
+        changedTypeName = true;
+     }
+    PyObject *result = Shiboken::Object::newObject(Sbk_PageParam_TypeF(), const_cast<void*>(cppIn), false, /* exactType */ changedTypeName, typeName);
+    if (changedTypeName)
+        delete [] typeName;
+    return result;
+#else
     const char* typeName = typeid(*((::PageParam*)cppIn)).name();
     return Shiboken::Object::newObject(&Sbk_PageParam_Type, const_cast<void*>(cppIn), false, false, typeName);
+#endif
 }
+
+#if SHIBOKEN_MAJOR_VERSION >= 2
+// The signatures string for the functions.
+// Multiple signatures have their index "n:" in front.
+static const char *PageParam_SignatureStrings[] = {
+    "NatronEngine.PageParam.addParam(param:NatronEngine.Param)",
+    nullptr}; // Sentinel
+#endif
 
 void init_PageParam(PyObject* module)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    _Sbk_PageParam_Type = Shiboken::ObjectType::introduceWrapperType(
+        module,
+        "PageParam",
+        "PageParam*",
+        &Sbk_PageParam_spec,
+        PageParam_SignatureStrings,
+        &Shiboken::callCppDestructor< ::PageParam >,
+        reinterpret_cast<SbkObjectType *>(SbkNatronEngineTypes[SBK_PARAM_IDX]),
+        0,
+        0    );
+
+    SbkNatronEngineTypes[SBK_PAGEPARAM_IDX]
+        = reinterpret_cast<PyTypeObject*>(Sbk_PageParam_TypeF());
+#else
     SbkNatronEngineTypes[SBK_PAGEPARAM_IDX] = reinterpret_cast<PyTypeObject*>(&Sbk_PageParam_Type);
 
     if (!Shiboken::ObjectType::introduceWrapperType(module, "PageParam", "PageParam*",
         &Sbk_PageParam_Type, &Shiboken::callCppDestructor< ::PageParam >, (SbkObjectType*)SbkNatronEngineTypes[SBK_PARAM_IDX])) {
         return;
     }
+#endif
 
     // Register Converter
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    SbkConverter* converter = Shiboken::Conversions::createConverter(Sbk_PageParam_TypeF(),
+#else
     SbkConverter* converter = Shiboken::Conversions::createConverter(&Sbk_PageParam_Type,
+#endif
         PageParam_PythonToCpp_PageParam_PTR,
         is_PageParam_PythonToCpp_PageParam_PTR_Convertible,
         PageParam_PTR_CppToPython_PageParam);
@@ -205,7 +307,11 @@ void init_PageParam(PyObject* module)
     Shiboken::Conversions::registerConverterName(converter, typeid(::PageParamWrapper).name());
 
 
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    Shiboken::ObjectType::setTypeDiscoveryFunctionV2(Sbk_PageParam_TypeF(), &Sbk_PageParam_typeDiscovery);
+#else
     Shiboken::ObjectType::setTypeDiscoveryFunctionV2(&Sbk_PageParam_Type, &Sbk_PageParam_typeDiscovery);
+#endif
 
 
     PageParamWrapper::pysideInitQtMetaTypes();

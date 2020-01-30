@@ -11,9 +11,12 @@ GCC_DIAG_UNUSED_LOCAL_TYPEDEFS_OFF
 #include <pysidesignal.h>
 #include <pysideproperty.h>
 #include <pyside.h>
+#if SHIBOKEN_MAJOR_VERSION < 2
 #include <typeresolver.h>
+#endif
 #include <typeinfo>
 #include "natronengine_python.h"
+#include "natron_helper.h"
 
 #include "animatedparam_wrapper.h"
 
@@ -107,8 +110,12 @@ static PyObject* Sbk_AnimatedParamFunc_deleteValueAtTime(PyObject* self, PyObjec
     Py_RETURN_NONE;
 
     Sbk_AnimatedParamFunc_deleteValueAtTime_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.AnimatedParam.deleteValueAtTime");
+#else
         const char* overloads[] = {"float, int = 0", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.AnimatedParam.deleteValueAtTime", overloads);
+#endif
         return 0;
 }
 
@@ -211,8 +218,12 @@ static PyObject* Sbk_AnimatedParamFunc_getDerivativeAtTime(PyObject* self, PyObj
     return pyResult;
 
     Sbk_AnimatedParamFunc_getDerivativeAtTime_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.AnimatedParam.getDerivativeAtTime");
+#else
         const char* overloads[] = {"float, int = 0", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.AnimatedParam.getDerivativeAtTime", overloads);
+#endif
         return 0;
 }
 
@@ -249,7 +260,11 @@ static PyObject* Sbk_AnimatedParamFunc_getExpression(PyObject* self, PyObject* p
             bool hasRetVar;
             QString cppResult = cppSelf->getExpression(cppArg0,&hasRetVar);
             pyResult = PyTuple_New(2);
+#if SHIBOKEN_MAJOR_VERSION >= 2
+            PyTuple_SET_ITEM(pyResult, 0, Shiboken::Conversions::copyToPython(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], &cppResult));
+#else
             PyTuple_SET_ITEM(pyResult, 0, Shiboken::Conversions::copyToPython(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], &cppResult));
+#endif
             PyTuple_SET_ITEM(pyResult, 1, Shiboken::Conversions::copyToPython(Shiboken::Conversions::PrimitiveTypeConverter<bool>(), &hasRetVar));
             return pyResult;
 
@@ -266,8 +281,12 @@ static PyObject* Sbk_AnimatedParamFunc_getExpression(PyObject* self, PyObject* p
     return pyResult;
 
     Sbk_AnimatedParamFunc_getExpression_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.AnimatedParam.getExpression");
+#else
         const char* overloads[] = {"int, PySide.QtCore.bool", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.AnimatedParam.getExpression", overloads);
+#endif
         return 0;
 }
 
@@ -348,8 +367,12 @@ static PyObject* Sbk_AnimatedParamFunc_getIntegrateFromTimeToTime(PyObject* self
     return pyResult;
 
     Sbk_AnimatedParamFunc_getIntegrateFromTimeToTime_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.AnimatedParam.getIntegrateFromTimeToTime");
+#else
         const char* overloads[] = {"float, float, int = 0", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.AnimatedParam.getIntegrateFromTimeToTime", overloads);
+#endif
         return 0;
 }
 
@@ -419,8 +442,12 @@ static PyObject* Sbk_AnimatedParamFunc_getIsAnimated(PyObject* self, PyObject* a
     return pyResult;
 
     Sbk_AnimatedParamFunc_getIsAnimated_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.AnimatedParam.getIsAnimated");
+#else
         const char* overloads[] = {"int = 0", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.AnimatedParam.getIsAnimated", overloads);
+#endif
         return 0;
 }
 
@@ -497,8 +524,12 @@ static PyObject* Sbk_AnimatedParamFunc_getKeyIndex(PyObject* self, PyObject* arg
     return pyResult;
 
     Sbk_AnimatedParamFunc_getKeyIndex_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.AnimatedParam.getKeyIndex");
+#else
         const char* overloads[] = {"float, int = 0", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.AnimatedParam.getKeyIndex", overloads);
+#endif
         return 0;
 }
 
@@ -565,8 +596,12 @@ static PyObject* Sbk_AnimatedParamFunc_getKeyTime(PyObject* self, PyObject* args
     return pyResult;
 
     Sbk_AnimatedParamFunc_getKeyTime_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.AnimatedParam.getKeyTime");
+#else
         const char* overloads[] = {"int, int, PySide.QtCore.double", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.AnimatedParam.getKeyTime", overloads);
+#endif
         return 0;
 }
 
@@ -636,8 +671,12 @@ static PyObject* Sbk_AnimatedParamFunc_getNumKeys(PyObject* self, PyObject* args
     return pyResult;
 
     Sbk_AnimatedParamFunc_getNumKeys_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.AnimatedParam.getNumKeys");
+#else
         const char* overloads[] = {"int = 0", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.AnimatedParam.getNumKeys", overloads);
+#endif
         return 0;
 }
 
@@ -704,8 +743,12 @@ static PyObject* Sbk_AnimatedParamFunc_removeAnimation(PyObject* self, PyObject*
     Py_RETURN_NONE;
 
     Sbk_AnimatedParamFunc_removeAnimation_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.AnimatedParam.removeAnimation");
+#else
         const char* overloads[] = {"int = 0", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.AnimatedParam.removeAnimation", overloads);
+#endif
         return 0;
 }
 
@@ -740,7 +783,11 @@ static PyObject* Sbk_AnimatedParamFunc_setExpression(PyObject* self, PyObject* a
     // Overloaded function decisor
     // 0: setExpression(QString,bool,int)
     if (numArgs >= 2
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        && (pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[0])))
+#else
         && (pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[0])))
+#endif
         && (pythonToCpp[1] = Shiboken::Conversions::isPythonToCppConvertible(Shiboken::Conversions::PrimitiveTypeConverter<bool>(), (pyArgs[1])))) {
         if (numArgs == 2) {
             overloadId = 0; // setExpression(QString,bool,int)
@@ -792,8 +839,12 @@ static PyObject* Sbk_AnimatedParamFunc_setExpression(PyObject* self, PyObject* a
     return pyResult;
 
     Sbk_AnimatedParamFunc_setExpression_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.AnimatedParam.setExpression");
+#else
         const char* overloads[] = {"unicode, bool, int = 0", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.AnimatedParam.setExpression", overloads);
+#endif
         return 0;
 }
 
@@ -829,11 +880,11 @@ static PyObject* Sbk_AnimatedParamFunc_setInterpolationAtTime(PyObject* self, Py
     // 0: setInterpolationAtTime(double,NATRON_NAMESPACE::KeyframeTypeEnum,int)
     if (numArgs >= 2
         && (pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(Shiboken::Conversions::PrimitiveTypeConverter<double>(), (pyArgs[0])))
-        && (pythonToCpp[1] = Shiboken::Conversions::isPythonToCppConvertible(SBK_CONVERTER(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_KEYFRAMETYPEENUM_IDX]), (pyArgs[1])))) {
+        && (pythonToCpp[1] = Shiboken::Conversions::isPythonToCppConvertible(SBK_CONVERTER(SbkNatronEngineTypes[SBK_NATRON_KEYFRAMETYPEENUM_IDX]), (pyArgs[1])))) {
         if (numArgs == 2) {
-            overloadId = 0; // setInterpolationAtTime(double,NATRON_NAMESPACE::KeyframeTypeEnum,int)
+            overloadId = 0; // setInterpolationAtTime(double,Natron::KeyframeTypeEnum,int)
         } else if ((pythonToCpp[2] = Shiboken::Conversions::isPythonToCppConvertible(Shiboken::Conversions::PrimitiveTypeConverter<int>(), (pyArgs[2])))) {
-            overloadId = 0; // setInterpolationAtTime(double,NATRON_NAMESPACE::KeyframeTypeEnum,int)
+            overloadId = 0; // setInterpolationAtTime(double,Natron::KeyframeTypeEnum,int)
         }
     }
 
@@ -855,13 +906,13 @@ static PyObject* Sbk_AnimatedParamFunc_setInterpolationAtTime(PyObject* self, Py
         }
         double cppArg0;
         pythonToCpp[0](pyArgs[0], &cppArg0);
-        ::NATRON_NAMESPACE::KeyframeTypeEnum cppArg1 = ((::NATRON_NAMESPACE::KeyframeTypeEnum)0);
+        ::Natron::KeyframeTypeEnum cppArg1 = ((::Natron::KeyframeTypeEnum)0);
         pythonToCpp[1](pyArgs[1], &cppArg1);
         int cppArg2 = 0;
         if (pythonToCpp[2]) pythonToCpp[2](pyArgs[2], &cppArg2);
 
         if (!PyErr_Occurred()) {
-            // setInterpolationAtTime(double,NATRON_NAMESPACE::KeyframeTypeEnum,int)
+            // setInterpolationAtTime(double,Natron::KeyframeTypeEnum,int)
             bool cppResult = cppSelf->setInterpolationAtTime(cppArg0, cppArg1, cppArg2);
             pyResult = Shiboken::Conversions::copyToPython(Shiboken::Conversions::PrimitiveTypeConverter<bool>(), &cppResult);
         }
@@ -874,8 +925,12 @@ static PyObject* Sbk_AnimatedParamFunc_setInterpolationAtTime(PyObject* self, Py
     return pyResult;
 
     Sbk_AnimatedParamFunc_setInterpolationAtTime_TypeError:
-        const char* overloads[] = {"float, NatronEngine.NATRON_NAMESPACE.KeyframeTypeEnum, int = 0", 0};
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.AnimatedParam.setInterpolationAtTime");
+#else
+        const char* overloads[] = {"float, NatronEngine.Natron.KeyframeTypeEnum, int = 0", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.AnimatedParam.setInterpolationAtTime", overloads);
+#endif
         return 0;
 }
 
@@ -900,14 +955,56 @@ static PyMethodDef Sbk_AnimatedParam_methods[] = {
 
 static int Sbk_AnimatedParam_traverse(PyObject* self, visitproc visit, void* arg)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    return reinterpret_cast<PyTypeObject *>(SbkObject_TypeF())->tp_traverse(self, visit, arg);
+#else
     return reinterpret_cast<PyTypeObject*>(&SbkObject_Type)->tp_traverse(self, visit, arg);
+#endif
 }
 static int Sbk_AnimatedParam_clear(PyObject* self)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    return reinterpret_cast<PyTypeObject *>(SbkObject_TypeF())->tp_clear(self);
+#else
     return reinterpret_cast<PyTypeObject*>(&SbkObject_Type)->tp_clear(self);
+#endif
 }
 // Class Definition -----------------------------------------------
 extern "C" {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+static SbkObjectType *_Sbk_AnimatedParam_Type = nullptr;
+static SbkObjectType *Sbk_AnimatedParam_TypeF(void)
+{
+    return _Sbk_AnimatedParam_Type;
+}
+static PyType_Slot Sbk_AnimatedParam_slots[] = {
+    {Py_tp_base,        nullptr}, // inserted by introduceWrapperType
+    {Py_tp_dealloc,     reinterpret_cast<void*>(&SbkDeallocWrapper)},
+    {Py_tp_repr,        nullptr},
+    {Py_tp_hash,        nullptr},
+    {Py_tp_call,        nullptr},
+    {Py_tp_str,         nullptr},
+    {Py_tp_getattro,    nullptr},
+    {Py_tp_setattro,    nullptr},
+    {Py_tp_traverse,    reinterpret_cast<void*>(Sbk_AnimatedParam_traverse)},
+    {Py_tp_clear,       reinterpret_cast<void*>(Sbk_AnimatedParam_clear)},
+    {Py_tp_richcompare, nullptr},
+    {Py_tp_iter,        nullptr},
+    {Py_tp_iternext,    nullptr},
+    {Py_tp_methods,     reinterpret_cast<void*>(Sbk_AnimatedParam_methods)},
+    {Py_tp_getset,      nullptr},
+    {Py_tp_init,        nullptr},
+    {Py_tp_new,         reinterpret_cast<void*>(SbkDummyNew /* PYSIDE-595: Prevent replacement of "0" with base->tp_new. */)},
+    {0, nullptr}
+};
+static PyType_Spec Sbk_AnimatedParam_spec = {
+    "NatronEngine.AnimatedParam",
+    sizeof(SbkObject),
+    0,
+    Py_TPFLAGS_DEFAULT|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_GC,
+    Sbk_AnimatedParam_slots
+};
+#else
 static SbkObjectType Sbk_AnimatedParam_Type = { { {
     PyVarObject_HEAD_INIT(&SbkObjectType_Type, 0)
     /*tp_name*/             "NatronEngine.AnimatedParam",
@@ -957,6 +1054,7 @@ static SbkObjectType Sbk_AnimatedParam_Type = { { {
 }, },
     /*priv_data*/           0
 };
+#endif
 } //extern
 
 static void* Sbk_AnimatedParam_typeDiscovery(void* cptr, SbkObjectType* instanceType)
@@ -971,12 +1069,20 @@ static void* Sbk_AnimatedParam_typeDiscovery(void* cptr, SbkObjectType* instance
 
 // Python to C++ pointer conversion - returns the C++ object of the Python wrapper (keeps object identity).
 static void AnimatedParam_PythonToCpp_AnimatedParam_PTR(PyObject* pyIn, void* cppOut) {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    Shiboken::Conversions::pythonToCppPointer(Sbk_AnimatedParam_TypeF(), pyIn, cppOut);
+#else
     Shiboken::Conversions::pythonToCppPointer(&Sbk_AnimatedParam_Type, pyIn, cppOut);
+#endif
 }
 static PythonToCppFunc is_AnimatedParam_PythonToCpp_AnimatedParam_PTR_Convertible(PyObject* pyIn) {
     if (pyIn == Py_None)
         return Shiboken::Conversions::nonePythonToCppNullPtr;
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    if (PyObject_TypeCheck(pyIn, reinterpret_cast<PyTypeObject*>(Sbk_AnimatedParam_TypeF())))
+#else
     if (PyObject_TypeCheck(pyIn, (PyTypeObject*)&Sbk_AnimatedParam_Type))
+#endif
         return AnimatedParam_PythonToCpp_AnimatedParam_PTR;
     return 0;
 }
@@ -988,21 +1094,73 @@ static PyObject* AnimatedParam_PTR_CppToPython_AnimatedParam(const void* cppIn) 
         Py_INCREF(pyOut);
         return pyOut;
     }
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    bool changedTypeName = false;
+    auto tCppIn = reinterpret_cast<const ::AnimatedParam *>(cppIn);
+    const char *typeName = typeid(*tCppIn).name();
+    auto sbkType = Shiboken::ObjectType::typeForTypeName(typeName);
+    if (sbkType && Shiboken::ObjectType::hasSpecialCastFunction(sbkType)) {
+        typeName = typeNameOf(tCppIn);
+        changedTypeName = true;
+     }
+    PyObject *result = Shiboken::Object::newObject(Sbk_AnimatedParam_TypeF(), const_cast<void*>(cppIn), false, /* exactType */ changedTypeName, typeName);
+    if (changedTypeName)
+        delete [] typeName;
+    return result;
+#else
     const char* typeName = typeid(*((::AnimatedParam*)cppIn)).name();
     return Shiboken::Object::newObject(&Sbk_AnimatedParam_Type, const_cast<void*>(cppIn), false, false, typeName);
+#endif
 }
+
+#if SHIBOKEN_MAJOR_VERSION >= 2
+static const char *AnimatedParam_SignatureStrings[] = {
+    "NatronEngine.AnimatedParam.deleteValueAtTime(time:double,dimension:int=0)",
+    "NatronEngine.AnimatedParam.getCurrentTime()->int",
+    "NatronEngine.AnimatedParam.getDerivativeAtTime(time:double,dimension:int=0)->double",
+    "NatronEngine.AnimatedParam.getExpression(dimension:int,hasRetVariable:bool*)->QString",
+    "NatronEngine.AnimatedParam.getIntegrateFromTimeToTime(time1:double,time2:double,dimension:int=0)->double",
+    "NatronEngine.AnimatedParam.getIsAnimated(dimension:int=0)->bool",
+    "NatronEngine.AnimatedParam.getKeyIndex(time:double,dimension:int=0)->int",
+    "NatronEngine.AnimatedParam.getKeyTime(index:int,dimension:int,time:double*)->bool",
+    "NatronEngine.AnimatedParam.getNumKeys(dimension:int=0)->int",
+    "NatronEngine.AnimatedParam.removeAnimation(dimension:int=0)",
+    "NatronEngine.AnimatedParam.setExpression(expr:QString,hasRetVariable:bool,dimension:int=o)->bool",
+    "NatronEngine.AnimatedParam.setInterpolationAtTime(time:double,interpolation:NatronEngine.Natron.KeyframeTypeEnum,dimension:int=0)->bool",
+    nullptr}; // Sentinel
+#endif
 
 void init_AnimatedParam(PyObject* module)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    _Sbk_AnimatedParam_Type = Shiboken::ObjectType::introduceWrapperType(
+        module,
+        "AnimatedParam",
+        "AnimatedParam*",
+        &Sbk_AnimatedParam_spec,
+        AnimatedParam_SignatureStrings,
+        &Shiboken::callCppDestructor< ::AnimatedParam >,
+        reinterpret_cast<SbkObjectType *>(SbkNatronEngineTypes[SBK_PARAM_IDX]),
+        0,
+        0    );
+
+    SbkNatronEngineTypes[SBK_ANIMATEDPARAM_IDX]
+        = reinterpret_cast<PyTypeObject*>(Sbk_AnimatedParam_TypeF());
+#else
     SbkNatronEngineTypes[SBK_ANIMATEDPARAM_IDX] = reinterpret_cast<PyTypeObject*>(&Sbk_AnimatedParam_Type);
 
     if (!Shiboken::ObjectType::introduceWrapperType(module, "AnimatedParam", "AnimatedParam*",
         &Sbk_AnimatedParam_Type, &Shiboken::callCppDestructor< ::AnimatedParam >, (SbkObjectType*)SbkNatronEngineTypes[SBK_PARAM_IDX])) {
         return;
     }
+#endif
 
     // Register Converter
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    SbkConverter* converter = Shiboken::Conversions::createConverter(Sbk_AnimatedParam_TypeF(),
+#else
     SbkConverter* converter = Shiboken::Conversions::createConverter(&Sbk_AnimatedParam_Type,
+#endif
         AnimatedParam_PythonToCpp_AnimatedParam_PTR,
         is_AnimatedParam_PythonToCpp_AnimatedParam_PTR_Convertible,
         AnimatedParam_PTR_CppToPython_AnimatedParam);
@@ -1014,7 +1172,11 @@ void init_AnimatedParam(PyObject* module)
     Shiboken::Conversions::registerConverterName(converter, typeid(::AnimatedParamWrapper).name());
 
 
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    Shiboken::ObjectType::setTypeDiscoveryFunctionV2(Sbk_AnimatedParam_TypeF(), &Sbk_AnimatedParam_typeDiscovery);
+#else
     Shiboken::ObjectType::setTypeDiscoveryFunctionV2(&Sbk_AnimatedParam_Type, &Sbk_AnimatedParam_typeDiscovery);
+#endif
 
 
     AnimatedParamWrapper::pysideInitQtMetaTypes();

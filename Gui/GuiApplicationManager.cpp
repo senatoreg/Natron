@@ -69,6 +69,7 @@ GuiApplicationManager::GuiApplicationManager()
     : AppManager()
     , _imp( new GuiApplicationManagerPrivate(this) )
 {
+   //Q_INIT_RESOURCE(GuiResources);
 }
 
 GuiApplicationManager::~GuiApplicationManager()

@@ -11,9 +11,12 @@ GCC_DIAG_UNUSED_LOCAL_TYPEDEFS_OFF
 #include <pysidesignal.h>
 #include <pysideproperty.h>
 #include <pyside.h>
+#if SHIBOKEN_MAJOR_VERSION < 2
 #include <typeresolver.h>
+#endif
 #include <typeinfo>
 #include "natronengine_python.h"
+#include "natron_helper.h"
 
 #include "int3dparam_wrapper.h"
 
@@ -104,8 +107,12 @@ static PyObject* Sbk_Int3DParamFunc_get(PyObject* self, PyObject* args)
     return pyResult;
 
     Sbk_Int3DParamFunc_get_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.Int3DParam.get");
+#else
         const char* overloads[] = {"", "float", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.Int3DParam.get", overloads);
+#endif
         return 0;
 }
 
@@ -201,8 +208,12 @@ static PyObject* Sbk_Int3DParamFunc_set(PyObject* self, PyObject* args)
     Py_RETURN_NONE;
 
     Sbk_Int3DParamFunc_set_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.Int3DParam.set");
+#else
         const char* overloads[] = {"int, int, int", "int, int, int, float", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.Int3DParam.set", overloads);
+#endif
         return 0;
 }
 
@@ -217,14 +228,57 @@ static PyMethodDef Sbk_Int3DParam_methods[] = {
 
 static int Sbk_Int3DParam_traverse(PyObject* self, visitproc visit, void* arg)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    return reinterpret_cast<PyTypeObject *>(SbkObject_TypeF())->tp_traverse(self, visit, arg);
+#else
     return reinterpret_cast<PyTypeObject*>(&SbkObject_Type)->tp_traverse(self, visit, arg);
+#endif
 }
 static int Sbk_Int3DParam_clear(PyObject* self)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    return reinterpret_cast<PyTypeObject *>(SbkObject_TypeF())->tp_clear(self);
+#else
     return reinterpret_cast<PyTypeObject*>(&SbkObject_Type)->tp_clear(self);
+#endif
 }
 // Class Definition -----------------------------------------------
 extern "C" {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+static SbkObjectType *_Sbk_Int3DParam_Type = nullptr;
+static SbkObjectType *Sbk_Int3DParam_TypeF(void)
+{
+    return _Sbk_Int3DParam_Type;
+}
+
+static PyType_Slot Sbk_Int3DParam_slots[] = {
+    {Py_tp_base,        nullptr}, // inserted by introduceWrapperType
+    {Py_tp_dealloc,     reinterpret_cast<void*>(&SbkDeallocWrapper)},
+    {Py_tp_repr,        nullptr},
+    {Py_tp_hash,        nullptr},
+    {Py_tp_call,        nullptr},
+    {Py_tp_str,         nullptr},
+    {Py_tp_getattro,    nullptr},
+    {Py_tp_setattro,    nullptr},
+    {Py_tp_traverse,    reinterpret_cast<void*>(Sbk_Int3DParam_traverse)},
+    {Py_tp_clear,       reinterpret_cast<void*>(Sbk_Int3DParam_clear)},
+    {Py_tp_richcompare, nullptr},
+    {Py_tp_iter,        nullptr},
+    {Py_tp_iternext,    nullptr},
+    {Py_tp_methods,     reinterpret_cast<void*>(Sbk_Int3DParam_methods)},
+    {Py_tp_getset,      nullptr},
+    {Py_tp_init,        nullptr},
+    {Py_tp_new,         reinterpret_cast<void*>(SbkDummyNew /* PYSIDE-595: Prevent replacement of "0" with base->tp_new. */)},
+    {0, nullptr}
+};
+static PyType_Spec Sbk_Int3DParam_spec = {
+    "NatronEngine.Int3DParam",
+    sizeof(SbkObject),
+    0,
+    Py_TPFLAGS_DEFAULT|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_GC,
+    Sbk_Int3DParam_slots
+};
+#else
 static SbkObjectType Sbk_Int3DParam_Type = { { {
     PyVarObject_HEAD_INIT(&SbkObjectType_Type, 0)
     /*tp_name*/             "NatronEngine.Int3DParam",
@@ -274,6 +328,7 @@ static SbkObjectType Sbk_Int3DParam_Type = { { {
 }, },
     /*priv_data*/           0
 };
+#endif
 } //extern
 
 static void* Sbk_Int3DParam_typeDiscovery(void* cptr, SbkObjectType* instanceType)
@@ -288,12 +343,20 @@ static void* Sbk_Int3DParam_typeDiscovery(void* cptr, SbkObjectType* instanceTyp
 
 // Python to C++ pointer conversion - returns the C++ object of the Python wrapper (keeps object identity).
 static void Int3DParam_PythonToCpp_Int3DParam_PTR(PyObject* pyIn, void* cppOut) {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    Shiboken::Conversions::pythonToCppPointer(Sbk_Int3DParam_TypeF(), pyIn, cppOut);
+#else
     Shiboken::Conversions::pythonToCppPointer(&Sbk_Int3DParam_Type, pyIn, cppOut);
+#endif
 }
 static PythonToCppFunc is_Int3DParam_PythonToCpp_Int3DParam_PTR_Convertible(PyObject* pyIn) {
     if (pyIn == Py_None)
         return Shiboken::Conversions::nonePythonToCppNullPtr;
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    if (PyObject_TypeCheck(pyIn, reinterpret_cast<PyTypeObject*>(Sbk_Int3DParam_TypeF())))
+#else
     if (PyObject_TypeCheck(pyIn, (PyTypeObject*)&Sbk_Int3DParam_Type))
+#endif
         return Int3DParam_PythonToCpp_Int3DParam_PTR;
     return 0;
 }
@@ -305,21 +368,67 @@ static PyObject* Int3DParam_PTR_CppToPython_Int3DParam(const void* cppIn) {
         Py_INCREF(pyOut);
         return pyOut;
     }
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    bool changedTypeName = false;
+    auto tCppIn = reinterpret_cast<const ::Int3DParam *>(cppIn);
+    const char *typeName = typeid(*tCppIn).name();
+    auto sbkType = Shiboken::ObjectType::typeForTypeName(typeName);
+    if (sbkType && Shiboken::ObjectType::hasSpecialCastFunction(sbkType)) {
+        typeName = typeNameOf(tCppIn);
+        changedTypeName = true;
+     }
+    PyObject *result = Shiboken::Object::newObject(Sbk_Int3DParam_TypeF(), const_cast<void*>(cppIn), false, /* exactType */ changedTypeName, typeName);
+    if (changedTypeName)
+        delete [] typeName;
+    return result;
+#else
     const char* typeName = typeid(*((::Int3DParam*)cppIn)).name();
     return Shiboken::Object::newObject(&Sbk_Int3DParam_Type, const_cast<void*>(cppIn), false, false, typeName);
+#endif
 }
+
+#if SHIBOKEN_MAJOR_VERSION >= 2
+// The signatures string for the functions.
+// Multiple signatures have their index "n:" in front.
+static const char *Int3DParam_SignatureStrings[] = {
+    "0:NatronEngine.Int3DParam.get()->NatronEngine.Int3DTuple",
+    "1:NatronEngine.Int3DParam.get(frame:double)->NatronEngine.Int3DTuple",
+    "0:NatronEngine.Int3DParam.set(x:int,y:int,z:int)",
+    "1:NatronEngine.Int3DParam.set(x:int,y:int,z:int,frame:double)",
+    nullptr}; // Sentinel
+#endif
 
 void init_Int3DParam(PyObject* module)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    _Sbk_Int3DParam_Type = Shiboken::ObjectType::introduceWrapperType(
+        module,
+        "Int3DParam",
+        "Int3DParam*",
+        &Sbk_Int3DParam_spec,
+        Int3DParam_SignatureStrings,
+        &Shiboken::callCppDestructor< ::Int3DParam >,
+        reinterpret_cast<SbkObjectType *>(SbkNatronEngineTypes[SBK_INT2DPARAM_IDX]),
+        0,
+        0    );
+
+    SbkNatronEngineTypes[SBK_INT3DPARAM_IDX]
+        = reinterpret_cast<PyTypeObject*>(Sbk_Int3DParam_TypeF());
+#else
     SbkNatronEngineTypes[SBK_INT3DPARAM_IDX] = reinterpret_cast<PyTypeObject*>(&Sbk_Int3DParam_Type);
 
     if (!Shiboken::ObjectType::introduceWrapperType(module, "Int3DParam", "Int3DParam*",
         &Sbk_Int3DParam_Type, &Shiboken::callCppDestructor< ::Int3DParam >, (SbkObjectType*)SbkNatronEngineTypes[SBK_INT2DPARAM_IDX])) {
         return;
     }
+#endif
 
     // Register Converter
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    SbkConverter* converter = Shiboken::Conversions::createConverter(Sbk_Int3DParam_TypeF(),
+#else
     SbkConverter* converter = Shiboken::Conversions::createConverter(&Sbk_Int3DParam_Type,
+#endif
         Int3DParam_PythonToCpp_Int3DParam_PTR,
         is_Int3DParam_PythonToCpp_Int3DParam_PTR_Convertible,
         Int3DParam_PTR_CppToPython_Int3DParam);
@@ -331,7 +440,11 @@ void init_Int3DParam(PyObject* module)
     Shiboken::Conversions::registerConverterName(converter, typeid(::Int3DParamWrapper).name());
 
 
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    Shiboken::ObjectType::setTypeDiscoveryFunctionV2(Sbk_Int3DParam_TypeF(), &Sbk_Int3DParam_typeDiscovery);
+#else
     Shiboken::ObjectType::setTypeDiscoveryFunctionV2(&Sbk_Int3DParam_Type, &Sbk_Int3DParam_typeDiscovery);
+#endif
 
 
     Int3DParamWrapper::pysideInitQtMetaTypes();

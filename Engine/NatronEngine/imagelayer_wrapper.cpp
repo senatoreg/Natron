@@ -11,9 +11,12 @@ GCC_DIAG_UNUSED_LOCAL_TYPEDEFS_OFF
 #include <pysidesignal.h>
 #include <pysideproperty.h>
 #include <pyside.h>
+#if SHIBOKEN_MAJOR_VERSION < 2
 #include <typeresolver.h>
+#endif
 #include <typeinfo>
 #include "natronengine_python.h"
+#include "natron_helper.h"
 
 #include "imagelayer_wrapper.h"
 
@@ -52,9 +55,15 @@ Sbk_ImageLayer_Init(PyObject* self, PyObject* args, PyObject* kwds)
     // 0: ImageLayer(ImageLayer)
     // 1: ImageLayer(QString,QString,QStringList)
     if (numArgs == 3
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        && (pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[0])))
+        && (pythonToCpp[1] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[1])))
+        && (pythonToCpp[2] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRINGLIST_IDX], (pyArgs[2])))) {
+#else
         && (pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[0])))
         && (pythonToCpp[1] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[1])))
         && (pythonToCpp[2] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRINGLIST_IDX], (pyArgs[2])))) {
+#endif
         overloadId = 1; // ImageLayer(QString,QString,QStringList)
     } else if (numArgs == 1
         && (pythonToCpp[0] = Shiboken::Conversions::isPythonToCppReferenceConvertible((SbkObjectType*)SbkNatronEngineTypes[SBK_IMAGELAYER_IDX], (pyArgs[0])))) {
@@ -114,8 +123,12 @@ Sbk_ImageLayer_Init(PyObject* self, PyObject* args, PyObject* kwds)
     return 1;
 
     Sbk_ImageLayer_Init_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ImageLayer");
+#else
         const char* overloads[] = {"NatronEngine.ImageLayer", "unicode, unicode, QStringList", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ImageLayer", overloads);
+#endif
         return -1;
 }
 
@@ -176,7 +189,11 @@ static PyObject* Sbk_ImageLayerFunc_getComponentsNames(PyObject* self)
         if (!PyErr_Occurred()) {
             // getComponentsNames()const
             const QStringList & cppResult = const_cast<const ::ImageLayer*>(cppSelf)->getComponentsNames();
+#if SHIBOKEN_MAJOR_VERSION >= 2
+            pyResult = Shiboken::Conversions::copyToPython(SbkPySide2_QtCoreTypeConverters[SBK_QSTRINGLIST_IDX], &cppResult);
+#else
             pyResult = Shiboken::Conversions::copyToPython(SbkPySide_QtCoreTypeConverters[SBK_QSTRINGLIST_IDX], &cppResult);
+#endif
         }
     }
 
@@ -202,7 +219,11 @@ static PyObject* Sbk_ImageLayerFunc_getComponentsPrettyName(PyObject* self)
         if (!PyErr_Occurred()) {
             // getComponentsPrettyName()const
             const QString & cppResult = const_cast<const ::ImageLayer*>(cppSelf)->getComponentsPrettyName();
+#if SHIBOKEN_MAJOR_VERSION >= 2
+            pyResult = Shiboken::Conversions::copyToPython(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], &cppResult);
+#else
             pyResult = Shiboken::Conversions::copyToPython(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], &cppResult);
+#endif
         }
     }
 
@@ -318,8 +339,12 @@ static PyObject* Sbk_ImageLayerFunc_getHash(PyObject* self, PyObject* pyArg)
     return pyResult;
 
     Sbk_ImageLayerFunc_getHash_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.ImageLayer.getHash");
+#else
         const char* overloads[] = {"NatronEngine.ImageLayer", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.ImageLayer.getHash", overloads);
+#endif
         return 0;
 }
 
@@ -338,7 +363,11 @@ static PyObject* Sbk_ImageLayerFunc_getLayerName(PyObject* self)
         if (!PyErr_Occurred()) {
             // getLayerName()const
             const QString & cppResult = const_cast<const ::ImageLayer*>(cppSelf)->getLayerName();
+#if SHIBOKEN_MAJOR_VERSION >= 2
+            pyResult = Shiboken::Conversions::copyToPython(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], &cppResult);
+#else
             pyResult = Shiboken::Conversions::copyToPython(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], &cppResult);
+#endif
         }
     }
 
@@ -593,14 +622,57 @@ static Py_hash_t Sbk_ImageLayer_HashFunc(PyObject* self) {
 
 static int Sbk_ImageLayer_traverse(PyObject* self, visitproc visit, void* arg)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    return reinterpret_cast<PyTypeObject *>(SbkObject_TypeF())->tp_traverse(self, visit, arg);
+#else
     return reinterpret_cast<PyTypeObject*>(&SbkObject_Type)->tp_traverse(self, visit, arg);
+#endif
 }
 static int Sbk_ImageLayer_clear(PyObject* self)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    return reinterpret_cast<PyTypeObject *>(SbkObject_TypeF())->tp_clear(self);
+#else
     return reinterpret_cast<PyTypeObject*>(&SbkObject_Type)->tp_clear(self);
+#endif
 }
 // Class Definition -----------------------------------------------
 extern "C" {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+static SbkObjectType *_Sbk_ImageLayer_Type = nullptr;
+static SbkObjectType *Sbk_ImageLayer_TypeF(void)
+{
+    return _Sbk_ImageLayer_Type;
+}
+
+static PyType_Slot Sbk_ImageLayer_slots[] = {
+    {Py_tp_base,        nullptr}, // inserted by introduceWrapperType
+    {Py_tp_dealloc,     reinterpret_cast<void*>(&SbkDeallocWrapper)},
+    {Py_tp_repr,        nullptr},
+    {Py_tp_hash,        reinterpret_cast<void*>(&Sbk_ImageLayer_HashFunc)},
+    {Py_tp_call,        nullptr},
+    {Py_tp_str,         nullptr},
+    {Py_tp_getattro,    nullptr},
+    {Py_tp_setattro,    nullptr},
+    {Py_tp_traverse,    reinterpret_cast<void*>(Sbk_ImageLayer_traverse)},
+    {Py_tp_clear,       reinterpret_cast<void*>(Sbk_ImageLayer_clear)},
+    {Py_tp_richcompare, reinterpret_cast<void*>(Sbk_ImageLayer_richcompare)},
+    {Py_tp_iter,        nullptr},
+    {Py_tp_iternext,    nullptr},
+    {Py_tp_methods,     reinterpret_cast<void*>(Sbk_ImageLayer_methods)},
+    {Py_tp_getset,      nullptr},
+    {Py_tp_init,        reinterpret_cast<void*>(Sbk_ImageLayer_Init)},
+    {Py_tp_new,         reinterpret_cast<void*>(SbkObjectTpNew)},
+    {0, nullptr}
+};
+static PyType_Spec Sbk_ImageLayer_spec = {
+    "NatronEngine.ImageLayer",
+    sizeof(SbkObject),
+    0,
+    Py_TPFLAGS_DEFAULT|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_GC,
+    Sbk_ImageLayer_slots
+};
+#else
 static SbkObjectType Sbk_ImageLayer_Type = { { {
     PyVarObject_HEAD_INIT(&SbkObjectType_Type, 0)
     /*tp_name*/             "NatronEngine.ImageLayer",
@@ -650,6 +722,7 @@ static SbkObjectType Sbk_ImageLayer_Type = { { {
 }, },
     /*priv_data*/           0
 };
+#endif
 } //extern
 
 
@@ -657,12 +730,20 @@ static SbkObjectType Sbk_ImageLayer_Type = { { {
 
 // Python to C++ pointer conversion - returns the C++ object of the Python wrapper (keeps object identity).
 static void ImageLayer_PythonToCpp_ImageLayer_PTR(PyObject* pyIn, void* cppOut) {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    Shiboken::Conversions::pythonToCppPointer(Sbk_ImageLayer_TypeF(), pyIn, cppOut);
+#else
     Shiboken::Conversions::pythonToCppPointer(&Sbk_ImageLayer_Type, pyIn, cppOut);
+#endif
 }
 static PythonToCppFunc is_ImageLayer_PythonToCpp_ImageLayer_PTR_Convertible(PyObject* pyIn) {
     if (pyIn == Py_None)
         return Shiboken::Conversions::nonePythonToCppNullPtr;
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    if (PyObject_TypeCheck(pyIn, reinterpret_cast<PyTypeObject*>(Sbk_ImageLayer_TypeF())))
+#else
     if (PyObject_TypeCheck(pyIn, (PyTypeObject*)&Sbk_ImageLayer_Type))
+#endif
         return ImageLayer_PythonToCpp_ImageLayer_PTR;
     return 0;
 }
@@ -674,13 +755,32 @@ static PyObject* ImageLayer_PTR_CppToPython_ImageLayer(const void* cppIn) {
         Py_INCREF(pyOut);
         return pyOut;
     }
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    bool changedTypeName = false;
+    auto tCppIn = reinterpret_cast<const ::ImageLayer *>(cppIn);
+    const char *typeName = typeid(*tCppIn).name();
+    auto sbkType = Shiboken::ObjectType::typeForTypeName(typeName);
+    if (sbkType && Shiboken::ObjectType::hasSpecialCastFunction(sbkType)) {
+        typeName = typeNameOf(tCppIn);
+        changedTypeName = true;
+     }
+    PyObject *result = Shiboken::Object::newObject(Sbk_ImageLayer_TypeF(), const_cast<void*>(cppIn), false, /* exactType */ changedTypeName, typeName);
+    if (changedTypeName)
+        delete [] typeName;
+    return result;
+#else
     const char* typeName = typeid(*((::ImageLayer*)cppIn)).name();
     return Shiboken::Object::newObject(&Sbk_ImageLayer_Type, const_cast<void*>(cppIn), false, false, typeName);
+#endif
 }
 
 // C++ to Python copy conversion.
 static PyObject* ImageLayer_COPY_CppToPython_ImageLayer(const void* cppIn) {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    return Shiboken::Object::newObject(Sbk_ImageLayer_TypeF(), new ::ImageLayer(*reinterpret_cast<const ::ImageLayer*>(cppIn)), true, true);
+#else
     return Shiboken::Object::newObject(&Sbk_ImageLayer_Type, new ::ImageLayer(*((::ImageLayer*)cppIn)), true, true);
+#endif
 }
 
 // Python to C++ copy conversion.
@@ -688,22 +788,70 @@ static void ImageLayer_PythonToCpp_ImageLayer_COPY(PyObject* pyIn, void* cppOut)
     *((::ImageLayer*)cppOut) = *((::ImageLayer*)Shiboken::Conversions::cppPointer(SbkNatronEngineTypes[SBK_IMAGELAYER_IDX], (SbkObject*)pyIn));
 }
 static PythonToCppFunc is_ImageLayer_PythonToCpp_ImageLayer_COPY_Convertible(PyObject* pyIn) {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    if (PyObject_TypeCheck(pyIn, reinterpret_cast<PyTypeObject*>(Sbk_ImageLayer_TypeF())))
+#else
     if (PyObject_TypeCheck(pyIn, (PyTypeObject*)&Sbk_ImageLayer_Type))
+#endif
         return ImageLayer_PythonToCpp_ImageLayer_COPY;
     return 0;
 }
 
+#if SHIBOKEN_MAJOR_VERSION >= 2
+// The signatures string for the functions.
+// Multiple signatures have their index "n:" in front.
+static const char *ImageLayer_SignatureStrings[] = {
+    "0:NatronEngine.ImageLayer(imageLayer:NatronEngine.ImageLayer)",
+    "0:NatronEngine.ImageLayer(layerName:QString,componentsPrettyName:QString,componentsName:QStringList)",
+    "NatronEngine.ImageLayer.getAlphaComponents()->NatronEngine.ImageLayer",
+    "NatronEngine.ImageLayer.getBackwardMotionComponents()->NatronEngine.ImageLayer",
+    "NatronEngine.ImageLayer.getComponentsNames()->QStringList",
+    "NatronEngine.ImageLayer.getComponentsPrettyName()->QString",
+    "NatronEngine.ImageLayer.getDisparityLeftComponents()->NatronEngine.ImageLayer",
+    "NatronEngine.ImageLayer.getDisparityRightComponents()->NatronEngine.ImageLayer",
+    "NatronEngine.ImageLayer.getForwardMotionComponents()->NatronEngine.ImageLayer",
+    "NatronEngine.ImageLayer.getHash(layer:NatronEngine.ImageLayer)->int",
+    "NatronEngine.ImageLayer.getLayerName()->QString",
+    "NatronEngine.ImageLayer.getNoneComponents()->NatronEngine.ImageLayer",
+    "NatronEngine.ImageLayer.getNumComponents()->int",
+    "NatronEngine.ImageLayer.getRGBAComponents()->NatronEngine.ImageLayer",
+    "NatronEngine.ImageLayer.getRGBComponents()->NatronEngine.ImageLayer",
+    "NatronEngine.ImageLayer.isColorPlane()->bool",
+    "NatronEngine.ImageLayer.__copy__()",
+    nullptr}; // Sentinel
+#endif
+
 void init_ImageLayer(PyObject* module)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    _Sbk_ImageLayer_Type = Shiboken::ObjectType::introduceWrapperType(
+        module,
+        "ImageLayer",
+        "ImageLayer",
+        &Sbk_ImageLayer_spec,
+        ImageLayer_SignatureStrings,
+        &Shiboken::callCppDestructor< ::ImageLayer >,
+        0,
+        0,
+        0    );
+
+    SbkNatronEngineTypes[SBK_IMAGELAYER_IDX]
+        = reinterpret_cast<PyTypeObject*>(Sbk_ImageLayer_TypeF());
+#else
     SbkNatronEngineTypes[SBK_IMAGELAYER_IDX] = reinterpret_cast<PyTypeObject*>(&Sbk_ImageLayer_Type);
 
     if (!Shiboken::ObjectType::introduceWrapperType(module, "ImageLayer", "ImageLayer",
         &Sbk_ImageLayer_Type, &Shiboken::callCppDestructor< ::ImageLayer >)) {
         return;
     }
+#endif
 
     // Register Converter
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    SbkConverter* converter = Shiboken::Conversions::createConverter(Sbk_ImageLayer_TypeF(),
+#else
     SbkConverter* converter = Shiboken::Conversions::createConverter(&Sbk_ImageLayer_Type,
+#endif
         ImageLayer_PythonToCpp_ImageLayer_PTR,
         is_ImageLayer_PythonToCpp_ImageLayer_PTR_Convertible,
         ImageLayer_PTR_CppToPython_ImageLayer,

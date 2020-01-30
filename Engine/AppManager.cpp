@@ -465,7 +465,7 @@ AppManager::loadFromArgs(const CLArgs& cl)
 #if PY_MAJOR_VERSION >= 3
     char* cmd = new char[wcslen(_imp->commandLineArgsWide.front()) + 1];
     // char* cmd = malloc(wcslen(_imp->commandLineArgsWide.front()) + 1);
-    wcstombs(cmd, _imp->commandLineArgsWide.front(),  wcslen(_imp->commandLineArgsWide.front()));
+    wcstombs(cmd, _imp->commandLineArgsWide.front(),  wcslen(_imp->commandLineArgsWide.front()) + 1);
     initializeQApp(_imp->nArgs, &cmd); // calls QCoreApplication::QCoreApplication(), which calls setlocale()
 #else
     initializeQApp(_imp->nArgs, &_imp->commandLineArgsUtf8.front()); // calls QCoreApplication::QCoreApplication(), which calls setlocale()
@@ -485,6 +485,7 @@ AppManager::loadFromArgs(const CLArgs& cl)
     QThreadPool::setGlobalInstance(new ThreadPool);
 #endif
 
+#ifndef USE_SYSTEM_FONTCONFIG
     // set fontconfig path on all platforms
     if ( qgetenv("FONTCONFIG_PATH").isNull() ) {
         // set FONTCONFIG_PATH to Natron/Resources/etc/fonts (required by plugins using fontconfig)
@@ -506,6 +507,7 @@ AppManager::loadFromArgs(const CLArgs& cl)
 #endif
         }
     }
+#endif
 
     try {
         initPython(); // calls Py_InitializeEx(), which calls setlocale()
@@ -1891,7 +1893,12 @@ addToPythonPathFunctor(const QDir& directory)
     std::string addToPythonPath("sys.path.append(str('");
 
     addToPythonPath += directory.absolutePath().toStdString();
+#if PY_MAJOR_VERSION >= 3
+    // Python 3.x uses UTF-8 by default
+    addToPythonPath += "'))\n";
+#else
     addToPythonPath += "').decode('utf-8'))\n";
+#endif
 
     std::string err;
     bool ok  = NATRON_PYTHON_NAMESPACE::interpretPythonScript(addToPythonPath, &err, 0);
@@ -1968,34 +1975,50 @@ AppManager::loadPythonGroups()
     ///Also import Pyside.QtCore and Pyside.QtGui (the later only in non background mode)
     {
         std::string s;
-#     if (SHIBOKEN_MAJOR_VERSION == 2)
+#if SHIBOKEN_MAJOR_VERSION >= 2
         s = "import PySide2\nimport PySide2.QtCore as QtCore";
-#     else
+#else
         s = "import PySide\nimport PySide.QtCore as QtCore";
-#     endif
+#endif
         bool ok  = NATRON_PYTHON_NAMESPACE::interpretPythonScript(s, &err, 0);
         if (!ok) {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+            QString message = tr("Failed to import PySide2.QtCore, make sure it is bundled with your Natron installation "
+#else
             QString message = tr("Failed to import PySide.QtCore, make sure it is bundled with your Natron installation "
+#endif
                                      "or reachable through the Python path. "
                                      "Note that Natron disables usage "
                                  "of site-packages).");
             std::cerr << message.toStdString() << std::endl;
+#if SHIBOKEN_MAJOR_VERSION >= 2
+            appPTR->writeToErrorLog_mt_safe(QLatin1String("PySide2.QtCore"), QDateTime::currentDateTime(), message);
+#else
             appPTR->writeToErrorLog_mt_safe(QLatin1String("PySide.QtCore"), QDateTime::currentDateTime(), message);
+#endif
         }
     }
 
     if ( !isBackground() ) {
         std::string s;
-#     if (SHIBOKEN_MAJOR_VERSION == 2)
+#if SHIBOKEN_MAJOR_VERSION >= 2
         s = "import PySide2.QtGui as QtGui";
-#     else
+#else
         s = "import PySide.QtGui as QtGui";
-#     endif
+#endif
         bool ok  = NATRON_PYTHON_NAMESPACE::interpretPythonScript(s, &err, 0);
         if (!ok) {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+            QString message = tr("Failed to import PySide2.QtGui");
+#else
             QString message = tr("Failed to import PySide.QtGui");
+#endif
             std::cerr << message.toStdString() << std::endl;
+#if SHIBOKEN_MAJOR_VERSION >= 2
+            appPTR->writeToErrorLog_mt_safe(QLatin1String("PySide2.QtGui"), QDateTime::currentDateTime(), message);
+#else
             appPTR->writeToErrorLog_mt_safe(QLatin1String("PySide.QtGui"), QDateTime::currentDateTime(), message);
+#endif
         }
     }
 
@@ -3114,9 +3137,10 @@ AppManager::initPython()
     //Disable user sites as they could conflict with Natron bundled packages.
     //If this is set, Python won’t add the user site-packages directory to sys.path.
     //See https://www.python.org/dev/peps/pep-0370/
+#ifndef USE_SYSTEM_PYTHON
     qputenv("PYTHONNOUSERSITE", "1");
     ++Py_NoUserSiteDirectory;
-
+#endif
     //
     // set up paths, clear those that don't exist or are not valid
     //
@@ -3129,16 +3153,23 @@ AppManager::initPython()
     QString pluginPath = binPath + QString::fromUtf8("\\..\\Plugins");
 #else
 #  if defined(__NATRON_LINUX__)
+#    ifndef USE_SYSTEM_PYTHON
     static std::string pythonHome = binPath.toStdString() + "/.."; // must use static storage
+#    endif
 #  elif defined(__NATRON_OSX__)
     static std::string pythonHome = binPath.toStdString() + "/../Frameworks/Python.framework/Versions/" NATRON_PY_VERSION_STRING; // must use static storage
 #  else
 #    error "unsupported platform"
 #  endif
+#ifndef USE_SYSTEM_PYTHON
     QString pyPathZip = QString::fromUtf8( (pythonHome + "/lib/python" NATRON_PY_VERSION_STRING_NO_DOT ".zip").c_str() );
+#endif
+#ifndef USE_SYSTEM_PYTHON
     QString pyPath = QString::fromUtf8( (pythonHome + "/lib/python" NATRON_PY_VERSION_STRING).c_str() );
+#endif
     QString pluginPath = binPath + QString::fromUtf8("/../Plugins");
 #endif
+#ifndef USE_SYSTEM_PYTHON
     if ( !QFile( QDir::fromNativeSeparators(pyPathZip) ).exists() ) {
 #     if defined(NATRON_CONFIG_SNAPSHOT) || defined(DEBUG)
         printf( "\"%s\" does not exist, not added to PYTHONPATH\n", pyPathZip.toStdString().c_str() );
@@ -3151,6 +3182,7 @@ AppManager::initPython()
 #     endif
         pyPath.clear();
     }
+#endif
     if ( !QDir( QDir::fromNativeSeparators(pluginPath) ).exists() ) {
 #     if defined(NATRON_CONFIG_SNAPSHOT) || defined(DEBUG)
         printf( "\"%s\" does not exist, not added to PYTHONPATH\n", pluginPath.toStdString().c_str() );
@@ -3158,12 +3190,14 @@ AppManager::initPython()
         pluginPath.clear();
     }
     // PYTHONHOME is really useful if there's a python inside it
+#ifndef USE_SYSTEM_PYTHON
     if ( pyPathZip.isEmpty() && pyPath.isEmpty() ) {
 #     if defined(NATRON_CONFIG_SNAPSHOT) || defined(DEBUG)
         printf( "dir \"%s\" does not exist or does not contain lib/python*, not setting PYTHONHOME\n", pythonHome.c_str() );
 #     endif
         pythonHome.clear();
     }
+#endif
     /////////////////////////////////////////
     // Py_SetPythonHome
     /////////////////////////////////////////
@@ -3172,6 +3206,7 @@ AppManager::initPython()
     //
     // The argument should point to a zero-terminated character string in static storage whose contents will not change for the duration of the program’s execution
 
+#ifndef USE_SYSTEM_PYTHON
     if ( !pythonHome.empty() ) {
 #     if defined(NATRON_CONFIG_SNAPSHOT) || defined(DEBUG)
         printf( "Py_SetPythonHome(\"%s\")\n", pythonHome.c_str() );
@@ -3185,6 +3220,7 @@ AppManager::initPython()
         Py_SetPythonHome( const_cast<char*>( pythonHome.c_str() ) );
 #     endif
     }
+#endif
 
     /////////////////////////////////////////
     // PYTHONPATH and Py_SetPath
@@ -3202,12 +3238,14 @@ AppManager::initPython()
     //Add the Python distribution of Natron to the Python path
 
     QStringList toPrepend;
+#ifndef USE_SYSTEM_PYTHON
     if ( !pyPathZip.isEmpty() ) {
         toPrepend.append(pyPathZip);
     }
     if ( !pyPath.isEmpty() ) {
         toPrepend.append(pyPath);
     }
+#endif
     if ( !pluginPath.isEmpty() ) {
         toPrepend.append(pluginPath);
     }
@@ -4030,7 +4068,7 @@ NATRON_PYTHON_NAMESPACE::interpretPythonScript(const std::string& script,
             PyObject* pyStr = PyObject_Str(pyExcValue);
             if (pyStr) {
 #if PY_MAJOR_VERSION >= 3
-                const char* str = PyUnicode_AS_DATA(pyStr);
+                const char* str = PyUnicode_AsUTF8(pyStr);
 #else
                 const char* str = PyString_AsString(pyStr);
 #endif
@@ -4071,7 +4109,7 @@ NATRON_PYTHON_NAMESPACE::interpretPythonScript(const std::string& script,
                             Py_DECREF(strList);
                             if (pyStr) {
 #if PY_MAJOR_VERSION >= 3
-                                str = PyUnicode_AS_DATA(pyStr);
+                                str = PyUnicode_AsUTF8(pyStr);
 #else
                                 str = PyString_AsString(pyStr);
 #endif
@@ -4123,7 +4161,7 @@ NATRON_PYTHON_NAMESPACE::interpretPythonScript(const std::string& script,
         }
 
         if ( error && !error->empty() ) {
-            *error = "While executing script:\n" + script + "Python error:\n" + *error;
+            *error = "While executing script:\n" + script + "\nPython error:\n" + *error;
 
             return false;
         }

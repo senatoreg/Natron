@@ -11,9 +11,12 @@ GCC_DIAG_UNUSED_LOCAL_TYPEDEFS_OFF
 #include <pysidesignal.h>
 #include <pysideproperty.h>
 #include <pyside.h>
+#if SHIBOKEN_MAJOR_VERSION < 2
 #include <typeresolver.h>
+#endif
 #include <typeinfo>
 #include "natronengine_python.h"
+#include "natron_helper.h"
 
 #include "groupparam_wrapper.h"
 
@@ -76,8 +79,12 @@ static PyObject* Sbk_GroupParamFunc_addParam(PyObject* self, PyObject* pyArg)
     Py_RETURN_NONE;
 
     Sbk_GroupParamFunc_addParam_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.GroupParam.addParam");
+#else
         const char* overloads[] = {"NatronEngine.Param", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.GroupParam.addParam", overloads);
+#endif
         return 0;
 }
 
@@ -173,8 +180,12 @@ static PyObject* Sbk_GroupParamFunc_setOpened(PyObject* self, PyObject* pyArg)
     Py_RETURN_NONE;
 
     Sbk_GroupParamFunc_setOpened_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.GroupParam.setOpened");
+#else
         const char* overloads[] = {"bool", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.GroupParam.setOpened", overloads);
+#endif
         return 0;
 }
 
@@ -191,14 +202,57 @@ static PyMethodDef Sbk_GroupParam_methods[] = {
 
 static int Sbk_GroupParam_traverse(PyObject* self, visitproc visit, void* arg)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    return reinterpret_cast<PyTypeObject *>(SbkObject_TypeF())->tp_traverse(self, visit, arg);
+#else
     return reinterpret_cast<PyTypeObject*>(&SbkObject_Type)->tp_traverse(self, visit, arg);
+#endif
 }
 static int Sbk_GroupParam_clear(PyObject* self)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    return reinterpret_cast<PyTypeObject *>(SbkObject_TypeF())->tp_clear(self);
+#else
     return reinterpret_cast<PyTypeObject*>(&SbkObject_Type)->tp_clear(self);
+#endif
 }
 // Class Definition -----------------------------------------------
 extern "C" {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+static SbkObjectType *_Sbk_GroupParam_Type = nullptr;
+static SbkObjectType *Sbk_GroupParam_TypeF(void)
+{
+    return _Sbk_GroupParam_Type;
+}
+
+static PyType_Slot Sbk_GroupParam_slots[] = {
+    {Py_tp_base,        nullptr}, // inserted by introduceWrapperType
+    {Py_tp_dealloc,     reinterpret_cast<void*>(&SbkDeallocWrapper)},
+    {Py_tp_repr,        nullptr},
+    {Py_tp_hash,        nullptr},
+    {Py_tp_call,        nullptr},
+    {Py_tp_str,         nullptr},
+    {Py_tp_getattro,    nullptr},
+    {Py_tp_setattro,    nullptr},
+    {Py_tp_traverse,    reinterpret_cast<void*>(Sbk_GroupParam_traverse)},
+    {Py_tp_clear,       reinterpret_cast<void*>(Sbk_GroupParam_clear)},
+    {Py_tp_richcompare, nullptr},
+    {Py_tp_iter,        nullptr},
+    {Py_tp_iternext,    nullptr},
+    {Py_tp_methods,     reinterpret_cast<void*>(Sbk_GroupParam_methods)},
+    {Py_tp_getset,      nullptr},
+    {Py_tp_init,        nullptr},
+    {Py_tp_new,         reinterpret_cast<void*>(SbkDummyNew /* PYSIDE-595: Prevent replacement of "0" with base->tp_new. */)},
+    {0, nullptr}
+};
+static PyType_Spec Sbk_GroupParam_spec = {
+    "NatronEngine.GroupParam",
+    sizeof(SbkObject),
+    0,
+    Py_TPFLAGS_DEFAULT|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_GC,
+    Sbk_GroupParam_slots
+};
+#else
 static SbkObjectType Sbk_GroupParam_Type = { { {
     PyVarObject_HEAD_INIT(&SbkObjectType_Type, 0)
     /*tp_name*/             "NatronEngine.GroupParam",
@@ -248,6 +302,7 @@ static SbkObjectType Sbk_GroupParam_Type = { { {
 }, },
     /*priv_data*/           0
 };
+#endif
 } //extern
 
 static void* Sbk_GroupParam_typeDiscovery(void* cptr, SbkObjectType* instanceType)
@@ -262,12 +317,20 @@ static void* Sbk_GroupParam_typeDiscovery(void* cptr, SbkObjectType* instanceTyp
 
 // Python to C++ pointer conversion - returns the C++ object of the Python wrapper (keeps object identity).
 static void GroupParam_PythonToCpp_GroupParam_PTR(PyObject* pyIn, void* cppOut) {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    Shiboken::Conversions::pythonToCppPointer(Sbk_GroupParam_TypeF(), pyIn, cppOut);
+#else
     Shiboken::Conversions::pythonToCppPointer(&Sbk_GroupParam_Type, pyIn, cppOut);
+#endif
 }
 static PythonToCppFunc is_GroupParam_PythonToCpp_GroupParam_PTR_Convertible(PyObject* pyIn) {
     if (pyIn == Py_None)
         return Shiboken::Conversions::nonePythonToCppNullPtr;
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    if (PyObject_TypeCheck(pyIn, reinterpret_cast<PyTypeObject*>(Sbk_GroupParam_TypeF())))
+#else
     if (PyObject_TypeCheck(pyIn, (PyTypeObject*)&Sbk_GroupParam_Type))
+#endif
         return GroupParam_PythonToCpp_GroupParam_PTR;
     return 0;
 }
@@ -279,21 +342,67 @@ static PyObject* GroupParam_PTR_CppToPython_GroupParam(const void* cppIn) {
         Py_INCREF(pyOut);
         return pyOut;
     }
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    bool changedTypeName = false;
+    auto tCppIn = reinterpret_cast<const ::GroupParam *>(cppIn);
+    const char *typeName = typeid(*tCppIn).name();
+    auto sbkType = Shiboken::ObjectType::typeForTypeName(typeName);
+    if (sbkType && Shiboken::ObjectType::hasSpecialCastFunction(sbkType)) {
+        typeName = typeNameOf(tCppIn);
+        changedTypeName = true;
+     }
+    PyObject *result = Shiboken::Object::newObject(Sbk_GroupParam_TypeF(), const_cast<void*>(cppIn), false, /* exactType */ changedTypeName, typeName);
+    if (changedTypeName)
+        delete [] typeName;
+    return result;
+#else
     const char* typeName = typeid(*((::GroupParam*)cppIn)).name();
     return Shiboken::Object::newObject(&Sbk_GroupParam_Type, const_cast<void*>(cppIn), false, false, typeName);
+#endif
 }
+
+#if SHIBOKEN_MAJOR_VERSION >= 2
+// The signatures string for the functions.
+// Multiple signatures have their index "n:" in front.
+static const char *GroupParam_SignatureStrings[] = {
+    "NatronEngine.GroupParam.addParam(param:NatronEngine.Param)",
+    "NatronEngine.GroupParam.getIsOpened()->bool",
+    "NatronEngine.GroupParam.setAsTab()",
+    "NatronEngine.GroupParam.setOpened(opened:bool)",
+    nullptr}; // Sentinel
+#endif
 
 void init_GroupParam(PyObject* module)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    _Sbk_GroupParam_Type = Shiboken::ObjectType::introduceWrapperType(
+        module,
+        "GroupParam",
+        "GroupParam*",
+        &Sbk_GroupParam_spec,
+        GroupParam_SignatureStrings,
+        &Shiboken::callCppDestructor< ::GroupParam >,
+        reinterpret_cast<SbkObjectType *>(SbkNatronEngineTypes[SBK_PARAM_IDX]),
+        0,
+        0    );
+
+    SbkNatronEngineTypes[SBK_GROUPPARAM_IDX]
+        = reinterpret_cast<PyTypeObject*>(Sbk_GroupParam_TypeF());
+#else
     SbkNatronEngineTypes[SBK_GROUPPARAM_IDX] = reinterpret_cast<PyTypeObject*>(&Sbk_GroupParam_Type);
 
     if (!Shiboken::ObjectType::introduceWrapperType(module, "GroupParam", "GroupParam*",
         &Sbk_GroupParam_Type, &Shiboken::callCppDestructor< ::GroupParam >, (SbkObjectType*)SbkNatronEngineTypes[SBK_PARAM_IDX])) {
         return;
     }
+#endif
 
     // Register Converter
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    SbkConverter* converter = Shiboken::Conversions::createConverter(Sbk_GroupParam_TypeF(),
+#else
     SbkConverter* converter = Shiboken::Conversions::createConverter(&Sbk_GroupParam_Type,
+#endif
         GroupParam_PythonToCpp_GroupParam_PTR,
         is_GroupParam_PythonToCpp_GroupParam_PTR_Convertible,
         GroupParam_PTR_CppToPython_GroupParam);
@@ -305,7 +414,11 @@ void init_GroupParam(PyObject* module)
     Shiboken::Conversions::registerConverterName(converter, typeid(::GroupParamWrapper).name());
 
 
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    Shiboken::ObjectType::setTypeDiscoveryFunctionV2(Sbk_GroupParam_TypeF(), &Sbk_GroupParam_typeDiscovery);
+#else
     Shiboken::ObjectType::setTypeDiscoveryFunctionV2(&Sbk_GroupParam_Type, &Sbk_GroupParam_typeDiscovery);
+#endif
 
 
     GroupParamWrapper::pysideInitQtMetaTypes();

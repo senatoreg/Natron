@@ -11,9 +11,12 @@ GCC_DIAG_UNUSED_LOCAL_TYPEDEFS_OFF
 #include <pysidesignal.h>
 #include <pysideproperty.h>
 #include <pyside.h>
+#if SHIBOKEN_MAJOR_VERSION < 2
 #include <typeresolver.h>
+#endif
 #include <typeinfo>
 #include "natronengine_python.h"
+#include "natron_helper.h"
 
 #include "stringnodecreationproperty_wrapper.h"
 
@@ -136,8 +139,12 @@ Sbk_StringNodeCreationProperty_Init(PyObject* self, PyObject* args, PyObject* kw
     return 1;
 
     Sbk_StringNodeCreationProperty_Init_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.StringNodeCreationProperty");
+#else
         const char* overloads[] = {"std::string", "list = std.vector< std.string >()", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.StringNodeCreationProperty", overloads);
+#endif
         return -1;
 }
 
@@ -237,8 +244,12 @@ static PyObject* Sbk_StringNodeCreationPropertyFunc_setValue(PyObject* self, PyO
     Py_RETURN_NONE;
 
     Sbk_StringNodeCreationPropertyFunc_setValue_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.StringNodeCreationProperty.setValue");
+#else
         const char* overloads[] = {"std::string, int = 0", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.StringNodeCreationProperty.setValue", overloads);
+#endif
         return 0;
 }
 
@@ -253,14 +264,57 @@ static PyMethodDef Sbk_StringNodeCreationProperty_methods[] = {
 
 static int Sbk_StringNodeCreationProperty_traverse(PyObject* self, visitproc visit, void* arg)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    return reinterpret_cast<PyTypeObject *>(SbkObject_TypeF())->tp_traverse(self, visit, arg);
+#else
     return reinterpret_cast<PyTypeObject*>(&SbkObject_Type)->tp_traverse(self, visit, arg);
+#endif
 }
 static int Sbk_StringNodeCreationProperty_clear(PyObject* self)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    return reinterpret_cast<PyTypeObject *>(SbkObject_TypeF())->tp_clear(self);
+#else
     return reinterpret_cast<PyTypeObject*>(&SbkObject_Type)->tp_clear(self);
+#endif
 }
 // Class Definition -----------------------------------------------
 extern "C" {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+static SbkObjectType *_Sbk_StringNodeCreationProperty_Type = nullptr;
+static SbkObjectType *Sbk_StringNodeCreationProperty_TypeF(void)
+{
+    return _Sbk_StringNodeCreationProperty_Type;
+}
+
+static PyType_Slot Sbk_StringNodeCreationProperty_slots[] = {
+    {Py_tp_base,        nullptr}, // inserted by introduceWrapperType
+    {Py_tp_dealloc,     reinterpret_cast<void*>(&SbkDeallocWrapper)},
+    {Py_tp_repr,        nullptr},
+    {Py_tp_hash,        nullptr},
+    {Py_tp_call,        nullptr},
+    {Py_tp_str,         nullptr},
+    {Py_tp_getattro,    nullptr},
+    {Py_tp_setattro,    nullptr},
+    {Py_tp_traverse,    reinterpret_cast<void*>(Sbk_StringNodeCreationProperty_traverse)},
+    {Py_tp_clear,       reinterpret_cast<void*>(Sbk_StringNodeCreationProperty_clear)},
+    {Py_tp_richcompare, nullptr},
+    {Py_tp_iter,        nullptr},
+    {Py_tp_iternext,    nullptr},
+    {Py_tp_methods,     reinterpret_cast<void*>(Sbk_StringNodeCreationProperty_methods)},
+    {Py_tp_getset,      nullptr},
+    {Py_tp_init,        reinterpret_cast<void*>(Sbk_StringNodeCreationProperty_Init)},
+    {Py_tp_new,         reinterpret_cast<void*>(SbkObjectTpNew)},
+    {0, nullptr}
+};
+static PyType_Spec Sbk_StringNodeCreationProperty_spec = {
+    "NatronEngine.StringNodeCreationProperty",
+    sizeof(SbkObject),
+    0,
+    Py_TPFLAGS_DEFAULT|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_GC,
+    Sbk_StringNodeCreationProperty_slots
+};
+#else
 static SbkObjectType Sbk_StringNodeCreationProperty_Type = { { {
     PyVarObject_HEAD_INIT(&SbkObjectType_Type, 0)
     /*tp_name*/             "NatronEngine.StringNodeCreationProperty",
@@ -310,6 +364,7 @@ static SbkObjectType Sbk_StringNodeCreationProperty_Type = { { {
 }, },
     /*priv_data*/           0
 };
+#endif
 } //extern
 
 static void* Sbk_StringNodeCreationProperty_typeDiscovery(void* cptr, SbkObjectType* instanceType)
@@ -324,12 +379,20 @@ static void* Sbk_StringNodeCreationProperty_typeDiscovery(void* cptr, SbkObjectT
 
 // Python to C++ pointer conversion - returns the C++ object of the Python wrapper (keeps object identity).
 static void StringNodeCreationProperty_PythonToCpp_StringNodeCreationProperty_PTR(PyObject* pyIn, void* cppOut) {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    Shiboken::Conversions::pythonToCppPointer(Sbk_StringNodeCreationProperty_TypeF(), pyIn, cppOut);
+#else
     Shiboken::Conversions::pythonToCppPointer(&Sbk_StringNodeCreationProperty_Type, pyIn, cppOut);
+#endif
 }
 static PythonToCppFunc is_StringNodeCreationProperty_PythonToCpp_StringNodeCreationProperty_PTR_Convertible(PyObject* pyIn) {
     if (pyIn == Py_None)
         return Shiboken::Conversions::nonePythonToCppNullPtr;
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    if (PyObject_TypeCheck(pyIn, reinterpret_cast<PyTypeObject*>(Sbk_StringNodeCreationProperty_TypeF())))
+#else
     if (PyObject_TypeCheck(pyIn, (PyTypeObject*)&Sbk_StringNodeCreationProperty_Type))
+#endif
         return StringNodeCreationProperty_PythonToCpp_StringNodeCreationProperty_PTR;
     return 0;
 }
@@ -341,21 +404,67 @@ static PyObject* StringNodeCreationProperty_PTR_CppToPython_StringNodeCreationPr
         Py_INCREF(pyOut);
         return pyOut;
     }
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    bool changedTypeName = false;
+    auto tCppIn = reinterpret_cast<const ::StringNodeCreationProperty *>(cppIn);
+    const char *typeName = typeid(*tCppIn).name();
+    auto sbkType = Shiboken::ObjectType::typeForTypeName(typeName);
+    if (sbkType && Shiboken::ObjectType::hasSpecialCastFunction(sbkType)) {
+        typeName = typeNameOf(tCppIn);
+        changedTypeName = true;
+     }
+    PyObject *result = Shiboken::Object::newObject(Sbk_StringNodeCreationProperty_TypeF(), const_cast<void*>(cppIn), false, /* exactType */ changedTypeName, typeName);
+    if (changedTypeName)
+        delete [] typeName;
+    return result;
+#else
     const char* typeName = typeid(*((::StringNodeCreationProperty*)cppIn)).name();
     return Shiboken::Object::newObject(&Sbk_StringNodeCreationProperty_Type, const_cast<void*>(cppIn), false, false, typeName);
+#endif
 }
+
+#if SHIBOKEN_MAJOR_VERSION >= 2
+// The signatures string for the functions.
+// Multiple signatures have their index "n:" in front.
+static const char *StringNodeCreationProperty_SignatureStrings[] = {
+    "0:NatronEngine.StringNodeCreationProperty(value:std.string)",
+    "1:NatronEngine.StringNodeCreationProperty(values:QVector[std.string]=std.vector< std.string >())",
+    "NatronEngine.StringNodeCreationProperty.getValues()->QVector[std.string]=std.vector< std.string >()",
+    "NatronEngine.StringNodeCreationProperty.setValue(value:std.string,index:int=0)",
+    nullptr}; // Sentinel
+#endif
 
 void init_StringNodeCreationProperty(PyObject* module)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    _Sbk_StringNodeCreationProperty_Type = Shiboken::ObjectType::introduceWrapperType(
+        module,
+        "StringNodeCreationProperty",
+        "StringNodeCreationProperty*",
+        &Sbk_StringNodeCreationProperty_spec,
+        StringNodeCreationProperty_SignatureStrings,
+        &Shiboken::callCppDestructor< ::StringNodeCreationProperty >,
+        reinterpret_cast<SbkObjectType *>(SbkNatronEngineTypes[SBK_NODECREATIONPROPERTY_IDX]),
+        0,
+        0    );
+
+    SbkNatronEngineTypes[SBK_STRINGNODECREATIONPROPERTY_IDX]
+        = reinterpret_cast<PyTypeObject*>(Sbk_StringNodeCreationProperty_TypeF());
+#else
     SbkNatronEngineTypes[SBK_STRINGNODECREATIONPROPERTY_IDX] = reinterpret_cast<PyTypeObject*>(&Sbk_StringNodeCreationProperty_Type);
 
     if (!Shiboken::ObjectType::introduceWrapperType(module, "StringNodeCreationProperty", "StringNodeCreationProperty*",
         &Sbk_StringNodeCreationProperty_Type, &Shiboken::callCppDestructor< ::StringNodeCreationProperty >, (SbkObjectType*)SbkNatronEngineTypes[SBK_NODECREATIONPROPERTY_IDX])) {
         return;
     }
+#endif
 
     // Register Converter
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    SbkConverter* converter = Shiboken::Conversions::createConverter(Sbk_StringNodeCreationProperty_TypeF(),
+#else
     SbkConverter* converter = Shiboken::Conversions::createConverter(&Sbk_StringNodeCreationProperty_Type,
+#endif
         StringNodeCreationProperty_PythonToCpp_StringNodeCreationProperty_PTR,
         is_StringNodeCreationProperty_PythonToCpp_StringNodeCreationProperty_PTR_Convertible,
         StringNodeCreationProperty_PTR_CppToPython_StringNodeCreationProperty);
@@ -367,7 +476,11 @@ void init_StringNodeCreationProperty(PyObject* module)
     Shiboken::Conversions::registerConverterName(converter, typeid(::StringNodeCreationPropertyWrapper).name());
 
 
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    Shiboken::ObjectType::setTypeDiscoveryFunctionV2(Sbk_StringNodeCreationProperty_TypeF(), &Sbk_StringNodeCreationProperty_typeDiscovery);
+#else
     Shiboken::ObjectType::setTypeDiscoveryFunctionV2(&Sbk_StringNodeCreationProperty_Type, &Sbk_StringNodeCreationProperty_typeDiscovery);
+#endif
 
 
     StringNodeCreationPropertyWrapper::pysideInitQtMetaTypes();

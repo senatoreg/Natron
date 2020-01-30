@@ -11,9 +11,12 @@ GCC_DIAG_UNUSED_LOCAL_TYPEDEFS_OFF
 #include <pysidesignal.h>
 #include <pysideproperty.h>
 #include <pyside.h>
+#if SHIBOKEN_MAJOR_VERSION < 2
 #include <typeresolver.h>
+#endif
 #include <typeinfo>
 #include "natronengine_python.h"
+#include "natron_helper.h"
 
 #include "rectd_wrapper.h"
 
@@ -144,8 +147,12 @@ Sbk_RectD_Init(PyObject* self, PyObject* args, PyObject* kwds)
     return 1;
 
     Sbk_RectD_Init_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.RectD");
+#else
         const char* overloads[] = {"", "NatronEngine.RectD", "float, float, float, float", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.RectD", overloads);
+#endif
         return -1;
 }
 
@@ -299,8 +306,12 @@ static PyObject* Sbk_RectDFunc_contains(PyObject* self, PyObject* args)
     return pyResult;
 
     Sbk_RectDFunc_contains_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.RectD.contains");
+#else
         const char* overloads[] = {"NatronEngine.RectD", "float, float", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.RectD.contains", overloads);
+#endif
         return 0;
 }
 
@@ -428,8 +439,12 @@ static PyObject* Sbk_RectDFunc_intersect(PyObject* self, PyObject* args)
     return pyResult;
 
     Sbk_RectDFunc_intersect_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.RectD.intersect");
+#else
         const char* overloads[] = {"NatronEngine.RectD, NatronEngine.RectD", "float, float, float, float, NatronEngine.RectD", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.RectD.intersect", overloads);
+#endif
         return 0;
 }
 
@@ -515,8 +530,12 @@ static PyObject* Sbk_RectDFunc_intersects(PyObject* self, PyObject* args)
     return pyResult;
 
     Sbk_RectDFunc_intersects_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.RectD.intersects");
+#else
         const char* overloads[] = {"NatronEngine.RectD", "float, float, float, float", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.RectD.intersects", overloads);
+#endif
         return 0;
 }
 
@@ -676,8 +695,12 @@ static PyObject* Sbk_RectDFunc_merge(PyObject* self, PyObject* args)
     Py_RETURN_NONE;
 
     Sbk_RectDFunc_merge_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.RectD.merge");
+#else
         const char* overloads[] = {"NatronEngine.RectD", "float, float, float, float", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.RectD.merge", overloads);
+#endif
         return 0;
 }
 
@@ -785,8 +808,12 @@ static PyObject* Sbk_RectDFunc_set(PyObject* self, PyObject* args)
     Py_RETURN_NONE;
 
     Sbk_RectDFunc_set_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.RectD.set");
+#else
         const char* overloads[] = {"NatronEngine.RectD", "float, float, float, float", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.RectD.set", overloads);
+#endif
         return 0;
 }
 
@@ -827,8 +854,12 @@ static PyObject* Sbk_RectDFunc_set_bottom(PyObject* self, PyObject* pyArg)
     Py_RETURN_NONE;
 
     Sbk_RectDFunc_set_bottom_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.RectD.set_bottom");
+#else
         const char* overloads[] = {"float", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.RectD.set_bottom", overloads);
+#endif
         return 0;
 }
 
@@ -869,8 +900,12 @@ static PyObject* Sbk_RectDFunc_set_left(PyObject* self, PyObject* pyArg)
     Py_RETURN_NONE;
 
     Sbk_RectDFunc_set_left_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.RectD.set_left");
+#else
         const char* overloads[] = {"float", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.RectD.set_left", overloads);
+#endif
         return 0;
 }
 
@@ -911,8 +946,12 @@ static PyObject* Sbk_RectDFunc_set_right(PyObject* self, PyObject* pyArg)
     Py_RETURN_NONE;
 
     Sbk_RectDFunc_set_right_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.RectD.set_right");
+#else
         const char* overloads[] = {"float", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.RectD.set_right", overloads);
+#endif
         return 0;
 }
 
@@ -953,8 +992,12 @@ static PyObject* Sbk_RectDFunc_set_top(PyObject* self, PyObject* pyArg)
     Py_RETURN_NONE;
 
     Sbk_RectDFunc_set_top_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.RectD.set_top");
+#else
         const char* overloads[] = {"float", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.RectD.set_top", overloads);
+#endif
         return 0;
 }
 
@@ -1057,8 +1100,12 @@ static PyObject* Sbk_RectDFunc_translate(PyObject* self, PyObject* args)
     Py_RETURN_NONE;
 
     Sbk_RectDFunc_translate_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.RectD.translate");
+#else
         const char* overloads[] = {"int, int", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.RectD.translate", overloads);
+#endif
         return 0;
 }
 
@@ -1313,14 +1360,57 @@ static PyGetSetDef Sbk_RectD_getsetlist[] = {
 
 static int Sbk_RectD_traverse(PyObject* self, visitproc visit, void* arg)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    return reinterpret_cast<PyTypeObject *>(SbkObject_TypeF())->tp_traverse(self, visit, arg);
+#else
     return reinterpret_cast<PyTypeObject*>(&SbkObject_Type)->tp_traverse(self, visit, arg);
+#endif
 }
 static int Sbk_RectD_clear(PyObject* self)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    return reinterpret_cast<PyTypeObject *>(SbkObject_TypeF())->tp_clear(self);
+#else
     return reinterpret_cast<PyTypeObject*>(&SbkObject_Type)->tp_clear(self);
+#endif
 }
 // Class Definition -----------------------------------------------
 extern "C" {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+static SbkObjectType *_Sbk_RectD_Type = nullptr;
+static SbkObjectType *Sbk_RectD_TypeF(void)
+{
+    return _Sbk_RectD_Type;
+}
+
+static PyType_Slot Sbk_RectD_slots[] = {
+    {Py_tp_base,        nullptr}, // inserted by introduceWrapperType
+    {Py_tp_dealloc,     reinterpret_cast<void*>(&SbkDeallocWrapper)},
+    {Py_tp_repr,        nullptr},
+    {Py_tp_hash,        nullptr},
+    {Py_tp_call,        nullptr},
+    {Py_tp_str,         nullptr},
+    {Py_tp_getattro,    nullptr},
+    {Py_tp_setattro,    nullptr},
+    {Py_tp_traverse,    reinterpret_cast<void*>(Sbk_RectD_traverse)},
+    {Py_tp_clear,       reinterpret_cast<void*>(Sbk_RectD_clear)},
+    {Py_tp_richcompare, nullptr},
+    {Py_tp_iter,        nullptr},
+    {Py_tp_iternext,    nullptr},
+    {Py_tp_methods,     reinterpret_cast<void*>(Sbk_RectD_methods)},
+    {Py_tp_getset,      reinterpret_cast<void*>(Sbk_RectD_getsetlist)},
+    {Py_tp_init,        reinterpret_cast<void*>(Sbk_RectD_Init)},
+    {Py_tp_new,         reinterpret_cast<void*>(SbkObjectTpNew)},
+    {0, nullptr}
+};
+static PyType_Spec Sbk_RectD_spec = {
+    "NatronEngine.RectD",
+    sizeof(SbkObject),
+    0,
+    Py_TPFLAGS_DEFAULT|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_GC,
+    Sbk_RectD_slots
+};
+#else
 static SbkObjectType Sbk_RectD_Type = { { {
     PyVarObject_HEAD_INIT(&SbkObjectType_Type, 0)
     /*tp_name*/             "NatronEngine.RectD",
@@ -1370,6 +1460,7 @@ static SbkObjectType Sbk_RectD_Type = { { {
 }, },
     /*priv_data*/           0
 };
+#endif
 } //extern
 
 
@@ -1377,12 +1468,20 @@ static SbkObjectType Sbk_RectD_Type = { { {
 
 // Python to C++ pointer conversion - returns the C++ object of the Python wrapper (keeps object identity).
 static void RectD_PythonToCpp_RectD_PTR(PyObject* pyIn, void* cppOut) {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    Shiboken::Conversions::pythonToCppPointer(Sbk_RectD_TypeF(), pyIn, cppOut);
+#else
     Shiboken::Conversions::pythonToCppPointer(&Sbk_RectD_Type, pyIn, cppOut);
+#endif
 }
 static PythonToCppFunc is_RectD_PythonToCpp_RectD_PTR_Convertible(PyObject* pyIn) {
     if (pyIn == Py_None)
         return Shiboken::Conversions::nonePythonToCppNullPtr;
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    if (PyObject_TypeCheck(pyIn, reinterpret_cast<PyTypeObject*>(Sbk_RectD_TypeF())))
+#else
     if (PyObject_TypeCheck(pyIn, (PyTypeObject*)&Sbk_RectD_Type))
+#endif
         return RectD_PythonToCpp_RectD_PTR;
     return 0;
 }
@@ -1394,21 +1493,92 @@ static PyObject* RectD_PTR_CppToPython_RectD(const void* cppIn) {
         Py_INCREF(pyOut);
         return pyOut;
     }
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    bool changedTypeName = false;
+    auto tCppIn = reinterpret_cast<const ::RectD *>(cppIn);
+    const char *typeName = typeid(*tCppIn).name();
+    auto sbkType = Shiboken::ObjectType::typeForTypeName(typeName);
+    if (sbkType && Shiboken::ObjectType::hasSpecialCastFunction(sbkType)) {
+        typeName = typeNameOf(tCppIn);
+        changedTypeName = true;
+     }
+    PyObject *result = Shiboken::Object::newObject(Sbk_RectD_TypeF(), const_cast<void*>(cppIn), false, /* exactType */ changedTypeName, typeName);
+    if (changedTypeName)
+        delete [] typeName;
+    return result;
+#else
     const char* typeName = typeid(*((::RectD*)cppIn)).name();
     return Shiboken::Object::newObject(&Sbk_RectD_Type, const_cast<void*>(cppIn), false, false, typeName);
+#endif
 }
+
+#if SHIBOKEN_MAJOR_VERSION >= 2
+// The signatures string for the functions.
+// Multiple signatures have their index "n:" in front.
+static const char *RectD_SignatureStrings[] = {
+    "0:NatronEngine.RectD()",
+    "1:NatronEngine.RectD(b:NatronEngine.RectD)",
+    "2:NatronEngine.RectD(l:double,b:double,r:double,t:double)",
+    "NatronEngine.RectD.area()->double",
+    "NatronEngine.RectD.bottom()->double",
+    "NatronEngine.RectD.clear()",
+    "0:NatronEngine.RectD.contains(other:NatronEngine.RectD)->bool",
+    "1:NatronEngine.RectD.contains(x:double,y:double)->bool",
+    "NatronEngine.RectD.height()->double",
+    "0:NatronEngine.RectD.intersect(r:NatronEngine.RectD,intersection:NatronEngine.RectD*)",
+    "1:NatronEngine.RectD.intersect(l:double,b:double,r:double,t:double,intersection:NatronEngine.RectD*)",
+    "0:NatronEngine.RectD.intersects(r:NatronEngine.RectD)->bool",
+    "1:NatronEngine.RectD.intersects(l:double,b:double,r:double,t:double)->bool",
+    "NatronEngine.RectD.isInfinite()->bool",
+    "NatronEngine.RectD.isNull()->bool",
+    "NatronEngine.RectD.left()->double",
+    "0:NatronEngine.RectD.merge(box:NatronEngine.RectD)",
+    "1:NatronEngine.RectD.merge(l:double,b:double,r:double,t:double)",
+    "NatronEngine.RectD.right()->double",
+    "0:NatronEngine.RectD.set(b:NatronEngine.RectD)",
+    "1:NatronEngine.RectD.set(l:double,b:double,r:double,t:double)",
+    "NatronEngine.RectD.set_bottom(v:double)",
+    "NatronEngine.RectD.set_left(v:double)",
+    "NatronEngine.RectD.set_right(v:double)",
+    "NatronEngine.RectD.set_top(v:double)",
+    "NatronEngine.RectD.setupInfinity()",
+    "NatronEngine.RectD.top()->double",
+    "NatronEngine.RectD.translate(dx:int,dy:int)",
+    "NatronEngine.RectD.width()->double",
+    nullptr}; // Sentinel
+#endif
 
 void init_RectD(PyObject* module)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    _Sbk_RectD_Type = Shiboken::ObjectType::introduceWrapperType(
+        module,
+        "RectD",
+        "RectD*",
+        &Sbk_RectD_spec,
+        RectD_SignatureStrings,
+        &Shiboken::callCppDestructor< ::RectD >,
+        0,
+        0,
+        Shiboken::ObjectType::WrapperFlags::InnerClass    );
+
+    SbkNatronEngineTypes[SBK_RECTD_IDX]
+        = reinterpret_cast<PyTypeObject*>(Sbk_RectD_TypeF());
+#else
     SbkNatronEngineTypes[SBK_RECTD_IDX] = reinterpret_cast<PyTypeObject*>(&Sbk_RectD_Type);
 
     if (!Shiboken::ObjectType::introduceWrapperType(module, "RectD", "RectD*",
         &Sbk_RectD_Type, &Shiboken::callCppDestructor< ::RectD >)) {
         return;
     }
+#endif
 
     // Register Converter
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    SbkConverter* converter = Shiboken::Conversions::createConverter(Sbk_RectD_TypeF(),
+#else
     SbkConverter* converter = Shiboken::Conversions::createConverter(&Sbk_RectD_Type,
+#endif
         RectD_PythonToCpp_RectD_PTR,
         is_RectD_PythonToCpp_RectD_PTR_Convertible,
         RectD_PTR_CppToPython_RectD);

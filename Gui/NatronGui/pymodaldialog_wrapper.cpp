@@ -11,13 +11,16 @@ GCC_DIAG_UNUSED_LOCAL_TYPEDEFS_OFF
 #include <pysidesignal.h>
 #include <pysideproperty.h>
 #include <pyside.h>
+#if SHIBOKEN_MAJOR_VERSION < 2
 #include <typeresolver.h>
+#endif
 #include <typeinfo>
 #include <signalmanager.h>
 CLANG_DIAG_OFF(header-guard)
 #include <pysidemetafunction.h> // has wrong header guards in pyside 1.2.2
 #include <set>
 #include "natrongui_python.h"
+#include "natron_helper.h"
 
 #include "pymodaldialog_wrapper.h"
 
@@ -37,7 +40,9 @@ NATRON_NAMESPACE_USING NATRON_PYTHON_NAMESPACE_USING
 #include <qfontmetrics.h>
 #include <qgraphicsproxywidget.h>
 #include <qicon.h>
+#if QT_VERSION < QT_VERSION_CHECK(5, 0, 0)
 #include <qinputcontext.h>
+#endif
 #include <qkeysequence.h>
 #include <qlayout.h>
 #include <qlocale.h>
@@ -95,7 +100,11 @@ void PyModalDialogWrapper::actionEvent(QActionEvent * event)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtGuiTypes[SBK_QACTIONEVENT_IDX], event)
+#else
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtGuiTypes[SBK_QACTIONEVENT_IDX], event)
+#endif
     ));
     bool invalidateArg1 = PyTuple_GET_ITEM(pyArgs, 0)->ob_refcnt == 1;
 
@@ -121,7 +130,11 @@ void PyModalDialogWrapper::changeEvent(QEvent * event)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtCoreTypes[SBK_QEVENT_IDX], event)
+#else
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtCoreTypes[SBK_QEVENT_IDX], event)
+#endif
     ));
     bool invalidateArg1 = PyTuple_GET_ITEM(pyArgs, 0)->ob_refcnt == 1;
 
@@ -147,7 +160,11 @@ void PyModalDialogWrapper::childEvent(QChildEvent * arg__1)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtCoreTypes[SBK_QCHILDEVENT_IDX], arg__1)
+#else
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtCoreTypes[SBK_QCHILDEVENT_IDX], arg__1)
+#endif
     ));
     bool invalidateArg1 = PyTuple_GET_ITEM(pyArgs, 0)->ob_refcnt == 1;
 
@@ -173,7 +190,11 @@ void PyModalDialogWrapper::closeEvent(QCloseEvent * arg__1)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtGuiTypes[SBK_QCLOSEEVENT_IDX], arg__1)
+#else
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtGuiTypes[SBK_QCLOSEEVENT_IDX], arg__1)
+#endif
     ));
     bool invalidateArg1 = PyTuple_GET_ITEM(pyArgs, 0)->ob_refcnt == 1;
 
@@ -187,7 +208,11 @@ void PyModalDialogWrapper::closeEvent(QCloseEvent * arg__1)
         Shiboken::Object::invalidate(PyTuple_GET_ITEM(pyArgs, 0));
 }
 
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
+void PyModalDialogWrapper::connectNotify(const QMetaMethod & signal)
+#else
 void PyModalDialogWrapper::connectNotify(const char * signal)
+#endif
 {
     Shiboken::GilState gil;
     if (PyErr_Occurred())
@@ -199,7 +224,11 @@ void PyModalDialogWrapper::connectNotify(const char * signal)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
+        Shiboken::Conversions::copyToPython(Shiboken::Conversions::PrimitiveTypeConverter<const char*>(), signal.typeName())
+#else
         Shiboken::Conversions::copyToPython(Shiboken::Conversions::PrimitiveTypeConverter<const char*>(), signal)
+#endif
     ));
 
     Shiboken::AutoDecRef pyResult(PyObject_Call(pyOverride, pyArgs, NULL));
@@ -222,7 +251,11 @@ void PyModalDialogWrapper::contextMenuEvent(QContextMenuEvent * arg__1)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtGuiTypes[SBK_QCONTEXTMENUEVENT_IDX], arg__1)
+#else
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtGuiTypes[SBK_QCONTEXTMENUEVENT_IDX], arg__1)
+#endif
     ));
     bool invalidateArg1 = PyTuple_GET_ITEM(pyArgs, 0)->ob_refcnt == 1;
 
@@ -248,7 +281,11 @@ void PyModalDialogWrapper::customEvent(QEvent * arg__1)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtCoreTypes[SBK_QEVENT_IDX], arg__1)
+#else
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtCoreTypes[SBK_QEVENT_IDX], arg__1)
+#endif
     ));
     bool invalidateArg1 = PyTuple_GET_ITEM(pyArgs, 0)->ob_refcnt == 1;
 
@@ -291,8 +328,11 @@ int PyModalDialogWrapper::devType() const
     pythonToCpp(pyResult, &cppResult);
     return cppResult;
 }
-
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
+void PyModalDialogWrapper::disconnectNotify(const QMetaMethod & signal)
+#else
 void PyModalDialogWrapper::disconnectNotify(const char * signal)
+#endif
 {
     Shiboken::GilState gil;
     if (PyErr_Occurred())
@@ -304,8 +344,12 @@ void PyModalDialogWrapper::disconnectNotify(const char * signal)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
+	Shiboken::Conversions::copyToPython(Shiboken::Conversions::PrimitiveTypeConverter<const char*>(), signal.typeName())
+#else
         Shiboken::Conversions::copyToPython(Shiboken::Conversions::PrimitiveTypeConverter<const char*>(), signal)
-    ));
+#endif
+     ));
 
     Shiboken::AutoDecRef pyResult(PyObject_Call(pyOverride, pyArgs, NULL));
     // An error happened in python code!
@@ -350,7 +394,11 @@ void PyModalDialogWrapper::dragEnterEvent(QDragEnterEvent * event)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtGuiTypes[SBK_QDRAGENTEREVENT_IDX], event)
+#else
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtGuiTypes[SBK_QDRAGENTEREVENT_IDX], event)
+#endif
     ));
     bool invalidateArg1 = PyTuple_GET_ITEM(pyArgs, 0)->ob_refcnt == 1;
 
@@ -376,7 +424,11 @@ void PyModalDialogWrapper::dragLeaveEvent(QDragLeaveEvent * event)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtGuiTypes[SBK_QDRAGLEAVEEVENT_IDX], event)
+#else
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtGuiTypes[SBK_QDRAGLEAVEEVENT_IDX], event)
+#endif
     ));
     bool invalidateArg1 = PyTuple_GET_ITEM(pyArgs, 0)->ob_refcnt == 1;
 
@@ -402,7 +454,11 @@ void PyModalDialogWrapper::dragMoveEvent(QDragMoveEvent * event)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtGuiTypes[SBK_QDRAGMOVEEVENT_IDX], event)
+#else
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtGuiTypes[SBK_QDRAGMOVEEVENT_IDX], event)
+#endif
     ));
     bool invalidateArg1 = PyTuple_GET_ITEM(pyArgs, 0)->ob_refcnt == 1;
 
@@ -428,7 +484,11 @@ void PyModalDialogWrapper::dropEvent(QDropEvent * event)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtGuiTypes[SBK_QDROPEVENT_IDX], event)
+#else
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtGuiTypes[SBK_QDROPEVENT_IDX], event)
+#endif
     ));
     bool invalidateArg1 = PyTuple_GET_ITEM(pyArgs, 0)->ob_refcnt == 1;
 
@@ -454,7 +514,11 @@ void PyModalDialogWrapper::enterEvent(QEvent * event)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtCoreTypes[SBK_QEVENT_IDX], event)
+#else
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtCoreTypes[SBK_QEVENT_IDX], event)
+#endif
     ));
     bool invalidateArg1 = PyTuple_GET_ITEM(pyArgs, 0)->ob_refcnt == 1;
 
@@ -480,7 +544,11 @@ bool PyModalDialogWrapper::event(QEvent * arg__1)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtCoreTypes[SBK_QEVENT_IDX], arg__1)
+#else
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtCoreTypes[SBK_QEVENT_IDX], arg__1)
+#endif
     ));
     bool invalidateArg1 = PyTuple_GET_ITEM(pyArgs, 0)->ob_refcnt == 1;
 
@@ -515,8 +583,13 @@ bool PyModalDialogWrapper::eventFilter(QObject * arg__1, QEvent * arg__2)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(NN)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtCoreTypes[SBK_QOBJECT_IDX], arg__1),
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtCoreTypes[SBK_QEVENT_IDX], arg__2)
+#else
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtCoreTypes[SBK_QOBJECT_IDX], arg__1),
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtCoreTypes[SBK_QEVENT_IDX], arg__2)
+#endif
     ));
     bool invalidateArg2 = PyTuple_GET_ITEM(pyArgs, 1)->ob_refcnt == 1;
 
@@ -551,7 +624,11 @@ void PyModalDialogWrapper::focusInEvent(QFocusEvent * event)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtGuiTypes[SBK_QFOCUSEVENT_IDX], event)
+#else
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtGuiTypes[SBK_QFOCUSEVENT_IDX], event)
+#endif
     ));
     bool invalidateArg1 = PyTuple_GET_ITEM(pyArgs, 0)->ob_refcnt == 1;
 
@@ -609,7 +686,11 @@ void PyModalDialogWrapper::focusOutEvent(QFocusEvent * event)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtGuiTypes[SBK_QFOCUSEVENT_IDX], event)
+#else
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtGuiTypes[SBK_QFOCUSEVENT_IDX], event)
+#endif
     ));
     bool invalidateArg1 = PyTuple_GET_ITEM(pyArgs, 0)->ob_refcnt == 1;
 
@@ -667,7 +748,11 @@ void PyModalDialogWrapper::hideEvent(QHideEvent * event)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtGuiTypes[SBK_QHIDEEVENT_IDX], event)
+#else
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtGuiTypes[SBK_QHIDEEVENT_IDX], event)
+#endif
     ));
     bool invalidateArg1 = PyTuple_GET_ITEM(pyArgs, 0)->ob_refcnt == 1;
 
@@ -693,7 +778,11 @@ void PyModalDialogWrapper::inputMethodEvent(QInputMethodEvent * event)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtGuiTypes[SBK_QINPUTMETHODEVENT_IDX], event)
+#else
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtGuiTypes[SBK_QINPUTMETHODEVENT_IDX], event)
+#endif
     ));
     bool invalidateArg1 = PyTuple_GET_ITEM(pyArgs, 0)->ob_refcnt == 1;
 
@@ -719,7 +808,11 @@ QVariant PyModalDialogWrapper::inputMethodQuery(Qt::InputMethodQuery arg__1) con
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::copyToPython(SBK_CONVERTER(SbkPySide2_QtCoreTypes[SBK_QT_INPUTMETHODQUERY_IDX]), &arg__1)
+#else
         Shiboken::Conversions::copyToPython(SBK_CONVERTER(SbkPySide_QtCoreTypes[SBK_QT_INPUTMETHODQUERY_IDX]), &arg__1)
+#endif
     ));
 
     Shiboken::AutoDecRef pyResult(PyObject_Call(pyOverride, pyArgs, NULL));
@@ -729,7 +822,11 @@ QVariant PyModalDialogWrapper::inputMethodQuery(Qt::InputMethodQuery arg__1) con
         return ::QVariant();
     }
     // Check return type
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    PythonToCppFunc pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QVARIANT_IDX], pyResult);
+#else
     PythonToCppFunc pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QVARIANT_IDX], pyResult);
+#endif
     if (!pythonToCpp) {
         Shiboken::warning(PyExc_RuntimeWarning, 2, "Invalid return value in function %s, expected %s, got %s.", "PyModalDialog.inputMethodQuery", "QVariant", pyResult->ob_type->tp_name);
         return ::QVariant();
@@ -751,7 +848,11 @@ void PyModalDialogWrapper::keyPressEvent(QKeyEvent * arg__1)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtGuiTypes[SBK_QKEYEVENT_IDX], arg__1)
+#else
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtGuiTypes[SBK_QKEYEVENT_IDX], arg__1)
+#endif
     ));
     bool invalidateArg1 = PyTuple_GET_ITEM(pyArgs, 0)->ob_refcnt == 1;
 
@@ -777,7 +878,11 @@ void PyModalDialogWrapper::keyReleaseEvent(QKeyEvent * event)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtGuiTypes[SBK_QKEYEVENT_IDX], event)
+#else
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtGuiTypes[SBK_QKEYEVENT_IDX], event)
+#endif
     ));
     bool invalidateArg1 = PyTuple_GET_ITEM(pyArgs, 0)->ob_refcnt == 1;
 
@@ -791,6 +896,7 @@ void PyModalDialogWrapper::keyReleaseEvent(QKeyEvent * event)
         Shiboken::Object::invalidate(PyTuple_GET_ITEM(pyArgs, 0));
 }
 
+#if QT_VERSION < QT_VERSION_CHECK(5, 0, 0)
 void PyModalDialogWrapper::languageChange()
 {
     Shiboken::GilState gil;
@@ -811,6 +917,7 @@ void PyModalDialogWrapper::languageChange()
         return ;
     }
 }
+#endif
 
 void PyModalDialogWrapper::leaveEvent(QEvent * event)
 {
@@ -824,7 +931,11 @@ void PyModalDialogWrapper::leaveEvent(QEvent * event)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtCoreTypes[SBK_QEVENT_IDX], event)
+#else
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtCoreTypes[SBK_QEVENT_IDX], event)
+#endif
     ));
     bool invalidateArg1 = PyTuple_GET_ITEM(pyArgs, 0)->ob_refcnt == 1;
 
@@ -850,7 +961,11 @@ int PyModalDialogWrapper::metric(QPaintDevice::PaintDeviceMetric arg__1) const
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::copyToPython(SBK_CONVERTER(SbkPySide2_QtGuiTypes[SBK_QPAINTDEVICE_PAINTDEVICEMETRIC_IDX]), &arg__1)
+#else
         Shiboken::Conversions::copyToPython(SBK_CONVERTER(SbkPySide_QtGuiTypes[SBK_QPAINTDEVICE_PAINTDEVICEMETRIC_IDX]), &arg__1)
+#endif
     ));
 
     Shiboken::AutoDecRef pyResult(PyObject_Call(pyOverride, pyArgs, NULL));
@@ -890,7 +1005,11 @@ QSize PyModalDialogWrapper::minimumSizeHint() const
         return ::QSize();
     }
     // Check return type
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    PythonToCppFunc pythonToCpp = Shiboken::Conversions::isPythonToCppValueConvertible((SbkObjectType*)SbkPySide2_QtCoreTypes[SBK_QSIZE_IDX], pyResult);
+#else
     PythonToCppFunc pythonToCpp = Shiboken::Conversions::isPythonToCppValueConvertible((SbkObjectType*)SbkPySide_QtCoreTypes[SBK_QSIZE_IDX], pyResult);
+#endif
     if (!pythonToCpp) {
         Shiboken::warning(PyExc_RuntimeWarning, 2, "Invalid return value in function %s, expected %s, got %s.", "PyModalDialog.minimumSizeHint", Shiboken::SbkType< QSize >()->tp_name, pyResult->ob_type->tp_name);
         return ::QSize();
@@ -912,7 +1031,11 @@ void PyModalDialogWrapper::mouseDoubleClickEvent(QMouseEvent * event)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtGuiTypes[SBK_QMOUSEEVENT_IDX], event)
+#else
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtGuiTypes[SBK_QMOUSEEVENT_IDX], event)
+#endif
     ));
     bool invalidateArg1 = PyTuple_GET_ITEM(pyArgs, 0)->ob_refcnt == 1;
 
@@ -938,7 +1061,11 @@ void PyModalDialogWrapper::mouseMoveEvent(QMouseEvent * event)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtGuiTypes[SBK_QMOUSEEVENT_IDX], event)
+#else
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtGuiTypes[SBK_QMOUSEEVENT_IDX], event)
+#endif
     ));
     bool invalidateArg1 = PyTuple_GET_ITEM(pyArgs, 0)->ob_refcnt == 1;
 
@@ -964,7 +1091,11 @@ void PyModalDialogWrapper::mousePressEvent(QMouseEvent * event)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtGuiTypes[SBK_QMOUSEEVENT_IDX], event)
+#else
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtGuiTypes[SBK_QMOUSEEVENT_IDX], event)
+#endif
     ));
     bool invalidateArg1 = PyTuple_GET_ITEM(pyArgs, 0)->ob_refcnt == 1;
 
@@ -990,7 +1121,11 @@ void PyModalDialogWrapper::mouseReleaseEvent(QMouseEvent * event)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtGuiTypes[SBK_QMOUSEEVENT_IDX], event)
+#else
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtGuiTypes[SBK_QMOUSEEVENT_IDX], event)
+#endif
     ));
     bool invalidateArg1 = PyTuple_GET_ITEM(pyArgs, 0)->ob_refcnt == 1;
 
@@ -1016,7 +1151,11 @@ void PyModalDialogWrapper::moveEvent(QMoveEvent * event)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtGuiTypes[SBK_QMOVEEVENT_IDX], event)
+#else
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtGuiTypes[SBK_QMOVEEVENT_IDX], event)
+#endif
     ));
     bool invalidateArg1 = PyTuple_GET_ITEM(pyArgs, 0)->ob_refcnt == 1;
 
@@ -1050,7 +1189,11 @@ QPaintEngine * PyModalDialogWrapper::paintEngine() const
         return ((::QPaintEngine*)0);
     }
     // Check return type
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    PythonToCppFunc pythonToCpp = Shiboken::Conversions::isPythonToCppPointerConvertible((SbkObjectType*)SbkPySide2_QtGuiTypes[SBK_QPAINTENGINE_IDX], pyResult);
+#else
     PythonToCppFunc pythonToCpp = Shiboken::Conversions::isPythonToCppPointerConvertible((SbkObjectType*)SbkPySide_QtGuiTypes[SBK_QPAINTENGINE_IDX], pyResult);
+#endif
     if (!pythonToCpp) {
         Shiboken::warning(PyExc_RuntimeWarning, 2, "Invalid return value in function %s, expected %s, got %s.", "PyModalDialog.paintEngine", Shiboken::SbkType< QPaintEngine >()->tp_name, pyResult->ob_type->tp_name);
         return ((::QPaintEngine*)0);
@@ -1072,7 +1215,11 @@ void PyModalDialogWrapper::paintEvent(QPaintEvent * event)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtGuiTypes[SBK_QPAINTEVENT_IDX], event)
+#else
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtGuiTypes[SBK_QPAINTEVENT_IDX], event)
+#endif
     ));
     bool invalidateArg1 = PyTuple_GET_ITEM(pyArgs, 0)->ob_refcnt == 1;
 
@@ -1119,7 +1266,11 @@ void PyModalDialogWrapper::resizeEvent(QResizeEvent * arg__1)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtGuiTypes[SBK_QRESIZEEVENT_IDX], arg__1)
+#else
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtGuiTypes[SBK_QRESIZEEVENT_IDX], arg__1)
+#endif
     ));
     bool invalidateArg1 = PyTuple_GET_ITEM(pyArgs, 0)->ob_refcnt == 1;
 
@@ -1168,7 +1319,11 @@ void PyModalDialogWrapper::showEvent(QShowEvent * arg__1)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtGuiTypes[SBK_QSHOWEVENT_IDX], arg__1)
+#else
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtGuiTypes[SBK_QSHOWEVENT_IDX], arg__1)
+#endif
     ));
     bool invalidateArg1 = PyTuple_GET_ITEM(pyArgs, 0)->ob_refcnt == 1;
 
@@ -1202,7 +1357,11 @@ QSize PyModalDialogWrapper::sizeHint() const
         return ::QSize();
     }
     // Check return type
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    PythonToCppFunc pythonToCpp = Shiboken::Conversions::isPythonToCppValueConvertible((SbkObjectType*)SbkPySide2_QtCoreTypes[SBK_QSIZE_IDX], pyResult);
+#else
     PythonToCppFunc pythonToCpp = Shiboken::Conversions::isPythonToCppValueConvertible((SbkObjectType*)SbkPySide_QtCoreTypes[SBK_QSIZE_IDX], pyResult);
+#endif
     if (!pythonToCpp) {
         Shiboken::warning(PyExc_RuntimeWarning, 2, "Invalid return value in function %s, expected %s, got %s.", "PyModalDialog.sizeHint", Shiboken::SbkType< QSize >()->tp_name, pyResult->ob_type->tp_name);
         return ::QSize();
@@ -1224,7 +1383,11 @@ void PyModalDialogWrapper::tabletEvent(QTabletEvent * event)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtGuiTypes[SBK_QTABLETEVENT_IDX], event)
+#else
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtGuiTypes[SBK_QTABLETEVENT_IDX], event)
+#endif
     ));
     bool invalidateArg1 = PyTuple_GET_ITEM(pyArgs, 0)->ob_refcnt == 1;
 
@@ -1250,7 +1413,11 @@ void PyModalDialogWrapper::timerEvent(QTimerEvent * arg__1)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtCoreTypes[SBK_QTIMEREVENT_IDX], arg__1)
+#else
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtCoreTypes[SBK_QTIMEREVENT_IDX], arg__1)
+#endif
     ));
     bool invalidateArg1 = PyTuple_GET_ITEM(pyArgs, 0)->ob_refcnt == 1;
 
@@ -1276,7 +1443,11 @@ void PyModalDialogWrapper::wheelEvent(QWheelEvent * event)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtGuiTypes[SBK_QWHEELEVENT_IDX], event)
+#else
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtGuiTypes[SBK_QWHEELEVENT_IDX], event)
+#endif
     ));
     bool invalidateArg1 = PyTuple_GET_ITEM(pyArgs, 0)->ob_refcnt == 1;
 
@@ -1292,13 +1463,17 @@ void PyModalDialogWrapper::wheelEvent(QWheelEvent * event)
 
 const QMetaObject* PyModalDialogWrapper::metaObject() const
 {
-    #if QT_VERSION >= 0x040700
+    #if QT_VERSION >= 0x040700 && QT_VERSION < QT_VERSION_CHECK(5, 0, 0)
     if (QObject::d_ptr->metaObject) return QObject::d_ptr->metaObject;
     #endif
     SbkObject* pySelf = Shiboken::BindingManager::instance().retrieveWrapper(this);
     if (pySelf == NULL)
         return PyModalDialog::metaObject();
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    return PySide::SignalManager::retrieveMetaObject(reinterpret_cast<PyObject*>(pySelf));
+#else
     return PySide::SignalManager::retriveMetaObject(reinterpret_cast<PyObject*>(pySelf));
+#endif
 }
 
 int PyModalDialogWrapper::qt_metacall(QMetaObject::Call call, int id, void** args)
@@ -1338,7 +1513,11 @@ static PyObject* Sbk_PyModalDialogFunc_addWidget(PyObject* self, PyObject* pyArg
 
     // Overloaded function decisor
     // 0: addWidget(QWidget*)
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    if ((pythonToCpp = Shiboken::Conversions::isPythonToCppPointerConvertible((SbkObjectType*)SbkPySide2_QtWidgetsTypes[SBK_QWIDGET_IDX], (pyArg)))) {
+#else
     if ((pythonToCpp = Shiboken::Conversions::isPythonToCppPointerConvertible((SbkObjectType*)SbkPySide_QtGuiTypes[SBK_QWIDGET_IDX], (pyArg)))) {
+#endif
         overloadId = 0; // addWidget(QWidget*)
     }
 
@@ -1364,8 +1543,12 @@ static PyObject* Sbk_PyModalDialogFunc_addWidget(PyObject* self, PyObject* pyArg
     Py_RETURN_NONE;
 
     Sbk_PyModalDialogFunc_addWidget_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronGui.PyModalDialog.addWidget");
+#else
         const char* overloads[] = {"PySide.QtGui.QWidget", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronGui.PyModalDialog.addWidget", overloads);
+#endif
         return 0;
 }
 
@@ -1383,7 +1566,11 @@ static PyObject* Sbk_PyModalDialogFunc_getParam(PyObject* self, PyObject* pyArg)
 
     // Overloaded function decisor
     // 0: getParam(QString)const
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArg)))) {
+#else
     if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArg)))) {
+#endif
         overloadId = 0; // getParam(QString)const
     }
 
@@ -1412,8 +1599,12 @@ static PyObject* Sbk_PyModalDialogFunc_getParam(PyObject* self, PyObject* pyArg)
     return pyResult;
 
     Sbk_PyModalDialogFunc_getParam_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronGui.PyModalDialog.getParam");
+#else
         const char* overloads[] = {"unicode", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronGui.PyModalDialog.getParam", overloads);
+#endif
         return 0;
 }
 
@@ -1441,7 +1632,11 @@ static PyObject* Sbk_PyModalDialogFunc_insertWidget(PyObject* self, PyObject* ar
     // 0: insertWidget(int,QWidget*)
     if (numArgs == 2
         && (pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(Shiboken::Conversions::PrimitiveTypeConverter<int>(), (pyArgs[0])))
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        && (pythonToCpp[1] = Shiboken::Conversions::isPythonToCppPointerConvertible((SbkObjectType*)SbkPySide2_QtWidgetsTypes[SBK_QWIDGET_IDX], (pyArgs[1])))) {
+#else
         && (pythonToCpp[1] = Shiboken::Conversions::isPythonToCppPointerConvertible((SbkObjectType*)SbkPySide_QtGuiTypes[SBK_QWIDGET_IDX], (pyArgs[1])))) {
+#endif
         overloadId = 0; // insertWidget(int,QWidget*)
     }
 
@@ -1469,8 +1664,12 @@ static PyObject* Sbk_PyModalDialogFunc_insertWidget(PyObject* self, PyObject* ar
     Py_RETURN_NONE;
 
     Sbk_PyModalDialogFunc_insertWidget_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronGui.PyModalDialog.insertWidget");
+#else
         const char* overloads[] = {"int, PySide.QtGui.QWidget", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronGui.PyModalDialog.insertWidget", overloads);
+#endif
         return 0;
 }
 
@@ -1487,7 +1686,11 @@ static PyObject* Sbk_PyModalDialogFunc_setParamChangedCallback(PyObject* self, P
 
     // Overloaded function decisor
     // 0: setParamChangedCallback(QString)
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArg)))) {
+#else
     if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArg)))) {
+#endif
         overloadId = 0; // setParamChangedCallback(QString)
     }
 
@@ -1511,8 +1714,12 @@ static PyObject* Sbk_PyModalDialogFunc_setParamChangedCallback(PyObject* self, P
     Py_RETURN_NONE;
 
     Sbk_PyModalDialogFunc_setParamChangedCallback_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronGui.PyModalDialog.setParamChangedCallback");
+#else
         const char* overloads[] = {"unicode", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronGui.PyModalDialog.setParamChangedCallback", overloads);
+#endif
         return 0;
 }
 
@@ -1529,11 +1736,19 @@ static PyMethodDef Sbk_PyModalDialog_methods[] = {
 
 static int Sbk_PyModalDialog_traverse(PyObject* self, visitproc visit, void* arg)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    return reinterpret_cast<PyTypeObject *>(SbkObject_TypeF())->tp_traverse(self, visit, arg);
+#else
     return reinterpret_cast<PyTypeObject*>(&SbkObject_Type)->tp_traverse(self, visit, arg);
+#endif
 }
 static int Sbk_PyModalDialog_clear(PyObject* self)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    return reinterpret_cast<PyTypeObject *>(SbkObject_TypeF())->tp_clear(self);
+#else
     return reinterpret_cast<PyTypeObject*>(&SbkObject_Type)->tp_clear(self);
+#endif
 }
 static int mi_offsets[] = { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 };
 int*
@@ -1568,6 +1783,16 @@ Sbk_PyModalDialog_mi_init(const void* cptr)
 static void* Sbk_PyModalDialogSpecialCastFunction(void* obj, SbkObjectType* desiredType)
 {
     PyModalDialog* me = reinterpret_cast< ::PyModalDialog*>(obj);
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    if (desiredType == reinterpret_cast<SbkObjectType*>(SbkPySide2_QtGuiTypes[SBK_QDIALOG_IDX]))
+        return static_cast< ::QDialog*>(me);
+    else if (desiredType == reinterpret_cast<SbkObjectType*>(SbkPySide2_QtWidgetsTypes[SBK_QWIDGET_IDX]))
+        return static_cast< ::QWidget*>(me);
+    else if (desiredType == reinterpret_cast<SbkObjectType*>(SbkPySide2_QtCoreTypes[SBK_QOBJECT_IDX]))
+        return static_cast< ::QObject*>(me);
+    else if (desiredType == reinterpret_cast<SbkObjectType*>(SbkPySide2_QtGuiTypes[SBK_QPAINTDEVICE_IDX]))
+        return static_cast< ::QPaintDevice*>(me);
+#else
     if (desiredType == reinterpret_cast<SbkObjectType*>(SbkPySide_QtGuiTypes[SBK_QDIALOG_IDX]))
         return static_cast< ::QDialog*>(me);
     else if (desiredType == reinterpret_cast<SbkObjectType*>(SbkPySide_QtGuiTypes[SBK_QWIDGET_IDX]))
@@ -1576,6 +1801,7 @@ static void* Sbk_PyModalDialogSpecialCastFunction(void* obj, SbkObjectType* desi
         return static_cast< ::QObject*>(me);
     else if (desiredType == reinterpret_cast<SbkObjectType*>(SbkPySide_QtGuiTypes[SBK_QPAINTDEVICE_IDX]))
         return static_cast< ::QPaintDevice*>(me);
+#endif
     else if (desiredType == reinterpret_cast<SbkObjectType*>(SbkNatronEngineTypes[SBK_USERPARAMHOLDER_IDX]))
         return static_cast< ::UserParamHolder*>(me);
     return me;
@@ -1584,6 +1810,41 @@ static void* Sbk_PyModalDialogSpecialCastFunction(void* obj, SbkObjectType* desi
 
 // Class Definition -----------------------------------------------
 extern "C" {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+static SbkObjectType *_Sbk_PyModalDialog_Type = nullptr;
+static SbkObjectType *Sbk_PyModalDialog_TypeF(void)
+{
+    return _Sbk_PyModalDialog_Type;
+}
+
+static PyType_Slot Sbk_PyModalDialog_slots[] = {
+    {Py_tp_base,        nullptr}, // inserted by introduceWrapperType
+    {Py_tp_dealloc,     reinterpret_cast<void*>(&SbkDeallocWrapper)},
+    {Py_tp_repr,        nullptr},
+    {Py_tp_hash,        nullptr},
+    {Py_tp_call,        nullptr},
+    {Py_tp_str,         nullptr},
+    {Py_tp_getattro,    nullptr},
+    {Py_tp_setattro,    nullptr},
+    {Py_tp_traverse,    reinterpret_cast<void*>(Sbk_PyModalDialog_traverse)},
+    {Py_tp_clear,       reinterpret_cast<void*>(Sbk_PyModalDialog_clear)},
+    {Py_tp_richcompare, nullptr},
+    {Py_tp_iter,        nullptr},
+    {Py_tp_iternext,    nullptr},
+    {Py_tp_methods,     reinterpret_cast<void*>(Sbk_PyModalDialog_methods)},
+    {Py_tp_getset,      nullptr},
+    {Py_tp_init,        nullptr},
+    {Py_tp_new,         reinterpret_cast<void*>(SbkDummyNew /* PYSIDE-595: Prevent replacement of "0" with base->tp_new. */)},
+    {0, nullptr}
+};
+static PyType_Spec Sbk_PyModalDialog_spec = {
+    "NatronGui.PyModalDialog",
+    sizeof(SbkObject),
+    0,
+    Py_TPFLAGS_DEFAULT|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_GC,
+    Sbk_PyModalDialog_slots
+};
+#else
 static SbkObjectType Sbk_PyModalDialog_Type = { { {
     PyVarObject_HEAD_INIT(&SbkObjectType_Type, 0)
     /*tp_name*/             "NatronGui.PyModalDialog",
@@ -1633,6 +1894,7 @@ static SbkObjectType Sbk_PyModalDialog_Type = { { {
 }, },
     /*priv_data*/           0
 };
+#endif
 } //extern
 
 static void* Sbk_PyModalDialog_typeDiscovery(void* cptr, SbkObjectType* instanceType)
@@ -1651,24 +1913,80 @@ static void* Sbk_PyModalDialog_typeDiscovery(void* cptr, SbkObjectType* instance
 
 // Python to C++ pointer conversion - returns the C++ object of the Python wrapper (keeps object identity).
 static void PyModalDialog_PythonToCpp_PyModalDialog_PTR(PyObject* pyIn, void* cppOut) {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    Shiboken::Conversions::pythonToCppPointer(Sbk_PyModalDialog_TypeF(), pyIn, cppOut);
+#else
     Shiboken::Conversions::pythonToCppPointer(&Sbk_PyModalDialog_Type, pyIn, cppOut);
+#endif
 }
 static PythonToCppFunc is_PyModalDialog_PythonToCpp_PyModalDialog_PTR_Convertible(PyObject* pyIn) {
     if (pyIn == Py_None)
         return Shiboken::Conversions::nonePythonToCppNullPtr;
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    if (PyObject_TypeCheck(pyIn, reinterpret_cast<PyTypeObject*>(Sbk_PyModalDialog_TypeF())))
+#else
     if (PyObject_TypeCheck(pyIn, (PyTypeObject*)&Sbk_PyModalDialog_Type))
+#endif
         return PyModalDialog_PythonToCpp_PyModalDialog_PTR;
     return 0;
 }
 
 // C++ to Python pointer conversion - tries to find the Python wrapper for the C++ object (keeps object identity).
 static PyObject* PyModalDialog_PTR_CppToPython_PyModalDialog(const void* cppIn) {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    return PySide::getWrapperForQObject((::PyModalDialog*)cppIn, Sbk_PyModalDialog_TypeF());
+#else
     return PySide::getWrapperForQObject((::PyModalDialog*)cppIn, &Sbk_PyModalDialog_Type);
+#endif
 
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    bool changedTypeName = false;
+    auto tCppIn = reinterpret_cast<const ::PyModalDialog *>(cppIn);
+    const char *typeName = typeid(*tCppIn).name();
+    auto sbkType = Shiboken::ObjectType::typeForTypeName(typeName);
+    if (sbkType && Shiboken::ObjectType::hasSpecialCastFunction(sbkType)) {
+        typeName = typeNameOf(tCppIn);
+        changedTypeName = true;
+     }
+    PyObject *result = Shiboken::Object::newObject(Sbk_PyModalDialog_TypeF(), const_cast<void*>(cppIn), false, /* exactType */ changedTypeName, typeName);
+    if (changedTypeName)
+        delete [] typeName;
+    return result;
+#endif
 }
+
+#if SHIBOKEN_MAJOR_VERSION >= 2
+// The signatures string for the functions.
+// Multiple signatures have their index "n:" in front.
+static const char *PyModalDialog_SignatureStrings[] = {
+    "NatronGui.PyModalDialog.addWidget(w:PySide2.QtWidgets.QWidget)",
+    "NatronGui.PyModalDialog.getParam(scriptName:QString)->NatronEngine.Param",
+    "NatronGui.PyModalDialog.insertWidget(pos:int,w:PySide2.QtWidgets.QWidget)",
+    "NatronGui.PyModalDialog.setParamChangedCallback(callback:QString)",
+    nullptr}; // Sentinel
+#endif
 
 void init_PyModalDialog(PyObject* module)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    PyObject* Sbk_PyModalDialog_Type_bases = PyTuple_Pack(2,
+        reinterpret_cast<PyObject*>(SbkPySide2_QtWidgetsTypes[SBK_QDIALOG_IDX]),
+        reinterpret_cast<PyObject*>(SbkNatronEngineTypes[SBK_USERPARAMHOLDER_IDX]));
+
+    _Sbk_PyModalDialog_Type = Shiboken::ObjectType::introduceWrapperType(
+        module,
+        "PyModalDialog",
+        "PyModalDialog*",
+        &Sbk_PyModalDialog_spec,
+        PyModalDialog_SignatureStrings,
+        &Shiboken::callCppDestructor< ::PyModalDialog >,
+        reinterpret_cast<SbkObjectType *>(SbkNatronEngineTypes[SBK_USERPARAMHOLDER_IDX]),
+        Sbk_PyModalDialog_Type_bases,
+        0    );
+
+    SbkNatronGuiTypes[SBK_PYMODALDIALOG_IDX]
+        = reinterpret_cast<PyTypeObject*>(Sbk_PyModalDialog_TypeF());
+#else
     SbkNatronGuiTypes[SBK_PYMODALDIALOG_IDX] = reinterpret_cast<PyTypeObject*>(&Sbk_PyModalDialog_Type);
 
     PyObject* Sbk_PyModalDialog_Type_bases = PyTuple_Pack(2,
@@ -1679,9 +1997,14 @@ void init_PyModalDialog(PyObject* module)
         &Sbk_PyModalDialog_Type, &Shiboken::callCppDestructor< ::PyModalDialog >, (SbkObjectType*)SbkNatronEngineTypes[SBK_USERPARAMHOLDER_IDX], Sbk_PyModalDialog_Type_bases)) {
         return;
     }
+#endif
 
     // Register Converter
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    SbkConverter* converter = Shiboken::Conversions::createConverter(Sbk_PyModalDialog_TypeF(),
+#else
     SbkConverter* converter = Shiboken::Conversions::createConverter(&Sbk_PyModalDialog_Type,
+#endif
         PyModalDialog_PythonToCpp_PyModalDialog_PTR,
         is_PyModalDialog_PythonToCpp_PyModalDialog_PTR_Convertible,
         PyModalDialog_PTR_CppToPython_PyModalDialog);
@@ -1694,12 +2017,23 @@ void init_PyModalDialog(PyObject* module)
 
 
     MultipleInheritanceInitFunction func = Sbk_PyModalDialog_mi_init;
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    Shiboken::ObjectType::setMultipleInheritanceFunction(Sbk_PyModalDialog_TypeF(), func);
+    Shiboken::ObjectType::setCastFunction(Sbk_PyModalDialog_TypeF(), &Sbk_PyModalDialogSpecialCastFunction);
+    Shiboken::ObjectType::setTypeDiscoveryFunctionV2(Sbk_PyModalDialog_TypeF(), &Sbk_PyModalDialog_typeDiscovery);
+#else
     Shiboken::ObjectType::setMultipleIheritanceFunction(&Sbk_PyModalDialog_Type, func);
     Shiboken::ObjectType::setCastFunction(&Sbk_PyModalDialog_Type, &Sbk_PyModalDialogSpecialCastFunction);
     Shiboken::ObjectType::setTypeDiscoveryFunctionV2(&Sbk_PyModalDialog_Type, &Sbk_PyModalDialog_typeDiscovery);
+#endif
 
 
     PyModalDialogWrapper::pysideInitQtMetaTypes();
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    Shiboken::ObjectType::setSubTypeInitHook(Sbk_PyModalDialog_TypeF(), &PySide::initQObjectSubType);
+    PySide::initDynamicMetaObject(Sbk_PyModalDialog_TypeF(), &::PyModalDialog::staticMetaObject, sizeof(::PyModalDialog));
+#else
     Shiboken::ObjectType::setSubTypeInitHook(&Sbk_PyModalDialog_Type, &PySide::initQObjectSubType);
     PySide::initDynamicMetaObject(&Sbk_PyModalDialog_Type, &::PyModalDialog::staticMetaObject, sizeof(::PyModalDialog));
+#endif
 }

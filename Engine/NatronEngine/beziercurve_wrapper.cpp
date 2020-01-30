@@ -11,9 +11,12 @@ GCC_DIAG_UNUSED_LOCAL_TYPEDEFS_OFF
 #include <pysidesignal.h>
 #include <pysideproperty.h>
 #include <pyside.h>
+#if SHIBOKEN_MAJOR_VERSION < 2
 #include <typeresolver.h>
+#endif
 #include <typeinfo>
 #include "natronengine_python.h"
+#include "natron_helper.h"
 
 #include "beziercurve_wrapper.h"
 
@@ -89,8 +92,12 @@ static PyObject* Sbk_BezierCurveFunc_addControlPoint(PyObject* self, PyObject* a
     Py_RETURN_NONE;
 
     Sbk_BezierCurveFunc_addControlPoint_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.BezierCurve.addControlPoint");
+#else
         const char* overloads[] = {"float, float", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.BezierCurve.addControlPoint", overloads);
+#endif
         return 0;
 }
 
@@ -144,8 +151,12 @@ static PyObject* Sbk_BezierCurveFunc_addControlPointOnSegment(PyObject* self, Py
     Py_RETURN_NONE;
 
     Sbk_BezierCurveFunc_addControlPointOnSegment_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.BezierCurve.addControlPointOnSegment");
+#else
         const char* overloads[] = {"int, float", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.BezierCurve.addControlPointOnSegment", overloads);
+#endif
         return 0;
 }
 
@@ -218,8 +229,12 @@ static PyObject* Sbk_BezierCurveFunc_getColor(PyObject* self, PyObject* pyArg)
     return pyResult;
 
     Sbk_BezierCurveFunc_getColor_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.BezierCurve.getColor");
+#else
         const char* overloads[] = {"float", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.BezierCurve.getColor", overloads);
+#endif
         return 0;
 }
 
@@ -266,8 +281,8 @@ static PyObject* Sbk_BezierCurveFunc_getCompositingOperator(PyObject* self)
 
         if (!PyErr_Occurred()) {
             // getCompositingOperator()const
-            NATRON_NAMESPACE::MergingFunctionEnum cppResult = NATRON_NAMESPACE::MergingFunctionEnum(const_cast<const ::BezierCurve*>(cppSelf)->getCompositingOperator());
-            pyResult = Shiboken::Conversions::copyToPython(SBK_CONVERTER(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_MERGINGFUNCTIONENUM_IDX]), &cppResult);
+            Natron::MergingFunctionEnum cppResult = Natron::MergingFunctionEnum(const_cast<const ::BezierCurve*>(cppSelf)->getCompositingOperator());
+            pyResult = Shiboken::Conversions::copyToPython(SBK_CONVERTER(SbkNatronEngineTypes[SBK_NATRON_MERGINGFUNCTIONENUM_IDX]), &cppResult);
         }
     }
 
@@ -377,8 +392,12 @@ static PyObject* Sbk_BezierCurveFunc_getControlPointPosition(PyObject* self, PyO
     return pyResult;
 
     Sbk_BezierCurveFunc_getControlPointPosition_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.BezierCurve.getControlPointPosition");
+#else
         const char* overloads[] = {"int, float, PySide.QtCore.double, PySide.QtCore.double, PySide.QtCore.double, PySide.QtCore.double, PySide.QtCore.double, PySide.QtCore.double", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.BezierCurve.getControlPointPosition", overloads);
+#endif
         return 0;
 }
 
@@ -422,8 +441,12 @@ static PyObject* Sbk_BezierCurveFunc_getFeatherDistance(PyObject* self, PyObject
     return pyResult;
 
     Sbk_BezierCurveFunc_getFeatherDistance_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.BezierCurve.getFeatherDistance");
+#else
         const char* overloads[] = {"float", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.BezierCurve.getFeatherDistance", overloads);
+#endif
         return 0;
 }
 
@@ -496,8 +519,12 @@ static PyObject* Sbk_BezierCurveFunc_getFeatherFallOff(PyObject* self, PyObject*
     return pyResult;
 
     Sbk_BezierCurveFunc_getFeatherFallOff_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.BezierCurve.getFeatherFallOff");
+#else
         const char* overloads[] = {"float", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.BezierCurve.getFeatherFallOff", overloads);
+#endif
         return 0;
 }
 
@@ -600,8 +627,12 @@ static PyObject* Sbk_BezierCurveFunc_getFeatherPointPosition(PyObject* self, PyO
     return pyResult;
 
     Sbk_BezierCurveFunc_getFeatherPointPosition_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.BezierCurve.getFeatherPointPosition");
+#else
         const char* overloads[] = {"int, float, PySide.QtCore.double, PySide.QtCore.double, PySide.QtCore.double, PySide.QtCore.double, PySide.QtCore.double, PySide.QtCore.double", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.BezierCurve.getFeatherPointPosition", overloads);
+#endif
         return 0;
 }
 
@@ -645,8 +676,12 @@ static PyObject* Sbk_BezierCurveFunc_getIsActivated(PyObject* self, PyObject* py
     return pyResult;
 
     Sbk_BezierCurveFunc_getIsActivated_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.BezierCurve.getIsActivated");
+#else
         const char* overloads[] = {"float", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.BezierCurve.getIsActivated", overloads);
+#endif
         return 0;
 }
 
@@ -756,8 +791,12 @@ static PyObject* Sbk_BezierCurveFunc_getOpacity(PyObject* self, PyObject* pyArg)
     return pyResult;
 
     Sbk_BezierCurveFunc_getOpacity_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.BezierCurve.getOpacity");
+#else
         const char* overloads[] = {"float", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.BezierCurve.getOpacity", overloads);
+#endif
         return 0;
 }
 
@@ -898,8 +937,12 @@ static PyObject* Sbk_BezierCurveFunc_moveFeatherByIndex(PyObject* self, PyObject
     Py_RETURN_NONE;
 
     Sbk_BezierCurveFunc_moveFeatherByIndex_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.BezierCurve.moveFeatherByIndex");
+#else
         const char* overloads[] = {"int, float, float, float", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.BezierCurve.moveFeatherByIndex", overloads);
+#endif
         return 0;
 }
 
@@ -959,8 +1002,12 @@ static PyObject* Sbk_BezierCurveFunc_moveLeftBezierPoint(PyObject* self, PyObjec
     Py_RETURN_NONE;
 
     Sbk_BezierCurveFunc_moveLeftBezierPoint_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.BezierCurve.moveLeftBezierPoint");
+#else
         const char* overloads[] = {"int, float, float, float", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.BezierCurve.moveLeftBezierPoint", overloads);
+#endif
         return 0;
 }
 
@@ -1020,8 +1067,12 @@ static PyObject* Sbk_BezierCurveFunc_movePointByIndex(PyObject* self, PyObject* 
     Py_RETURN_NONE;
 
     Sbk_BezierCurveFunc_movePointByIndex_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.BezierCurve.movePointByIndex");
+#else
         const char* overloads[] = {"int, float, float, float", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.BezierCurve.movePointByIndex", overloads);
+#endif
         return 0;
 }
 
@@ -1081,8 +1132,12 @@ static PyObject* Sbk_BezierCurveFunc_moveRightBezierPoint(PyObject* self, PyObje
     Py_RETURN_NONE;
 
     Sbk_BezierCurveFunc_moveRightBezierPoint_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.BezierCurve.moveRightBezierPoint");
+#else
         const char* overloads[] = {"int, float, float, float", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.BezierCurve.moveRightBezierPoint", overloads);
+#endif
         return 0;
 }
 
@@ -1123,8 +1178,12 @@ static PyObject* Sbk_BezierCurveFunc_removeControlPointByIndex(PyObject* self, P
     Py_RETURN_NONE;
 
     Sbk_BezierCurveFunc_removeControlPointByIndex_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.BezierCurve.removeControlPointByIndex");
+#else
         const char* overloads[] = {"int", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.BezierCurve.removeControlPointByIndex", overloads);
+#endif
         return 0;
 }
 
@@ -1178,8 +1237,12 @@ static PyObject* Sbk_BezierCurveFunc_setActivated(PyObject* self, PyObject* args
     Py_RETURN_NONE;
 
     Sbk_BezierCurveFunc_setActivated_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.BezierCurve.setActivated");
+#else
         const char* overloads[] = {"float, bool", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.BezierCurve.setActivated", overloads);
+#endif
         return 0;
 }
 
@@ -1239,8 +1302,12 @@ static PyObject* Sbk_BezierCurveFunc_setColor(PyObject* self, PyObject* args)
     Py_RETURN_NONE;
 
     Sbk_BezierCurveFunc_setColor_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.BezierCurve.setColor");
+#else
         const char* overloads[] = {"float, float, float, float", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.BezierCurve.setColor", overloads);
+#endif
         return 0;
 }
 
@@ -1256,9 +1323,9 @@ static PyObject* Sbk_BezierCurveFunc_setCompositingOperator(PyObject* self, PyOb
     SBK_UNUSED(pythonToCpp)
 
     // Overloaded function decisor
-    // 0: setCompositingOperator(NATRON_NAMESPACE::MergingFunctionEnum)
-    if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(SBK_CONVERTER(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_MERGINGFUNCTIONENUM_IDX]), (pyArg)))) {
-        overloadId = 0; // setCompositingOperator(NATRON_NAMESPACE::MergingFunctionEnum)
+    // 0: setCompositingOperator(Natron::MergingFunctionEnum)
+    if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(SBK_CONVERTER(SbkNatronEngineTypes[SBK_NATRON_MERGINGFUNCTIONENUM_IDX]), (pyArg)))) {
+        overloadId = 0; // setCompositingOperator(Natron::MergingFunctionEnum)
     }
 
     // Function signature not found.
@@ -1266,11 +1333,11 @@ static PyObject* Sbk_BezierCurveFunc_setCompositingOperator(PyObject* self, PyOb
 
     // Call function/method
     {
-        ::NATRON_NAMESPACE::MergingFunctionEnum cppArg0 = ((::NATRON_NAMESPACE::MergingFunctionEnum)0);
+        ::Natron::MergingFunctionEnum cppArg0 = ((::Natron::MergingFunctionEnum)0);
         pythonToCpp(pyArg, &cppArg0);
 
         if (!PyErr_Occurred()) {
-            // setCompositingOperator(NATRON_NAMESPACE::MergingFunctionEnum)
+            // setCompositingOperator(Natron::MergingFunctionEnum)
             cppSelf->setCompositingOperator(cppArg0);
         }
     }
@@ -1281,8 +1348,12 @@ static PyObject* Sbk_BezierCurveFunc_setCompositingOperator(PyObject* self, PyOb
     Py_RETURN_NONE;
 
     Sbk_BezierCurveFunc_setCompositingOperator_TypeError:
-        const char* overloads[] = {"NatronEngine.NATRON_NAMESPACE.MergingFunctionEnum", 0};
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.BezierCurve.setCompositingOperator");
+#else
+        const char* overloads[] = {"NatronEngine.Natron.MergingFunctionEnum", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.BezierCurve.setCompositingOperator", overloads);
+#endif
         return 0;
 }
 
@@ -1323,8 +1394,12 @@ static PyObject* Sbk_BezierCurveFunc_setCurveFinished(PyObject* self, PyObject* 
     Py_RETURN_NONE;
 
     Sbk_BezierCurveFunc_setCurveFinished_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.BezierCurve.setCurveFinished");
+#else
         const char* overloads[] = {"bool", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.BezierCurve.setCurveFinished", overloads);
+#endif
         return 0;
 }
 
@@ -1378,8 +1453,12 @@ static PyObject* Sbk_BezierCurveFunc_setFeatherDistance(PyObject* self, PyObject
     Py_RETURN_NONE;
 
     Sbk_BezierCurveFunc_setFeatherDistance_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.BezierCurve.setFeatherDistance");
+#else
         const char* overloads[] = {"float, float", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.BezierCurve.setFeatherDistance", overloads);
+#endif
         return 0;
 }
 
@@ -1433,8 +1512,12 @@ static PyObject* Sbk_BezierCurveFunc_setFeatherFallOff(PyObject* self, PyObject*
     Py_RETURN_NONE;
 
     Sbk_BezierCurveFunc_setFeatherFallOff_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.BezierCurve.setFeatherFallOff");
+#else
         const char* overloads[] = {"float, float", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.BezierCurve.setFeatherFallOff", overloads);
+#endif
         return 0;
 }
 
@@ -1506,8 +1589,12 @@ static PyObject* Sbk_BezierCurveFunc_setFeatherPointAtIndex(PyObject* self, PyOb
     Py_RETURN_NONE;
 
     Sbk_BezierCurveFunc_setFeatherPointAtIndex_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.BezierCurve.setFeatherPointAtIndex");
+#else
         const char* overloads[] = {"int, float, float, float, float, float, float, float", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.BezierCurve.setFeatherPointAtIndex", overloads);
+#endif
         return 0;
 }
 
@@ -1561,8 +1648,12 @@ static PyObject* Sbk_BezierCurveFunc_setOpacity(PyObject* self, PyObject* args)
     Py_RETURN_NONE;
 
     Sbk_BezierCurveFunc_setOpacity_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.BezierCurve.setOpacity");
+#else
         const char* overloads[] = {"float, float", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.BezierCurve.setOpacity", overloads);
+#endif
         return 0;
 }
 
@@ -1619,8 +1710,12 @@ static PyObject* Sbk_BezierCurveFunc_setOverlayColor(PyObject* self, PyObject* a
     Py_RETURN_NONE;
 
     Sbk_BezierCurveFunc_setOverlayColor_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.BezierCurve.setOverlayColor");
+#else
         const char* overloads[] = {"float, float, float", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.BezierCurve.setOverlayColor", overloads);
+#endif
         return 0;
 }
 
@@ -1692,8 +1787,12 @@ static PyObject* Sbk_BezierCurveFunc_setPointAtIndex(PyObject* self, PyObject* a
     Py_RETURN_NONE;
 
     Sbk_BezierCurveFunc_setPointAtIndex_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.BezierCurve.setPointAtIndex");
+#else
         const char* overloads[] = {"int, float, float, float, float, float, float, float", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.BezierCurve.setPointAtIndex", overloads);
+#endif
         return 0;
 }
 
@@ -1741,14 +1840,57 @@ static PyMethodDef Sbk_BezierCurve_methods[] = {
 
 static int Sbk_BezierCurve_traverse(PyObject* self, visitproc visit, void* arg)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    return reinterpret_cast<PyTypeObject *>(SbkObject_TypeF())->tp_traverse(self, visit, arg);
+#else
     return reinterpret_cast<PyTypeObject*>(&SbkObject_Type)->tp_traverse(self, visit, arg);
+#endif
 }
 static int Sbk_BezierCurve_clear(PyObject* self)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    return reinterpret_cast<PyTypeObject *>(SbkObject_TypeF())->tp_clear(self);
+#else
     return reinterpret_cast<PyTypeObject*>(&SbkObject_Type)->tp_clear(self);
+#endif
 }
 // Class Definition -----------------------------------------------
 extern "C" {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+static SbkObjectType *_Sbk_BezierCurve_Type = nullptr;
+static SbkObjectType *Sbk_BezierCurve_TypeF(void)
+{
+    return _Sbk_BezierCurve_Type;
+}
+
+static PyType_Slot Sbk_BezierCurve_slots[] = {
+    {Py_tp_base,        nullptr}, // inserted by introduceWrapperType
+    {Py_tp_dealloc,     reinterpret_cast<void*>(&SbkDeallocWrapper)},
+    {Py_tp_repr,        nullptr},
+    {Py_tp_hash,        nullptr},
+    {Py_tp_call,        nullptr},
+    {Py_tp_str,         nullptr},
+    {Py_tp_getattro,    nullptr},
+    {Py_tp_setattro,    nullptr},
+    {Py_tp_traverse,    reinterpret_cast<void*>(Sbk_BezierCurve_traverse)},
+    {Py_tp_clear,       reinterpret_cast<void*>(Sbk_BezierCurve_clear)},
+    {Py_tp_richcompare, nullptr},
+    {Py_tp_iter,        nullptr},
+    {Py_tp_iternext,    nullptr},
+    {Py_tp_methods,     reinterpret_cast<void*>(Sbk_BezierCurve_methods)},
+    {Py_tp_getset,      nullptr},
+    {Py_tp_init,        nullptr},
+    {Py_tp_new,         reinterpret_cast<void*>(SbkDummyNew /* PYSIDE-595: Prevent replacement of "0" with base->tp_new. */)},
+    {0, nullptr}
+};
+static PyType_Spec Sbk_BezierCurve_spec = {
+    "NatronEngine.BezierCurve",
+    sizeof(SbkObject),
+    0,
+    Py_TPFLAGS_DEFAULT|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_GC,
+    Sbk_BezierCurve_slots
+};
+#else
 static SbkObjectType Sbk_BezierCurve_Type = { { {
     PyVarObject_HEAD_INIT(&SbkObjectType_Type, 0)
     /*tp_name*/             "NatronEngine.BezierCurve",
@@ -1798,6 +1940,7 @@ static SbkObjectType Sbk_BezierCurve_Type = { { {
 }, },
     /*priv_data*/           0
 };
+#endif
 } //extern
 
 static void* Sbk_BezierCurve_typeDiscovery(void* cptr, SbkObjectType* instanceType)
@@ -1812,12 +1955,20 @@ static void* Sbk_BezierCurve_typeDiscovery(void* cptr, SbkObjectType* instanceTy
 
 // Python to C++ pointer conversion - returns the C++ object of the Python wrapper (keeps object identity).
 static void BezierCurve_PythonToCpp_BezierCurve_PTR(PyObject* pyIn, void* cppOut) {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    Shiboken::Conversions::pythonToCppPointer(Sbk_BezierCurve_TypeF(), pyIn, cppOut);
+#else
     Shiboken::Conversions::pythonToCppPointer(&Sbk_BezierCurve_Type, pyIn, cppOut);
+#endif
 }
 static PythonToCppFunc is_BezierCurve_PythonToCpp_BezierCurve_PTR_Convertible(PyObject* pyIn) {
     if (pyIn == Py_None)
         return Shiboken::Conversions::nonePythonToCppNullPtr;
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    if (PyObject_TypeCheck(pyIn, reinterpret_cast<PyTypeObject*>(Sbk_BezierCurve_TypeF())))
+#else
     if (PyObject_TypeCheck(pyIn, (PyTypeObject*)&Sbk_BezierCurve_Type))
+#endif
         return BezierCurve_PythonToCpp_BezierCurve_PTR;
     return 0;
 }
@@ -1829,21 +1980,98 @@ static PyObject* BezierCurve_PTR_CppToPython_BezierCurve(const void* cppIn) {
         Py_INCREF(pyOut);
         return pyOut;
     }
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    bool changedTypeName = false;
+    auto tCppIn = reinterpret_cast<const ::Natron::Python::BezierCurve *>(cppIn);
+    const char *typeName = typeid(*tCppIn).name();
+    auto sbkType = Shiboken::ObjectType::typeForTypeName(typeName);
+    if (sbkType && Shiboken::ObjectType::hasSpecialCastFunction(sbkType)) {
+        typeName = typeNameOf(tCppIn);
+        changedTypeName = true;
+     }
+    PyObject *result = Shiboken::Object::newObject(Sbk_BezierCurve_TypeF(), const_cast<void*>(cppIn), false, /* exactType */ changedTypeName, typeName);
+    if (changedTypeName)
+        delete [] typeName;
+    return result;
+#else
     const char* typeName = typeid(*((::BezierCurve*)cppIn)).name();
     return Shiboken::Object::newObject(&Sbk_BezierCurve_Type, const_cast<void*>(cppIn), false, false, typeName);
+#endif
 }
+
+#if SHIBOKEN_MAJOR_VERSION >= 2
+// The signatures string for the functions.
+// Multiple signatures have their index "n:" in front.
+static const char *BezierCurve_SignatureStrings[] = {
+    "NatronEngine.BezierCurve.addControlPoint(x:double,y:double)",
+    "NatronEngine.BezierCurve.addControlPointOnSegment(index:int,t:double)",
+    "NatronEngine.BezierCurve.getActivatedParam()->NatronEngine.BooleanParam",
+    "NatronEngine.BezierCurve.getColor(time:double)->NatronEngine.ColorTuple",
+    "NatronEngine.BezierCurve.getColorParam(color:double)->NatronEngine.ColorParam",
+    "NatronEngine.BezierCurve.getCompositingOperator()->NatronEngine.Natron.MergingFunctionEnum",
+    "NatronEngine.BezierCurve.getCompositingOperatorParam()->NatronEngine.ChoiceParam",
+    "NatronEngine.BezierCurve.getControlPointPosition(index:int,time:double,x:double*,y:double*,lx:double*,ly:double*,rx:double*,ry:double*)",
+    "NatronEngine.BezierCurve.getFeatherDistance(time:double)->double",
+    "NatronEngine.BezierCurve.getFeatherDistanceParam()->NatronEngine.DoubleParam",
+    "NatronEngine.BezierCurve.getFeatherFallOff(time:double)->double",
+    "NatronEngine.BezierCurve.getFeatherFallOffParam()->NatronEngine.DoubleParam",
+    "NatronEngine.BezierCurve.getFeatherPointPosition(index:int,time:double,x:double*,y:double*,lx:double*,ly:double*,rx:double*,ry:double*)",
+    "NatronEngine.BezierCurve.getIsActivated(time:double)->bool",
+    "NatronEngine.BezierCurve.getKeyframes(QList[double])",
+    "NatronEngine.BezierCurve.getNumControlPoints()->int",
+    "NatronEngine.BezierCurve.getOpacity(time:double)->double",
+    "NatronEngine.BezierCurve.getOpacityParam()->NatronEngine.DoubleParam",
+    "NatronEngine.BezierCurve.getOverlayColor()->NatronEngine.ColorTuple",
+    "NatronEngine.BezierCurve.isCurveFinished()->bool",
+    "NatronEngine.BezierCurve.moveFeatherByIndex(index:int,time:double,dx:double,dy:double)",
+    "NatronEngine.BezierCurve.moveLeftBezierPoint(index:int,time:double,dx:double,dy:double)",
+    "NatronEngine.BezierCurve.movePointByIndex(index:int,time:double,dx:double,dy:double)",
+    "NatronEngine.BezierCurve.moveRightBezierPoint(index:int,time:double,dx:double,dy:double)",
+    "NatronEngine.BezierCurve.removeControlPointByIndex(index:int)",
+    "NatronEngine.BezierCurve.setActivated(time:double,activated:bool)",
+    "NatronEngine.BezierCurve.setColor(time:double,r:double,g:double,b:double)",
+    "NatronEngine.BezierCurve.setCompositingOperator(op:NatronEngine.Natron.MergingfunctionEnum)",
+    "NatronEngine.BezierCurve.setCurveFinished(finished:bool)",
+    "NatronEngine.BezierCurve.setFeatherDistance(dist:double,time:double)",
+    "NatronEngine.BezierCurve.setFeatherFallOff(falloff:double,time:double)",
+    "NatronEngine.BezierCurve.setFeatherPointAtIndex(index:int,time:double,x:double,y:double,lx:double,ly:double,rx:double,ry:double)",
+    "NatronEngine.BezierCurve.setOpacity(opacity:double,time:double)",
+    "NatronEngine.BezierCurve.setOverlayColor(r:double,g:double,b:double)",
+    "NatronEngine.BezierCurve.setPointAtIndex(index:int,time:double,x:double,y:double,lx:double,ly:double,rx:double,ry:double)",
+    nullptr}; // Sentinel
+#endif
 
 void init_BezierCurve(PyObject* module)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    _Sbk_BezierCurve_Type = Shiboken::ObjectType::introduceWrapperType(
+        module,
+        "BezierCurve",
+        "BezierCurve*",
+        &Sbk_BezierCurve_spec,
+        BezierCurve_SignatureStrings,
+        &Shiboken::callCppDestructor< ::BezierCurve >,
+        reinterpret_cast<SbkObjectType *>(SbkNatronEngineTypes[SBK_ITEMBASE_IDX]),
+        0,
+        0    );
+
+    SbkNatronEngineTypes[SBK_BEZIERCURVE_IDX]
+        = reinterpret_cast<PyTypeObject*>(Sbk_BezierCurve_TypeF());
+#else
     SbkNatronEngineTypes[SBK_BEZIERCURVE_IDX] = reinterpret_cast<PyTypeObject*>(&Sbk_BezierCurve_Type);
 
     if (!Shiboken::ObjectType::introduceWrapperType(module, "BezierCurve", "BezierCurve*",
         &Sbk_BezierCurve_Type, &Shiboken::callCppDestructor< ::BezierCurve >, (SbkObjectType*)SbkNatronEngineTypes[SBK_ITEMBASE_IDX])) {
         return;
     }
+#endif
 
     // Register Converter
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    SbkConverter* converter = Shiboken::Conversions::createConverter(Sbk_BezierCurve_TypeF(),
+#else
     SbkConverter* converter = Shiboken::Conversions::createConverter(&Sbk_BezierCurve_Type,
+#endif
         BezierCurve_PythonToCpp_BezierCurve_PTR,
         is_BezierCurve_PythonToCpp_BezierCurve_PTR_Convertible,
         BezierCurve_PTR_CppToPython_BezierCurve);
@@ -1855,7 +2083,11 @@ void init_BezierCurve(PyObject* module)
     Shiboken::Conversions::registerConverterName(converter, typeid(::BezierCurveWrapper).name());
 
 
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    Shiboken::ObjectType::setTypeDiscoveryFunctionV2(Sbk_BezierCurve_TypeF(), &Sbk_BezierCurve_typeDiscovery);
+#else
     Shiboken::ObjectType::setTypeDiscoveryFunctionV2(&Sbk_BezierCurve_Type, &Sbk_BezierCurve_typeDiscovery);
+#endif
 
 
     BezierCurveWrapper::pysideInitQtMetaTypes();

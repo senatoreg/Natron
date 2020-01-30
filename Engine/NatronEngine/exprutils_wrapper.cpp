@@ -11,9 +11,12 @@ GCC_DIAG_UNUSED_LOCAL_TYPEDEFS_OFF
 #include <pysidesignal.h>
 #include <pysideproperty.h>
 #include <pyside.h>
+#if SHIBOKEN_MAJOR_VERSION < 2
 #include <typeresolver.h>
+#endif
 #include <typeinfo>
 #include "natronengine_python.h"
+#include "natron_helper.h"
 
 #include "exprutils_wrapper.h"
 
@@ -104,8 +107,12 @@ static PyObject* Sbk_ExprUtilsFunc_boxstep(PyObject* self, PyObject* args)
     return pyResult;
 
     Sbk_ExprUtilsFunc_boxstep_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ExprUtils.boxstep");
+#else
         const char* overloads[] = {"float, float", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ExprUtils.boxstep", overloads);
+#endif
         return 0;
 }
 
@@ -164,8 +171,12 @@ static PyObject* Sbk_ExprUtilsFunc_ccellnoise(PyObject* self, PyObject* pyArg)
     return pyResult;
 
     Sbk_ExprUtilsFunc_ccellnoise_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.ExprUtils.ccellnoise");
+#else
         const char* overloads[] = {"NatronEngine.Double3DTuple", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.ExprUtils.ccellnoise", overloads);
+#endif
         return 0;
 }
 
@@ -221,8 +232,12 @@ static PyObject* Sbk_ExprUtilsFunc_cellnoise(PyObject* self, PyObject* pyArg)
     return pyResult;
 
     Sbk_ExprUtilsFunc_cellnoise_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.ExprUtils.cellnoise");
+#else
         const char* overloads[] = {"NatronEngine.Double3DTuple", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.ExprUtils.cellnoise", overloads);
+#endif
         return 0;
 }
 
@@ -344,8 +359,12 @@ static PyObject* Sbk_ExprUtilsFunc_cfbm(PyObject* self, PyObject* args, PyObject
     return pyResult;
 
     Sbk_ExprUtilsFunc_cfbm_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ExprUtils.cfbm");
+#else
         const char* overloads[] = {"NatronEngine.Double3DTuple, int = 6, float = 2., float = 0.5", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ExprUtils.cfbm", overloads);
+#endif
         return 0;
 }
 
@@ -469,8 +488,12 @@ static PyObject* Sbk_ExprUtilsFunc_cfbm4(PyObject* self, PyObject* args, PyObjec
     return pyResult;
 
     Sbk_ExprUtilsFunc_cfbm4_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ExprUtils.cfbm4");
+#else
         const char* overloads[] = {"NatronEngine.ColorTuple, int = 6, float = 2., float = 0.5", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ExprUtils.cfbm4", overloads);
+#endif
         return 0;
 }
 
@@ -529,8 +552,12 @@ static PyObject* Sbk_ExprUtilsFunc_cnoise(PyObject* self, PyObject* pyArg)
     return pyResult;
 
     Sbk_ExprUtilsFunc_cnoise_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.ExprUtils.cnoise");
+#else
         const char* overloads[] = {"NatronEngine.Double3DTuple", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.ExprUtils.cnoise", overloads);
+#endif
         return 0;
 }
 
@@ -591,8 +618,12 @@ static PyObject* Sbk_ExprUtilsFunc_cnoise4(PyObject* self, PyObject* pyArg)
     return pyResult;
 
     Sbk_ExprUtilsFunc_cnoise4_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.ExprUtils.cnoise4");
+#else
         const char* overloads[] = {"NatronEngine.ColorTuple", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.ExprUtils.cnoise4", overloads);
+#endif
         return 0;
 }
 
@@ -714,8 +745,12 @@ static PyObject* Sbk_ExprUtilsFunc_cturbulence(PyObject* self, PyObject* args, P
     return pyResult;
 
     Sbk_ExprUtilsFunc_cturbulence_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ExprUtils.cturbulence");
+#else
         const char* overloads[] = {"NatronEngine.Double3DTuple, int = 6, float = 2., float = 0.5", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ExprUtils.cturbulence", overloads);
+#endif
         return 0;
 }
 
@@ -834,8 +869,12 @@ static PyObject* Sbk_ExprUtilsFunc_fbm(PyObject* self, PyObject* args, PyObject*
     return pyResult;
 
     Sbk_ExprUtilsFunc_fbm_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ExprUtils.fbm");
+#else
         const char* overloads[] = {"NatronEngine.Double3DTuple, int = 6, float = 2., float = 0.5", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ExprUtils.fbm", overloads);
+#endif
         return 0;
 }
 
@@ -956,8 +995,12 @@ static PyObject* Sbk_ExprUtilsFunc_fbm4(PyObject* self, PyObject* args, PyObject
     return pyResult;
 
     Sbk_ExprUtilsFunc_fbm4_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ExprUtils.fbm4");
+#else
         const char* overloads[] = {"NatronEngine.ColorTuple, int = 6, float = 2., float = 0.5", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ExprUtils.fbm4", overloads);
+#endif
         return 0;
 }
 
@@ -1012,8 +1055,12 @@ static PyObject* Sbk_ExprUtilsFunc_gaussstep(PyObject* self, PyObject* args)
     return pyResult;
 
     Sbk_ExprUtilsFunc_gaussstep_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ExprUtils.gaussstep");
+#else
         const char* overloads[] = {"float, float, float", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ExprUtils.gaussstep", overloads);
+#endif
         return 0;
 }
 
@@ -1052,8 +1099,12 @@ static PyObject* Sbk_ExprUtilsFunc_hash(PyObject* self, PyObject* pyArg)
     return pyResult;
 
     Sbk_ExprUtilsFunc_hash_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.ExprUtils.hash");
+#else
         const char* overloads[] = {"list", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.ExprUtils.hash", overloads);
+#endif
         return 0;
 }
 
@@ -1108,8 +1159,12 @@ static PyObject* Sbk_ExprUtilsFunc_linearstep(PyObject* self, PyObject* args)
     return pyResult;
 
     Sbk_ExprUtilsFunc_linearstep_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ExprUtils.linearstep");
+#else
         const char* overloads[] = {"float, float, float", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ExprUtils.linearstep", overloads);
+#endif
         return 0;
 }
 
@@ -1164,8 +1219,12 @@ static PyObject* Sbk_ExprUtilsFunc_mix(PyObject* self, PyObject* args)
     return pyResult;
 
     Sbk_ExprUtilsFunc_mix_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ExprUtils.mix");
+#else
         const char* overloads[] = {"float, float, float", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ExprUtils.mix", overloads);
+#endif
         return 0;
 }
 
@@ -1259,8 +1318,12 @@ static PyObject* Sbk_ExprUtilsFunc_noise(PyObject* self, PyObject* pyArg)
     return pyResult;
 
     Sbk_ExprUtilsFunc_noise_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.ExprUtils.noise");
+#else
         const char* overloads[] = {"NatronEngine.Double2DTuple", "float", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.ExprUtils.noise", overloads);
+#endif
         return 0;
 }
 
@@ -1337,8 +1400,12 @@ static PyObject* Sbk_ExprUtilsFunc_pnoise(PyObject* self, PyObject* args)
     return pyResult;
 
     Sbk_ExprUtilsFunc_pnoise_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ExprUtils.pnoise");
+#else
         const char* overloads[] = {"NatronEngine.Double3DTuple, NatronEngine.Double3DTuple", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ExprUtils.pnoise", overloads);
+#endif
         return 0;
 }
 
@@ -1399,8 +1466,12 @@ static PyObject* Sbk_ExprUtilsFunc_remap(PyObject* self, PyObject* args)
     return pyResult;
 
     Sbk_ExprUtilsFunc_remap_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ExprUtils.remap");
+#else
         const char* overloads[] = {"float, float, float, float, float", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ExprUtils.remap", overloads);
+#endif
         return 0;
 }
 
@@ -1455,8 +1526,12 @@ static PyObject* Sbk_ExprUtilsFunc_smoothstep(PyObject* self, PyObject* args)
     return pyResult;
 
     Sbk_ExprUtilsFunc_smoothstep_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ExprUtils.smoothstep");
+#else
         const char* overloads[] = {"float, float, float", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ExprUtils.smoothstep", overloads);
+#endif
         return 0;
 }
 
@@ -1517,8 +1592,12 @@ static PyObject* Sbk_ExprUtilsFunc_snoise(PyObject* self, PyObject* pyArg)
     return pyResult;
 
     Sbk_ExprUtilsFunc_snoise_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.ExprUtils.snoise");
+#else
         const char* overloads[] = {"NatronEngine.Double3DTuple", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.ExprUtils.snoise", overloads);
+#endif
         return 0;
 }
 
@@ -1576,8 +1655,12 @@ static PyObject* Sbk_ExprUtilsFunc_snoise4(PyObject* self, PyObject* pyArg)
     return pyResult;
 
     Sbk_ExprUtilsFunc_snoise4_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.ExprUtils.snoise4");
+#else
         const char* overloads[] = {"NatronEngine.ColorTuple", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.ExprUtils.snoise4", overloads);
+#endif
         return 0;
 }
 
@@ -1696,8 +1779,12 @@ static PyObject* Sbk_ExprUtilsFunc_turbulence(PyObject* self, PyObject* args, Py
     return pyResult;
 
     Sbk_ExprUtilsFunc_turbulence_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ExprUtils.turbulence");
+#else
         const char* overloads[] = {"NatronEngine.Double3DTuple, int = 6, float = 2., float = 0.5", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ExprUtils.turbulence", overloads);
+#endif
         return 0;
 }
 
@@ -1819,8 +1906,12 @@ static PyObject* Sbk_ExprUtilsFunc_vfbm(PyObject* self, PyObject* args, PyObject
     return pyResult;
 
     Sbk_ExprUtilsFunc_vfbm_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ExprUtils.vfbm");
+#else
         const char* overloads[] = {"NatronEngine.Double3DTuple, int = 6, float = 2., float = 0.5", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ExprUtils.vfbm", overloads);
+#endif
         return 0;
 }
 
@@ -1944,8 +2035,12 @@ static PyObject* Sbk_ExprUtilsFunc_vfbm4(PyObject* self, PyObject* args, PyObjec
     return pyResult;
 
     Sbk_ExprUtilsFunc_vfbm4_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ExprUtils.vfbm4");
+#else
         const char* overloads[] = {"NatronEngine.ColorTuple, int = 6, float = 2., float = 0.5", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ExprUtils.vfbm4", overloads);
+#endif
         return 0;
 }
 
@@ -2004,8 +2099,12 @@ static PyObject* Sbk_ExprUtilsFunc_vnoise(PyObject* self, PyObject* pyArg)
     return pyResult;
 
     Sbk_ExprUtilsFunc_vnoise_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.ExprUtils.vnoise");
+#else
         const char* overloads[] = {"NatronEngine.Double3DTuple", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.ExprUtils.vnoise", overloads);
+#endif
         return 0;
 }
 
@@ -2066,8 +2165,12 @@ static PyObject* Sbk_ExprUtilsFunc_vnoise4(PyObject* self, PyObject* pyArg)
     return pyResult;
 
     Sbk_ExprUtilsFunc_vnoise4_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.ExprUtils.vnoise4");
+#else
         const char* overloads[] = {"NatronEngine.ColorTuple", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.ExprUtils.vnoise4", overloads);
+#endif
         return 0;
 }
 
@@ -2189,8 +2292,12 @@ static PyObject* Sbk_ExprUtilsFunc_vturbulence(PyObject* self, PyObject* args, P
     return pyResult;
 
     Sbk_ExprUtilsFunc_vturbulence_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ExprUtils.vturbulence");
+#else
         const char* overloads[] = {"NatronEngine.Double3DTuple, int = 6, float = 2., float = 0.5", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ExprUtils.vturbulence", overloads);
+#endif
         return 0;
 }
 
@@ -2229,14 +2336,57 @@ static PyMethodDef Sbk_ExprUtils_methods[] = {
 
 static int Sbk_ExprUtils_traverse(PyObject* self, visitproc visit, void* arg)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    return reinterpret_cast<PyTypeObject *>(SbkObject_TypeF())->tp_traverse(self, visit, arg);
+#else
     return reinterpret_cast<PyTypeObject*>(&SbkObject_Type)->tp_traverse(self, visit, arg);
+#endif
 }
 static int Sbk_ExprUtils_clear(PyObject* self)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    return reinterpret_cast<PyTypeObject *>(SbkObject_TypeF())->tp_clear(self);
+#else
     return reinterpret_cast<PyTypeObject*>(&SbkObject_Type)->tp_clear(self);
+#endif
 }
 // Class Definition -----------------------------------------------
 extern "C" {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+static SbkObjectType *_Sbk_ExprUtils_Type = nullptr;
+static SbkObjectType *Sbk_ExprUtils_TypeF(void)
+{
+    return _Sbk_ExprUtils_Type;
+}
+
+static PyType_Slot Sbk_ExprUtils_slots[] = {
+    {Py_tp_base,        nullptr}, // inserted by introduceWrapperType
+    {Py_tp_dealloc,     reinterpret_cast<void*>(&SbkDeallocWrapper)},
+    {Py_tp_repr,        nullptr},
+    {Py_tp_hash,        nullptr},
+    {Py_tp_call,        nullptr},
+    {Py_tp_str,         nullptr},
+    {Py_tp_getattro,    nullptr},
+    {Py_tp_setattro,    nullptr},
+    {Py_tp_traverse,    reinterpret_cast<void*>(Sbk_ExprUtils_traverse)},
+    {Py_tp_clear,       reinterpret_cast<void*>(Sbk_ExprUtils_clear)},
+    {Py_tp_richcompare, nullptr},
+    {Py_tp_iter,        nullptr},
+    {Py_tp_iternext,    nullptr},
+    {Py_tp_methods,     reinterpret_cast<void*>(Sbk_ExprUtils_methods)},
+    {Py_tp_getset,      nullptr},
+    {Py_tp_init,        reinterpret_cast<void*>(Sbk_ExprUtils_Init)},
+    {Py_tp_new,         reinterpret_cast<void*>(SbkObjectTpNew)},
+    {0, nullptr}
+};
+static PyType_Spec Sbk_ExprUtils_spec = {
+    "NatronEngine.ExprUtils",
+    sizeof(SbkObject),
+    0,
+    Py_TPFLAGS_DEFAULT|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_GC,
+    Sbk_ExprUtils_slots
+};
+#else
 static SbkObjectType Sbk_ExprUtils_Type = { { {
     PyVarObject_HEAD_INIT(&SbkObjectType_Type, 0)
     /*tp_name*/             "NatronEngine.ExprUtils",
@@ -2286,6 +2436,7 @@ static SbkObjectType Sbk_ExprUtils_Type = { { {
 }, },
     /*priv_data*/           0
 };
+#endif
 } //extern
 
 
@@ -2293,12 +2444,20 @@ static SbkObjectType Sbk_ExprUtils_Type = { { {
 
 // Python to C++ pointer conversion - returns the C++ object of the Python wrapper (keeps object identity).
 static void ExprUtils_PythonToCpp_ExprUtils_PTR(PyObject* pyIn, void* cppOut) {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    Shiboken::Conversions::pythonToCppPointer(Sbk_ExprUtils_TypeF(), pyIn, cppOut);
+#else
     Shiboken::Conversions::pythonToCppPointer(&Sbk_ExprUtils_Type, pyIn, cppOut);
+#endif
 }
 static PythonToCppFunc is_ExprUtils_PythonToCpp_ExprUtils_PTR_Convertible(PyObject* pyIn) {
     if (pyIn == Py_None)
         return Shiboken::Conversions::nonePythonToCppNullPtr;
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    if (PyObject_TypeCheck(pyIn, reinterpret_cast<PyTypeObject*>(Sbk_ExprUtils_TypeF())))
+#else
     if (PyObject_TypeCheck(pyIn, (PyTypeObject*)&Sbk_ExprUtils_Type))
+#endif
         return ExprUtils_PythonToCpp_ExprUtils_PTR;
     return 0;
 }
@@ -2310,21 +2469,93 @@ static PyObject* ExprUtils_PTR_CppToPython_ExprUtils(const void* cppIn) {
         Py_INCREF(pyOut);
         return pyOut;
     }
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    bool changedTypeName = false;
+    auto tCppIn = reinterpret_cast<const ::ExprUtils *>(cppIn);
+    const char *typeName = typeid(*tCppIn).name();
+    auto sbkType = Shiboken::ObjectType::typeForTypeName(typeName);
+    if (sbkType && Shiboken::ObjectType::hasSpecialCastFunction(sbkType)) {
+        typeName = typeNameOf(tCppIn);
+        changedTypeName = true;
+     }
+    PyObject *result = Shiboken::Object::newObject(Sbk_ExprUtils_TypeF(), const_cast<void*>(cppIn), false, /* exactType */ changedTypeName, typeName);
+    if (changedTypeName)
+        delete [] typeName;
+    return result;
+#else
     const char* typeName = typeid(*((::ExprUtils*)cppIn)).name();
     return Shiboken::Object::newObject(&Sbk_ExprUtils_Type, const_cast<void*>(cppIn), false, false, typeName);
+#endif
 }
+
+#if SHIBOKEN_MAJOR_VERSION >= 2
+// The signatures string for the functions.
+// Multiple signatures have their index "n:" in front.
+static const char *ExprUtils_SignatureStrings[] = {
+    "NatronEngine.ExprUtils()",
+    "NatronEngine.ExprUtils.boxstep(x:double,a:double)->double",
+    "NatronEngine.ExprUtils.ccellnoise(p:NatronEngine.Double3DTuple)->NatronEngine.Double3DTuple",
+    "NatronEngine.ExprUtils.cellnoise(p:NatronEngine.Double3DTuple)->double",
+    "NatronEngine.ExprUtils.cfbm(p:NatronEngine.Double3DTuple,octaves:int=6,lacunarity:double=2.,gain:double=0.5)->NatronEngine.Double3DTuple",
+    "NatronEngine.ExprUtils.cfbm4(p:NatronEngine.ColorTuple,octaves:int=6,lacunarity:double=2.,gain:double=0.5)->NatronEngine.Double3DTuple",
+    "NatronEngine.ExprUtils.cnoise(p:NatronEngine.Double3DTuple)->NatronEngine.Double3DTuple",
+    "NatronEngine.ExprUtils.cnoise4(p:NatronEngine.ColorTuple)->NatronEngine.Double3DTuple",
+    "NatronEngine.ExprUtils.cturbulence(p:NatronEngine.Double3DTuple,octaves:int=6,lacunarity:double=2.,gain:double=0.5)->NatronEngine.Double3DTuple",
+    "NatronEngine.ExprUtils.fbm(p:NatronEngine.Double3DTuple,octaves:int=6,lacunarity:double=2.,gain:double=0.5)->double",
+    "NatronEngine.ExprUtils.fbm4(p:NatronEngine.ColorTuple,octaves:int=6,lacunarity:double=2.,gain:double=0.5)->double",
+    "NatronEngine.ExprUtils.gaussstep(x:double,a:double,b:double)->double",
+    "NatronEngine.ExprUtils.hash(args:QVector[double])->double",
+    "NatronEngine.ExprUtils.linearstep(x:double,a:double,b:double)->double",
+    "NatronEngine.ExprUtils.mix(x:double,y:double,alpha:double)->double",
+    "3:NatronEngine.ExprUtils.noise(p:NatronEngine.ColorTuple)->double",
+    "2:NatronEngine.ExprUtils.noise(p:NatronEngine.Double3DTuple)->double",
+    "1:NatronEngine.ExprUtils.noise(x:double)->double",
+    "0:NatronEngine.ExprUtils.noise(p:NatronEngine.Double2DTuple)->double",
+    "NatronEngine.ExprUtils.pnoise(p:NatronEngine.Double3DTuple,period:NatronEngine.Double3DTuple)->double",
+    "NatronEngine.ExprUtils.remap(x:double,source:double,range:double,falloff:double,interp:double)->double",
+    "NatronEngine.ExprUtils.smoothstep(x:double,a:double,b:double)->double",
+    "NatronEngine.ExprUtils.snoise(p:NatronEngine.Double3DTuple)->double",
+    "NatronEngine.ExprUtils.snoise4(p:NatronEngine.ColorTuple)->double",
+    "NatronEngine.ExprUtils.turbulence(p:NatronEngine.Double3DTuple,octaves:int=6,lacunarity:double=2.,gain:double=0.5)->double",
+    "NatronEngine.ExprUtils.vfbm(p:NatronEngine.Double3DTuple,octaves:int=6,lacunarity:double=2.,gain:double=0.5)->NatronEngine.Double3DTuple",
+    "NatronEngine.ExprUtils.vfbm4(p:NatronEngine.ColorTuple,octaves:int=6,lacunarity:double=2.,gain:double=0.5)->NatronEngine.Double3DTuple",
+    "NatronEngine.ExprUtils.vnoise(p:NatronEngine.Double3DTuple)->NatronEngine.Double3DTuple",
+    "NatronEngine.ExprUtils.vnoise4(p:NatronEngine.ColorTuple)->NatronEngine.Double3DTuple",
+    "NatronEngine.ExprUtils.vturbulence(p:NatronEngine.Double3DTuple,octaves:int=6,lacunarity:double=2.,gain:double=0.5)->NatronEngine.Double3DTuple",
+    nullptr}; // Sentinel
+#endif
 
 void init_ExprUtils(PyObject* module)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    _Sbk_ExprUtils_Type = Shiboken::ObjectType::introduceWrapperType(
+        module,
+        "ExprUtils",
+        "ExprUtils*",
+        &Sbk_ExprUtils_spec,
+        ExprUtils_SignatureStrings,
+        &Shiboken::callCppDestructor< ::ExprUtils >,
+        0,
+        0,
+        0    );
+
+    SbkNatronEngineTypes[SBK_EXPRUTILS_IDX]
+        = reinterpret_cast<PyTypeObject*>(Sbk_ExprUtils_TypeF());
+#else
     SbkNatronEngineTypes[SBK_EXPRUTILS_IDX] = reinterpret_cast<PyTypeObject*>(&Sbk_ExprUtils_Type);
 
     if (!Shiboken::ObjectType::introduceWrapperType(module, "ExprUtils", "ExprUtils*",
         &Sbk_ExprUtils_Type, &Shiboken::callCppDestructor< ::ExprUtils >)) {
         return;
     }
+#endif
 
     // Register Converter
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    SbkConverter* converter = Shiboken::Conversions::createConverter(Sbk_ExprUtils_TypeF(),
+#else
     SbkConverter* converter = Shiboken::Conversions::createConverter(&Sbk_ExprUtils_Type,
+#endif
         ExprUtils_PythonToCpp_ExprUtils_PTR,
         is_ExprUtils_PythonToCpp_ExprUtils_PTR_Convertible,
         ExprUtils_PTR_CppToPython_ExprUtils);

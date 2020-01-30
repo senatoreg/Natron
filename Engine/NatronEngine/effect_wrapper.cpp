@@ -11,10 +11,13 @@ GCC_DIAG_UNUSED_LOCAL_TYPEDEFS_OFF
 #include <pysidesignal.h>
 #include <pysideproperty.h>
 #include <pyside.h>
+#if SHIBOKEN_MAJOR_VERSION < 2
 #include <typeresolver.h>
+#endif
 #include <typeinfo>
 #include <set>
 #include "natronengine_python.h"
+#include "natron_helper.h"
 
 #include "effect_wrapper.h"
 
@@ -68,8 +71,13 @@ static PyObject* Sbk_EffectFunc_addUserPlane(PyObject* self, PyObject* args)
     // Overloaded function decisor
     // 0: addUserPlane(QString,QStringList)
     if (numArgs == 2
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        && (pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[0])))
+        && (pythonToCpp[1] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRINGLIST_IDX], (pyArgs[1])))) {
+#else
         && (pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[0])))
         && (pythonToCpp[1] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRINGLIST_IDX], (pyArgs[1])))) {
+#endif
         overloadId = 0; // addUserPlane(QString,QStringList)
     }
 
@@ -97,8 +105,12 @@ static PyObject* Sbk_EffectFunc_addUserPlane(PyObject* self, PyObject* args)
     return pyResult;
 
     Sbk_EffectFunc_addUserPlane_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.Effect.addUserPlane");
+#else
         const char* overloads[] = {"unicode, QStringList", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.Effect.addUserPlane", overloads);
+#endif
         return 0;
 }
 
@@ -180,8 +192,12 @@ static PyObject* Sbk_EffectFunc_canConnectInput(PyObject* self, PyObject* args)
     return pyResult;
 
     Sbk_EffectFunc_canConnectInput_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.Effect.canConnectInput");
+#else
         const char* overloads[] = {"int, NatronEngine.Effect", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.Effect.canConnectInput", overloads);
+#endif
         return 0;
 }
 
@@ -246,8 +262,12 @@ static PyObject* Sbk_EffectFunc_connectInput(PyObject* self, PyObject* args)
     return pyResult;
 
     Sbk_EffectFunc_connectInput_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.Effect.connectInput");
+#else
         const char* overloads[] = {"int, NatronEngine.Effect", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.Effect.connectInput", overloads);
+#endif
         return 0;
 }
 
@@ -320,8 +340,12 @@ static PyObject* Sbk_EffectFunc_destroy(PyObject* self, PyObject* args, PyObject
     Py_RETURN_NONE;
 
     Sbk_EffectFunc_destroy_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.Effect.destroy");
+#else
         const char* overloads[] = {"bool = true", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.Effect.destroy", overloads);
+#endif
         return 0;
 }
 
@@ -368,8 +392,12 @@ static PyObject* Sbk_EffectFunc_disconnectInput(PyObject* self, PyObject* pyArg)
     Py_RETURN_NONE;
 
     Sbk_EffectFunc_disconnectInput_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.Effect.disconnectInput");
+#else
         const char* overloads[] = {"int", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.Effect.disconnectInput", overloads);
+#endif
         return 0;
 }
 
@@ -436,8 +464,12 @@ static PyObject* Sbk_EffectFunc_getAvailableLayers(PyObject* self, PyObject* pyA
     return pyResult;
 
     Sbk_EffectFunc_getAvailableLayers_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.Effect.getAvailableLayers");
+#else
         const char* overloads[] = {"int", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.Effect.getAvailableLayers", overloads);
+#endif
         return 0;
 }
 
@@ -455,8 +487,8 @@ static PyObject* Sbk_EffectFunc_getBitDepth(PyObject* self)
 
         if (!PyErr_Occurred()) {
             // getBitDepth()const
-            NATRON_NAMESPACE::ImageBitDepthEnum cppResult = NATRON_NAMESPACE::ImageBitDepthEnum(const_cast<const ::Effect*>(cppSelf)->getBitDepth());
-            pyResult = Shiboken::Conversions::copyToPython(SBK_CONVERTER(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_IMAGEBITDEPTHENUM_IDX]), &cppResult);
+            Natron::ImageBitDepthEnum cppResult = Natron::ImageBitDepthEnum(const_cast<const ::Effect*>(cppSelf)->getBitDepth());
+            pyResult = Shiboken::Conversions::copyToPython(SBK_CONVERTER(SbkNatronEngineTypes[SBK_NATRON_IMAGEBITDEPTHENUM_IDX]), &cppResult);
         }
     }
 
@@ -573,7 +605,11 @@ static PyObject* Sbk_EffectFunc_getInput(PyObject* self, PyObject* pyArg)
     // 1: getInput(int)const
     if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(Shiboken::Conversions::PrimitiveTypeConverter<int>(), (pyArg)))) {
         overloadId = 1; // getInput(int)const
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    } else if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArg)))) {
+#else
     } else if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArg)))) {
+#endif
         overloadId = 0; // getInput(QString)const
     }
 
@@ -621,8 +657,12 @@ static PyObject* Sbk_EffectFunc_getInput(PyObject* self, PyObject* pyArg)
     return pyResult;
 
     Sbk_EffectFunc_getInput_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.Effect.getInput");
+#else
         const char* overloads[] = {"unicode", "int", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.Effect.getInput", overloads);
+#endif
         return 0;
 }
 
@@ -655,7 +695,11 @@ static PyObject* Sbk_EffectFunc_getInputLabel(PyObject* self, PyObject* pyArg)
         if (!PyErr_Occurred()) {
             // getInputLabel(int)
             QString cppResult = cppSelf->getInputLabel(cppArg0);
+#if SHIBOKEN_MAJOR_VERSION >= 2
+            pyResult = Shiboken::Conversions::copyToPython(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], &cppResult);
+#else
             pyResult = Shiboken::Conversions::copyToPython(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], &cppResult);
+#endif
         }
     }
 
@@ -666,8 +710,12 @@ static PyObject* Sbk_EffectFunc_getInputLabel(PyObject* self, PyObject* pyArg)
     return pyResult;
 
     Sbk_EffectFunc_getInputLabel_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.Effect.getInputLabel");
+#else
         const char* overloads[] = {"int", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.Effect.getInputLabel", overloads);
+#endif
         return 0;
 }
 
@@ -686,7 +734,11 @@ static PyObject* Sbk_EffectFunc_getLabel(PyObject* self)
         if (!PyErr_Occurred()) {
             // getLabel()const
             QString cppResult = const_cast<const ::Effect*>(cppSelf)->getLabel();
+#if SHIBOKEN_MAJOR_VERSION >= 2
+            pyResult = Shiboken::Conversions::copyToPython(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], &cppResult);
+#else
             pyResult = Shiboken::Conversions::copyToPython(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], &cppResult);
+#endif
         }
     }
 
@@ -763,7 +815,11 @@ static PyObject* Sbk_EffectFunc_getParam(PyObject* self, PyObject* pyArg)
 
     // Overloaded function decisor
     // 0: getParam(QString)const
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArg)))) {
+#else
     if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArg)))) {
+#endif
         overloadId = 0; // getParam(QString)const
     }
 
@@ -792,8 +848,12 @@ static PyObject* Sbk_EffectFunc_getParam(PyObject* self, PyObject* pyArg)
     return pyResult;
 
     Sbk_EffectFunc_getParam_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.Effect.getParam");
+#else
         const char* overloads[] = {"unicode", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.Effect.getParam", overloads);
+#endif
         return 0;
 }
 
@@ -878,7 +938,11 @@ static PyObject* Sbk_EffectFunc_getPluginID(PyObject* self)
         if (!PyErr_Occurred()) {
             // getPluginID()const
             QString cppResult = const_cast<const ::Effect*>(cppSelf)->getPluginID();
+#if SHIBOKEN_MAJOR_VERSION >= 2
+            pyResult = Shiboken::Conversions::copyToPython(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], &cppResult);
+#else
             pyResult = Shiboken::Conversions::copyToPython(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], &cppResult);
+#endif
         }
     }
 
@@ -939,8 +1003,8 @@ static PyObject* Sbk_EffectFunc_getPremult(PyObject* self)
 
         if (!PyErr_Occurred()) {
             // getPremult()const
-            NATRON_NAMESPACE::ImagePremultiplicationEnum cppResult = NATRON_NAMESPACE::ImagePremultiplicationEnum(const_cast<const ::Effect*>(cppSelf)->getPremult());
-            pyResult = Shiboken::Conversions::copyToPython(SBK_CONVERTER(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_IMAGEPREMULTIPLICATIONENUM_IDX]), &cppResult);
+            Natron::ImagePremultiplicationEnum cppResult = Natron::ImagePremultiplicationEnum(const_cast<const ::Effect*>(cppSelf)->getPremult());
+            pyResult = Shiboken::Conversions::copyToPython(SBK_CONVERTER(SbkNatronEngineTypes[SBK_NATRON_IMAGEPREMULTIPLICATIONENUM_IDX]), &cppResult);
         }
     }
 
@@ -1004,8 +1068,12 @@ static PyObject* Sbk_EffectFunc_getRegionOfDefinition(PyObject* self, PyObject* 
     return pyResult;
 
     Sbk_EffectFunc_getRegionOfDefinition_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.Effect.getRegionOfDefinition");
+#else
         const char* overloads[] = {"float, int", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.Effect.getRegionOfDefinition", overloads);
+#endif
         return 0;
 }
 
@@ -1053,7 +1121,11 @@ static PyObject* Sbk_EffectFunc_getScriptName(PyObject* self)
         if (!PyErr_Occurred()) {
             // getScriptName()const
             QString cppResult = const_cast<const ::Effect*>(cppSelf)->getScriptName();
+#if SHIBOKEN_MAJOR_VERSION >= 2
+            pyResult = Shiboken::Conversions::copyToPython(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], &cppResult);
+#else
             pyResult = Shiboken::Conversions::copyToPython(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], &cppResult);
+#endif
         }
     }
 
@@ -1315,8 +1387,12 @@ static PyObject* Sbk_EffectFunc_setColor(PyObject* self, PyObject* args)
     Py_RETURN_NONE;
 
     Sbk_EffectFunc_setColor_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.Effect.setColor");
+#else
         const char* overloads[] = {"float, float, float", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.Effect.setColor", overloads);
+#endif
         return 0;
 }
 
@@ -1333,7 +1409,11 @@ static PyObject* Sbk_EffectFunc_setLabel(PyObject* self, PyObject* pyArg)
 
     // Overloaded function decisor
     // 0: setLabel(QString)
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArg)))) {
+#else
     if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArg)))) {
+#endif
         overloadId = 0; // setLabel(QString)
     }
 
@@ -1363,8 +1443,12 @@ static PyObject* Sbk_EffectFunc_setLabel(PyObject* self, PyObject* pyArg)
     Py_RETURN_NONE;
 
     Sbk_EffectFunc_setLabel_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.Effect.setLabel");
+#else
         const char* overloads[] = {"unicode", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.Effect.setLabel", overloads);
+#endif
         return 0;
 }
 
@@ -1381,7 +1465,11 @@ static PyObject* Sbk_EffectFunc_setPagesOrder(PyObject* self, PyObject* pyArg)
 
     // Overloaded function decisor
     // 0: setPagesOrder(QStringList)
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRINGLIST_IDX], (pyArg)))) {
+#else
     if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRINGLIST_IDX], (pyArg)))) {
+#endif
         overloadId = 0; // setPagesOrder(QStringList)
     }
 
@@ -1405,8 +1493,12 @@ static PyObject* Sbk_EffectFunc_setPagesOrder(PyObject* self, PyObject* pyArg)
     Py_RETURN_NONE;
 
     Sbk_EffectFunc_setPagesOrder_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.Effect.setPagesOrder");
+#else
         const char* overloads[] = {"QStringList", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.Effect.setPagesOrder", overloads);
+#endif
         return 0;
 }
 
@@ -1460,8 +1552,12 @@ static PyObject* Sbk_EffectFunc_setPosition(PyObject* self, PyObject* args)
     Py_RETURN_NONE;
 
     Sbk_EffectFunc_setPosition_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.Effect.setPosition");
+#else
         const char* overloads[] = {"float, float", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.Effect.setPosition", overloads);
+#endif
         return 0;
 }
 
@@ -1479,7 +1575,11 @@ static PyObject* Sbk_EffectFunc_setScriptName(PyObject* self, PyObject* pyArg)
 
     // Overloaded function decisor
     // 0: setScriptName(QString)
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArg)))) {
+#else
     if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArg)))) {
+#endif
         overloadId = 0; // setScriptName(QString)
     }
 
@@ -1511,8 +1611,12 @@ static PyObject* Sbk_EffectFunc_setScriptName(PyObject* self, PyObject* pyArg)
     return pyResult;
 
     Sbk_EffectFunc_setScriptName_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.Effect.setScriptName");
+#else
         const char* overloads[] = {"unicode", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.Effect.setScriptName", overloads);
+#endif
         return 0;
 }
 
@@ -1566,8 +1670,12 @@ static PyObject* Sbk_EffectFunc_setSize(PyObject* self, PyObject* args)
     Py_RETURN_NONE;
 
     Sbk_EffectFunc_setSize_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.Effect.setSize");
+#else
         const char* overloads[] = {"float, float", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.Effect.setSize", overloads);
+#endif
         return 0;
 }
 
@@ -1608,8 +1716,12 @@ static PyObject* Sbk_EffectFunc_setSubGraphEditable(PyObject* self, PyObject* py
     Py_RETURN_NONE;
 
     Sbk_EffectFunc_setSubGraphEditable_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.Effect.setSubGraphEditable");
+#else
         const char* overloads[] = {"bool", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.Effect.setSubGraphEditable", overloads);
+#endif
         return 0;
 }
 
@@ -1662,11 +1774,19 @@ static PyMethodDef Sbk_Effect_methods[] = {
 
 static int Sbk_Effect_traverse(PyObject* self, visitproc visit, void* arg)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+     return reinterpret_cast<PyTypeObject *>(SbkObject_TypeF())->tp_traverse(self, visit, arg);
+#else
     return reinterpret_cast<PyTypeObject*>(&SbkObject_Type)->tp_traverse(self, visit, arg);
+#endif
 }
 static int Sbk_Effect_clear(PyObject* self)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    return reinterpret_cast<PyTypeObject *>(SbkObject_TypeF())->tp_clear(self);
+#else
     return reinterpret_cast<PyTypeObject*>(&SbkObject_Type)->tp_clear(self);
+#endif
 }
 static int mi_offsets[] = { -1, -1, -1, -1, -1 };
 int*
@@ -1705,6 +1825,41 @@ static void* Sbk_EffectSpecialCastFunction(void* obj, SbkObjectType* desiredType
 
 // Class Definition -----------------------------------------------
 extern "C" {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+static SbkObjectType *_Sbk_Effect_Type = nullptr;
+static SbkObjectType *Sbk_Effect_TypeF(void)
+{
+    return _Sbk_Effect_Type;
+}
+
+static PyType_Slot Sbk_Effect_slots[] = {
+    {Py_tp_base,        nullptr}, // inserted by introduceWrapperType
+    {Py_tp_dealloc,     reinterpret_cast<void*>(&SbkDeallocWrapper)},
+    {Py_tp_repr,        nullptr},
+    {Py_tp_hash,        nullptr},
+    {Py_tp_call,        nullptr},
+    {Py_tp_str,         nullptr},
+    {Py_tp_getattro,    nullptr},
+    {Py_tp_setattro,    nullptr},
+    {Py_tp_traverse,    reinterpret_cast<void*>(Sbk_Effect_traverse)},
+    {Py_tp_clear,       reinterpret_cast<void*>(Sbk_Effect_clear)},
+    {Py_tp_richcompare, nullptr},
+    {Py_tp_iter,        nullptr},
+    {Py_tp_iternext,    nullptr},
+    {Py_tp_methods,     reinterpret_cast<void*>(Sbk_Effect_methods)},
+    {Py_tp_getset,      nullptr},
+    {Py_tp_init,        nullptr},
+    {Py_tp_new,         reinterpret_cast<void*>(SbkDummyNew /* PYSIDE-595: Prevent replacement of "0" with base->tp_new. */)},
+    {0, nullptr}
+};
+static PyType_Spec Sbk_Effect_spec = {
+    "NatronEngine.Effect",
+    sizeof(SbkObject),
+    0,
+    Py_TPFLAGS_DEFAULT|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_GC,
+    Sbk_Effect_slots
+};
+#else
 static SbkObjectType Sbk_Effect_Type = { { {
     PyVarObject_HEAD_INIT(&SbkObjectType_Type, 0)
     /*tp_name*/             "NatronEngine.Effect",
@@ -1754,6 +1909,7 @@ static SbkObjectType Sbk_Effect_Type = { { {
 }, },
     /*priv_data*/           0
 };
+#endif
 } //extern
 
 static void* Sbk_Effect_typeDiscovery(void* cptr, SbkObjectType* instanceType)
@@ -1770,12 +1926,20 @@ static void* Sbk_Effect_typeDiscovery(void* cptr, SbkObjectType* instanceType)
 
 // Python to C++ pointer conversion - returns the C++ object of the Python wrapper (keeps object identity).
 static void Effect_PythonToCpp_Effect_PTR(PyObject* pyIn, void* cppOut) {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    Shiboken::Conversions::pythonToCppPointer(Sbk_Effect_TypeF(), pyIn, cppOut);
+#else
     Shiboken::Conversions::pythonToCppPointer(&Sbk_Effect_Type, pyIn, cppOut);
+#endif
 }
 static PythonToCppFunc is_Effect_PythonToCpp_Effect_PTR_Convertible(PyObject* pyIn) {
     if (pyIn == Py_None)
         return Shiboken::Conversions::nonePythonToCppNullPtr;
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    if (PyObject_TypeCheck(pyIn, reinterpret_cast<PyTypeObject*>(Sbk_Effect_TypeF())))
+#else
     if (PyObject_TypeCheck(pyIn, (PyTypeObject*)&Sbk_Effect_Type))
+#endif
         return Effect_PythonToCpp_Effect_PTR;
     return 0;
 }
@@ -1787,12 +1951,91 @@ static PyObject* Effect_PTR_CppToPython_Effect(const void* cppIn) {
         Py_INCREF(pyOut);
         return pyOut;
     }
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    bool changedTypeName = false;
+    auto tCppIn = reinterpret_cast<const ::Effect *>(cppIn);
+    const char *typeName = typeid(*tCppIn).name();
+    auto sbkType = Shiboken::ObjectType::typeForTypeName(typeName);
+    if (sbkType && Shiboken::ObjectType::hasSpecialCastFunction(sbkType)) {
+        typeName = typeNameOf(tCppIn);
+        changedTypeName = true;
+     }
+    PyObject *result = Shiboken::Object::newObject(Sbk_Effect_TypeF(), const_cast<void*>(cppIn), false, /* exactType */ changedTypeName, typeName);
+    if (changedTypeName)
+        delete [] typeName;
+    return result;
+#else
     const char* typeName = typeid(*((::Effect*)cppIn)).name();
     return Shiboken::Object::newObject(&Sbk_Effect_Type, const_cast<void*>(cppIn), false, false, typeName);
+#endif
 }
+
+#if SHIBOKEN_MAJOR_VERSION >= 2
+// The signatures string for the functions.
+// Multiple signatures have their index "n:" in front.
+static const char *Effect_SignatureStrings[] = {
+    "NatronEngine.Effect.addUserPlane(planeName:QString,channels:QStringList)->bool",
+    "NatronEngine.Effect.beginChanges()",
+    "NatronEngine.Effect.canConnectInput(inputNumber:int,node:NatronEngine.Effect)->bool",
+    "NatronEngine.Effect.connectInput(inputNumber:int,input:NatronEngine.Effect)->bool",
+    "NatronEngine.Effect.destroy(autoReconnect:bool=true)",
+    "NatronEngine.Effect.disconnectInput(inputNumber:int)",
+    "NatronEngine.Effect.endChanges()",
+    "NatronEngine.Effect.getAvailableLayers()->QList[NatronEngine.ImageLayer]",
+    "NatronEngine.Effect.getBitDepth()->NatronEngine.Natron.ImageBitDepthEnum",
+    "NatronEngine.Effect.getColor(r:double,g:double,b:double)",
+    "NatronEngine.Effect.getCurrentTime()->int",
+    "NatronEngine.Effect.getFrameRate()->double",
+    "1:NatronEngine.Effect.getInput(inputLabel:QString)->NatronEngine.Effect",
+    "0:NatronEngine.Effect.getInput(inputNumber:int)->NatronEngine.Effect",
+    "NatronEngine.Effect.getInputLabel(inputNumber:int)->QString",
+    "NatronEngine.Effect.getLabel()->QString",
+    "NatronEngine.Effect.getMaxInputCount()->int",
+    "NatronEngine.Effect.getOutputFormat()->NatronEngine.RectI",
+    "NatronEngine.Effect.getParam(name:QString)->NatronEngine.Param",
+    "NatronEngine.Effect.getParams()->QList[NatronEngine.Param]",
+    "NatronEngine.Effect.getPixelAspectRatio()->double",
+    "NatronEngine.Effect.getPluginID()->QString",
+    "NatronEngine.Effect.getPosition(x:double,y:double)",
+    "NatronEngine.Effect.getPremult()->NatronEngine.Natron.ImagePremultiplicationEnum",
+    "NatronEngine.Effect.getRegionOfDefinition(time:double,view:int)->NatronEngine.RectD",
+    "NatronEngine.Effect.getScriptName()->QString",
+    "NatronEngine.Effect.getSize()->double",
+    "NatronEngine.Effect.getUserPageParam()->NatronEngine.PageParam",
+    "NatronEngine.Effect.isNodeSelected()->bool",
+    "NatronEngine.Effect.isReaderNode()->bool",
+    "NatronEngine.Effect.isWriterNode()->bool",
+    "NatronEngine.Effect.setColor(r:double,g:double,b:double)",
+    "NatronEngine.Effect.setLabel(name:QString)",
+    "NatronEngine.Effect.setPagesOrder(pages:QStringList)",
+    "NatronEngine.Effect.setPosition(x:double,y:double)",
+    "NatronEngine.Effect.setScriptName(scriptName:QString)->bool",
+    "NatronEngine.Effect.setSize(w:double,h:double)",
+    "NatronEngine.Effect.setSubGraphEditable(editable:bool)",
+    nullptr}; // Sentinel
+#endif
 
 void init_Effect(PyObject* module)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    PyObject* Sbk_Effect_Type_bases = PyTuple_Pack(2,
+        reinterpret_cast<PyObject*>(SbkNatronEngineTypes[SBK_GROUP_IDX]),
+        reinterpret_cast<PyObject*>(SbkNatronEngineTypes[SBK_USERPARAMHOLDER_IDX]));
+
+    _Sbk_Effect_Type = Shiboken::ObjectType::introduceWrapperType(
+        module,
+        "Effect",
+        "Effect*",
+        &Sbk_Effect_spec,
+        Effect_SignatureStrings,
+        &Shiboken::callCppDestructor< ::Effect >,
+        reinterpret_cast<SbkObjectType *>(SbkNatronEngineTypes[SBK_USERPARAMHOLDER_IDX]),
+        Sbk_Effect_Type_bases,
+        0    );
+
+    SbkNatronEngineTypes[SBK_EFFECT_IDX]
+        = reinterpret_cast<PyTypeObject*>(Sbk_Effect_TypeF());
+#else
     SbkNatronEngineTypes[SBK_EFFECT_IDX] = reinterpret_cast<PyTypeObject*>(&Sbk_Effect_Type);
 
     PyObject* Sbk_Effect_Type_bases = PyTuple_Pack(2,
@@ -1803,9 +2046,14 @@ void init_Effect(PyObject* module)
         &Sbk_Effect_Type, &Shiboken::callCppDestructor< ::Effect >, (SbkObjectType*)SbkNatronEngineTypes[SBK_USERPARAMHOLDER_IDX], Sbk_Effect_Type_bases)) {
         return;
     }
+#endif
 
     // Register Converter
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    SbkConverter* converter = Shiboken::Conversions::createConverter(Sbk_Effect_TypeF(),
+#else
     SbkConverter* converter = Shiboken::Conversions::createConverter(&Sbk_Effect_Type,
+#endif
         Effect_PythonToCpp_Effect_PTR,
         is_Effect_PythonToCpp_Effect_PTR_Convertible,
         Effect_PTR_CppToPython_Effect);
@@ -1818,9 +2066,15 @@ void init_Effect(PyObject* module)
 
 
     MultipleInheritanceInitFunction func = Sbk_Effect_mi_init;
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    Shiboken::ObjectType::setMultipleInheritanceFunction(Sbk_Effect_TypeF(), func);
+    Shiboken::ObjectType::setCastFunction(Sbk_Effect_TypeF(), &Sbk_EffectSpecialCastFunction);
+    Shiboken::ObjectType::setTypeDiscoveryFunctionV2(Sbk_Effect_TypeF(), &Sbk_Effect_typeDiscovery);
+#else
     Shiboken::ObjectType::setMultipleIheritanceFunction(&Sbk_Effect_Type, func);
     Shiboken::ObjectType::setCastFunction(&Sbk_Effect_Type, &Sbk_EffectSpecialCastFunction);
     Shiboken::ObjectType::setTypeDiscoveryFunctionV2(&Sbk_Effect_Type, &Sbk_Effect_typeDiscovery);
+#endif
 
 
     EffectWrapper::pysideInitQtMetaTypes();

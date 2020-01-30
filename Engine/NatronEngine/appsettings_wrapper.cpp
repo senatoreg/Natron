@@ -11,9 +11,12 @@ GCC_DIAG_UNUSED_LOCAL_TYPEDEFS_OFF
 #include <pysidesignal.h>
 #include <pysideproperty.h>
 #include <pyside.h>
+#if SHIBOKEN_MAJOR_VERSION < 2
 #include <typeresolver.h>
+#endif
 #include <typeinfo>
 #include "natronengine_python.h"
+#include "natron_helper.h"
 
 #include "appsettings_wrapper.h"
 
@@ -41,7 +44,11 @@ static PyObject* Sbk_AppSettingsFunc_getParam(PyObject* self, PyObject* pyArg)
 
     // Overloaded function decisor
     // 0: getParam(QString)const
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArg)))) {
+#else
     if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArg)))) {
+#endif
         overloadId = 0; // getParam(QString)const
     }
 
@@ -70,8 +77,12 @@ static PyObject* Sbk_AppSettingsFunc_getParam(PyObject* self, PyObject* pyArg)
     return pyResult;
 
     Sbk_AppSettingsFunc_getParam_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.AppSettings.getParam");
+#else
         const char* overloads[] = {"unicode", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.AppSettings.getParam", overloads);
+#endif
         return 0;
 }
 
@@ -174,14 +185,57 @@ static PyMethodDef Sbk_AppSettings_methods[] = {
 
 static int Sbk_AppSettings_traverse(PyObject* self, visitproc visit, void* arg)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    return reinterpret_cast<PyTypeObject *>(SbkObject_TypeF())->tp_traverse(self, visit, arg);
+#else
     return reinterpret_cast<PyTypeObject*>(&SbkObject_Type)->tp_traverse(self, visit, arg);
+#endif
 }
 static int Sbk_AppSettings_clear(PyObject* self)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    return reinterpret_cast<PyTypeObject *>(SbkObject_TypeF())->tp_clear(self);
+#else
     return reinterpret_cast<PyTypeObject*>(&SbkObject_Type)->tp_clear(self);
+#endif
 }
 // Class Definition -----------------------------------------------
 extern "C" {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+static SbkObjectType *_Sbk_AppSettings_Type = nullptr;
+static SbkObjectType *Sbk_AppSettings_TypeF(void)
+{
+    return _Sbk_AppSettings_Type;
+}
+
+static PyType_Slot Sbk_AppSettings_slots[] = {
+    {Py_tp_base,        nullptr}, // inserted by introduceWrapperType
+    {Py_tp_dealloc,     reinterpret_cast<void*>(&SbkDeallocWrapper)},
+    {Py_tp_repr,        nullptr},
+    {Py_tp_hash,        nullptr},
+    {Py_tp_call,        nullptr},
+    {Py_tp_str,         nullptr},
+    {Py_tp_getattro,    nullptr},
+    {Py_tp_setattro,    nullptr},
+    {Py_tp_traverse,    reinterpret_cast<void*>(Sbk_AppSettings_traverse)},
+    {Py_tp_clear,       reinterpret_cast<void*>(Sbk_AppSettings_clear)},
+    {Py_tp_richcompare, nullptr},
+    {Py_tp_iter,        nullptr},
+    {Py_tp_iternext,    nullptr},
+    {Py_tp_methods,     reinterpret_cast<void*>(Sbk_AppSettings_methods)},
+    {Py_tp_getset,      nullptr},
+    {Py_tp_init,        nullptr},
+    {Py_tp_new,         reinterpret_cast<void*>(SbkDummyNew /* PYSIDE-595: Prevent replacement of "0" with base->tp_new. */)},
+    {0, nullptr}
+};
+static PyType_Spec Sbk_AppSettings_spec = {
+    "NatronEngine.AppSettings",
+    sizeof(SbkObject),
+    0,
+    Py_TPFLAGS_DEFAULT|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_GC,
+    Sbk_AppSettings_slots
+};
+#else
 static SbkObjectType Sbk_AppSettings_Type = { { {
     PyVarObject_HEAD_INIT(&SbkObjectType_Type, 0)
     /*tp_name*/             "NatronEngine.AppSettings",
@@ -231,6 +285,7 @@ static SbkObjectType Sbk_AppSettings_Type = { { {
 }, },
     /*priv_data*/           0
 };
+#endif
 } //extern
 
 
@@ -238,12 +293,20 @@ static SbkObjectType Sbk_AppSettings_Type = { { {
 
 // Python to C++ pointer conversion - returns the C++ object of the Python wrapper (keeps object identity).
 static void AppSettings_PythonToCpp_AppSettings_PTR(PyObject* pyIn, void* cppOut) {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    Shiboken::Conversions::pythonToCppPointer(Sbk_AppSettings_TypeF(), pyIn, cppOut);
+#else
     Shiboken::Conversions::pythonToCppPointer(&Sbk_AppSettings_Type, pyIn, cppOut);
+#endif
 }
 static PythonToCppFunc is_AppSettings_PythonToCpp_AppSettings_PTR_Convertible(PyObject* pyIn) {
     if (pyIn == Py_None)
         return Shiboken::Conversions::nonePythonToCppNullPtr;
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    if (PyObject_TypeCheck(pyIn, reinterpret_cast<PyTypeObject*>(Sbk_AppSettings_TypeF())))
+#else
     if (PyObject_TypeCheck(pyIn, (PyTypeObject*)&Sbk_AppSettings_Type))
+#endif
         return AppSettings_PythonToCpp_AppSettings_PTR;
     return 0;
 }
@@ -255,21 +318,67 @@ static PyObject* AppSettings_PTR_CppToPython_AppSettings(const void* cppIn) {
         Py_INCREF(pyOut);
         return pyOut;
     }
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    bool changedTypeName = false;
+    auto tCppIn = reinterpret_cast<const ::AppSettings *>(cppIn);
+    const char *typeName = typeid(*tCppIn).name();
+    auto sbkType = Shiboken::ObjectType::typeForTypeName(typeName);
+    if (sbkType && Shiboken::ObjectType::hasSpecialCastFunction(sbkType)) {
+        typeName = typeNameOf(tCppIn);
+        changedTypeName = true;
+     }
+    PyObject *result = Shiboken::Object::newObject(Sbk_AppSettings_TypeF(), const_cast<void*>(cppIn), false, /* exactType */ changedTypeName, typeName);
+    if (changedTypeName)
+        delete [] typeName;
+    return result;
+#else
     const char* typeName = typeid(*((::AppSettings*)cppIn)).name();
     return Shiboken::Object::newObject(&Sbk_AppSettings_Type, const_cast<void*>(cppIn), false, false, typeName);
+#endif
 }
+
+#if SHIBOKEN_MAJOR_VERSION >= 2
+// The signatures string for the functions.
+// Multiple signatures have their index "n:" in front.
+static const char *AppSettings_SignatureStrings[] = {
+    "NatronEngine.AppSettings.getParam(scriptName:QString)->NatronEngine.Param",
+    "NatronEngine.AppSettings.getParams()->QList[NatronEngine.Param]",
+    "NatronEngine.AppSettings.restoreDefaultSettings()",
+    "NatronEngine.AppSettings.saveSettings()",
+    nullptr}; // Sentinel
+#endif
 
 void init_AppSettings(PyObject* module)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    _Sbk_AppSettings_Type = Shiboken::ObjectType::introduceWrapperType(
+        module,
+        "AppSettings",
+        "AppSettings*",
+        &Sbk_AppSettings_spec,
+        AppSettings_SignatureStrings,
+        &Shiboken::callCppDestructor< ::AppSettings >,
+        0,
+        0,
+        0    );
+
+    SbkNatronEngineTypes[SBK_APPSETTINGS_IDX]
+        = reinterpret_cast<PyTypeObject*>(Sbk_AppSettings_TypeF());
+#else
     SbkNatronEngineTypes[SBK_APPSETTINGS_IDX] = reinterpret_cast<PyTypeObject*>(&Sbk_AppSettings_Type);
 
     if (!Shiboken::ObjectType::introduceWrapperType(module, "AppSettings", "AppSettings*",
         &Sbk_AppSettings_Type, &Shiboken::callCppDestructor< ::AppSettings >)) {
         return;
     }
+#endif
 
     // Register Converter
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    SbkConverter* converter = Shiboken::Conversions::createConverter(Sbk_AppSettings_TypeF(),
+#else
     SbkConverter* converter = Shiboken::Conversions::createConverter(&Sbk_AppSettings_Type,
+#endif
         AppSettings_PythonToCpp_AppSettings_PTR,
         is_AppSettings_PythonToCpp_AppSettings_PTR_Convertible,
         AppSettings_PTR_CppToPython_AppSettings);

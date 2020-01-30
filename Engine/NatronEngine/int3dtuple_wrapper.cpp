@@ -11,9 +11,12 @@ GCC_DIAG_UNUSED_LOCAL_TYPEDEFS_OFF
 #include <pysidesignal.h>
 #include <pysideproperty.h>
 #include <pyside.h>
+#if SHIBOKEN_MAJOR_VERSION < 2
 #include <typeresolver.h>
+#endif
 #include <typeinfo>
 #include "natronengine_python.h"
+#include "natron_helper.h"
 
 #include "int3dtuple_wrapper.h"
 
@@ -209,16 +212,61 @@ static PyGetSetDef Sbk_Int3DTuple_getsetlist[] = {
 
 static int Sbk_Int3DTuple_traverse(PyObject* self, visitproc visit, void* arg)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    return reinterpret_cast<PyTypeObject *>(SbkObject_TypeF())->tp_traverse(self, visit, arg);
+#else
     return reinterpret_cast<PyTypeObject*>(&SbkObject_Type)->tp_traverse(self, visit, arg);
+#endif
 }
 static int Sbk_Int3DTuple_clear(PyObject* self)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    return reinterpret_cast<PyTypeObject *>(SbkObject_TypeF())->tp_clear(self);
+#else
     return reinterpret_cast<PyTypeObject*>(&SbkObject_Type)->tp_clear(self);
+#endif
 }
 // Class Definition -----------------------------------------------
 extern "C" {
 static PySequenceMethods Sbk_Int3DTuple_TypeAsSequence;
 
+#if SHIBOKEN_MAJOR_VERSION >= 2
+static SbkObjectType *_Sbk_Int3DTuple_Type = nullptr;
+static SbkObjectType *Sbk_Int3DTuple_TypeF(void)
+{
+    return _Sbk_Int3DTuple_Type;
+}
+
+static PyType_Slot Sbk_Int3DTuple_slots[] = {
+    {Py_tp_base,        nullptr}, // inserted by introduceWrapperType
+    {Py_tp_dealloc,     reinterpret_cast<void*>(&SbkDeallocWrapper)},
+    {Py_tp_repr,        nullptr},
+    {Py_tp_hash,        nullptr},
+    {Py_tp_call,        nullptr},
+    {Py_tp_str,         nullptr},
+    {Py_tp_getattro,    nullptr},
+    {Py_tp_setattro,    nullptr},
+    {Py_tp_traverse,    reinterpret_cast<void*>(Sbk_Int3DTuple_traverse)},
+    {Py_tp_clear,       reinterpret_cast<void*>(Sbk_Int3DTuple_clear)},
+    {Py_tp_richcompare, nullptr},
+    {Py_tp_iter,        nullptr},
+    {Py_tp_iternext,    nullptr},
+    {Py_tp_methods,     reinterpret_cast<void*>(Sbk_Int3DTuple_methods)},
+    {Py_tp_getset,      reinterpret_cast<void*>(Sbk_Int3DTuple_getsetlist)},
+    {Py_tp_init,        reinterpret_cast<void*>(Sbk_Int3DTuple_Init)},
+    {Py_tp_new,         reinterpret_cast<void*>(SbkObjectTpNew)},
+    // type supports sequence protocol
+    {Py_sq_item, (void *)&Sbk_Int3DTupleFunc___getitem__},
+    {0, nullptr}
+};
+static PyType_Spec Sbk_Int3DTuple_spec = {
+    "NatronEngine.Int3DTuple",
+    sizeof(SbkObject),
+    0,
+    Py_TPFLAGS_DEFAULT|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_GC,
+    Sbk_Int3DTuple_slots
+};
+#else
 static SbkObjectType Sbk_Int3DTuple_Type = { { {
     PyVarObject_HEAD_INIT(&SbkObjectType_Type, 0)
     /*tp_name*/             "NatronEngine.Int3DTuple",
@@ -268,6 +316,7 @@ static SbkObjectType Sbk_Int3DTuple_Type = { { {
 }, },
     /*priv_data*/           0
 };
+#endif
 } //extern
 
 
@@ -275,12 +324,20 @@ static SbkObjectType Sbk_Int3DTuple_Type = { { {
 
 // Python to C++ pointer conversion - returns the C++ object of the Python wrapper (keeps object identity).
 static void Int3DTuple_PythonToCpp_Int3DTuple_PTR(PyObject* pyIn, void* cppOut) {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    Shiboken::Conversions::pythonToCppPointer(Sbk_Int3DTuple_TypeF(), pyIn, cppOut);
+#else
     Shiboken::Conversions::pythonToCppPointer(&Sbk_Int3DTuple_Type, pyIn, cppOut);
+#endif
 }
 static PythonToCppFunc is_Int3DTuple_PythonToCpp_Int3DTuple_PTR_Convertible(PyObject* pyIn) {
     if (pyIn == Py_None)
         return Shiboken::Conversions::nonePythonToCppNullPtr;
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    if (PyObject_TypeCheck(pyIn, reinterpret_cast<PyTypeObject*>(Sbk_Int3DTuple_TypeF())))
+#else
     if (PyObject_TypeCheck(pyIn, (PyTypeObject*)&Sbk_Int3DTuple_Type))
+#endif
         return Int3DTuple_PythonToCpp_Int3DTuple_PTR;
     return 0;
 }
@@ -292,15 +349,53 @@ static PyObject* Int3DTuple_PTR_CppToPython_Int3DTuple(const void* cppIn) {
         Py_INCREF(pyOut);
         return pyOut;
     }
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    bool changedTypeName = false;
+    auto tCppIn = reinterpret_cast<const ::Int3DTuple *>(cppIn);
+    const char *typeName = typeid(*tCppIn).name();
+    auto sbkType = Shiboken::ObjectType::typeForTypeName(typeName);
+    if (sbkType && Shiboken::ObjectType::hasSpecialCastFunction(sbkType)) {
+        typeName = typeNameOf(tCppIn);
+        changedTypeName = true;
+     }
+    PyObject *result = Shiboken::Object::newObject(Sbk_Int3DTuple_TypeF(), const_cast<void*>(cppIn), false, /* exactType */ changedTypeName, typeName);
+    if (changedTypeName)
+        delete [] typeName;
+    return result;
+#else
     const char* typeName = typeid(*((::Int3DTuple*)cppIn)).name();
     return Shiboken::Object::newObject(&Sbk_Int3DTuple_Type, const_cast<void*>(cppIn), false, false, typeName);
+#endif
 }
+
+#if SHIBOKEN_MAJOR_VERSION >= 2
+// The signatures string for the functions.
+// Multiple signatures have their index "n:" in front.
+static const char *Int3DTuple_SignatureStrings[] = {
+    "NatronEngine.Int3DTuple()",
+    nullptr}; // Sentinel
+#endif
 
 void init_Int3DTuple(PyObject* module)
 {
     // type supports sequence protocol
     memset(&Sbk_Int3DTuple_TypeAsSequence, 0, sizeof(PySequenceMethods));
     Sbk_Int3DTuple_TypeAsSequence.sq_item = &Sbk_Int3DTupleFunc___getitem__;
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    _Sbk_Int3DTuple_Type = Shiboken::ObjectType::introduceWrapperType(
+        module,
+        "Int3DTuple",
+        "Int3DTuple*",
+        &Sbk_Int3DTuple_spec,
+        Int3DTuple_SignatureStrings,
+        &Shiboken::callCppDestructor< ::Int3DTuple >,
+        0,
+        0,
+        0    );
+
+    SbkNatronEngineTypes[SBK_INT3DTUPLE_IDX]
+        = reinterpret_cast<PyTypeObject*>(Sbk_Int3DTuple_TypeF());
+#else
     Sbk_Int3DTuple_Type.super.ht_type.tp_as_sequence = &Sbk_Int3DTuple_TypeAsSequence;
 
     SbkNatronEngineTypes[SBK_INT3DTUPLE_IDX] = reinterpret_cast<PyTypeObject*>(&Sbk_Int3DTuple_Type);
@@ -309,9 +404,14 @@ void init_Int3DTuple(PyObject* module)
         &Sbk_Int3DTuple_Type, &Shiboken::callCppDestructor< ::Int3DTuple >)) {
         return;
     }
+#endif
 
     // Register Converter
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    SbkConverter* converter = Shiboken::Conversions::createConverter(Sbk_Int3DTuple_TypeF(),
+#else
     SbkConverter* converter = Shiboken::Conversions::createConverter(&Sbk_Int3DTuple_Type,
+#endif
         Int3DTuple_PythonToCpp_Int3DTuple_PTR,
         is_Int3DTuple_PythonToCpp_Int3DTuple_PTR_Convertible,
         Int3DTuple_PTR_CppToPython_Int3DTuple);

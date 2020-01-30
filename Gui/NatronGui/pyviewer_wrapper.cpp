@@ -11,9 +11,12 @@ GCC_DIAG_UNUSED_LOCAL_TYPEDEFS_OFF
 #include <pysidesignal.h>
 #include <pysideproperty.h>
 #include <pyside.h>
+#if SHIBOKEN_MAJOR_VERSION < 2
 #include <typeresolver.h>
+#endif
 #include <typeinfo>
 #include "natrongui_python.h"
+#include "natron_helper.h"
 
 #include "pyviewer_wrapper.h"
 
@@ -326,8 +329,12 @@ static PyObject* Sbk_PyViewerFunc_renderCurrentFrame(PyObject* self, PyObject* a
     Py_RETURN_NONE;
 
     Sbk_PyViewerFunc_renderCurrentFrame_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronGui.PyViewer.renderCurrentFrame");
+#else
         const char* overloads[] = {"bool = true", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronGui.PyViewer.renderCurrentFrame", overloads);
+#endif
         return 0;
 }
 
@@ -368,8 +375,12 @@ static PyObject* Sbk_PyViewerFunc_seek(PyObject* self, PyObject* pyArg)
     Py_RETURN_NONE;
 
     Sbk_PyViewerFunc_seek_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronGui.PyViewer.seek");
+#else
         const char* overloads[] = {"int", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronGui.PyViewer.seek", overloads);
+#endif
         return 0;
 }
 
@@ -410,8 +421,12 @@ static PyObject* Sbk_PyViewerFunc_setAInput(PyObject* self, PyObject* pyArg)
     Py_RETURN_NONE;
 
     Sbk_PyViewerFunc_setAInput_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronGui.PyViewer.setAInput");
+#else
         const char* overloads[] = {"int", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronGui.PyViewer.setAInput", overloads);
+#endif
         return 0;
 }
 
@@ -452,8 +467,12 @@ static PyObject* Sbk_PyViewerFunc_setBInput(PyObject* self, PyObject* pyArg)
     Py_RETURN_NONE;
 
     Sbk_PyViewerFunc_setBInput_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronGui.PyViewer.setBInput");
+#else
         const char* overloads[] = {"int", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronGui.PyViewer.setBInput", overloads);
+#endif
         return 0;
 }
 
@@ -494,8 +513,12 @@ static PyObject* Sbk_PyViewerFunc_setCurrentView(PyObject* self, PyObject* pyArg
     Py_RETURN_NONE;
 
     Sbk_PyViewerFunc_setCurrentView_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronGui.PyViewer.setCurrentView");
+#else
         const char* overloads[] = {"int", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronGui.PyViewer.setCurrentView", overloads);
+#endif
         return 0;
 }
 
@@ -549,8 +572,12 @@ static PyObject* Sbk_PyViewerFunc_setFrameRange(PyObject* self, PyObject* args)
     Py_RETURN_NONE;
 
     Sbk_PyViewerFunc_setFrameRange_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronGui.PyViewer.setFrameRange");
+#else
         const char* overloads[] = {"int, int", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronGui.PyViewer.setFrameRange", overloads);
+#endif
         return 0;
 }
 
@@ -591,8 +618,12 @@ static PyObject* Sbk_PyViewerFunc_setProxyIndex(PyObject* self, PyObject* pyArg)
     Py_RETURN_NONE;
 
     Sbk_PyViewerFunc_setProxyIndex_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronGui.PyViewer.setProxyIndex");
+#else
         const char* overloads[] = {"int", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronGui.PyViewer.setProxyIndex", overloads);
+#endif
         return 0;
 }
 
@@ -633,8 +664,12 @@ static PyObject* Sbk_PyViewerFunc_setProxyModeEnabled(PyObject* self, PyObject* 
     Py_RETURN_NONE;
 
     Sbk_PyViewerFunc_setProxyModeEnabled_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronGui.PyViewer.setProxyModeEnabled");
+#else
         const char* overloads[] = {"bool", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronGui.PyViewer.setProxyModeEnabled", overloads);
+#endif
         return 0;
 }
 
@@ -712,14 +747,57 @@ static PyMethodDef Sbk_PyViewer_methods[] = {
 
 static int Sbk_PyViewer_traverse(PyObject* self, visitproc visit, void* arg)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    return reinterpret_cast<PyTypeObject *>(SbkObject_TypeF())->tp_traverse(self, visit, arg);
+#else
     return reinterpret_cast<PyTypeObject*>(&SbkObject_Type)->tp_traverse(self, visit, arg);
+#endif
 }
 static int Sbk_PyViewer_clear(PyObject* self)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    return reinterpret_cast<PyTypeObject*>(SbkObject_TypeF())->tp_clear(self);
+#else
     return reinterpret_cast<PyTypeObject*>(&SbkObject_Type)->tp_clear(self);
+#endif
 }
 // Class Definition -----------------------------------------------
 extern "C" {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+static SbkObjectType *_Sbk_PyViewer_Type = nullptr;
+static SbkObjectType *Sbk_PyViewer_TypeF(void)
+{
+    return _Sbk_PyViewer_Type;
+}
+
+static PyType_Slot Sbk_PyViewer_slots[] = {
+    {Py_tp_base,        nullptr}, // inserted by introduceWrapperType
+    {Py_tp_dealloc,     reinterpret_cast<void*>(&SbkDeallocWrapper)},
+    {Py_tp_repr,        nullptr},
+    {Py_tp_hash,        nullptr},
+    {Py_tp_call,        nullptr},
+    {Py_tp_str,         nullptr},
+    {Py_tp_getattro,    nullptr},
+    {Py_tp_setattro,    nullptr},
+    {Py_tp_traverse,    reinterpret_cast<void*>(Sbk_PyViewer_traverse)},
+    {Py_tp_clear,       reinterpret_cast<void*>(Sbk_PyViewer_clear)},
+    {Py_tp_richcompare, nullptr},
+    {Py_tp_iter,        nullptr},
+    {Py_tp_iternext,    nullptr},
+    {Py_tp_methods,     reinterpret_cast<void*>(Sbk_PyViewer_methods)},
+    {Py_tp_getset,      nullptr},
+    {Py_tp_init,        nullptr},
+    {Py_tp_new,         reinterpret_cast<void*>(SbkDummyNew /* PYSIDE-595: Prevent replacement of "0" with base->tp_new. */)},
+    {0, nullptr}
+};
+static PyType_Spec Sbk_PyViewer_spec = {
+    "NatronGui.PyViewer",
+    sizeof(SbkObject),
+    0,
+    Py_TPFLAGS_DEFAULT|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_GC,
+    Sbk_PyViewer_slots
+};
+#else
 static SbkObjectType Sbk_PyViewer_Type = { { {
     PyVarObject_HEAD_INIT(&SbkObjectType_Type, 0)
     /*tp_name*/             "NatronGui.PyViewer",
@@ -769,6 +847,7 @@ static SbkObjectType Sbk_PyViewer_Type = { { {
 }, },
     /*priv_data*/           0
 };
+#endif
 } //extern
 
 
@@ -776,12 +855,20 @@ static SbkObjectType Sbk_PyViewer_Type = { { {
 
 // Python to C++ pointer conversion - returns the C++ object of the Python wrapper (keeps object identity).
 static void PyViewer_PythonToCpp_PyViewer_PTR(PyObject* pyIn, void* cppOut) {
+#if SHIBOKEN_MAJOR_VERSION >=2
+    Shiboken::Conversions::pythonToCppPointer(Sbk_PyViewer_TypeF(), pyIn, cppOut);
+#else
     Shiboken::Conversions::pythonToCppPointer(&Sbk_PyViewer_Type, pyIn, cppOut);
+#endif
 }
 static PythonToCppFunc is_PyViewer_PythonToCpp_PyViewer_PTR_Convertible(PyObject* pyIn) {
     if (pyIn == Py_None)
         return Shiboken::Conversions::nonePythonToCppNullPtr;
+#if SHIBOKEN_MAJOR_VERSION >=2
+    if (PyObject_TypeCheck(pyIn, reinterpret_cast<PyTypeObject*>(Sbk_PyViewer_TypeF())))
+#else
     if (PyObject_TypeCheck(pyIn, (PyTypeObject*)&Sbk_PyViewer_Type))
+#endif
         return PyViewer_PythonToCpp_PyViewer_PTR;
     return 0;
 }
@@ -793,21 +880,82 @@ static PyObject* PyViewer_PTR_CppToPython_PyViewer(const void* cppIn) {
         Py_INCREF(pyOut);
         return pyOut;
     }
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    bool changedTypeName = false;
+    auto tCppIn = reinterpret_cast<const ::PyViewer *>(cppIn);
+    const char *typeName = typeid(*tCppIn).name();
+    auto sbkType = Shiboken::ObjectType::typeForTypeName(typeName);
+    if (sbkType && Shiboken::ObjectType::hasSpecialCastFunction(sbkType)) {
+        typeName = typeNameOf(tCppIn);
+        changedTypeName = true;
+     }
+    PyObject *result = Shiboken::Object::newObject(Sbk_PyViewer_TypeF(), const_cast<void*>(cppIn), false, /* exactType */ changedTypeName, typeName);
+    if (changedTypeName)
+        delete [] typeName;
+    return result;
+#else
     const char* typeName = typeid(*((::PyViewer*)cppIn)).name();
     return Shiboken::Object::newObject(&Sbk_PyViewer_Type, const_cast<void*>(cppIn), false, false, typeName);
+#endif
 }
+
+#if SHIBOKEN_MAJOR_VERSION >= 2
+// The signatures string for the functions.
+// Multiple signatures have their index "n:" in front.
+static const char *PyViewer_SignatureStrings[] = {
+    "NatronGui.PyViewer.getAInput()->int",
+    "NatronGui.PyViewer.getBInput()->int",
+    "NatronGui.PyViewer.getCurrentFrame()->int",
+    "NatronGui.PyViewer.getCurrentView()->int",
+    "NatronGui.PyViewer.getFrameRange()->int",
+    "NatronGui.PyViewer.getProxyIndex()->int",
+    "NatronGui.PyViewer.isProxyModeEnabled()->bool",
+    "NatronGui.PyViewer.pause()",
+    "NatronGui.PyViewer.redraw()",
+    "NatronGui.PyViewer.renderCurrentFrame(useCache:bool)",
+    "NatronGui.PyViewer.seek(s:int)",
+    "NatronGui.PyViewer.setAInput(a:int)",
+    "NatronGui.PyViewer.setBInput(b:int)",
+    "NatronGui.PyViewer.setCurrentView(v:int)",
+    "NatronGui.PyViewer.setFrameRange(x:int,y:int)",
+    "NatronGui.PyViewer.setProxyIndex(i:int)",
+    "NatronGui.PyViewer.setProxyModeEnabled(e:bool)",
+    "NatronGui.PyViewer.startBackward()",
+    "NatronGui.PyViewer.startForward()",
+    nullptr}; // Sentinel
+#endif
 
 void init_PyViewer(PyObject* module)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    _Sbk_PyViewer_Type = Shiboken::ObjectType::introduceWrapperType(
+        module,
+        "PyViewer",
+        "PyViewer*",
+        &Sbk_PyViewer_spec,
+        PyViewer_SignatureStrings,
+        &Shiboken::callCppDestructor< ::PyViewer >,
+        0,
+        0,
+        0    );
+
+    SbkNatronGuiTypes[SBK_PYVIEWER_IDX]
+        = reinterpret_cast<PyTypeObject*>(Sbk_PyViewer_TypeF());
+#else
     SbkNatronGuiTypes[SBK_PYVIEWER_IDX] = reinterpret_cast<PyTypeObject*>(&Sbk_PyViewer_Type);
 
     if (!Shiboken::ObjectType::introduceWrapperType(module, "PyViewer", "PyViewer*",
         &Sbk_PyViewer_Type, &Shiboken::callCppDestructor< ::PyViewer >)) {
         return;
     }
+#endif
 
     // Register Converter
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    SbkConverter* converter = Shiboken::Conversions::createConverter(Sbk_PyViewer_TypeF(),
+#else
     SbkConverter* converter = Shiboken::Conversions::createConverter(&Sbk_PyViewer_Type,
+#endif
         PyViewer_PythonToCpp_PyViewer_PTR,
         is_PyViewer_PythonToCpp_PyViewer_PTR_Convertible,
         PyViewer_PTR_CppToPython_PyViewer);

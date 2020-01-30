@@ -11,13 +11,16 @@ GCC_DIAG_UNUSED_LOCAL_TYPEDEFS_OFF
 #include <pysidesignal.h>
 #include <pysideproperty.h>
 #include <pyside.h>
+#if SHIBOKEN_MAJOR_VERSION < 2
 #include <typeresolver.h>
+#endif
 #include <typeinfo>
 #include <signalmanager.h>
 CLANG_DIAG_OFF(header-guard)
 #include <pysidemetafunction.h> // has wrong header guards in pyside 1.2.2
 #include <set>
 #include "natrongui_python.h"
+#include "natron_helper.h"
 
 #include "pypanel_wrapper.h"
 
@@ -38,7 +41,9 @@ NATRON_NAMESPACE_USING NATRON_PYTHON_NAMESPACE_USING
 #include <qfontmetrics.h>
 #include <qgraphicsproxywidget.h>
 #include <qicon.h>
+#if QT_VERSION < QT_VERSION_CHECK(5, 0, 0)
 #include <qinputcontext.h>
+#endif
 #include <qkeysequence.h>
 #include <qlayout.h>
 #include <qlocale.h>
@@ -81,7 +86,11 @@ void PyPanelWrapper::actionEvent(QActionEvent * event)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtGuiTypes[SBK_QACTIONEVENT_IDX], event)
+#else
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtGuiTypes[SBK_QACTIONEVENT_IDX], event)
+#endif
     ));
     bool invalidateArg1 = PyTuple_GET_ITEM(pyArgs, 0)->ob_refcnt == 1;
 
@@ -107,7 +116,11 @@ void PyPanelWrapper::changeEvent(QEvent * event)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtCoreTypes[SBK_QEVENT_IDX], event)
+#else
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtCoreTypes[SBK_QEVENT_IDX], event)
+#endif
     ));
     bool invalidateArg1 = PyTuple_GET_ITEM(pyArgs, 0)->ob_refcnt == 1;
 
@@ -133,7 +146,11 @@ void PyPanelWrapper::childEvent(QChildEvent * arg__1)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtCoreTypes[SBK_QCHILDEVENT_IDX], arg__1)
+#else
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtCoreTypes[SBK_QCHILDEVENT_IDX], arg__1)
+#endif
     ));
     bool invalidateArg1 = PyTuple_GET_ITEM(pyArgs, 0)->ob_refcnt == 1;
 
@@ -159,7 +176,11 @@ void PyPanelWrapper::closeEvent(QCloseEvent * event)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtGuiTypes[SBK_QCLOSEEVENT_IDX], event)
+#else
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtGuiTypes[SBK_QCLOSEEVENT_IDX], event)
+#endif
     ));
     bool invalidateArg1 = PyTuple_GET_ITEM(pyArgs, 0)->ob_refcnt == 1;
 
@@ -173,7 +194,11 @@ void PyPanelWrapper::closeEvent(QCloseEvent * event)
         Shiboken::Object::invalidate(PyTuple_GET_ITEM(pyArgs, 0));
 }
 
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
+void PyPanelWrapper::connectNotify(const QMetaMethod & signal)
+#else
 void PyPanelWrapper::connectNotify(const char * signal)
+#endif
 {
     Shiboken::GilState gil;
     if (PyErr_Occurred())
@@ -185,8 +210,12 @@ void PyPanelWrapper::connectNotify(const char * signal)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::copyToPython(Shiboken::Conversions::PrimitiveTypeConverter<const char*>(), signal.typeName())
+#else
         Shiboken::Conversions::copyToPython(Shiboken::Conversions::PrimitiveTypeConverter<const char*>(), signal)
-    ));
+#endif
+));
 
     Shiboken::AutoDecRef pyResult(PyObject_Call(pyOverride, pyArgs, NULL));
     // An error happened in python code!
@@ -208,7 +237,11 @@ void PyPanelWrapper::contextMenuEvent(QContextMenuEvent * event)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtGuiTypes[SBK_QCONTEXTMENUEVENT_IDX], event)
+#else
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtGuiTypes[SBK_QCONTEXTMENUEVENT_IDX], event)
+#endif
     ));
     bool invalidateArg1 = PyTuple_GET_ITEM(pyArgs, 0)->ob_refcnt == 1;
 
@@ -234,7 +267,11 @@ void PyPanelWrapper::customEvent(QEvent * arg__1)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtCoreTypes[SBK_QEVENT_IDX], arg__1)
+#else
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtCoreTypes[SBK_QEVENT_IDX], arg__1)
+#endif
     ));
     bool invalidateArg1 = PyTuple_GET_ITEM(pyArgs, 0)->ob_refcnt == 1;
 
@@ -278,7 +315,11 @@ int PyPanelWrapper::devType() const
     return cppResult;
 }
 
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
+void PyPanelWrapper::disconnectNotify(const QMetaMethod & signal)
+#else
 void PyPanelWrapper::disconnectNotify(const char * signal)
+#endif
 {
     Shiboken::GilState gil;
     if (PyErr_Occurred())
@@ -290,7 +331,11 @@ void PyPanelWrapper::disconnectNotify(const char * signal)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
-        Shiboken::Conversions::copyToPython(Shiboken::Conversions::PrimitiveTypeConverter<const char*>(), signal)
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
+    Shiboken::Conversions::copyToPython(Shiboken::Conversions::PrimitiveTypeConverter<const char*>(), signal.typeName())
+#else
+    Shiboken::Conversions::copyToPython(Shiboken::Conversions::PrimitiveTypeConverter<const char*>(), signal)
+#endif
     ));
 
     Shiboken::AutoDecRef pyResult(PyObject_Call(pyOverride, pyArgs, NULL));
@@ -313,7 +358,11 @@ void PyPanelWrapper::dragEnterEvent(QDragEnterEvent * event)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtGuiTypes[SBK_QDRAGENTEREVENT_IDX], event)
+#else
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtGuiTypes[SBK_QDRAGENTEREVENT_IDX], event)
+#endif
     ));
     bool invalidateArg1 = PyTuple_GET_ITEM(pyArgs, 0)->ob_refcnt == 1;
 
@@ -339,7 +388,11 @@ void PyPanelWrapper::dragLeaveEvent(QDragLeaveEvent * event)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtGuiTypes[SBK_QDRAGLEAVEEVENT_IDX], event)
+#else
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtGuiTypes[SBK_QDRAGLEAVEEVENT_IDX], event)
+#endif
     ));
     bool invalidateArg1 = PyTuple_GET_ITEM(pyArgs, 0)->ob_refcnt == 1;
 
@@ -365,7 +418,11 @@ void PyPanelWrapper::dragMoveEvent(QDragMoveEvent * event)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtGuiTypes[SBK_QDRAGMOVEEVENT_IDX], event)
+#else
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtGuiTypes[SBK_QDRAGMOVEEVENT_IDX], event)
+#endif
     ));
     bool invalidateArg1 = PyTuple_GET_ITEM(pyArgs, 0)->ob_refcnt == 1;
 
@@ -391,7 +448,11 @@ void PyPanelWrapper::dropEvent(QDropEvent * event)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtGuiTypes[SBK_QDROPEVENT_IDX], event)
+#else
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtGuiTypes[SBK_QDROPEVENT_IDX], event)
+#endif
     ));
     bool invalidateArg1 = PyTuple_GET_ITEM(pyArgs, 0)->ob_refcnt == 1;
 
@@ -417,7 +478,11 @@ void PyPanelWrapper::enterEvent(QEvent * event)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtCoreTypes[SBK_QEVENT_IDX], event)
+#else
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtCoreTypes[SBK_QEVENT_IDX], event)
+#endif
     ));
     bool invalidateArg1 = PyTuple_GET_ITEM(pyArgs, 0)->ob_refcnt == 1;
 
@@ -443,7 +508,11 @@ bool PyPanelWrapper::event(QEvent * arg__1)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtCoreTypes[SBK_QEVENT_IDX], arg__1)
+#else
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtCoreTypes[SBK_QEVENT_IDX], arg__1)
+#endif
     ));
     bool invalidateArg1 = PyTuple_GET_ITEM(pyArgs, 0)->ob_refcnt == 1;
 
@@ -478,8 +547,13 @@ bool PyPanelWrapper::eventFilter(QObject * arg__1, QEvent * arg__2)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(NN)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtCoreTypes[SBK_QOBJECT_IDX], arg__1),
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtCoreTypes[SBK_QEVENT_IDX], arg__2)
+#else
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtCoreTypes[SBK_QOBJECT_IDX], arg__1),
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtCoreTypes[SBK_QEVENT_IDX], arg__2)
+#endif
     ));
     bool invalidateArg2 = PyTuple_GET_ITEM(pyArgs, 1)->ob_refcnt == 1;
 
@@ -514,7 +588,11 @@ void PyPanelWrapper::focusInEvent(QFocusEvent * event)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtGuiTypes[SBK_QFOCUSEVENT_IDX], event)
+#else
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtGuiTypes[SBK_QFOCUSEVENT_IDX], event)
+#endif
     ));
     bool invalidateArg1 = PyTuple_GET_ITEM(pyArgs, 0)->ob_refcnt == 1;
 
@@ -572,7 +650,11 @@ void PyPanelWrapper::focusOutEvent(QFocusEvent * event)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtGuiTypes[SBK_QFOCUSEVENT_IDX], event)
+#else
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtGuiTypes[SBK_QFOCUSEVENT_IDX], event)
+#endif
     ));
     bool invalidateArg1 = PyTuple_GET_ITEM(pyArgs, 0)->ob_refcnt == 1;
 
@@ -630,7 +712,11 @@ void PyPanelWrapper::hideEvent(QHideEvent * event)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtGuiTypes[SBK_QHIDEEVENT_IDX], event)
+#else
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtGuiTypes[SBK_QHIDEEVENT_IDX], event)
+#endif
     ));
     bool invalidateArg1 = PyTuple_GET_ITEM(pyArgs, 0)->ob_refcnt == 1;
 
@@ -656,7 +742,11 @@ void PyPanelWrapper::inputMethodEvent(QInputMethodEvent * event)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtGuiTypes[SBK_QINPUTMETHODEVENT_IDX], event)
+#else
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtGuiTypes[SBK_QINPUTMETHODEVENT_IDX], event)
+#endif
     ));
     bool invalidateArg1 = PyTuple_GET_ITEM(pyArgs, 0)->ob_refcnt == 1;
 
@@ -682,7 +772,11 @@ QVariant PyPanelWrapper::inputMethodQuery(Qt::InputMethodQuery arg__1) const
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::copyToPython(SBK_CONVERTER(SbkPySide2_QtCoreTypes[SBK_QT_INPUTMETHODQUERY_IDX]), &arg__1)
+#else
         Shiboken::Conversions::copyToPython(SBK_CONVERTER(SbkPySide_QtCoreTypes[SBK_QT_INPUTMETHODQUERY_IDX]), &arg__1)
+#endif
     ));
 
     Shiboken::AutoDecRef pyResult(PyObject_Call(pyOverride, pyArgs, NULL));
@@ -692,7 +786,11 @@ QVariant PyPanelWrapper::inputMethodQuery(Qt::InputMethodQuery arg__1) const
         return ::QVariant();
     }
     // Check return type
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    PythonToCppFunc pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QVARIANT_IDX], pyResult);
+#else
     PythonToCppFunc pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QVARIANT_IDX], pyResult);
+#endif
     if (!pythonToCpp) {
         Shiboken::warning(PyExc_RuntimeWarning, 2, "Invalid return value in function %s, expected %s, got %s.", "PyPanel.inputMethodQuery", "QVariant", pyResult->ob_type->tp_name);
         return ::QVariant();
@@ -714,7 +812,11 @@ void PyPanelWrapper::keyPressEvent(QKeyEvent * event)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtGuiTypes[SBK_QKEYEVENT_IDX], event)
+#else
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtGuiTypes[SBK_QKEYEVENT_IDX], event)
+#endif
     ));
     bool invalidateArg1 = PyTuple_GET_ITEM(pyArgs, 0)->ob_refcnt == 1;
 
@@ -740,7 +842,11 @@ void PyPanelWrapper::keyReleaseEvent(QKeyEvent * event)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtGuiTypes[SBK_QKEYEVENT_IDX], event)
+#else
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtGuiTypes[SBK_QKEYEVENT_IDX], event)
+#endif
     ));
     bool invalidateArg1 = PyTuple_GET_ITEM(pyArgs, 0)->ob_refcnt == 1;
 
@@ -754,6 +860,7 @@ void PyPanelWrapper::keyReleaseEvent(QKeyEvent * event)
         Shiboken::Object::invalidate(PyTuple_GET_ITEM(pyArgs, 0));
 }
 
+#if QT_VERSION < QT_VERSION_CHECK(5, 0, 0)
 void PyPanelWrapper::languageChange()
 {
     Shiboken::GilState gil;
@@ -774,6 +881,7 @@ void PyPanelWrapper::languageChange()
         return ;
     }
 }
+#endif
 
 void PyPanelWrapper::leaveEvent(QEvent * event)
 {
@@ -787,7 +895,11 @@ void PyPanelWrapper::leaveEvent(QEvent * event)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtCoreTypes[SBK_QEVENT_IDX], event)
+#else
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtCoreTypes[SBK_QEVENT_IDX], event)
+#endif
     ));
     bool invalidateArg1 = PyTuple_GET_ITEM(pyArgs, 0)->ob_refcnt == 1;
 
@@ -813,7 +925,11 @@ int PyPanelWrapper::metric(QPaintDevice::PaintDeviceMetric arg__1) const
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::copyToPython(SBK_CONVERTER(SbkPySide2_QtGuiTypes[SBK_QPAINTDEVICE_PAINTDEVICEMETRIC_IDX]), &arg__1)
+#else
         Shiboken::Conversions::copyToPython(SBK_CONVERTER(SbkPySide_QtGuiTypes[SBK_QPAINTDEVICE_PAINTDEVICEMETRIC_IDX]), &arg__1)
+#endif
     ));
 
     Shiboken::AutoDecRef pyResult(PyObject_Call(pyOverride, pyArgs, NULL));
@@ -853,7 +969,11 @@ QSize PyPanelWrapper::minimumSizeHint() const
         return ::QSize();
     }
     // Check return type
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    PythonToCppFunc pythonToCpp = Shiboken::Conversions::isPythonToCppValueConvertible((SbkObjectType*)SbkPySide2_QtCoreTypes[SBK_QSIZE_IDX], pyResult);
+#else
     PythonToCppFunc pythonToCpp = Shiboken::Conversions::isPythonToCppValueConvertible((SbkObjectType*)SbkPySide_QtCoreTypes[SBK_QSIZE_IDX], pyResult);
+#endif
     if (!pythonToCpp) {
         Shiboken::warning(PyExc_RuntimeWarning, 2, "Invalid return value in function %s, expected %s, got %s.", "PyPanel.minimumSizeHint", Shiboken::SbkType< QSize >()->tp_name, pyResult->ob_type->tp_name);
         return ::QSize();
@@ -875,7 +995,11 @@ void PyPanelWrapper::mouseDoubleClickEvent(QMouseEvent * event)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtGuiTypes[SBK_QMOUSEEVENT_IDX], event)
+#else
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtGuiTypes[SBK_QMOUSEEVENT_IDX], event)
+#endif
     ));
     bool invalidateArg1 = PyTuple_GET_ITEM(pyArgs, 0)->ob_refcnt == 1;
 
@@ -901,7 +1025,11 @@ void PyPanelWrapper::mouseMoveEvent(QMouseEvent * event)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtGuiTypes[SBK_QMOUSEEVENT_IDX], event)
+#else
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtGuiTypes[SBK_QMOUSEEVENT_IDX], event)
+#endif
     ));
     bool invalidateArg1 = PyTuple_GET_ITEM(pyArgs, 0)->ob_refcnt == 1;
 
@@ -927,7 +1055,11 @@ void PyPanelWrapper::mousePressEvent(QMouseEvent * event)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtGuiTypes[SBK_QMOUSEEVENT_IDX], event)
+#else
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtGuiTypes[SBK_QMOUSEEVENT_IDX], event)
+#endif
     ));
     bool invalidateArg1 = PyTuple_GET_ITEM(pyArgs, 0)->ob_refcnt == 1;
 
@@ -953,7 +1085,11 @@ void PyPanelWrapper::mouseReleaseEvent(QMouseEvent * event)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtGuiTypes[SBK_QMOUSEEVENT_IDX], event)
+#else
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtGuiTypes[SBK_QMOUSEEVENT_IDX], event)
+#endif
     ));
     bool invalidateArg1 = PyTuple_GET_ITEM(pyArgs, 0)->ob_refcnt == 1;
 
@@ -979,7 +1115,11 @@ void PyPanelWrapper::moveEvent(QMoveEvent * event)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtGuiTypes[SBK_QMOVEEVENT_IDX], event)
+#else
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtGuiTypes[SBK_QMOVEEVENT_IDX], event)
+#endif
     ));
     bool invalidateArg1 = PyTuple_GET_ITEM(pyArgs, 0)->ob_refcnt == 1;
 
@@ -1013,7 +1153,11 @@ QPaintEngine * PyPanelWrapper::paintEngine() const
         return ((::QPaintEngine*)0);
     }
     // Check return type
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    PythonToCppFunc pythonToCpp = Shiboken::Conversions::isPythonToCppPointerConvertible((SbkObjectType*)SbkPySide2_QtGuiTypes[SBK_QPAINTENGINE_IDX], pyResult);
+#else
     PythonToCppFunc pythonToCpp = Shiboken::Conversions::isPythonToCppPointerConvertible((SbkObjectType*)SbkPySide_QtGuiTypes[SBK_QPAINTENGINE_IDX], pyResult);
+#endif
     if (!pythonToCpp) {
         Shiboken::warning(PyExc_RuntimeWarning, 2, "Invalid return value in function %s, expected %s, got %s.", "PyPanel.paintEngine", Shiboken::SbkType< QPaintEngine >()->tp_name, pyResult->ob_type->tp_name);
         return ((::QPaintEngine*)0);
@@ -1035,7 +1179,11 @@ void PyPanelWrapper::paintEvent(QPaintEvent * event)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtGuiTypes[SBK_QPAINTEVENT_IDX], event)
+#else
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtGuiTypes[SBK_QPAINTEVENT_IDX], event)
+#endif
     ));
     bool invalidateArg1 = PyTuple_GET_ITEM(pyArgs, 0)->ob_refcnt == 1;
 
@@ -1061,7 +1209,11 @@ void PyPanelWrapper::resizeEvent(QResizeEvent * event)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtGuiTypes[SBK_QRESIZEEVENT_IDX], event)
+#else
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtGuiTypes[SBK_QRESIZEEVENT_IDX], event)
+#endif
     ));
     bool invalidateArg1 = PyTuple_GET_ITEM(pyArgs, 0)->ob_refcnt == 1;
 
@@ -1087,7 +1239,11 @@ void PyPanelWrapper::restore(const QString & arg__1)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::copyToPython(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], &arg__1)
+#else
         Shiboken::Conversions::copyToPython(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], &arg__1)
+#endif
     ));
 
     Shiboken::AutoDecRef pyResult(PyObject_Call(pyOverride, pyArgs, NULL));
@@ -1118,7 +1274,11 @@ QString PyPanelWrapper::save()
         return ::QString();
     }
     // Check return type
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    PythonToCppFunc pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], pyResult);
+#else
     PythonToCppFunc pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], pyResult);
+#endif
     if (!pythonToCpp) {
         Shiboken::warning(PyExc_RuntimeWarning, 2, "Invalid return value in function %s, expected %s, got %s.", "PyPanel.save", "QString", pyResult->ob_type->tp_name);
         return ::QString();
@@ -1163,7 +1323,11 @@ void PyPanelWrapper::showEvent(QShowEvent * event)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtGuiTypes[SBK_QSHOWEVENT_IDX], event)
+#else
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtGuiTypes[SBK_QSHOWEVENT_IDX], event)
+#endif
     ));
     bool invalidateArg1 = PyTuple_GET_ITEM(pyArgs, 0)->ob_refcnt == 1;
 
@@ -1197,7 +1361,11 @@ QSize PyPanelWrapper::sizeHint() const
         return ::QSize();
     }
     // Check return type
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    PythonToCppFunc pythonToCpp = Shiboken::Conversions::isPythonToCppValueConvertible((SbkObjectType*)SbkPySide2_QtCoreTypes[SBK_QSIZE_IDX], pyResult);
+#else
     PythonToCppFunc pythonToCpp = Shiboken::Conversions::isPythonToCppValueConvertible((SbkObjectType*)SbkPySide_QtCoreTypes[SBK_QSIZE_IDX], pyResult);
+#endif
     if (!pythonToCpp) {
         Shiboken::warning(PyExc_RuntimeWarning, 2, "Invalid return value in function %s, expected %s, got %s.", "PyPanel.sizeHint", Shiboken::SbkType< QSize >()->tp_name, pyResult->ob_type->tp_name);
         return ::QSize();
@@ -1219,7 +1387,11 @@ void PyPanelWrapper::tabletEvent(QTabletEvent * event)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtGuiTypes[SBK_QTABLETEVENT_IDX], event)
+#else
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtGuiTypes[SBK_QTABLETEVENT_IDX], event)
+#endif
     ));
     bool invalidateArg1 = PyTuple_GET_ITEM(pyArgs, 0)->ob_refcnt == 1;
 
@@ -1245,7 +1417,11 @@ void PyPanelWrapper::timerEvent(QTimerEvent * arg__1)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtCoreTypes[SBK_QTIMEREVENT_IDX], arg__1)
+#else
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtCoreTypes[SBK_QTIMEREVENT_IDX], arg__1)
+#endif
     ));
     bool invalidateArg1 = PyTuple_GET_ITEM(pyArgs, 0)->ob_refcnt == 1;
 
@@ -1271,7 +1447,11 @@ void PyPanelWrapper::wheelEvent(QWheelEvent * event)
     }
 
     Shiboken::AutoDecRef pyArgs(Py_BuildValue("(N)",
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide2_QtGuiTypes[SBK_QWHEELEVENT_IDX], event)
+#else
         Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkPySide_QtGuiTypes[SBK_QWHEELEVENT_IDX], event)
+#endif
     ));
     bool invalidateArg1 = PyTuple_GET_ITEM(pyArgs, 0)->ob_refcnt == 1;
 
@@ -1287,13 +1467,17 @@ void PyPanelWrapper::wheelEvent(QWheelEvent * event)
 
 const QMetaObject* PyPanelWrapper::metaObject() const
 {
-    #if QT_VERSION >= 0x040700
+    #if QT_VERSION >= 0x040700 && QT_VERSION < QT_VERSION_CHECK(5, 0, 0)
     if (QObject::d_ptr->metaObject) return QObject::d_ptr->metaObject;
     #endif
     SbkObject* pySelf = Shiboken::BindingManager::instance().retrieveWrapper(this);
     if (pySelf == NULL)
         return PyPanel::metaObject();
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    return PySide::SignalManager::retrieveMetaObject(reinterpret_cast<PyObject*>(pySelf));
+#else
     return PySide::SignalManager::retriveMetaObject(reinterpret_cast<PyObject*>(pySelf));
+#endif
 }
 
 int PyPanelWrapper::qt_metacall(QMetaObject::Call call, int id, void** args)
@@ -1329,7 +1513,11 @@ Sbk_PyPanel_Init(PyObject* self, PyObject* args, PyObject* kwds)
     SbkObjectType* type = reinterpret_cast<SbkObjectType*>(self->ob_type);
     SbkObjectType* myType = reinterpret_cast<SbkObjectType*>(SbkNatronGuiTypes[SBK_PYPANEL_IDX]);
     if (type != myType) {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::ObjectType::copyMultipleInheritance(type, myType);
+#else
         Shiboken::ObjectType::copyMultimpleheritance(type, myType);
+#endif
     }
 
     if (Shiboken::Object::isUserType(self) && !Shiboken::ObjectType::canCallConstructor(self->ob_type, Shiboken::SbkType< ::PyPanel >()))
@@ -1352,8 +1540,13 @@ Sbk_PyPanel_Init(PyObject* self, PyObject* args, PyObject* kwds)
     // Overloaded function decisor
     // 0: PyPanel(QString,QString,bool,GuiApp*)
     if (numArgs == 4
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        && (pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[0])))
+        && (pythonToCpp[1] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[1])))
+#else
         && (pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[0])))
         && (pythonToCpp[1] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[1])))
+#endif
         && (pythonToCpp[2] = Shiboken::Conversions::isPythonToCppConvertible(Shiboken::Conversions::PrimitiveTypeConverter<bool>(), (pyArgs[2])))
         && (pythonToCpp[3] = Shiboken::Conversions::isPythonToCppPointerConvertible((SbkObjectType*)SbkNatronGuiTypes[SBK_GUIAPP_IDX], (pyArgs[3])))) {
         overloadId = 0; // PyPanel(QString,QString,bool,GuiApp*)
@@ -1408,8 +1601,12 @@ Sbk_PyPanel_Init(PyObject* self, PyObject* args, PyObject* kwds)
     return 1;
 
     Sbk_PyPanel_Init_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronGui.PyPanel");
+#else
         const char* overloads[] = {"unicode, unicode, bool, NatronGui.GuiApp", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronGui.PyPanel", overloads);
+#endif
         return -1;
 }
 
@@ -1426,7 +1623,11 @@ static PyObject* Sbk_PyPanelFunc_addWidget(PyObject* self, PyObject* pyArg)
 
     // Overloaded function decisor
     // 0: addWidget(QWidget*)
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    if ((pythonToCpp = Shiboken::Conversions::isPythonToCppPointerConvertible((SbkObjectType*)SbkPySide2_QtWidgetsTypes[SBK_QWIDGET_IDX], (pyArg)))) {
+#else
     if ((pythonToCpp = Shiboken::Conversions::isPythonToCppPointerConvertible((SbkObjectType*)SbkPySide_QtGuiTypes[SBK_QWIDGET_IDX], (pyArg)))) {
+#endif
         overloadId = 0; // addWidget(QWidget*)
     }
 
@@ -1452,8 +1653,12 @@ static PyObject* Sbk_PyPanelFunc_addWidget(PyObject* self, PyObject* pyArg)
     Py_RETURN_NONE;
 
     Sbk_PyPanelFunc_addWidget_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronGui.PyPanel.addWidget");
+#else
         const char* overloads[] = {"PySide.QtGui.QWidget", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronGui.PyPanel.addWidget", overloads);
+#endif
         return 0;
 }
 
@@ -1472,7 +1677,11 @@ static PyObject* Sbk_PyPanelFunc_getPanelLabel(PyObject* self)
         if (!PyErr_Occurred()) {
             // getPanelLabel()const
             QString cppResult = const_cast<const ::PyPanelWrapper*>(cppSelf)->getPanelLabel();
+#if SHIBOKEN_MAJOR_VERSION >= 2
+            pyResult = Shiboken::Conversions::copyToPython(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], &cppResult);
+#else
             pyResult = Shiboken::Conversions::copyToPython(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], &cppResult);
+#endif
         }
     }
 
@@ -1498,7 +1707,11 @@ static PyObject* Sbk_PyPanelFunc_getPanelScriptName(PyObject* self)
         if (!PyErr_Occurred()) {
             // getPanelScriptName()const
             QString cppResult = const_cast<const ::PyPanelWrapper*>(cppSelf)->getPanelScriptName();
+#if SHIBOKEN_MAJOR_VERSION >= 2
+            pyResult = Shiboken::Conversions::copyToPython(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], &cppResult);
+#else
             pyResult = Shiboken::Conversions::copyToPython(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], &cppResult);
+#endif
         }
     }
 
@@ -1523,7 +1736,11 @@ static PyObject* Sbk_PyPanelFunc_getParam(PyObject* self, PyObject* pyArg)
 
     // Overloaded function decisor
     // 0: getParam(QString)const
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArg)))) {
+#else
     if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArg)))) {
+#endif
         overloadId = 0; // getParam(QString)const
     }
 
@@ -1552,8 +1769,12 @@ static PyObject* Sbk_PyPanelFunc_getParam(PyObject* self, PyObject* pyArg)
     return pyResult;
 
     Sbk_PyPanelFunc_getParam_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronGui.PyPanel.getParam");
+#else
         const char* overloads[] = {"unicode", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronGui.PyPanel.getParam", overloads);
+#endif
         return 0;
 }
 
@@ -1621,7 +1842,11 @@ static PyObject* Sbk_PyPanelFunc_insertWidget(PyObject* self, PyObject* args)
     // 0: insertWidget(int,QWidget*)
     if (numArgs == 2
         && (pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(Shiboken::Conversions::PrimitiveTypeConverter<int>(), (pyArgs[0])))
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        && (pythonToCpp[1] = Shiboken::Conversions::isPythonToCppPointerConvertible((SbkObjectType*)SbkPySide2_QtWidgetsTypes[SBK_QWIDGET_IDX], (pyArgs[1])))) {
+#else
         && (pythonToCpp[1] = Shiboken::Conversions::isPythonToCppPointerConvertible((SbkObjectType*)SbkPySide_QtGuiTypes[SBK_QWIDGET_IDX], (pyArgs[1])))) {
+#endif
         overloadId = 0; // insertWidget(int,QWidget*)
     }
 
@@ -1649,8 +1874,12 @@ static PyObject* Sbk_PyPanelFunc_insertWidget(PyObject* self, PyObject* args)
     Py_RETURN_NONE;
 
     Sbk_PyPanelFunc_insertWidget_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronGui.PyPanel.insertWidget");
+#else
         const char* overloads[] = {"int, PySide.QtGui.QWidget", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronGui.PyPanel.insertWidget", overloads);
+#endif
         return 0;
 }
 
@@ -1690,7 +1919,11 @@ static PyObject* Sbk_PyPanelFunc_restore(PyObject* self, PyObject* pyArg)
 
     // Overloaded function decisor
     // 0: restore(QString)
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArg)))) {
+#else
     if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArg)))) {
+#endif
         overloadId = 0; // restore(QString)
     }
 
@@ -1714,8 +1947,12 @@ static PyObject* Sbk_PyPanelFunc_restore(PyObject* self, PyObject* pyArg)
     Py_RETURN_NONE;
 
     Sbk_PyPanelFunc_restore_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronGui.PyPanel.restore");
+#else
         const char* overloads[] = {"unicode", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronGui.PyPanel.restore", overloads);
+#endif
         return 0;
 }
 
@@ -1734,7 +1971,11 @@ static PyObject* Sbk_PyPanelFunc_save(PyObject* self)
         if (!PyErr_Occurred()) {
             // save()
             QString cppResult = ((::PyPanelWrapper*) cppSelf)->PyPanelWrapper::save_protected();
+#if SHIBOKEN_MAJOR_VERSION >= 2
+            pyResult = Shiboken::Conversions::copyToPython(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], &cppResult);
+#else
             pyResult = Shiboken::Conversions::copyToPython(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], &cppResult);
+#endif
         }
     }
 
@@ -1758,7 +1999,11 @@ static PyObject* Sbk_PyPanelFunc_setPanelLabel(PyObject* self, PyObject* pyArg)
 
     // Overloaded function decisor
     // 0: setPanelLabel(QString)
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArg)))) {
+#else
     if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArg)))) {
+#endif
         overloadId = 0; // setPanelLabel(QString)
     }
 
@@ -1782,8 +2027,12 @@ static PyObject* Sbk_PyPanelFunc_setPanelLabel(PyObject* self, PyObject* pyArg)
     Py_RETURN_NONE;
 
     Sbk_PyPanelFunc_setPanelLabel_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronGui.PyPanel.setPanelLabel");
+#else
         const char* overloads[] = {"unicode", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronGui.PyPanel.setPanelLabel", overloads);
+#endif
         return 0;
 }
 
@@ -1800,7 +2049,11 @@ static PyObject* Sbk_PyPanelFunc_setParamChangedCallback(PyObject* self, PyObjec
 
     // Overloaded function decisor
     // 0: setParamChangedCallback(QString)
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArg)))) {
+#else
     if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArg)))) {
+#endif
         overloadId = 0; // setParamChangedCallback(QString)
     }
 
@@ -1824,8 +2077,12 @@ static PyObject* Sbk_PyPanelFunc_setParamChangedCallback(PyObject* self, PyObjec
     Py_RETURN_NONE;
 
     Sbk_PyPanelFunc_setParamChangedCallback_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronGui.PyPanel.setParamChangedCallback");
+#else
         const char* overloads[] = {"unicode", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronGui.PyPanel.setParamChangedCallback", overloads);
+#endif
         return 0;
 }
 
@@ -1849,11 +2106,19 @@ static PyMethodDef Sbk_PyPanel_methods[] = {
 
 static int Sbk_PyPanel_traverse(PyObject* self, visitproc visit, void* arg)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    return reinterpret_cast<PyTypeObject *>(SbkObject_TypeF)->tp_traverse(self, visit, arg);
+#else
     return reinterpret_cast<PyTypeObject*>(&SbkObject_Type)->tp_traverse(self, visit, arg);
+#endif
 }
 static int Sbk_PyPanel_clear(PyObject* self)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    return reinterpret_cast<PyTypeObject *>(SbkObject_TypeF)->tp_clear(self);
+#else
     return reinterpret_cast<PyTypeObject*>(&SbkObject_Type)->tp_clear(self);
+#endif
 }
 static int mi_offsets[] = { -1, -1, -1, -1, -1, -1, -1, -1, -1 };
 int*
@@ -1886,12 +2151,21 @@ Sbk_PyPanel_mi_init(const void* cptr)
 static void* Sbk_PyPanelSpecialCastFunction(void* obj, SbkObjectType* desiredType)
 {
     PyPanel* me = reinterpret_cast< ::PyPanel*>(obj);
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    if (desiredType == reinterpret_cast<SbkObjectType*>(SbkPySide2_QtWidgetsTypes[SBK_QWIDGET_IDX]))
+        return static_cast< ::QWidget*>(me);
+    else if (desiredType == reinterpret_cast<SbkObjectType*>(SbkPySide2_QtCoreTypes[SBK_QOBJECT_IDX]))
+        return static_cast< ::QObject*>(me);
+    else if (desiredType == reinterpret_cast<SbkObjectType*>(SbkPySide2_QtGuiTypes[SBK_QPAINTDEVICE_IDX]))
+        return static_cast< ::QPaintDevice*>(me);
+#else
     if (desiredType == reinterpret_cast<SbkObjectType*>(SbkPySide_QtGuiTypes[SBK_QWIDGET_IDX]))
         return static_cast< ::QWidget*>(me);
     else if (desiredType == reinterpret_cast<SbkObjectType*>(SbkPySide_QtCoreTypes[SBK_QOBJECT_IDX]))
         return static_cast< ::QObject*>(me);
     else if (desiredType == reinterpret_cast<SbkObjectType*>(SbkPySide_QtGuiTypes[SBK_QPAINTDEVICE_IDX]))
         return static_cast< ::QPaintDevice*>(me);
+#endif
     else if (desiredType == reinterpret_cast<SbkObjectType*>(SbkNatronEngineTypes[SBK_USERPARAMHOLDER_IDX]))
         return static_cast< ::UserParamHolder*>(me);
     return me;
@@ -1900,6 +2174,41 @@ static void* Sbk_PyPanelSpecialCastFunction(void* obj, SbkObjectType* desiredTyp
 
 // Class Definition -----------------------------------------------
 extern "C" {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+static SbkObjectType *_Sbk_PyPanel_Type = nullptr;
+static SbkObjectType *Sbk_PyPanel_TypeF(void)
+{
+    return _Sbk_PyPanel_Type;
+}
+
+static PyType_Slot Sbk_PyPanel_slots[] = {
+    {Py_tp_base,        nullptr}, // inserted by introduceWrapperType
+    {Py_tp_dealloc,     reinterpret_cast<void*>(&SbkDeallocWrapper)},
+    {Py_tp_repr,        nullptr},
+    {Py_tp_hash,        nullptr},
+    {Py_tp_call,        nullptr},
+    {Py_tp_str,         nullptr},
+    {Py_tp_getattro,    nullptr},
+    {Py_tp_setattro,    nullptr},
+    {Py_tp_traverse,    reinterpret_cast<void*>(Sbk_PyPanel_traverse)},
+    {Py_tp_clear,       reinterpret_cast<void*>(Sbk_PyPanel_clear)},
+    {Py_tp_richcompare, nullptr},
+    {Py_tp_iter,        nullptr},
+    {Py_tp_iternext,    nullptr},
+    {Py_tp_methods,     reinterpret_cast<void*>(Sbk_PyPanel_methods)},
+    {Py_tp_getset,      nullptr},
+    {Py_tp_init,        reinterpret_cast<void*>(Sbk_PyPanel_Init)},
+    {Py_tp_new,         reinterpret_cast<void*>(SbkObjectTpNew)},
+    {0, nullptr}
+};
+static PyType_Spec Sbk_PyPanel_spec = {
+    "NatronGui.PyPanel",
+    sizeof(SbkObject),
+    0,
+    Py_TPFLAGS_DEFAULT|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_GC,
+    Sbk_PyPanel_slots
+};
+#else
 static SbkObjectType Sbk_PyPanel_Type = { { {
     PyVarObject_HEAD_INIT(&SbkObjectType_Type, 0)
     /*tp_name*/             "NatronGui.PyPanel",
@@ -1949,6 +2258,7 @@ static SbkObjectType Sbk_PyPanel_Type = { { {
 }, },
     /*priv_data*/           0
 };
+#endif
 } //extern
 
 static void* Sbk_PyPanel_typeDiscovery(void* cptr, SbkObjectType* instanceType)
@@ -1967,24 +2277,92 @@ static void* Sbk_PyPanel_typeDiscovery(void* cptr, SbkObjectType* instanceType)
 
 // Python to C++ pointer conversion - returns the C++ object of the Python wrapper (keeps object identity).
 static void PyPanel_PythonToCpp_PyPanel_PTR(PyObject* pyIn, void* cppOut) {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    Shiboken::Conversions::pythonToCppPointer(Sbk_PyPanel_TypeF(), pyIn, cppOut);
+#else
     Shiboken::Conversions::pythonToCppPointer(&Sbk_PyPanel_Type, pyIn, cppOut);
+#endif
 }
 static PythonToCppFunc is_PyPanel_PythonToCpp_PyPanel_PTR_Convertible(PyObject* pyIn) {
     if (pyIn == Py_None)
         return Shiboken::Conversions::nonePythonToCppNullPtr;
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    if (PyObject_TypeCheck(pyIn, reinterpret_cast<PyTypeObject*>(Sbk_PyPanel_TypeF())))
+#else
     if (PyObject_TypeCheck(pyIn, (PyTypeObject*)&Sbk_PyPanel_Type))
+#endif
         return PyPanel_PythonToCpp_PyPanel_PTR;
     return 0;
 }
 
 // C++ to Python pointer conversion - tries to find the Python wrapper for the C++ object (keeps object identity).
 static PyObject* PyPanel_PTR_CppToPython_PyPanel(const void* cppIn) {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    bool changedTypeName = false;
+    auto tCppIn = reinterpret_cast<const ::PyPanel *>(cppIn);
+    const char *typeName = typeid(*tCppIn).name();
+    auto sbkType = Shiboken::ObjectType::typeForTypeName(typeName);
+    if (sbkType && Shiboken::ObjectType::hasSpecialCastFunction(sbkType)) {
+        typeName = typeNameOf(tCppIn);
+        changedTypeName = true;
+     }
+    PyObject *result = Shiboken::Object::newObject(Sbk_PyPanel_TypeF(), const_cast<void*>(cppIn), false, /* exactType */ changedTypeName, typeName);
+    if (changedTypeName)
+        delete [] typeName;
+    return result;
+#else
     return PySide::getWrapperForQObject((::PyPanel*)cppIn, &Sbk_PyPanel_Type);
+#endif
 
 }
 
+#if SHIBOKEN_MAJOR_VERSION >= 2
+// The signatures string for the functions.
+// Multiple signatures have their index "n:" in front.
+static const char *PyPanel_SignatureStrings[] = {
+    "NatronGui.PyPanel(scriptName:QString,label:QString,useUserParameters:bool,app:NatronGui.GuiApp)",
+    "NatronGui.PyPanel.addWidget(w:PySide2.QtWidgets.QWidget)",
+    "NatronGui.PyPanel.enterEvent(e:PySide2.QtCore.QEvent)",
+    "NatronGui.PyPanel.getPanelLabel()->QString",
+    "NatronGui.PyPanel.getPanelScriptName()->QString",
+    "NatronGui.PyPanel.getParam(scriptName:QString)->NatronEngine.Param",
+    "NatronGui.PyPanel.getParams()->QList[NatronEngine.Param]",
+    //"NatronGui.PyPanel.getPythonFunction()->QString",
+    "NatronGui.PyPanel.insertWidget(pos:int,w:PySide2.QtWidgets.QWidget)",
+    "NatronGui.PyPanel.keyPressEvent(e:PySide2.QtGui.QKeyEvent)",
+    "NatronGui.PyPanel.leaveEvent(e:PySide2.QtCore.QEvent)",
+    "NatronGui.PyPanel.mousePressEvent(e:PySide2.QtGui.QMouseEvent)",
+    "NatronGui.PyPanel.onUserDataChanged()",
+    "NatronGui.PyPanel.restore(arg__1:QString)",
+    "NatronGui.PyPanel.save()->QString",
+    //"NatronGui.PyPanel.save_serialization_thread()->QString",
+    "NatronGui.PyPanel.setPanelLabel(label:QString)",
+    "NatronGui.PyPanel.setParamChangedCallback(callback:QString)",
+    //"NatronGui.PyPanel.setPythonFunction(function:QString)",
+    nullptr}; // Sentinel
+#endif
+
 void init_PyPanel(PyObject* module)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    PyObject* Sbk_PyPanel_Type_bases = PyTuple_Pack(2,
+        reinterpret_cast<PyObject*>(SbkPySide2_QtWidgetsTypes[SBK_QWIDGET_IDX]),
+        reinterpret_cast<PyObject*>(SbkNatronEngineTypes[SBK_USERPARAMHOLDER_IDX]));
+
+    _Sbk_PyPanel_Type = Shiboken::ObjectType::introduceWrapperType(
+        module,
+        "PyPanel",
+        "PyPanel*",
+        &Sbk_PyPanel_spec,
+        PyPanel_SignatureStrings,
+        &Shiboken::callCppDestructor< ::PyPanel >,
+        reinterpret_cast<SbkObjectType *>(SbkNatronEngineTypes[SBK_USERPARAMHOLDER_IDX]),
+        Sbk_PyPanel_Type_bases,
+        0    );
+
+    SbkNatronGuiTypes[SBK_PYPANEL_IDX]
+        = reinterpret_cast<PyTypeObject*>(Sbk_PyPanel_TypeF());
+#else
     SbkNatronGuiTypes[SBK_PYPANEL_IDX] = reinterpret_cast<PyTypeObject*>(&Sbk_PyPanel_Type);
 
     PyObject* Sbk_PyPanel_Type_bases = PyTuple_Pack(2,
@@ -1995,9 +2373,14 @@ void init_PyPanel(PyObject* module)
         &Sbk_PyPanel_Type, &Shiboken::callCppDestructor< ::PyPanel >, (SbkObjectType*)SbkNatronEngineTypes[SBK_USERPARAMHOLDER_IDX], Sbk_PyPanel_Type_bases)) {
         return;
     }
+#endif
 
     // Register Converter
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    SbkConverter* converter = Shiboken::Conversions::createConverter(Sbk_PyPanel_TypeF(),
+#else
     SbkConverter* converter = Shiboken::Conversions::createConverter(&Sbk_PyPanel_Type,
+#endif
         PyPanel_PythonToCpp_PyPanel_PTR,
         is_PyPanel_PythonToCpp_PyPanel_PTR_Convertible,
         PyPanel_PTR_CppToPython_PyPanel);
@@ -2010,12 +2393,23 @@ void init_PyPanel(PyObject* module)
 
 
     MultipleInheritanceInitFunction func = Sbk_PyPanel_mi_init;
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    Shiboken::ObjectType::setMultipleInheritanceFunction(Sbk_PyPanel_TypeF(), func);
+    Shiboken::ObjectType::setCastFunction(Sbk_PyPanel_TypeF(), &Sbk_PyPanelSpecialCastFunction);
+    Shiboken::ObjectType::setTypeDiscoveryFunctionV2(Sbk_PyPanel_TypeF(), &Sbk_PyPanel_typeDiscovery);
+#else
     Shiboken::ObjectType::setMultipleIheritanceFunction(&Sbk_PyPanel_Type, func);
     Shiboken::ObjectType::setCastFunction(&Sbk_PyPanel_Type, &Sbk_PyPanelSpecialCastFunction);
     Shiboken::ObjectType::setTypeDiscoveryFunctionV2(&Sbk_PyPanel_Type, &Sbk_PyPanel_typeDiscovery);
+#endif
 
 
     PyPanelWrapper::pysideInitQtMetaTypes();
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    Shiboken::ObjectType::setSubTypeInitHook(Sbk_PyPanel_TypeF(), &PySide::initQObjectSubType);
+    PySide::initDynamicMetaObject(Sbk_PyPanel_TypeF(), &::PyPanel::staticMetaObject, sizeof(::PyPanel));
+#else
     Shiboken::ObjectType::setSubTypeInitHook(&Sbk_PyPanel_Type, &PySide::initQObjectSubType);
     PySide::initDynamicMetaObject(&Sbk_PyPanel_Type, &::PyPanel::staticMetaObject, sizeof(::PyPanel));
+#endif
 }

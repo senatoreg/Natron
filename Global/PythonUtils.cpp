@@ -77,9 +77,10 @@ void setupPythonEnv(const char* argv0Param)
     //Disable user sites as they could conflict with Natron bundled packages.
     //If this is set, Python won’t add the user site-packages directory to sys.path.
     //See https://www.python.org/dev/peps/pep-0370/
+#ifndef USE_SYSTEM_PYTHON
     ProcInfo::putenv_wrapper("PYTHONNOUSERSITE", "1");
     ++Py_NoUserSiteDirectory;
-
+#endif
     //
     // set up paths, clear those that don't exist or are not valid
     //
@@ -92,16 +93,21 @@ void setupPythonEnv(const char* argv0Param)
     std::string pluginPath = binPath + "\\..\\Plugins";
 #else
 #  if defined(__NATRON_LINUX__)
+#    ifndef USE_SYSTEM_PYTHON
     static std::string pythonHome = binPath + "/.."; // must use static storage
+#    endif
 #  elif defined(__NATRON_OSX__)
     static std::string pythonHome = binPath+ "/../Frameworks/Python.framework/Versions/" NATRON_PY_VERSION_STRING; // must use static storage
 #  else
 #    error "unsupported platform"
 #  endif
+#ifndef USE_SYSTEM_PYTHON
     std::string pyPathZip = pythonHome + "/lib/python" NATRON_PY_VERSION_STRING_NO_DOT ".zip";
     std::string pyPath = pythonHome + "/lib/python" NATRON_PY_VERSION_STRING;
+#endif
     std::string pluginPath = binPath + "/../Plugins";
 #endif
+#ifndef USE_SYSTEM_PYTHON
     if ( !fileExists( StrUtils::fromNativeSeparators(pyPathZip) ) ) {
 #     if defined(NATRON_CONFIG_SNAPSHOT) || defined(DEBUG)
         printf( "\"%s\" does not exist, not added to PYTHONPATH\n", pyPathZip.c_str() );
@@ -114,6 +120,7 @@ void setupPythonEnv(const char* argv0Param)
 #     endif
         pyPath.clear();
     }
+#endif
     if ( !dirExists( StrUtils::fromNativeSeparators(pluginPath) ) ) {
 #     if defined(NATRON_CONFIG_SNAPSHOT) || defined(DEBUG)
         printf( "\"%s\" does not exist, not added to PYTHONPATH\n", pluginPath.c_str() );
@@ -121,13 +128,14 @@ void setupPythonEnv(const char* argv0Param)
         pluginPath.clear();
     }
     // PYTHONHOME is really useful if there's a python inside it
+#ifndef USE_SYSTEM_PYTHON
     if ( pyPathZip.empty() && pyPath.empty() ) {
 #     if defined(NATRON_CONFIG_SNAPSHOT) || defined(DEBUG)
         printf( "dir \"%s\" does not exist or does not contain lib/python*, not setting PYTHONHOME\n", pythonHome.c_str() );
 #     endif
         pythonHome.clear();
     }
-
+#endif
     /////////////////////////////////////////
     // Py_SetPythonHome
     /////////////////////////////////////////
@@ -136,6 +144,7 @@ void setupPythonEnv(const char* argv0Param)
     //
     // The argument should point to a zero-terminated character string in static storage whose contents will not change for the duration of the program’s execution
 
+#ifndef USE_SYSTEM_PYTHON
     if ( !pythonHome.empty() ) {
 #     if defined(NATRON_CONFIG_SNAPSHOT) || defined(DEBUG)
         printf( "Py_SetPythonHome(\"%s\")\n", pythonHome.c_str() );
@@ -149,7 +158,7 @@ void setupPythonEnv(const char* argv0Param)
         Py_SetPythonHome( const_cast<char*>( pythonHome.c_str() ) );
 #     endif
     }
-
+#endif
 
     /////////////////////////////////////////
     // PYTHONPATH and Py_SetPath
@@ -167,12 +176,14 @@ void setupPythonEnv(const char* argv0Param)
     //Add the Python distribution of Natron to the Python path
 
     std::vector<std::string> toPrepend;
+#ifndef USE_SYSTEM_PYTHON
     if ( !pyPathZip.empty() ) {
         toPrepend.push_back(pyPathZip);
     }
     if ( !pyPath.empty() ) {
         toPrepend.push_back(pyPath);
     }
+#endif
     if ( !pluginPath.empty() ) {
         toPrepend.push_back(pluginPath);
     }

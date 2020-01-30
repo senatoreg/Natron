@@ -20,16 +20,26 @@ public:
     virtual void childEvent(QChildEvent * arg__1);
     inline void closeEvent_protected(QCloseEvent * event) { PyPanel::closeEvent(event); }
     virtual void closeEvent(QCloseEvent * event);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
+    inline void connectNotify_protected(const QMetaMethod & signal) { PyPanel::connectNotify(signal); }
+    virtual void connectNotify(const QMetaMethod & signal);
+#else
     inline void connectNotify_protected(const char * signal) { PyPanel::connectNotify(signal); }
     virtual void connectNotify(const char * signal);
+#endif
     inline void contextMenuEvent_protected(QContextMenuEvent * event) { PyPanel::contextMenuEvent(event); }
     virtual void contextMenuEvent(QContextMenuEvent * event);
     inline void customEvent_protected(QEvent * arg__1) { PyPanel::customEvent(arg__1); }
     virtual void customEvent(QEvent * arg__1);
     inline void destroy_protected(bool destroyWindow = true, bool destroySubWindows = true) { PyPanel::destroy(destroyWindow, destroySubWindows); }
     virtual int devType() const;
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
+    inline void disconnectNotify_protected(const QMetaMethod & signal) { PyPanel::disconnectNotify(signal); }
+    virtual void disconnectNotify(const QMetaMethod & signal);
+#else
     inline void disconnectNotify_protected(const char * signal) { PyPanel::disconnectNotify(signal); }
     virtual void disconnectNotify(const char * signal);
+#endif
     inline void dragEnterEvent_protected(QDragEnterEvent * event) { PyPanel::dragEnterEvent(event); }
     virtual void dragEnterEvent(QDragEnterEvent * event);
     inline void dragLeaveEvent_protected(QDragLeaveEvent * event) { PyPanel::dragLeaveEvent(event); }
@@ -61,8 +71,10 @@ public:
     virtual void keyPressEvent(QKeyEvent * event);
     inline void keyReleaseEvent_protected(QKeyEvent * event) { PyPanel::keyReleaseEvent(event); }
     virtual void keyReleaseEvent(QKeyEvent * event);
+#if QT_VERSION < QT_VERSION_CHECK(5, 0, 0)
     inline void languageChange_protected() { PyPanel::languageChange(); }
     virtual void languageChange();
+#endif
     inline void leaveEvent_protected(QEvent * event) { PyPanel::leaveEvent(event); }
     virtual void leaveEvent(QEvent * event);
     virtual const QMetaObject * metaObject() const;
@@ -84,7 +96,9 @@ public:
     inline void paintEvent_protected(QPaintEvent * event) { PyPanel::paintEvent(event); }
     virtual void paintEvent(QPaintEvent * event);
     inline int receivers_protected(const char * signal) const { return PyPanel::receivers(signal); }
+#if QT_VERSION < QT_VERSION_CHECK(5, 0, 0)
     inline void resetInputContext_protected() { PyPanel::resetInputContext(); }
+#endif
     inline void resizeEvent_protected(QResizeEvent * event) { PyPanel::resizeEvent(event); }
     virtual void resizeEvent(QResizeEvent * event);
     virtual void restore(const QString & arg__1);

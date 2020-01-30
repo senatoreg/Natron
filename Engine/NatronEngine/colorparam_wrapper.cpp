@@ -11,9 +11,12 @@ GCC_DIAG_UNUSED_LOCAL_TYPEDEFS_OFF
 #include <pysidesignal.h>
 #include <pysideproperty.h>
 #include <pyside.h>
+#if SHIBOKEN_MAJOR_VERSION < 2
 #include <typeresolver.h>
+#endif
 #include <typeinfo>
 #include "natronengine_python.h"
+#include "natron_helper.h"
 
 #include "colorparam_wrapper.h"
 
@@ -95,8 +98,12 @@ static PyObject* Sbk_ColorParamFunc_addAsDependencyOf(PyObject* self, PyObject* 
     return pyResult;
 
     Sbk_ColorParamFunc_addAsDependencyOf_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ColorParam.addAsDependencyOf");
+#else
         const char* overloads[] = {"int, NatronEngine.Param, int", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ColorParam.addAsDependencyOf", overloads);
+#endif
         return 0;
 }
 
@@ -167,8 +174,12 @@ static PyObject* Sbk_ColorParamFunc_get(PyObject* self, PyObject* args)
     return pyResult;
 
     Sbk_ColorParamFunc_get_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ColorParam.get");
+#else
         const char* overloads[] = {"", "float", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ColorParam.get", overloads);
+#endif
         return 0;
 }
 
@@ -238,8 +249,12 @@ static PyObject* Sbk_ColorParamFunc_getDefaultValue(PyObject* self, PyObject* ar
     return pyResult;
 
     Sbk_ColorParamFunc_getDefaultValue_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ColorParam.getDefaultValue");
+#else
         const char* overloads[] = {"int = 0", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ColorParam.getDefaultValue", overloads);
+#endif
         return 0;
 }
 
@@ -283,8 +298,12 @@ static PyObject* Sbk_ColorParamFunc_getDisplayMaximum(PyObject* self, PyObject* 
     return pyResult;
 
     Sbk_ColorParamFunc_getDisplayMaximum_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.ColorParam.getDisplayMaximum");
+#else
         const char* overloads[] = {"int", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.ColorParam.getDisplayMaximum", overloads);
+#endif
         return 0;
 }
 
@@ -328,8 +347,12 @@ static PyObject* Sbk_ColorParamFunc_getDisplayMinimum(PyObject* self, PyObject* 
     return pyResult;
 
     Sbk_ColorParamFunc_getDisplayMinimum_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.ColorParam.getDisplayMinimum");
+#else
         const char* overloads[] = {"int", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.ColorParam.getDisplayMinimum", overloads);
+#endif
         return 0;
 }
 
@@ -399,8 +422,12 @@ static PyObject* Sbk_ColorParamFunc_getMaximum(PyObject* self, PyObject* args, P
     return pyResult;
 
     Sbk_ColorParamFunc_getMaximum_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ColorParam.getMaximum");
+#else
         const char* overloads[] = {"int = 0", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ColorParam.getMaximum", overloads);
+#endif
         return 0;
 }
 
@@ -470,8 +497,12 @@ static PyObject* Sbk_ColorParamFunc_getMinimum(PyObject* self, PyObject* args, P
     return pyResult;
 
     Sbk_ColorParamFunc_getMinimum_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ColorParam.getMinimum");
+#else
         const char* overloads[] = {"int = 0", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ColorParam.getMinimum", overloads);
+#endif
         return 0;
 }
 
@@ -541,8 +572,12 @@ static PyObject* Sbk_ColorParamFunc_getValue(PyObject* self, PyObject* args, PyO
     return pyResult;
 
     Sbk_ColorParamFunc_getValue_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ColorParam.getValue");
+#else
         const char* overloads[] = {"int = 0", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ColorParam.getValue", overloads);
+#endif
         return 0;
 }
 
@@ -619,8 +654,12 @@ static PyObject* Sbk_ColorParamFunc_getValueAtTime(PyObject* self, PyObject* arg
     return pyResult;
 
     Sbk_ColorParamFunc_getValueAtTime_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ColorParam.getValueAtTime");
+#else
         const char* overloads[] = {"float, int = 0", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ColorParam.getValueAtTime", overloads);
+#endif
         return 0;
 }
 
@@ -687,8 +726,12 @@ static PyObject* Sbk_ColorParamFunc_restoreDefaultValue(PyObject* self, PyObject
     Py_RETURN_NONE;
 
     Sbk_ColorParamFunc_restoreDefaultValue_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ColorParam.restoreDefaultValue");
+#else
         const char* overloads[] = {"int = 0", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ColorParam.restoreDefaultValue", overloads);
+#endif
         return 0;
 }
 
@@ -777,8 +820,12 @@ static PyObject* Sbk_ColorParamFunc_set(PyObject* self, PyObject* args)
     Py_RETURN_NONE;
 
     Sbk_ColorParamFunc_set_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ColorParam.set");
+#else
         const char* overloads[] = {"float, float, float, float", "float, float, float, float, float", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ColorParam.set", overloads);
+#endif
         return 0;
 }
 
@@ -852,8 +899,12 @@ static PyObject* Sbk_ColorParamFunc_setDefaultValue(PyObject* self, PyObject* ar
     Py_RETURN_NONE;
 
     Sbk_ColorParamFunc_setDefaultValue_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ColorParam.setDefaultValue");
+#else
         const char* overloads[] = {"float, int = 0", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ColorParam.setDefaultValue", overloads);
+#endif
         return 0;
 }
 
@@ -927,8 +978,12 @@ static PyObject* Sbk_ColorParamFunc_setDisplayMaximum(PyObject* self, PyObject* 
     Py_RETURN_NONE;
 
     Sbk_ColorParamFunc_setDisplayMaximum_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ColorParam.setDisplayMaximum");
+#else
         const char* overloads[] = {"float, int = 0", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ColorParam.setDisplayMaximum", overloads);
+#endif
         return 0;
 }
 
@@ -1002,8 +1057,12 @@ static PyObject* Sbk_ColorParamFunc_setDisplayMinimum(PyObject* self, PyObject* 
     Py_RETURN_NONE;
 
     Sbk_ColorParamFunc_setDisplayMinimum_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ColorParam.setDisplayMinimum");
+#else
         const char* overloads[] = {"float, int = 0", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ColorParam.setDisplayMinimum", overloads);
+#endif
         return 0;
 }
 
@@ -1077,8 +1136,12 @@ static PyObject* Sbk_ColorParamFunc_setMaximum(PyObject* self, PyObject* args, P
     Py_RETURN_NONE;
 
     Sbk_ColorParamFunc_setMaximum_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ColorParam.setMaximum");
+#else
         const char* overloads[] = {"float, int = 0", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ColorParam.setMaximum", overloads);
+#endif
         return 0;
 }
 
@@ -1152,8 +1215,12 @@ static PyObject* Sbk_ColorParamFunc_setMinimum(PyObject* self, PyObject* args, P
     Py_RETURN_NONE;
 
     Sbk_ColorParamFunc_setMinimum_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ColorParam.setMinimum");
+#else
         const char* overloads[] = {"float, int = 0", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ColorParam.setMinimum", overloads);
+#endif
         return 0;
 }
 
@@ -1227,8 +1294,12 @@ static PyObject* Sbk_ColorParamFunc_setValue(PyObject* self, PyObject* args, PyO
     Py_RETURN_NONE;
 
     Sbk_ColorParamFunc_setValue_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ColorParam.setValue");
+#else
         const char* overloads[] = {"float, int = 0", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ColorParam.setValue", overloads);
+#endif
         return 0;
 }
 
@@ -1306,8 +1377,12 @@ static PyObject* Sbk_ColorParamFunc_setValueAtTime(PyObject* self, PyObject* arg
     Py_RETURN_NONE;
 
     Sbk_ColorParamFunc_setValueAtTime_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ColorParam.setValueAtTime");
+#else
         const char* overloads[] = {"float, float, int = 0", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ColorParam.setValueAtTime", overloads);
+#endif
         return 0;
 }
 
@@ -1338,14 +1413,57 @@ static PyMethodDef Sbk_ColorParam_methods[] = {
 
 static int Sbk_ColorParam_traverse(PyObject* self, visitproc visit, void* arg)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    return reinterpret_cast<PyTypeObject *>(SbkObject_TypeF())->tp_traverse(self, visit, arg);
+#else
     return reinterpret_cast<PyTypeObject*>(&SbkObject_Type)->tp_traverse(self, visit, arg);
+#endif
 }
 static int Sbk_ColorParam_clear(PyObject* self)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    return reinterpret_cast<PyTypeObject *>(SbkObject_TypeF())->tp_clear(self);
+#else
     return reinterpret_cast<PyTypeObject*>(&SbkObject_Type)->tp_clear(self);
+#endif
 }
 // Class Definition -----------------------------------------------
 extern "C" {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+static SbkObjectType *_Sbk_ColorParam_Type = nullptr;
+static SbkObjectType *Sbk_ColorParam_TypeF(void)
+{
+    return _Sbk_ColorParam_Type;
+}
+
+static PyType_Slot Sbk_ColorParam_slots[] = {
+    {Py_tp_base,        nullptr}, // inserted by introduceWrapperType
+    {Py_tp_dealloc,     reinterpret_cast<void*>(&SbkDeallocWrapper)},
+    {Py_tp_repr,        nullptr},
+    {Py_tp_hash,        nullptr},
+    {Py_tp_call,        nullptr},
+    {Py_tp_str,         nullptr},
+    {Py_tp_getattro,    nullptr},
+    {Py_tp_setattro,    nullptr},
+    {Py_tp_traverse,    reinterpret_cast<void*>(Sbk_ColorParam_traverse)},
+    {Py_tp_clear,       reinterpret_cast<void*>(Sbk_ColorParam_clear)},
+    {Py_tp_richcompare, nullptr},
+    {Py_tp_iter,        nullptr},
+    {Py_tp_iternext,    nullptr},
+    {Py_tp_methods,     reinterpret_cast<void*>(Sbk_ColorParam_methods)},
+    {Py_tp_getset,      nullptr},
+    {Py_tp_init,        nullptr},
+    {Py_tp_new,         reinterpret_cast<void*>(SbkDummyNew /* PYSIDE-595: Prevent replacement of "0" with base->tp_new. */)},
+    {0, nullptr}
+};
+static PyType_Spec Sbk_ColorParam_spec = {
+    "NatronEngine.ColorParam",
+    sizeof(SbkObject),
+    0,
+    Py_TPFLAGS_DEFAULT|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_GC,
+    Sbk_ColorParam_slots
+};
+#else
 static SbkObjectType Sbk_ColorParam_Type = { { {
     PyVarObject_HEAD_INIT(&SbkObjectType_Type, 0)
     /*tp_name*/             "NatronEngine.ColorParam",
@@ -1395,6 +1513,7 @@ static SbkObjectType Sbk_ColorParam_Type = { { {
 }, },
     /*priv_data*/           0
 };
+#endif
 } //extern
 
 static void* Sbk_ColorParam_typeDiscovery(void* cptr, SbkObjectType* instanceType)
@@ -1409,12 +1528,20 @@ static void* Sbk_ColorParam_typeDiscovery(void* cptr, SbkObjectType* instanceTyp
 
 // Python to C++ pointer conversion - returns the C++ object of the Python wrapper (keeps object identity).
 static void ColorParam_PythonToCpp_ColorParam_PTR(PyObject* pyIn, void* cppOut) {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    Shiboken::Conversions::pythonToCppPointer(Sbk_ColorParam_TypeF(), pyIn, cppOut);
+#else
     Shiboken::Conversions::pythonToCppPointer(&Sbk_ColorParam_Type, pyIn, cppOut);
+#endif
 }
 static PythonToCppFunc is_ColorParam_PythonToCpp_ColorParam_PTR_Convertible(PyObject* pyIn) {
     if (pyIn == Py_None)
         return Shiboken::Conversions::nonePythonToCppNullPtr;
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    if (PyObject_TypeCheck(pyIn, reinterpret_cast<PyTypeObject*>(Sbk_ColorParam_TypeF())))
+#else
     if (PyObject_TypeCheck(pyIn, (PyTypeObject*)&Sbk_ColorParam_Type))
+#endif
         return ColorParam_PythonToCpp_ColorParam_PTR;
     return 0;
 }
@@ -1426,21 +1553,83 @@ static PyObject* ColorParam_PTR_CppToPython_ColorParam(const void* cppIn) {
         Py_INCREF(pyOut);
         return pyOut;
     }
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    bool changedTypeName = false;
+    auto tCppIn = reinterpret_cast<const ::ColorParam *>(cppIn);
+    const char *typeName = typeid(*tCppIn).name();
+    auto sbkType = Shiboken::ObjectType::typeForTypeName(typeName);
+    if (sbkType && Shiboken::ObjectType::hasSpecialCastFunction(sbkType)) {
+        typeName = typeNameOf(tCppIn);
+        changedTypeName = true;
+     }
+    PyObject *result = Shiboken::Object::newObject(Sbk_ColorParam_TypeF(), const_cast<void*>(cppIn), false, /* exactType */ changedTypeName, typeName);
+    if (changedTypeName)
+        delete [] typeName;
+    return result;
+#else
     const char* typeName = typeid(*((::ColorParam*)cppIn)).name();
     return Shiboken::Object::newObject(&Sbk_ColorParam_Type, const_cast<void*>(cppIn), false, false, typeName);
+#endif
 }
+
+#if SHIBOKEN_MAJOR_VERSION >= 2
+// The signatures string for the functions.
+// Multiple signatures have their index "n:" in front.
+static const char *ColorParam_SignatureStrings[] = {
+    "NatronEngine.ColorParam.addAsDependencyOf(fromExprDimension:int,param:NatronEngine.Param,thisDimension:int)->double",
+    "0:NatronEngine.ColorParam.get()->NatronEngine.ColorTuple",
+    "1:NatronEngine.ColorParam.get(frame:double)->NatronEngine.ColorTuple",
+    "NatronEngine.ColorParam.getDefaultValue(dimension:int=0)->double",
+    "NatronEngine.ColorParam.getDisplayMaximum(dimension:int)->double",
+    "NatronEngine.ColorParam.getDisplayMinimum(dimension:int)->double",
+    "NatronEngine.ColorParam.getMaximum(dimension:int=0)->double",
+    "NatronEngine.ColorParam.getMinimum(dimension:int=0)->double",
+    "NatronEngine.ColorParam.getValue(dimension:int=0)->double",
+    "NatronEngine.ColorParam.getValueAtTime(time:double,dimension:int=0)->double",
+    "NatronEngine.ColorParam.restoreDefaultValue(dimension:int=0)",
+    "0:NatronEngine.ColorParam.set(r:double,g:double,b:double,a:double)",
+    "1:NatronEngine.ColorParam.set(r:double,g:double,b:double,a:double,frame:double)",
+    "NatronEngine.ColorParam.setDefaultValue(value:double,dimension:int=0)",
+    "NatronEngine.ColorParam.setDisplayMaximum(maximum:double,dimension:int=0)",
+    "NatronEngine.ColorParam.setDisplayMinimum(minimum:double,dimension:int=0)",
+    "NatronEngine.ColorParam.setMaximum(maximum:double,dimension:int=0)",
+    "NatronEngine.ColorParam.setMinimum(minimum:double,dimension:int=0)",
+    "NatronEngine.ColorParam.setValue(value:double,dimension:int=0)",
+    "NatronEngine.ColorParam.setValueAtTime(value:double,time:double,dimension:int=0)",
+    nullptr}; // Sentinel
+#endif
 
 void init_ColorParam(PyObject* module)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    _Sbk_ColorParam_Type = Shiboken::ObjectType::introduceWrapperType(
+        module,
+        "ColorParam",
+        "ColorParam*",
+        &Sbk_ColorParam_spec,
+        ColorParam_SignatureStrings,
+        &Shiboken::callCppDestructor< ::ColorParam >,
+        reinterpret_cast<SbkObjectType *>(SbkNatronEngineTypes[SBK_ANIMATEDPARAM_IDX]),
+        0,
+        0    );
+
+    SbkNatronEngineTypes[SBK_COLORPARAM_IDX]
+        = reinterpret_cast<PyTypeObject*>(Sbk_ColorParam_TypeF());
+#else
     SbkNatronEngineTypes[SBK_COLORPARAM_IDX] = reinterpret_cast<PyTypeObject*>(&Sbk_ColorParam_Type);
 
     if (!Shiboken::ObjectType::introduceWrapperType(module, "ColorParam", "ColorParam*",
         &Sbk_ColorParam_Type, &Shiboken::callCppDestructor< ::ColorParam >, (SbkObjectType*)SbkNatronEngineTypes[SBK_ANIMATEDPARAM_IDX])) {
         return;
     }
+#endif
 
     // Register Converter
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    SbkConverter* converter = Shiboken::Conversions::createConverter(Sbk_ColorParam_TypeF(),
+#else
     SbkConverter* converter = Shiboken::Conversions::createConverter(&Sbk_ColorParam_Type,
+#endif
         ColorParam_PythonToCpp_ColorParam_PTR,
         is_ColorParam_PythonToCpp_ColorParam_PTR_Convertible,
         ColorParam_PTR_CppToPython_ColorParam);
@@ -1452,7 +1641,11 @@ void init_ColorParam(PyObject* module)
     Shiboken::Conversions::registerConverterName(converter, typeid(::ColorParamWrapper).name());
 
 
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    Shiboken::ObjectType::setTypeDiscoveryFunctionV2(Sbk_ColorParam_TypeF(), &Sbk_ColorParam_typeDiscovery);
+#else
     Shiboken::ObjectType::setTypeDiscoveryFunctionV2(&Sbk_ColorParam_Type, &Sbk_ColorParam_typeDiscovery);
+#endif
 
 
     ColorParamWrapper::pysideInitQtMetaTypes();

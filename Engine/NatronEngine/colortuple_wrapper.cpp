@@ -11,9 +11,12 @@ GCC_DIAG_UNUSED_LOCAL_TYPEDEFS_OFF
 #include <pysidesignal.h>
 #include <pysideproperty.h>
 #include <pyside.h>
+#if SHIBOKEN_MAJOR_VERSION < 2
 #include <typeresolver.h>
+#endif
 #include <typeinfo>
 #include "natronengine_python.h"
+#include "natron_helper.h"
 
 #include "colortuple_wrapper.h"
 
@@ -241,16 +244,61 @@ static PyGetSetDef Sbk_ColorTuple_getsetlist[] = {
 
 static int Sbk_ColorTuple_traverse(PyObject* self, visitproc visit, void* arg)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    return reinterpret_cast<PyTypeObject *>(SbkObject_TypeF())->tp_traverse(self, visit, arg);
+#else
     return reinterpret_cast<PyTypeObject*>(&SbkObject_Type)->tp_traverse(self, visit, arg);
+#endif
 }
 static int Sbk_ColorTuple_clear(PyObject* self)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    return reinterpret_cast<PyTypeObject *>(SbkObject_TypeF())->tp_clear(self);
+#else
     return reinterpret_cast<PyTypeObject*>(&SbkObject_Type)->tp_clear(self);
+#endif
 }
 // Class Definition -----------------------------------------------
 extern "C" {
 static PySequenceMethods Sbk_ColorTuple_TypeAsSequence;
 
+#if SHIBOKEN_MAJOR_VERSION >= 2
+static SbkObjectType *_Sbk_ColorTuple_Type = nullptr;
+static SbkObjectType *Sbk_ColorTuple_TypeF(void)
+{
+    return _Sbk_ColorTuple_Type;
+}
+
+static PyType_Slot Sbk_ColorTuple_slots[] = {
+    {Py_tp_base,        nullptr}, // inserted by introduceWrapperType
+    {Py_tp_dealloc,     reinterpret_cast<void*>(&SbkDeallocWrapper)},
+    {Py_tp_repr,        nullptr},
+    {Py_tp_hash,        nullptr},
+    {Py_tp_call,        nullptr},
+    {Py_tp_str,         nullptr},
+    {Py_tp_getattro,    nullptr},
+    {Py_tp_setattro,    nullptr},
+    {Py_tp_traverse,    reinterpret_cast<void*>(Sbk_ColorTuple_traverse)},
+    {Py_tp_clear,       reinterpret_cast<void*>(Sbk_ColorTuple_clear)},
+    {Py_tp_richcompare, nullptr},
+    {Py_tp_iter,        nullptr},
+    {Py_tp_iternext,    nullptr},
+    {Py_tp_methods,     reinterpret_cast<void*>(Sbk_ColorTuple_methods)},
+    {Py_tp_getset,      reinterpret_cast<void*>(Sbk_ColorTuple_getsetlist)},
+    {Py_tp_init,        reinterpret_cast<void*>(Sbk_ColorTuple_Init)},
+    {Py_tp_new,         reinterpret_cast<void*>(SbkObjectTpNew)},
+    // type supports sequence protocol
+    {Py_sq_item, (void *)&Sbk_ColorTupleFunc___getitem__},
+    {0, nullptr}
+};
+static PyType_Spec Sbk_ColorTuple_spec = {
+    "NatronEngine.ColorTuple",
+    sizeof(SbkObject),
+    0,
+    Py_TPFLAGS_DEFAULT|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_GC,
+    Sbk_ColorTuple_slots
+};
+#else
 static SbkObjectType Sbk_ColorTuple_Type = { { {
     PyVarObject_HEAD_INIT(&SbkObjectType_Type, 0)
     /*tp_name*/             "NatronEngine.ColorTuple",
@@ -300,6 +348,7 @@ static SbkObjectType Sbk_ColorTuple_Type = { { {
 }, },
     /*priv_data*/           0
 };
+#endif
 } //extern
 
 
@@ -307,12 +356,20 @@ static SbkObjectType Sbk_ColorTuple_Type = { { {
 
 // Python to C++ pointer conversion - returns the C++ object of the Python wrapper (keeps object identity).
 static void ColorTuple_PythonToCpp_ColorTuple_PTR(PyObject* pyIn, void* cppOut) {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    Shiboken::Conversions::pythonToCppPointer(Sbk_ColorTuple_TypeF(), pyIn, cppOut);
+#else
     Shiboken::Conversions::pythonToCppPointer(&Sbk_ColorTuple_Type, pyIn, cppOut);
+#endif
 }
 static PythonToCppFunc is_ColorTuple_PythonToCpp_ColorTuple_PTR_Convertible(PyObject* pyIn) {
     if (pyIn == Py_None)
         return Shiboken::Conversions::nonePythonToCppNullPtr;
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    if (PyObject_TypeCheck(pyIn, reinterpret_cast<PyTypeObject*>(Sbk_ColorTuple_TypeF())))
+#else
     if (PyObject_TypeCheck(pyIn, (PyTypeObject*)&Sbk_ColorTuple_Type))
+#endif
         return ColorTuple_PythonToCpp_ColorTuple_PTR;
     return 0;
 }
@@ -324,15 +381,55 @@ static PyObject* ColorTuple_PTR_CppToPython_ColorTuple(const void* cppIn) {
         Py_INCREF(pyOut);
         return pyOut;
     }
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    bool changedTypeName = false;
+    auto tCppIn = reinterpret_cast<const ::ColorTuple *>(cppIn);
+    const char *typeName = typeid(*tCppIn).name();
+    auto sbkType = Shiboken::ObjectType::typeForTypeName(typeName);
+    if (sbkType && Shiboken::ObjectType::hasSpecialCastFunction(sbkType)) {
+        typeName = typeNameOf(tCppIn);
+        changedTypeName = true;
+     }
+    PyObject *result = Shiboken::Object::newObject(Sbk_ColorTuple_TypeF(), const_cast<void*>(cppIn), false, /* exactType */ changedTypeName, typeName);
+    if (changedTypeName)
+        delete [] typeName;
+    return result;
+#else
     const char* typeName = typeid(*((::ColorTuple*)cppIn)).name();
     return Shiboken::Object::newObject(&Sbk_ColorTuple_Type, const_cast<void*>(cppIn), false, false, typeName);
+#endif
 }
+
+#if SHIBOKEN_MAJOR_VERSION >= 2
+// The signatures string for the functions.
+// Multiple signatures have their index "n:" in front.
+static const char *ColorTuple_SignatureStrings[] = {
+    "NatronEngine.ColorTuple()",
+    nullptr}; // Sentinel
+#endif
 
 void init_ColorTuple(PyObject* module)
 {
     // type supports sequence protocol
     memset(&Sbk_ColorTuple_TypeAsSequence, 0, sizeof(PySequenceMethods));
     Sbk_ColorTuple_TypeAsSequence.sq_item = &Sbk_ColorTupleFunc___getitem__;
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    _Sbk_ColorTuple_Type = Shiboken::ObjectType::introduceWrapperType(
+        module,
+        "ColorTuple",
+        "ColorTuple*",
+        &Sbk_ColorTuple_spec,
+        ColorTuple_SignatureStrings,
+        &Shiboken::callCppDestructor< ::ColorTuple >,
+        0,
+        0,
+        0    );
+
+    reinterpret_cast<PyTypeObject*>(Sbk_ColorTuple_TypeF())->tp_as_sequence = &Sbk_ColorTuple_TypeAsSequence;
+
+    SbkNatronEngineTypes[SBK_COLORTUPLE_IDX]
+        = reinterpret_cast<PyTypeObject*>(Sbk_ColorTuple_TypeF());
+#else
     Sbk_ColorTuple_Type.super.ht_type.tp_as_sequence = &Sbk_ColorTuple_TypeAsSequence;
 
     SbkNatronEngineTypes[SBK_COLORTUPLE_IDX] = reinterpret_cast<PyTypeObject*>(&Sbk_ColorTuple_Type);
@@ -341,9 +438,14 @@ void init_ColorTuple(PyObject* module)
         &Sbk_ColorTuple_Type, &Shiboken::callCppDestructor< ::ColorTuple >)) {
         return;
     }
+#endif
 
     // Register Converter
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    SbkConverter* converter = Shiboken::Conversions::createConverter(Sbk_ColorTuple_TypeF(),
+#else
     SbkConverter* converter = Shiboken::Conversions::createConverter(&Sbk_ColorTuple_Type,
+#endif
         ColorTuple_PythonToCpp_ColorTuple_PTR,
         is_ColorTuple_PythonToCpp_ColorTuple_PTR_Convertible,
         ColorTuple_PTR_CppToPython_ColorTuple);

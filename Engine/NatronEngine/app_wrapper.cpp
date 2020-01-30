@@ -11,9 +11,12 @@ GCC_DIAG_UNUSED_LOCAL_TYPEDEFS_OFF
 #include <pysidesignal.h>
 #include <pysideproperty.h>
 #include <pyside.h>
+#if SHIBOKEN_MAJOR_VERSION < 2
 #include <typeresolver.h>
+#endif
 #include <typeinfo>
 #include "natronengine_python.h"
+#include "natron_helper.h"
 
 #include "app_wrapper.h"
 
@@ -55,7 +58,11 @@ static PyObject* Sbk_AppFunc_addFormat(PyObject* self, PyObject* pyArg)
 
     // Overloaded function decisor
     // 0: addFormat(QString)
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArg)))) {
+#else
     if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArg)))) {
+#endif
         overloadId = 0; // addFormat(QString)
     }
 
@@ -79,8 +86,12 @@ static PyObject* Sbk_AppFunc_addFormat(PyObject* self, PyObject* pyArg)
     Py_RETURN_NONE;
 
     Sbk_AppFunc_addFormat_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.App.addFormat");
+#else
         const char* overloads[] = {"unicode", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.App.addFormat", overloads);
+#endif
         return 0;
 }
 
@@ -128,8 +139,12 @@ static PyObject* Sbk_AppFunc_addProjectLayer(PyObject* self, PyObject* pyArg)
     Py_RETURN_NONE;
 
     Sbk_AppFunc_addProjectLayer_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.App.addProjectLayer");
+#else
         const char* overloads[] = {"NatronEngine.ImageLayer", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.App.addProjectLayer", overloads);
+#endif
         return 0;
 }
 
@@ -189,7 +204,11 @@ static PyObject* Sbk_AppFunc_createNode(PyObject* self, PyObject* args, PyObject
 
     // Overloaded function decisor
     // 0: createNode(QString,int,Group*,std::map<QString,NodeCreationProperty*>)const
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    if ((pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[0])))) {
+#else
     if ((pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[0])))) {
+#endif
         if (numArgs == 1) {
             overloadId = 0; // createNode(QString,int,Group*,std::map<QString,NodeCreationProperty*>)const
         } else if ((pythonToCpp[1] = Shiboken::Conversions::isPythonToCppConvertible(Shiboken::Conversions::PrimitiveTypeConverter<int>(), (pyArgs[1])))) {
@@ -273,8 +292,12 @@ static PyObject* Sbk_AppFunc_createNode(PyObject* self, PyObject* args, PyObject
     return pyResult;
 
     Sbk_AppFunc_createNode_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.App.createNode");
+#else
         const char* overloads[] = {"unicode, int = -1, NatronEngine.Group = None, dict = NodeCreationPropertyMap()", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.App.createNode", overloads);
+#endif
         return 0;
 }
 
@@ -308,7 +331,11 @@ static PyObject* Sbk_AppFunc_createReader(PyObject* self, PyObject* args, PyObje
 
     // Overloaded function decisor
     // 0: createReader(QString,Group*,std::map<QString,NodeCreationProperty*>)const
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    if ((pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[0])))) {
+#else
     if ((pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[0])))) {
+#endif
         if (numArgs == 1) {
             overloadId = 0; // createReader(QString,Group*,std::map<QString,NodeCreationProperty*>)const
         } else if ((pythonToCpp[1] = Shiboken::Conversions::isPythonToCppPointerConvertible((SbkObjectType*)SbkNatronEngineTypes[SBK_GROUP_IDX], (pyArgs[1])))) {
@@ -377,8 +404,12 @@ static PyObject* Sbk_AppFunc_createReader(PyObject* self, PyObject* args, PyObje
     return pyResult;
 
     Sbk_AppFunc_createReader_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.App.createReader");
+#else
         const char* overloads[] = {"unicode, NatronEngine.Group = None, dict = NodeCreationPropertyMap()", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.App.createReader", overloads);
+#endif
         return 0;
 }
 
@@ -412,7 +443,11 @@ static PyObject* Sbk_AppFunc_createWriter(PyObject* self, PyObject* args, PyObje
 
     // Overloaded function decisor
     // 0: createWriter(QString,Group*,std::map<QString,NodeCreationProperty*>)const
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    if ((pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[0])))) {
+#else
     if ((pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[0])))) {
+#endif
         if (numArgs == 1) {
             overloadId = 0; // createWriter(QString,Group*,std::map<QString,NodeCreationProperty*>)const
         } else if ((pythonToCpp[1] = Shiboken::Conversions::isPythonToCppPointerConvertible((SbkObjectType*)SbkNatronEngineTypes[SBK_GROUP_IDX], (pyArgs[1])))) {
@@ -481,8 +516,12 @@ static PyObject* Sbk_AppFunc_createWriter(PyObject* self, PyObject* args, PyObje
     return pyResult;
 
     Sbk_AppFunc_createWriter_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.App.createWriter");
+#else
         const char* overloads[] = {"unicode, NatronEngine.Group = None, dict = NodeCreationPropertyMap()", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.App.createWriter", overloads);
+#endif
         return 0;
 }
 
@@ -526,7 +565,11 @@ static PyObject* Sbk_AppFunc_getProjectParam(PyObject* self, PyObject* pyArg)
 
     // Overloaded function decisor
     // 0: getProjectParam(QString)const
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArg)))) {
+#else
     if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArg)))) {
+#endif
         overloadId = 0; // getProjectParam(QString)const
     }
 
@@ -555,8 +598,12 @@ static PyObject* Sbk_AppFunc_getProjectParam(PyObject* self, PyObject* pyArg)
     return pyResult;
 
     Sbk_AppFunc_getProjectParam_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.App.getProjectParam");
+#else
         const char* overloads[] = {"unicode", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.App.getProjectParam", overloads);
+#endif
         return 0;
 }
 
@@ -600,7 +647,11 @@ static PyObject* Sbk_AppFunc_loadProject(PyObject* self, PyObject* pyArg)
 
     // Overloaded function decisor
     // 0: loadProject(QString)
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArg)))) {
+#else
     if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArg)))) {
+#endif
         overloadId = 0; // loadProject(QString)
     }
 
@@ -635,8 +686,12 @@ static PyObject* Sbk_AppFunc_loadProject(PyObject* self, PyObject* pyArg)
     return pyResult;
 
     Sbk_AppFunc_loadProject_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.App.loadProject");
+#else
         const char* overloads[] = {"unicode", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.App.loadProject", overloads);
+#endif
         return 0;
 }
 
@@ -821,8 +876,12 @@ static PyObject* Sbk_AppFunc_render(PyObject* self, PyObject* args, PyObject* kw
     Py_RETURN_NONE;
 
     Sbk_AppFunc_render_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.App.render");
+#else
         const char* overloads[] = {"NatronEngine.Effect, int, int, int = 1", "list, list, list, list", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.App.render", overloads);
+#endif
         return 0;
 }
 
@@ -866,7 +925,11 @@ static PyObject* Sbk_AppFunc_saveProject(PyObject* self, PyObject* pyArg)
 
     // Overloaded function decisor
     // 0: saveProject(QString)
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArg)))) {
+#else
     if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArg)))) {
+#endif
         overloadId = 0; // saveProject(QString)
     }
 
@@ -892,8 +955,12 @@ static PyObject* Sbk_AppFunc_saveProject(PyObject* self, PyObject* pyArg)
     return pyResult;
 
     Sbk_AppFunc_saveProject_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.App.saveProject");
+#else
         const char* overloads[] = {"unicode", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.App.saveProject", overloads);
+#endif
         return 0;
 }
 
@@ -911,7 +978,11 @@ static PyObject* Sbk_AppFunc_saveProjectAs(PyObject* self, PyObject* pyArg)
 
     // Overloaded function decisor
     // 0: saveProjectAs(QString)
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArg)))) {
+#else
     if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArg)))) {
+#endif
         overloadId = 0; // saveProjectAs(QString)
     }
 
@@ -937,8 +1008,12 @@ static PyObject* Sbk_AppFunc_saveProjectAs(PyObject* self, PyObject* pyArg)
     return pyResult;
 
     Sbk_AppFunc_saveProjectAs_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.App.saveProjectAs");
+#else
         const char* overloads[] = {"unicode", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.App.saveProjectAs", overloads);
+#endif
         return 0;
 }
 
@@ -956,7 +1031,11 @@ static PyObject* Sbk_AppFunc_saveTempProject(PyObject* self, PyObject* pyArg)
 
     // Overloaded function decisor
     // 0: saveTempProject(QString)
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArg)))) {
+#else
     if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArg)))) {
+#endif
         overloadId = 0; // saveTempProject(QString)
     }
 
@@ -982,8 +1061,12 @@ static PyObject* Sbk_AppFunc_saveTempProject(PyObject* self, PyObject* pyArg)
     return pyResult;
 
     Sbk_AppFunc_saveTempProject_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.App.saveTempProject");
+#else
         const char* overloads[] = {"unicode", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.App.saveTempProject", overloads);
+#endif
         return 0;
 }
 
@@ -1078,7 +1161,11 @@ static PyObject* Sbk_AppFunc_writeToScriptEditor(PyObject* self, PyObject* pyArg
 
     // Overloaded function decisor
     // 0: writeToScriptEditor(QString)
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArg)))) {
+#else
     if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArg)))) {
+#endif
         overloadId = 0; // writeToScriptEditor(QString)
     }
 
@@ -1102,8 +1189,12 @@ static PyObject* Sbk_AppFunc_writeToScriptEditor(PyObject* self, PyObject* pyArg
     Py_RETURN_NONE;
 
     Sbk_AppFunc_writeToScriptEditor_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.App.writeToScriptEditor");
+#else
         const char* overloads[] = {"unicode", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.App.writeToScriptEditor", overloads);
+#endif
         return 0;
 }
 
@@ -1136,14 +1227,57 @@ static PyMethodDef Sbk_App_methods[] = {
 
 static int Sbk_App_traverse(PyObject* self, visitproc visit, void* arg)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    return reinterpret_cast<PyTypeObject *>(SbkObject_TypeF())->tp_traverse(self, visit, arg);
+#else
     return reinterpret_cast<PyTypeObject*>(&SbkObject_Type)->tp_traverse(self, visit, arg);
+#endif
 }
 static int Sbk_App_clear(PyObject* self)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    return reinterpret_cast<PyTypeObject *>(SbkObject_TypeF())->tp_clear(self);
+#else
     return reinterpret_cast<PyTypeObject*>(&SbkObject_Type)->tp_clear(self);
+#endif
 }
 // Class Definition -----------------------------------------------
 extern "C" {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+static SbkObjectType *_Sbk_App_Type = nullptr;
+static SbkObjectType *Sbk_App_TypeF(void)
+{
+    return _Sbk_App_Type;
+}
+
+static PyType_Slot Sbk_App_slots[] = {
+    {Py_tp_base,        nullptr}, // inserted by introduceWrapperType
+    {Py_tp_dealloc,     reinterpret_cast<void*>(&SbkDeallocWrapper)},
+    {Py_tp_repr,        nullptr},
+    {Py_tp_hash,        nullptr},
+    {Py_tp_call,        nullptr},
+    {Py_tp_str,         nullptr},
+    {Py_tp_getattro,    nullptr},
+    {Py_tp_setattro,    nullptr},
+    {Py_tp_traverse,    reinterpret_cast<void*>(Sbk_App_traverse)},
+    {Py_tp_clear,       reinterpret_cast<void*>(Sbk_App_clear)},
+    {Py_tp_richcompare, nullptr},
+    {Py_tp_iter,        nullptr},
+    {Py_tp_iternext,    nullptr},
+    {Py_tp_methods,     reinterpret_cast<void*>(Sbk_App_methods)},
+    {Py_tp_getset,      nullptr},
+    {Py_tp_init,        nullptr},
+    {Py_tp_new,         reinterpret_cast<void*>(SbkDummyNew /* PYSIDE-595: Prevent replacement of "0" with base->tp_new. */)},
+    {0, nullptr}
+};
+static PyType_Spec Sbk_App_spec = {
+    "NatronEngine.App",
+    sizeof(SbkObject),
+    0,
+    Py_TPFLAGS_DEFAULT|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_GC,
+    Sbk_App_slots
+};
+#else
 static SbkObjectType Sbk_App_Type = { { {
     PyVarObject_HEAD_INIT(&SbkObjectType_Type, 0)
     /*tp_name*/             "NatronEngine.App",
@@ -1193,6 +1327,7 @@ static SbkObjectType Sbk_App_Type = { { {
 }, },
     /*priv_data*/           0
 };
+#endif
 } //extern
 
 static void* Sbk_App_typeDiscovery(void* cptr, SbkObjectType* instanceType)
@@ -1207,12 +1342,20 @@ static void* Sbk_App_typeDiscovery(void* cptr, SbkObjectType* instanceType)
 
 // Python to C++ pointer conversion - returns the C++ object of the Python wrapper (keeps object identity).
 static void App_PythonToCpp_App_PTR(PyObject* pyIn, void* cppOut) {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    Shiboken::Conversions::pythonToCppPointer(Sbk_App_TypeF(), pyIn, cppOut);
+#else
     Shiboken::Conversions::pythonToCppPointer(&Sbk_App_Type, pyIn, cppOut);
+#endif
 }
 static PythonToCppFunc is_App_PythonToCpp_App_PTR_Convertible(PyObject* pyIn) {
     if (pyIn == Py_None)
         return Shiboken::Conversions::nonePythonToCppNullPtr;
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    if (PyObject_TypeCheck(pyIn, reinterpret_cast<PyTypeObject*>(Sbk_App_TypeF())))
+#else
     if (PyObject_TypeCheck(pyIn, (PyTypeObject*)&Sbk_App_Type))
+#endif
         return App_PythonToCpp_App_PTR;
     return 0;
 }
@@ -1224,21 +1367,84 @@ static PyObject* App_PTR_CppToPython_App(const void* cppIn) {
         Py_INCREF(pyOut);
         return pyOut;
     }
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    bool changedTypeName = false;
+    auto tCppIn = reinterpret_cast<const ::App *>(cppIn);
+    const char *typeName = typeid(*tCppIn).name();
+    auto sbkType = Shiboken::ObjectType::typeForTypeName(typeName);
+    if (sbkType && Shiboken::ObjectType::hasSpecialCastFunction(sbkType)) {
+        typeName = typeNameOf(tCppIn);
+        changedTypeName = true;
+     }
+    PyObject *result = Shiboken::Object::newObject(Sbk_App_TypeF(), const_cast<void*>(cppIn), false, /* exactType */ changedTypeName, typeName);
+    if (changedTypeName)
+        delete [] typeName;
+    return result;
+#else
     const char* typeName = typeid(*((::App*)cppIn)).name();
     return Shiboken::Object::newObject(&Sbk_App_Type, const_cast<void*>(cppIn), false, false, typeName);
+#endif
 }
+
+#if SHIBOKEN_MAJOR_VERSION >= 2
+// The signatures string for the functions.
+// Multiple signatures have their index "n:" in front.
+static const char *App_SignatureStrings[] = {
+    "NatronEngine.App.addFormat(formatSpec:QString)",
+    "NatronEngine.App.addProjectLayer(layer:NatronEngine.ImageLayer)",
+    "NatronEngine.App.closeProject()->bool",
+    "NatronEngine.App.createNode(pluginID:QString,majorVersion:int=-1,group:NatronEngine.Group=0,props:QMap=NodeCreationPropertyMap())->NatronEngine.Effect",
+    "NatronEngine.App.createReader(filename:QString,group:NatronEngine.Group=0,props:QMap=NodeCreationPropertyMap())->NatronEngine.Effect",
+    "NatronEngine.App.createWriter(filename:QString,group:NatronEngine.Group=0,props:QMap=NodeCreationPropertyMap())->NatronEngine.Effect",
+    "NatronEngine.App.getAppID()->int",
+    "NatronEngine.App.getProjectParam(name:QString)->NatronEngine.Param",
+    "NatronEngine.App.getViewNames()->QList[QString]",
+    "NatronEngine.App.loadProject(filename:QString)->NatronEngine.App",
+    "NatronEngine.App.newProject()->NatronEngine.App",
+    "0:NatronEngine.App.render(writeNode:NatronEngine.Effect,firstFrame:int,lastFrame:int,frameStep:int=1)",
+    "1:NatronEngine.App.render(effects:QList[NatronEngine.Effect],firstFrames:QList[int],lastFrames:QList[int],frameSteps:QList[int])",
+    "NatronEngine.App.resetProject()->bool",
+    "NatronEngine.App.saveProject(filename:QString)->bool",
+    "NatronEngine.App.saveProjectAs(filename:QString)->bool",
+    "NatronEngine.App.saveTempProject(filename:QString)->bool",
+    "NatronEngine.App.timelineGetLeftBound()->int",
+    "NatronEngine.App.timelineGetRightBound()->int",
+    "NatronEngine.App.timelineGetTime()->int",
+    "NatronEngine.App.writeToScriptEditor(message:QString)",
+    nullptr}; // Sentinel
+#endif
 
 void init_App(PyObject* module)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    _Sbk_App_Type = Shiboken::ObjectType::introduceWrapperType(
+        module,
+        "App",
+        "App*",
+        &Sbk_App_spec,
+        App_SignatureStrings,
+        &Shiboken::callCppDestructor< ::App >,
+        reinterpret_cast<SbkObjectType *>(SbkNatronEngineTypes[SBK_GROUP_IDX]),
+        0,
+        0    );
+
+    SbkNatronEngineTypes[SBK_APP_IDX]
+        = reinterpret_cast<PyTypeObject*>(Sbk_App_TypeF());
+#else
     SbkNatronEngineTypes[SBK_APP_IDX] = reinterpret_cast<PyTypeObject*>(&Sbk_App_Type);
 
     if (!Shiboken::ObjectType::introduceWrapperType(module, "App", "App*",
         &Sbk_App_Type, &Shiboken::callCppDestructor< ::App >, (SbkObjectType*)SbkNatronEngineTypes[SBK_GROUP_IDX])) {
         return;
     }
+#endif
 
     // Register Converter
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    SbkConverter* converter = Shiboken::Conversions::createConverter(Sbk_App_TypeF(),
+#else
     SbkConverter* converter = Shiboken::Conversions::createConverter(&Sbk_App_Type,
+#endif
         App_PythonToCpp_App_PTR,
         is_App_PythonToCpp_App_PTR_Convertible,
         App_PTR_CppToPython_App);
@@ -1250,7 +1456,11 @@ void init_App(PyObject* module)
     Shiboken::Conversions::registerConverterName(converter, typeid(::AppWrapper).name());
 
 
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    Shiboken::ObjectType::setTypeDiscoveryFunctionV2(Sbk_App_TypeF(), &Sbk_App_typeDiscovery);
+#else
     Shiboken::ObjectType::setTypeDiscoveryFunctionV2(&Sbk_App_Type, &Sbk_App_typeDiscovery);
+#endif
 
 
     AppWrapper::pysideInitQtMetaTypes();

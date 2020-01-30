@@ -11,9 +11,12 @@ GCC_DIAG_UNUSED_LOCAL_TYPEDEFS_OFF
 #include <pysidesignal.h>
 #include <pysideproperty.h>
 #include <pyside.h>
+#if SHIBOKEN_MAJOR_VERSION < 2
 #include <typeresolver.h>
+#endif
 #include <typeinfo>
 #include "natronengine_python.h"
+#include "natron_helper.h"
 
 #include "choiceparam_wrapper.h"
 
@@ -97,8 +100,12 @@ static PyObject* Sbk_ChoiceParamFunc_addAsDependencyOf(PyObject* self, PyObject*
     return pyResult;
 
     Sbk_ChoiceParamFunc_addAsDependencyOf_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ChoiceParam.addAsDependencyOf");
+#else
         const char* overloads[] = {"int, NatronEngine.Param, int", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ChoiceParam.addAsDependencyOf", overloads);
+#endif
         return 0;
 }
 
@@ -125,8 +132,13 @@ static PyObject* Sbk_ChoiceParamFunc_addOption(PyObject* self, PyObject* args)
     // Overloaded function decisor
     // 0: addOption(QString,QString)
     if (numArgs == 2
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        && (pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[0])))
+        && (pythonToCpp[1] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[1])))) {
+#else
         && (pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[0])))
         && (pythonToCpp[1] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[1])))) {
+#endif
         overloadId = 0; // addOption(QString,QString)
     }
 
@@ -152,8 +164,12 @@ static PyObject* Sbk_ChoiceParamFunc_addOption(PyObject* self, PyObject* args)
     Py_RETURN_NONE;
 
     Sbk_ChoiceParamFunc_addOption_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ChoiceParam.addOption");
+#else
         const char* overloads[] = {"unicode, unicode", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ChoiceParam.addOption", overloads);
+#endif
         return 0;
 }
 
@@ -224,8 +240,12 @@ static PyObject* Sbk_ChoiceParamFunc_get(PyObject* self, PyObject* args)
     return pyResult;
 
     Sbk_ChoiceParamFunc_get_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ChoiceParam.get");
+#else
         const char* overloads[] = {"", "float", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ChoiceParam.get", overloads);
+#endif
         return 0;
 }
 
@@ -310,7 +330,11 @@ static PyObject* Sbk_ChoiceParamFunc_getOption(PyObject* self, PyObject* pyArg)
         if (!PyErr_Occurred()) {
             // getOption(int)const
             QString cppResult = const_cast<const ::ChoiceParamWrapper*>(cppSelf)->getOption(cppArg0);
+#if SHIBOKEN_MAJOR_VERSION >= 2
+            pyResult = Shiboken::Conversions::copyToPython(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], &cppResult);
+#else
             pyResult = Shiboken::Conversions::copyToPython(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], &cppResult);
+#endif
         }
     }
 
@@ -321,8 +345,12 @@ static PyObject* Sbk_ChoiceParamFunc_getOption(PyObject* self, PyObject* pyArg)
     return pyResult;
 
     Sbk_ChoiceParamFunc_getOption_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.ChoiceParam.getOption");
+#else
         const char* overloads[] = {"int", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.ChoiceParam.getOption", overloads);
+#endif
         return 0;
 }
 
@@ -341,7 +369,11 @@ static PyObject* Sbk_ChoiceParamFunc_getOptions(PyObject* self)
         if (!PyErr_Occurred()) {
             // getOptions()const
             QStringList cppResult = const_cast<const ::ChoiceParamWrapper*>(cppSelf)->getOptions();
+#if SHIBOKEN_MAJOR_VERSION >= 2
+            pyResult = Shiboken::Conversions::copyToPython(SbkPySide2_QtCoreTypeConverters[SBK_QSTRINGLIST_IDX], &cppResult);
+#else
             pyResult = Shiboken::Conversions::copyToPython(SbkPySide_QtCoreTypeConverters[SBK_QSTRINGLIST_IDX], &cppResult);
+#endif
         }
     }
 
@@ -418,8 +450,12 @@ static PyObject* Sbk_ChoiceParamFunc_getValueAtTime(PyObject* self, PyObject* py
     return pyResult;
 
     Sbk_ChoiceParamFunc_getValueAtTime_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.ChoiceParam.getValueAtTime");
+#else
         const char* overloads[] = {"float", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.ChoiceParam.getValueAtTime", overloads);
+#endif
         return 0;
 }
 
@@ -478,7 +514,11 @@ static PyObject* Sbk_ChoiceParamFunc_set(PyObject* self, PyObject* args)
             overloadId = 2; // set(int,double)
         }
     } else if (numArgs == 1
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        && (pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[0])))) {
+#else
         && (pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[0])))) {
+#endif
         overloadId = 0; // set(QString)
     }
 
@@ -530,8 +570,12 @@ static PyObject* Sbk_ChoiceParamFunc_set(PyObject* self, PyObject* args)
     Py_RETURN_NONE;
 
     Sbk_ChoiceParamFunc_set_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ChoiceParam.set");
+#else
         const char* overloads[] = {"unicode", "int", "int, float", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ChoiceParam.set", overloads);
+#endif
         return 0;
 }
 
@@ -551,7 +595,11 @@ static PyObject* Sbk_ChoiceParamFunc_setDefaultValue(PyObject* self, PyObject* p
     // 1: setDefaultValue(int)
     if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(Shiboken::Conversions::PrimitiveTypeConverter<int>(), (pyArg)))) {
         overloadId = 1; // setDefaultValue(int)
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    } else if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArg)))) {
+#else
     } else if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArg)))) {
+#endif
         overloadId = 0; // setDefaultValue(QString)
     }
 
@@ -590,8 +638,12 @@ static PyObject* Sbk_ChoiceParamFunc_setDefaultValue(PyObject* self, PyObject* p
     Py_RETURN_NONE;
 
     Sbk_ChoiceParamFunc_setDefaultValue_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.ChoiceParam.setDefaultValue");
+#else
         const char* overloads[] = {"unicode", "int", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.ChoiceParam.setDefaultValue", overloads);
+#endif
         return 0;
 }
 
@@ -632,8 +684,12 @@ static PyObject* Sbk_ChoiceParamFunc_setOptions(PyObject* self, PyObject* pyArg)
     Py_RETURN_NONE;
 
     Sbk_ChoiceParamFunc_setOptions_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.ChoiceParam.setOptions");
+#else
         const char* overloads[] = {"list", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.ChoiceParam.setOptions", overloads);
+#endif
         return 0;
 }
 
@@ -653,7 +709,11 @@ static PyObject* Sbk_ChoiceParamFunc_setValue(PyObject* self, PyObject* pyArg)
     // 1: setValue(int)
     if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(Shiboken::Conversions::PrimitiveTypeConverter<int>(), (pyArg)))) {
         overloadId = 1; // setValue(int)
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    } else if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArg)))) {
+#else
     } else if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArg)))) {
+#endif
         overloadId = 0; // setValue(QString)
     }
 
@@ -692,8 +752,12 @@ static PyObject* Sbk_ChoiceParamFunc_setValue(PyObject* self, PyObject* pyArg)
     Py_RETURN_NONE;
 
     Sbk_ChoiceParamFunc_setValue_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.ChoiceParam.setValue");
+#else
         const char* overloads[] = {"unicode", "int", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.ChoiceParam.setValue", overloads);
+#endif
         return 0;
 }
 
@@ -747,8 +811,12 @@ static PyObject* Sbk_ChoiceParamFunc_setValueAtTime(PyObject* self, PyObject* ar
     Py_RETURN_NONE;
 
     Sbk_ChoiceParamFunc_setValueAtTime_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ChoiceParam.setValueAtTime");
+#else
         const char* overloads[] = {"int, float", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ChoiceParam.setValueAtTime", overloads);
+#endif
         return 0;
 }
 
@@ -776,14 +844,57 @@ static PyMethodDef Sbk_ChoiceParam_methods[] = {
 
 static int Sbk_ChoiceParam_traverse(PyObject* self, visitproc visit, void* arg)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    return reinterpret_cast<PyTypeObject *>(SbkObject_TypeF())->tp_traverse(self, visit, arg);
+#else
     return reinterpret_cast<PyTypeObject*>(&SbkObject_Type)->tp_traverse(self, visit, arg);
+#endif
 }
 static int Sbk_ChoiceParam_clear(PyObject* self)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    return reinterpret_cast<PyTypeObject *>(SbkObject_TypeF())->tp_clear(self);
+#else
     return reinterpret_cast<PyTypeObject*>(&SbkObject_Type)->tp_clear(self);
+#endif
 }
 // Class Definition -----------------------------------------------
 extern "C" {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+static SbkObjectType *_Sbk_ChoiceParam_Type = nullptr;
+static SbkObjectType *Sbk_ChoiceParam_TypeF(void)
+{
+    return _Sbk_ChoiceParam_Type;
+}
+
+static PyType_Slot Sbk_ChoiceParam_slots[] = {
+    {Py_tp_base,        nullptr}, // inserted by introduceWrapperType
+    {Py_tp_dealloc,     reinterpret_cast<void*>(&SbkDeallocWrapper)},
+    {Py_tp_repr,        nullptr},
+    {Py_tp_hash,        nullptr},
+    {Py_tp_call,        nullptr},
+    {Py_tp_str,         nullptr},
+    {Py_tp_getattro,    nullptr},
+    {Py_tp_setattro,    nullptr},
+    {Py_tp_traverse,    reinterpret_cast<void*>(Sbk_ChoiceParam_traverse)},
+    {Py_tp_clear,       reinterpret_cast<void*>(Sbk_ChoiceParam_clear)},
+    {Py_tp_richcompare, nullptr},
+    {Py_tp_iter,        nullptr},
+    {Py_tp_iternext,    nullptr},
+    {Py_tp_methods,     reinterpret_cast<void*>(Sbk_ChoiceParam_methods)},
+    {Py_tp_getset,      nullptr},
+    {Py_tp_init,        nullptr},
+    {Py_tp_new,         reinterpret_cast<void*>(SbkDummyNew /* PYSIDE-595: Prevent replacement of "0" with base->tp_new. */)},
+    {0, nullptr}
+};
+static PyType_Spec Sbk_ChoiceParam_spec = {
+    "NatronEngine.ChoiceParam",
+    sizeof(SbkObject),
+    0,
+    Py_TPFLAGS_DEFAULT|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_GC,
+    Sbk_ChoiceParam_slots
+};
+#else
 static SbkObjectType Sbk_ChoiceParam_Type = { { {
     PyVarObject_HEAD_INIT(&SbkObjectType_Type, 0)
     /*tp_name*/             "NatronEngine.ChoiceParam",
@@ -833,6 +944,7 @@ static SbkObjectType Sbk_ChoiceParam_Type = { { {
 }, },
     /*priv_data*/           0
 };
+#endif
 } //extern
 
 static void* Sbk_ChoiceParam_typeDiscovery(void* cptr, SbkObjectType* instanceType)
@@ -847,12 +959,20 @@ static void* Sbk_ChoiceParam_typeDiscovery(void* cptr, SbkObjectType* instanceTy
 
 // Python to C++ pointer conversion - returns the C++ object of the Python wrapper (keeps object identity).
 static void ChoiceParam_PythonToCpp_ChoiceParam_PTR(PyObject* pyIn, void* cppOut) {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    Shiboken::Conversions::pythonToCppPointer(Sbk_ChoiceParam_TypeF(), pyIn, cppOut);
+#else
     Shiboken::Conversions::pythonToCppPointer(&Sbk_ChoiceParam_Type, pyIn, cppOut);
+#endif
 }
 static PythonToCppFunc is_ChoiceParam_PythonToCpp_ChoiceParam_PTR_Convertible(PyObject* pyIn) {
     if (pyIn == Py_None)
         return Shiboken::Conversions::nonePythonToCppNullPtr;
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    if (PyObject_TypeCheck(pyIn, reinterpret_cast<PyTypeObject*>(Sbk_ChoiceParam_TypeF())))
+#else
     if (PyObject_TypeCheck(pyIn, (PyTypeObject*)&Sbk_ChoiceParam_Type))
+#endif
         return ChoiceParam_PythonToCpp_ChoiceParam_PTR;
     return 0;
 }
@@ -864,21 +984,83 @@ static PyObject* ChoiceParam_PTR_CppToPython_ChoiceParam(const void* cppIn) {
         Py_INCREF(pyOut);
         return pyOut;
     }
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    bool changedTypeName = false;
+    auto tCppIn = reinterpret_cast<const ::ChoiceParam *>(cppIn);
+    const char *typeName = typeid(*tCppIn).name();
+    auto sbkType = Shiboken::ObjectType::typeForTypeName(typeName);
+    if (sbkType && Shiboken::ObjectType::hasSpecialCastFunction(sbkType)) {
+        typeName = typeNameOf(tCppIn);
+        changedTypeName = true;
+     }
+    PyObject *result = Shiboken::Object::newObject(Sbk_ChoiceParam_TypeF(), const_cast<void*>(cppIn), false, /* exactType */ changedTypeName, typeName);
+    if (changedTypeName)
+        delete [] typeName;
+    return result;
+#else
     const char* typeName = typeid(*((::ChoiceParam*)cppIn)).name();
     return Shiboken::Object::newObject(&Sbk_ChoiceParam_Type, const_cast<void*>(cppIn), false, false, typeName);
+#endif
 }
+
+#if SHIBOKEN_MAJOR_VERSION >= 2
+// The signatures string for the functions.
+// Multiple signatures have their index "n:" in front.
+static const char *ChoiceParam_SignatureStrings[] = {
+    "NatronEngine.ChoiceParam.addAsDependencyOf(fromExprDimension:int,param:NatronEngine.Param,thisDimension:int)->int",
+    "NatronEngine.ChoiceParam.addOption(option:QString,help:QString)",
+    "0:NatronEngine.ChoiceParam.get()->int",
+    "1:NatronEngine.ChoiceParam.get(frame:double)->int",
+    "NatronEngine.ChoiceParam.getDefaultValue()->int",
+    "NatronEngine.ChoiceParam.getNumOptions()->int",
+    "NatronEngine.ChoiceParam.getOption(index:int)->QString",
+    "NatronEngine.ChoiceParam.getOptions()->QList[QString])",
+    "NatronEngine.ChoiceParam.getValue()->int",
+    "NatronEngine.ChoiceParam.getValueAtTime(time:double)->int",
+    "NatronEngine.ChoiceParam.restoreDefaultValue()",
+    "0:NatronEngine.ChoiceParam.set(label:QString)",
+    "1:NatronEngine.ChoiceParam.set(x:int)",
+    "2:NatronEngine.ChoiceParam.set(x:int,frame:double)",
+    "0:NatronEngine.ChoiceParam.setDefaultValue(value:QString)",
+    "1:NatronEngine.ChoiceParam.setDefaultValue(value:int)",
+    "NatronEngine.ChoiceParam.setOptions(options:QList[QPair])",
+    "0:NatronEngine.ChoiceParam.setValue(label:QString)",
+    "1:NatronEngine.ChoiceParam.setValue(value:int)",
+    "NatronEngine.ChoiceParam.setValueAtTime(value:int,time:double)",
+    nullptr}; // Sentinel
+#endif
 
 void init_ChoiceParam(PyObject* module)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    _Sbk_ChoiceParam_Type = Shiboken::ObjectType::introduceWrapperType(
+        module,
+        "ChoiceParam",
+        "ChoiceParam*",
+        &Sbk_ChoiceParam_spec,
+        ChoiceParam_SignatureStrings,
+        &Shiboken::callCppDestructor< ::ChoiceParam >,
+        reinterpret_cast<SbkObjectType *>(SbkNatronEngineTypes[SBK_ANIMATEDPARAM_IDX]),
+        0,
+        0    );
+
+    SbkNatronEngineTypes[SBK_CHOICEPARAM_IDX]
+        = reinterpret_cast<PyTypeObject*>(Sbk_ChoiceParam_TypeF());
+#else
     SbkNatronEngineTypes[SBK_CHOICEPARAM_IDX] = reinterpret_cast<PyTypeObject*>(&Sbk_ChoiceParam_Type);
 
     if (!Shiboken::ObjectType::introduceWrapperType(module, "ChoiceParam", "ChoiceParam*",
         &Sbk_ChoiceParam_Type, &Shiboken::callCppDestructor< ::ChoiceParam >, (SbkObjectType*)SbkNatronEngineTypes[SBK_ANIMATEDPARAM_IDX])) {
         return;
     }
+#endif
 
     // Register Converter
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    SbkConverter* converter = Shiboken::Conversions::createConverter(Sbk_ChoiceParam_TypeF(),
+#else
     SbkConverter* converter = Shiboken::Conversions::createConverter(&Sbk_ChoiceParam_Type,
+#endif
         ChoiceParam_PythonToCpp_ChoiceParam_PTR,
         is_ChoiceParam_PythonToCpp_ChoiceParam_PTR_Convertible,
         ChoiceParam_PTR_CppToPython_ChoiceParam);
@@ -890,7 +1072,11 @@ void init_ChoiceParam(PyObject* module)
     Shiboken::Conversions::registerConverterName(converter, typeid(::ChoiceParamWrapper).name());
 
 
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    Shiboken::ObjectType::setTypeDiscoveryFunctionV2(Sbk_ChoiceParam_TypeF(), &Sbk_ChoiceParam_typeDiscovery);
+#else
     Shiboken::ObjectType::setTypeDiscoveryFunctionV2(&Sbk_ChoiceParam_Type, &Sbk_ChoiceParam_typeDiscovery);
+#endif
 
 
     ChoiceParamWrapper::pysideInitQtMetaTypes();

@@ -11,9 +11,12 @@ GCC_DIAG_UNUSED_LOCAL_TYPEDEFS_OFF
 #include <pysidesignal.h>
 #include <pysideproperty.h>
 #include <pyside.h>
+#if SHIBOKEN_MAJOR_VERSION < 2
 #include <typeresolver.h>
+#endif
 #include <typeinfo>
 #include "natronengine_python.h"
+#include "natron_helper.h"
 
 #include "stringparam_wrapper.h"
 
@@ -75,8 +78,12 @@ static PyObject* Sbk_StringParamFunc_setType(PyObject* self, PyObject* pyArg)
     Py_RETURN_NONE;
 
     Sbk_StringParamFunc_setType_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.StringParam.setType");
+#else
         const char* overloads[] = {"NatronEngine.StringParam.TypeEnum", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.StringParam.setType", overloads);
+#endif
         return 0;
 }
 
@@ -90,14 +97,57 @@ static PyMethodDef Sbk_StringParam_methods[] = {
 
 static int Sbk_StringParam_traverse(PyObject* self, visitproc visit, void* arg)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    return reinterpret_cast<PyTypeObject *>(SbkObject_TypeF())->tp_traverse(self, visit, arg);
+#else
     return reinterpret_cast<PyTypeObject*>(&SbkObject_Type)->tp_traverse(self, visit, arg);
+#endif
 }
 static int Sbk_StringParam_clear(PyObject* self)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    return reinterpret_cast<PyTypeObject *>(SbkObject_TypeF())->tp_clear(self);
+#else
     return reinterpret_cast<PyTypeObject*>(&SbkObject_Type)->tp_clear(self);
+#endif
 }
 // Class Definition -----------------------------------------------
 extern "C" {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+static SbkObjectType *_Sbk_StringParam_Type = nullptr;
+static SbkObjectType *Sbk_StringParam_TypeF(void)
+{
+    return _Sbk_StringParam_Type;
+}
+
+static PyType_Slot Sbk_StringParam_slots[] = {
+    {Py_tp_base,        nullptr}, // inserted by introduceWrapperType
+    {Py_tp_dealloc,     reinterpret_cast<void*>(&SbkDeallocWrapper)},
+    {Py_tp_repr,        nullptr},
+    {Py_tp_hash,        nullptr},
+    {Py_tp_call,        nullptr},
+    {Py_tp_str,         nullptr},
+    {Py_tp_getattro,    nullptr},
+    {Py_tp_setattro,    nullptr},
+    {Py_tp_traverse,    reinterpret_cast<void*>(Sbk_StringParam_traverse)},
+    {Py_tp_clear,       reinterpret_cast<void*>(Sbk_StringParam_clear)},
+    {Py_tp_richcompare, nullptr},
+    {Py_tp_iter,        nullptr},
+    {Py_tp_iternext,    nullptr},
+    {Py_tp_methods,     reinterpret_cast<void*>(Sbk_StringParam_methods)},
+    {Py_tp_getset,      nullptr},
+    {Py_tp_init,        nullptr},
+    {Py_tp_new,         reinterpret_cast<void*>(SbkDummyNew /* PYSIDE-595: Prevent replacement of "0" with base->tp_new. */)},
+    {0, nullptr}
+};
+static PyType_Spec Sbk_StringParam_spec = {
+    "NatronEngine.StringParam",
+    sizeof(SbkObject),
+    0,
+    Py_TPFLAGS_DEFAULT|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_GC,
+    Sbk_StringParam_slots
+};
+#else
 static SbkObjectType Sbk_StringParam_Type = { { {
     PyVarObject_HEAD_INIT(&SbkObjectType_Type, 0)
     /*tp_name*/             "NatronEngine.StringParam",
@@ -147,6 +197,7 @@ static SbkObjectType Sbk_StringParam_Type = { { {
 }, },
     /*priv_data*/           0
 };
+#endif
 } //extern
 
 static void* Sbk_StringParam_typeDiscovery(void* cptr, SbkObjectType* instanceType)
@@ -177,12 +228,20 @@ static PyObject* StringParam_TypeEnum_CppToPython_StringParam_TypeEnum(const voi
 
 // Python to C++ pointer conversion - returns the C++ object of the Python wrapper (keeps object identity).
 static void StringParam_PythonToCpp_StringParam_PTR(PyObject* pyIn, void* cppOut) {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    Shiboken::Conversions::pythonToCppPointer(Sbk_StringParam_TypeF(), pyIn, cppOut);
+#else
     Shiboken::Conversions::pythonToCppPointer(&Sbk_StringParam_Type, pyIn, cppOut);
+#endif
 }
 static PythonToCppFunc is_StringParam_PythonToCpp_StringParam_PTR_Convertible(PyObject* pyIn) {
     if (pyIn == Py_None)
         return Shiboken::Conversions::nonePythonToCppNullPtr;
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    if (PyObject_TypeCheck(pyIn, reinterpret_cast<PyTypeObject*>(Sbk_StringParam_TypeF())))
+#else
     if (PyObject_TypeCheck(pyIn, (PyTypeObject*)&Sbk_StringParam_Type))
+#endif
         return StringParam_PythonToCpp_StringParam_PTR;
     return 0;
 }
@@ -194,21 +253,64 @@ static PyObject* StringParam_PTR_CppToPython_StringParam(const void* cppIn) {
         Py_INCREF(pyOut);
         return pyOut;
     }
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    bool changedTypeName = false;
+    auto tCppIn = reinterpret_cast<const ::StringParam *>(cppIn);
+    const char *typeName = typeid(*tCppIn).name();
+    auto sbkType = Shiboken::ObjectType::typeForTypeName(typeName);
+    if (sbkType && Shiboken::ObjectType::hasSpecialCastFunction(sbkType)) {
+        typeName = typeNameOf(tCppIn);
+        changedTypeName = true;
+     }
+    PyObject *result = Shiboken::Object::newObject(Sbk_StringParam_TypeF(), const_cast<void*>(cppIn), false, /* exactType */ changedTypeName, typeName);
+    if (changedTypeName)
+        delete [] typeName;
+    return result;
+#else
     const char* typeName = typeid(*((::StringParam*)cppIn)).name();
     return Shiboken::Object::newObject(&Sbk_StringParam_Type, const_cast<void*>(cppIn), false, false, typeName);
+#endif
 }
+
+#if SHIBOKEN_MAJOR_VERSION >= 2
+// The signatures string for the functions.
+// Multiple signatures have their index "n:" in front.
+static const char *StringParam_SignatureStrings[] = {
+    "NatronEngine.StringParam.setType(type:NatronEngine.StringParam.TypeEnum)",
+    nullptr}; // Sentinel
+#endif
 
 void init_StringParam(PyObject* module)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    _Sbk_StringParam_Type = Shiboken::ObjectType::introduceWrapperType(
+        module,
+        "StringParam",
+        "StringParam*",
+        &Sbk_StringParam_spec,
+        StringParam_SignatureStrings,
+        &Shiboken::callCppDestructor< ::StringParam >,
+        reinterpret_cast<SbkObjectType *>(SbkNatronEngineTypes[SBK_STRINGPARAMBASE_IDX]),
+        0,
+        0    );
+
+    SbkNatronEngineTypes[SBK_STRINGPARAM_IDX]
+        = reinterpret_cast<PyTypeObject*>(Sbk_StringParam_TypeF());
+#else
     SbkNatronEngineTypes[SBK_STRINGPARAM_IDX] = reinterpret_cast<PyTypeObject*>(&Sbk_StringParam_Type);
 
     if (!Shiboken::ObjectType::introduceWrapperType(module, "StringParam", "StringParam*",
         &Sbk_StringParam_Type, &Shiboken::callCppDestructor< ::StringParam >, (SbkObjectType*)SbkNatronEngineTypes[SBK_STRINGPARAMBASE_IDX])) {
         return;
     }
+#endif
 
     // Register Converter
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    SbkConverter* converter = Shiboken::Conversions::createConverter(Sbk_StringParam_TypeF(),
+#else
     SbkConverter* converter = Shiboken::Conversions::createConverter(&Sbk_StringParam_Type,
+#endif
         StringParam_PythonToCpp_StringParam_PTR,
         is_StringParam_PythonToCpp_StringParam_PTR_Convertible,
         StringParam_PTR_CppToPython_StringParam);
@@ -220,12 +322,20 @@ void init_StringParam(PyObject* module)
     Shiboken::Conversions::registerConverterName(converter, typeid(::StringParamWrapper).name());
 
 
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    Shiboken::ObjectType::setTypeDiscoveryFunctionV2(Sbk_StringParam_TypeF(), &Sbk_StringParam_typeDiscovery);
+#else
     Shiboken::ObjectType::setTypeDiscoveryFunctionV2(&Sbk_StringParam_Type, &Sbk_StringParam_typeDiscovery);
+#endif
 
     // Initialization of enums.
 
     // Initialization of enum 'TypeEnum'.
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    SbkNatronEngineTypes[SBK_STRINGPARAM_TYPEENUM_IDX] = Shiboken::Enum::createScopedEnum(Sbk_StringParam_TypeF(),
+#else
     SbkNatronEngineTypes[SBK_STRINGPARAM_TYPEENUM_IDX] = Shiboken::Enum::createScopedEnum(&Sbk_StringParam_Type,
+#endif
         "TypeEnum",
         "NatronEngine.StringParam.TypeEnum",
         "StringParam::TypeEnum");
@@ -233,19 +343,39 @@ void init_StringParam(PyObject* module)
         return ;
 
     if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_STRINGPARAM_TYPEENUM_IDX],
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Sbk_StringParam_TypeF(), "eStringTypeLabel", (long) StringParam::eStringTypeLabel))
+#else
         &Sbk_StringParam_Type, "eStringTypeLabel", (long) StringParam::eStringTypeLabel))
+#endif
         return ;
     if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_STRINGPARAM_TYPEENUM_IDX],
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Sbk_StringParam_TypeF(), "eStringTypeMultiLine", (long) StringParam::eStringTypeMultiLine))
+#else
         &Sbk_StringParam_Type, "eStringTypeMultiLine", (long) StringParam::eStringTypeMultiLine))
+#endif
         return ;
     if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_STRINGPARAM_TYPEENUM_IDX],
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Sbk_StringParam_TypeF(), "eStringTypeRichTextMultiLine", (long) StringParam::eStringTypeRichTextMultiLine))
+#else
         &Sbk_StringParam_Type, "eStringTypeRichTextMultiLine", (long) StringParam::eStringTypeRichTextMultiLine))
+#endif
         return ;
     if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_STRINGPARAM_TYPEENUM_IDX],
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Sbk_StringParam_TypeF(), "eStringTypeCustom", (long) StringParam::eStringTypeCustom))
+#else
         &Sbk_StringParam_Type, "eStringTypeCustom", (long) StringParam::eStringTypeCustom))
+#endif
         return ;
     if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_STRINGPARAM_TYPEENUM_IDX],
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Sbk_StringParam_TypeF(), "eStringTypeDefault", (long) StringParam::eStringTypeDefault))
+#else
         &Sbk_StringParam_Type, "eStringTypeDefault", (long) StringParam::eStringTypeDefault))
+#endif
         return ;
     // Register converter for enum 'StringParam::TypeEnum'.
     {

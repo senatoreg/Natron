@@ -11,9 +11,12 @@ GCC_DIAG_UNUSED_LOCAL_TYPEDEFS_OFF
 #include <pysidesignal.h>
 #include <pysideproperty.h>
 #include <pyside.h>
+#if SHIBOKEN_MAJOR_VERSION < 2
 #include <typeresolver.h>
+#endif
 #include <typeinfo>
 #include "natronengine_python.h"
+#include "natron_helper.h"
 
 #include "userparamholder_wrapper.h"
 
@@ -95,8 +98,13 @@ static PyObject* Sbk_UserParamHolderFunc_createBooleanParam(PyObject* self, PyOb
     // Overloaded function decisor
     // 0: createBooleanParam(QString,QString)
     if (numArgs == 2
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        && (pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[0])))
+        && (pythonToCpp[1] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[1])))) {
+#else
         && (pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[0])))
         && (pythonToCpp[1] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[1])))) {
+#endif
         overloadId = 0; // createBooleanParam(QString,QString)
     }
 
@@ -127,8 +135,12 @@ static PyObject* Sbk_UserParamHolderFunc_createBooleanParam(PyObject* self, PyOb
     return pyResult;
 
     Sbk_UserParamHolderFunc_createBooleanParam_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.UserParamHolder.createBooleanParam");
+#else
         const char* overloads[] = {"unicode, unicode", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.UserParamHolder.createBooleanParam", overloads);
+#endif
         return 0;
 }
 
@@ -156,8 +168,13 @@ static PyObject* Sbk_UserParamHolderFunc_createButtonParam(PyObject* self, PyObj
     // Overloaded function decisor
     // 0: createButtonParam(QString,QString)
     if (numArgs == 2
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        && (pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[0])))
+        && (pythonToCpp[1] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[1])))) {
+#else
         && (pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[0])))
         && (pythonToCpp[1] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[1])))) {
+#endif
         overloadId = 0; // createButtonParam(QString,QString)
     }
 
@@ -188,8 +205,12 @@ static PyObject* Sbk_UserParamHolderFunc_createButtonParam(PyObject* self, PyObj
     return pyResult;
 
     Sbk_UserParamHolderFunc_createButtonParam_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.UserParamHolder.createButtonParam");
+#else
         const char* overloads[] = {"unicode, unicode", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.UserParamHolder.createButtonParam", overloads);
+#endif
         return 0;
 }
 
@@ -217,8 +238,13 @@ static PyObject* Sbk_UserParamHolderFunc_createChoiceParam(PyObject* self, PyObj
     // Overloaded function decisor
     // 0: createChoiceParam(QString,QString)
     if (numArgs == 2
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        && (pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[0])))
+        && (pythonToCpp[1] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[1])))) {
+#else
         && (pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[0])))
         && (pythonToCpp[1] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[1])))) {
+#endif
         overloadId = 0; // createChoiceParam(QString,QString)
     }
 
@@ -249,8 +275,12 @@ static PyObject* Sbk_UserParamHolderFunc_createChoiceParam(PyObject* self, PyObj
     return pyResult;
 
     Sbk_UserParamHolderFunc_createChoiceParam_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.UserParamHolder.createChoiceParam");
+#else
         const char* overloads[] = {"unicode, unicode", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.UserParamHolder.createChoiceParam", overloads);
+#endif
         return 0;
 }
 
@@ -278,8 +308,13 @@ static PyObject* Sbk_UserParamHolderFunc_createColorParam(PyObject* self, PyObje
     // Overloaded function decisor
     // 0: createColorParam(QString,QString,bool)
     if (numArgs == 3
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        && (pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[0])))
+        && (pythonToCpp[1] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[1])))
+#else
         && (pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[0])))
         && (pythonToCpp[1] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[1])))
+#endif
         && (pythonToCpp[2] = Shiboken::Conversions::isPythonToCppConvertible(Shiboken::Conversions::PrimitiveTypeConverter<bool>(), (pyArgs[2])))) {
         overloadId = 0; // createColorParam(QString,QString,bool)
     }
@@ -313,8 +348,12 @@ static PyObject* Sbk_UserParamHolderFunc_createColorParam(PyObject* self, PyObje
     return pyResult;
 
     Sbk_UserParamHolderFunc_createColorParam_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.UserParamHolder.createColorParam");
+#else
         const char* overloads[] = {"unicode, unicode, bool", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.UserParamHolder.createColorParam", overloads);
+#endif
         return 0;
 }
 
@@ -342,8 +381,13 @@ static PyObject* Sbk_UserParamHolderFunc_createDouble2DParam(PyObject* self, PyO
     // Overloaded function decisor
     // 0: createDouble2DParam(QString,QString)
     if (numArgs == 2
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        && (pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[0])))
+        && (pythonToCpp[1] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[1])))) {
+#else
         && (pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[0])))
         && (pythonToCpp[1] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[1])))) {
+#endif
         overloadId = 0; // createDouble2DParam(QString,QString)
     }
 
@@ -374,8 +418,12 @@ static PyObject* Sbk_UserParamHolderFunc_createDouble2DParam(PyObject* self, PyO
     return pyResult;
 
     Sbk_UserParamHolderFunc_createDouble2DParam_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.UserParamHolder.createDouble2DParam");
+#else
         const char* overloads[] = {"unicode, unicode", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.UserParamHolder.createDouble2DParam", overloads);
+#endif
         return 0;
 }
 
@@ -403,8 +451,13 @@ static PyObject* Sbk_UserParamHolderFunc_createDouble3DParam(PyObject* self, PyO
     // Overloaded function decisor
     // 0: createDouble3DParam(QString,QString)
     if (numArgs == 2
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        && (pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[0])))
+        && (pythonToCpp[1] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[1])))) {
+#else
         && (pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[0])))
         && (pythonToCpp[1] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[1])))) {
+#endif
         overloadId = 0; // createDouble3DParam(QString,QString)
     }
 
@@ -435,8 +488,12 @@ static PyObject* Sbk_UserParamHolderFunc_createDouble3DParam(PyObject* self, PyO
     return pyResult;
 
     Sbk_UserParamHolderFunc_createDouble3DParam_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.UserParamHolder.createDouble3DParam");
+#else
         const char* overloads[] = {"unicode, unicode", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.UserParamHolder.createDouble3DParam", overloads);
+#endif
         return 0;
 }
 
@@ -464,8 +521,13 @@ static PyObject* Sbk_UserParamHolderFunc_createDoubleParam(PyObject* self, PyObj
     // Overloaded function decisor
     // 0: createDoubleParam(QString,QString)
     if (numArgs == 2
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        && (pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[0])))
+        && (pythonToCpp[1] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[1])))) {
+#else
         && (pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[0])))
         && (pythonToCpp[1] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[1])))) {
+#endif
         overloadId = 0; // createDoubleParam(QString,QString)
     }
 
@@ -496,8 +558,12 @@ static PyObject* Sbk_UserParamHolderFunc_createDoubleParam(PyObject* self, PyObj
     return pyResult;
 
     Sbk_UserParamHolderFunc_createDoubleParam_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.UserParamHolder.createDoubleParam");
+#else
         const char* overloads[] = {"unicode, unicode", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.UserParamHolder.createDoubleParam", overloads);
+#endif
         return 0;
 }
 
@@ -525,8 +591,13 @@ static PyObject* Sbk_UserParamHolderFunc_createFileParam(PyObject* self, PyObjec
     // Overloaded function decisor
     // 0: createFileParam(QString,QString)
     if (numArgs == 2
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        && (pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[0])))
+        && (pythonToCpp[1] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[1])))) {
+#else
         && (pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[0])))
         && (pythonToCpp[1] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[1])))) {
+#endif
         overloadId = 0; // createFileParam(QString,QString)
     }
 
@@ -557,8 +628,12 @@ static PyObject* Sbk_UserParamHolderFunc_createFileParam(PyObject* self, PyObjec
     return pyResult;
 
     Sbk_UserParamHolderFunc_createFileParam_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.UserParamHolder.createFileParam");
+#else
         const char* overloads[] = {"unicode, unicode", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.UserParamHolder.createFileParam", overloads);
+#endif
         return 0;
 }
 
@@ -586,8 +661,13 @@ static PyObject* Sbk_UserParamHolderFunc_createGroupParam(PyObject* self, PyObje
     // Overloaded function decisor
     // 0: createGroupParam(QString,QString)
     if (numArgs == 2
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        && (pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[0])))
+        && (pythonToCpp[1] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[1])))) {
+#else
         && (pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[0])))
         && (pythonToCpp[1] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[1])))) {
+#endif
         overloadId = 0; // createGroupParam(QString,QString)
     }
 
@@ -618,8 +698,12 @@ static PyObject* Sbk_UserParamHolderFunc_createGroupParam(PyObject* self, PyObje
     return pyResult;
 
     Sbk_UserParamHolderFunc_createGroupParam_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.UserParamHolder.createGroupParam");
+#else
         const char* overloads[] = {"unicode, unicode", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.UserParamHolder.createGroupParam", overloads);
+#endif
         return 0;
 }
 
@@ -647,8 +731,13 @@ static PyObject* Sbk_UserParamHolderFunc_createInt2DParam(PyObject* self, PyObje
     // Overloaded function decisor
     // 0: createInt2DParam(QString,QString)
     if (numArgs == 2
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        && (pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[0])))
+        && (pythonToCpp[1] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[1])))) {
+#else
         && (pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[0])))
         && (pythonToCpp[1] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[1])))) {
+#endif
         overloadId = 0; // createInt2DParam(QString,QString)
     }
 
@@ -679,8 +768,12 @@ static PyObject* Sbk_UserParamHolderFunc_createInt2DParam(PyObject* self, PyObje
     return pyResult;
 
     Sbk_UserParamHolderFunc_createInt2DParam_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.UserParamHolder.createInt2DParam");
+#else
         const char* overloads[] = {"unicode, unicode", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.UserParamHolder.createInt2DParam", overloads);
+#endif
         return 0;
 }
 
@@ -708,8 +801,13 @@ static PyObject* Sbk_UserParamHolderFunc_createInt3DParam(PyObject* self, PyObje
     // Overloaded function decisor
     // 0: createInt3DParam(QString,QString)
     if (numArgs == 2
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        && (pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[0])))
+        && (pythonToCpp[1] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[1])))) {
+#else
         && (pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[0])))
         && (pythonToCpp[1] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[1])))) {
+#endif
         overloadId = 0; // createInt3DParam(QString,QString)
     }
 
@@ -740,8 +838,12 @@ static PyObject* Sbk_UserParamHolderFunc_createInt3DParam(PyObject* self, PyObje
     return pyResult;
 
     Sbk_UserParamHolderFunc_createInt3DParam_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.UserParamHolder.createInt3DParam");
+#else
         const char* overloads[] = {"unicode, unicode", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.UserParamHolder.createInt3DParam", overloads);
+#endif
         return 0;
 }
 
@@ -769,8 +871,13 @@ static PyObject* Sbk_UserParamHolderFunc_createIntParam(PyObject* self, PyObject
     // Overloaded function decisor
     // 0: createIntParam(QString,QString)
     if (numArgs == 2
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        && (pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[0])))
+        && (pythonToCpp[1] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[1])))) {
+#else
         && (pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[0])))
         && (pythonToCpp[1] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[1])))) {
+#endif
         overloadId = 0; // createIntParam(QString,QString)
     }
 
@@ -801,8 +908,12 @@ static PyObject* Sbk_UserParamHolderFunc_createIntParam(PyObject* self, PyObject
     return pyResult;
 
     Sbk_UserParamHolderFunc_createIntParam_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.UserParamHolder.createIntParam");
+#else
         const char* overloads[] = {"unicode, unicode", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.UserParamHolder.createIntParam", overloads);
+#endif
         return 0;
 }
 
@@ -830,8 +941,13 @@ static PyObject* Sbk_UserParamHolderFunc_createOutputFileParam(PyObject* self, P
     // Overloaded function decisor
     // 0: createOutputFileParam(QString,QString)
     if (numArgs == 2
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        && (pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[0])))
+        && (pythonToCpp[1] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[1])))) {
+#else
         && (pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[0])))
         && (pythonToCpp[1] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[1])))) {
+#endif
         overloadId = 0; // createOutputFileParam(QString,QString)
     }
 
@@ -862,8 +978,12 @@ static PyObject* Sbk_UserParamHolderFunc_createOutputFileParam(PyObject* self, P
     return pyResult;
 
     Sbk_UserParamHolderFunc_createOutputFileParam_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.UserParamHolder.createOutputFileParam");
+#else
         const char* overloads[] = {"unicode, unicode", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.UserParamHolder.createOutputFileParam", overloads);
+#endif
         return 0;
 }
 
@@ -891,8 +1011,13 @@ static PyObject* Sbk_UserParamHolderFunc_createPageParam(PyObject* self, PyObjec
     // Overloaded function decisor
     // 0: createPageParam(QString,QString)
     if (numArgs == 2
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        && (pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[0])))
+        && (pythonToCpp[1] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[1])))) {
+#else
         && (pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[0])))
         && (pythonToCpp[1] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[1])))) {
+#endif
         overloadId = 0; // createPageParam(QString,QString)
     }
 
@@ -923,8 +1048,12 @@ static PyObject* Sbk_UserParamHolderFunc_createPageParam(PyObject* self, PyObjec
     return pyResult;
 
     Sbk_UserParamHolderFunc_createPageParam_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.UserParamHolder.createPageParam");
+#else
         const char* overloads[] = {"unicode, unicode", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.UserParamHolder.createPageParam", overloads);
+#endif
         return 0;
 }
 
@@ -952,8 +1081,13 @@ static PyObject* Sbk_UserParamHolderFunc_createParametricParam(PyObject* self, P
     // Overloaded function decisor
     // 0: createParametricParam(QString,QString,int)
     if (numArgs == 3
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        && (pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[0])))
+        && (pythonToCpp[1] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[1])))
+#else
         && (pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[0])))
         && (pythonToCpp[1] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[1])))
+#endif
         && (pythonToCpp[2] = Shiboken::Conversions::isPythonToCppConvertible(Shiboken::Conversions::PrimitiveTypeConverter<int>(), (pyArgs[2])))) {
         overloadId = 0; // createParametricParam(QString,QString,int)
     }
@@ -987,8 +1121,12 @@ static PyObject* Sbk_UserParamHolderFunc_createParametricParam(PyObject* self, P
     return pyResult;
 
     Sbk_UserParamHolderFunc_createParametricParam_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.UserParamHolder.createParametricParam");
+#else
         const char* overloads[] = {"unicode, unicode, int", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.UserParamHolder.createParametricParam", overloads);
+#endif
         return 0;
 }
 
@@ -1016,8 +1154,13 @@ static PyObject* Sbk_UserParamHolderFunc_createPathParam(PyObject* self, PyObjec
     // Overloaded function decisor
     // 0: createPathParam(QString,QString)
     if (numArgs == 2
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        && (pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[0])))
+        && (pythonToCpp[1] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[1])))) {
+#else
         && (pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[0])))
         && (pythonToCpp[1] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[1])))) {
+#endif
         overloadId = 0; // createPathParam(QString,QString)
     }
 
@@ -1048,8 +1191,12 @@ static PyObject* Sbk_UserParamHolderFunc_createPathParam(PyObject* self, PyObjec
     return pyResult;
 
     Sbk_UserParamHolderFunc_createPathParam_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.UserParamHolder.createPathParam");
+#else
         const char* overloads[] = {"unicode, unicode", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.UserParamHolder.createPathParam", overloads);
+#endif
         return 0;
 }
 
@@ -1077,8 +1224,13 @@ static PyObject* Sbk_UserParamHolderFunc_createSeparatorParam(PyObject* self, Py
     // Overloaded function decisor
     // 0: createSeparatorParam(QString,QString)
     if (numArgs == 2
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        && (pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[0])))
+        && (pythonToCpp[1] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[1])))) {
+#else
         && (pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[0])))
         && (pythonToCpp[1] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[1])))) {
+#endif
         overloadId = 0; // createSeparatorParam(QString,QString)
     }
 
@@ -1109,8 +1261,12 @@ static PyObject* Sbk_UserParamHolderFunc_createSeparatorParam(PyObject* self, Py
     return pyResult;
 
     Sbk_UserParamHolderFunc_createSeparatorParam_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.UserParamHolder.createSeparatorParam");
+#else
         const char* overloads[] = {"unicode, unicode", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.UserParamHolder.createSeparatorParam", overloads);
+#endif
         return 0;
 }
 
@@ -1138,8 +1294,13 @@ static PyObject* Sbk_UserParamHolderFunc_createStringParam(PyObject* self, PyObj
     // Overloaded function decisor
     // 0: createStringParam(QString,QString)
     if (numArgs == 2
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        && (pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[0])))
+        && (pythonToCpp[1] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[1])))) {
+#else
         && (pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[0])))
         && (pythonToCpp[1] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[1])))) {
+#endif
         overloadId = 0; // createStringParam(QString,QString)
     }
 
@@ -1170,8 +1331,12 @@ static PyObject* Sbk_UserParamHolderFunc_createStringParam(PyObject* self, PyObj
     return pyResult;
 
     Sbk_UserParamHolderFunc_createStringParam_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.UserParamHolder.createStringParam");
+#else
         const char* overloads[] = {"unicode, unicode", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.UserParamHolder.createStringParam", overloads);
+#endif
         return 0;
 }
 
@@ -1246,8 +1411,12 @@ static PyObject* Sbk_UserParamHolderFunc_removeParam(PyObject* self, PyObject* p
     return pyResult;
 
     Sbk_UserParamHolderFunc_removeParam_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.UserParamHolder.removeParam");
+#else
         const char* overloads[] = {"NatronEngine.Param", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.UserParamHolder.removeParam", overloads);
+#endif
         return 0;
 }
 
@@ -1280,14 +1449,57 @@ static PyMethodDef Sbk_UserParamHolder_methods[] = {
 
 static int Sbk_UserParamHolder_traverse(PyObject* self, visitproc visit, void* arg)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    return reinterpret_cast<PyTypeObject *>(SbkObject_TypeF())->tp_traverse(self, visit, arg);
+#else
     return reinterpret_cast<PyTypeObject*>(&SbkObject_Type)->tp_traverse(self, visit, arg);
+#endif
 }
 static int Sbk_UserParamHolder_clear(PyObject* self)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    return reinterpret_cast<PyTypeObject *>(SbkObject_TypeF())->tp_clear(self);
+#else
     return reinterpret_cast<PyTypeObject*>(&SbkObject_Type)->tp_clear(self);
+#endif
 }
 // Class Definition -----------------------------------------------
 extern "C" {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+static SbkObjectType *_Sbk_UserParamHolder_Type = nullptr;
+static SbkObjectType *Sbk_UserParamHolder_TypeF(void)
+{
+    return _Sbk_UserParamHolder_Type;
+}
+
+static PyType_Slot Sbk_UserParamHolder_slots[] = {
+    {Py_tp_base,        nullptr}, // inserted by introduceWrapperType
+    {Py_tp_dealloc,     reinterpret_cast<void*>(&SbkDeallocWrapper)},
+    {Py_tp_repr,        nullptr},
+    {Py_tp_hash,        nullptr},
+    {Py_tp_call,        nullptr},
+    {Py_tp_str,         nullptr},
+    {Py_tp_getattro,    nullptr},
+    {Py_tp_setattro,    nullptr},
+    {Py_tp_traverse,    reinterpret_cast<void*>(Sbk_UserParamHolder_traverse)},
+    {Py_tp_clear,       reinterpret_cast<void*>(Sbk_UserParamHolder_clear)},
+    {Py_tp_richcompare, nullptr},
+    {Py_tp_iter,        nullptr},
+    {Py_tp_iternext,    nullptr},
+    {Py_tp_methods,     reinterpret_cast<void*>(Sbk_UserParamHolder_methods)},
+    {Py_tp_getset,      nullptr},
+    {Py_tp_init,        reinterpret_cast<void*>(Sbk_UserParamHolder_Init)},
+    {Py_tp_new,         reinterpret_cast<void*>(SbkObjectTpNew)},
+    {0, nullptr}
+};
+static PyType_Spec Sbk_UserParamHolder_spec = {
+    "NatronEngine.UserParamHolder",
+    sizeof(SbkObject),
+    0,
+    Py_TPFLAGS_DEFAULT|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_GC,
+    Sbk_UserParamHolder_slots
+};
+#else
 static SbkObjectType Sbk_UserParamHolder_Type = { { {
     PyVarObject_HEAD_INIT(&SbkObjectType_Type, 0)
     /*tp_name*/             "NatronEngine.UserParamHolder",
@@ -1337,6 +1549,7 @@ static SbkObjectType Sbk_UserParamHolder_Type = { { {
 }, },
     /*priv_data*/           0
 };
+#endif
 } //extern
 
 
@@ -1344,12 +1557,20 @@ static SbkObjectType Sbk_UserParamHolder_Type = { { {
 
 // Python to C++ pointer conversion - returns the C++ object of the Python wrapper (keeps object identity).
 static void UserParamHolder_PythonToCpp_UserParamHolder_PTR(PyObject* pyIn, void* cppOut) {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    Shiboken::Conversions::pythonToCppPointer(Sbk_UserParamHolder_TypeF(), pyIn, cppOut);
+#else
     Shiboken::Conversions::pythonToCppPointer(&Sbk_UserParamHolder_Type, pyIn, cppOut);
+#endif
 }
 static PythonToCppFunc is_UserParamHolder_PythonToCpp_UserParamHolder_PTR_Convertible(PyObject* pyIn) {
     if (pyIn == Py_None)
         return Shiboken::Conversions::nonePythonToCppNullPtr;
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    if (PyObject_TypeCheck(pyIn, reinterpret_cast<PyTypeObject*>(Sbk_UserParamHolder_TypeF())))
+#else
     if (PyObject_TypeCheck(pyIn, (PyTypeObject*)&Sbk_UserParamHolder_Type))
+#endif
         return UserParamHolder_PythonToCpp_UserParamHolder_PTR;
     return 0;
 }
@@ -1361,21 +1582,84 @@ static PyObject* UserParamHolder_PTR_CppToPython_UserParamHolder(const void* cpp
         Py_INCREF(pyOut);
         return pyOut;
     }
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    bool changedTypeName = false;
+    auto tCppIn = reinterpret_cast<const ::UserParamHolder *>(cppIn);
+    const char *typeName = typeid(*tCppIn).name();
+    auto sbkType = Shiboken::ObjectType::typeForTypeName(typeName);
+    if (sbkType && Shiboken::ObjectType::hasSpecialCastFunction(sbkType)) {
+        typeName = typeNameOf(tCppIn);
+        changedTypeName = true;
+     }
+    PyObject *result = Shiboken::Object::newObject(Sbk_UserParamHolder_TypeF(), const_cast<void*>(cppIn), false, /* exactType */ changedTypeName, typeName);
+    if (changedTypeName)
+        delete [] typeName;
+    return result;
+#else
     const char* typeName = typeid(*((::UserParamHolder*)cppIn)).name();
     return Shiboken::Object::newObject(&Sbk_UserParamHolder_Type, const_cast<void*>(cppIn), false, false, typeName);
+#endif
 }
+
+#if SHIBOKEN_MAJOR_VERSION >= 2
+// The signatures string for the functions.
+// Multiple signatures have their index "n:" in front.
+static const char *UserParamHolder_SignatureStrings[] = {
+    "NatronEngine.UserParamHolder()",
+    "NatronEngine.UserParamHolder.createBooleanParam(name:QString,label:QString)->NatronEngine.BooleanParam",
+    "NatronEngine.UserParamHolder.createButtonParam(name:QString,label:QString)->NatronEngine.ButtonParam",
+    "NatronEngine.UserParamHolder.createChoiceParam(name:QString,label:QString)->NatronEngine.ChoiceParam",
+    "NatronEngine.UserParamHolder.createColorParam(name:QString,label:QString,useAlpha:bool)->NatronEngine.ColorParam",
+    "NatronEngine.UserParamHolder.createDouble2DParam(name:QString,label:QString)->NatronEngine.Double2DParam",
+    "NatronEngine.UserParamHolder.createDouble3DParam(name:QString,label:QString)->NatronEngine.Double3DParam",
+    "NatronEngine.UserParamHolder.createDoubleParam(name:QString,label:QString)->NatronEngine.DoubleParam",
+    "NatronEngine.UserParamHolder.createFileParam(name:QString,label:QString)->NatronEngine.FileParam",
+    "NatronEngine.UserParamHolder.createGroupParam(name:QString,label:QString)->NatronEngine.GroupParam",
+    "NatronEngine.UserParamHolder.createInt2DParam(name:QString,label:QString)->NatronEngine.Int2DParam",
+    "NatronEngine.UserParamHolder.createInt3DParam(name:QString,label:QString)->NatronEngine.Int3DParam",
+    "NatronEngine.UserParamHolder.createIntParam(name:QString,label:QString)->NatronEngine.IntParam",
+    "NatronEngine.UserParamHolder.createOutputFileParam(name:QString,label:QString)->NatronEngine.FileParam",
+    "NatronEngine.UserParamHolder.createPageParam(name:QString,label:QString)->NatronEngine.PageParam",
+    "NatronEngine.UserParamHolder.createParametricParam(name:QString,label:QString,nbCurves:int)->NatronEngine.ParametricParam",
+    "NatronEngine.UserParamHolder.createPathParam(name:QString,label:QString)->NatronEngine.PathParam",
+    "NatronEngine.UserParamHolder.createSeparatorParam(name:QString,label:QString)->NatronEngine.SeparatorParam",
+    "NatronEngine.UserParamHolder.createStringParam(name:QString,label:QString)->NatronEngine.StringParam",
+    "NatronEngine.UserParamHolder.refreshUserParamsGUI()",
+    "NatronEngine.UserParamHolder.removeParam(param:NatronEngine.Param)->bool",
+    nullptr}; // Sentinel
+#endif
 
 void init_UserParamHolder(PyObject* module)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    _Sbk_UserParamHolder_Type = Shiboken::ObjectType::introduceWrapperType(
+        module,
+        "UserParamHolder",
+        "UserParamHolder*",
+        &Sbk_UserParamHolder_spec,
+        UserParamHolder_SignatureStrings,
+        &Shiboken::callCppDestructor< ::UserParamHolder >,
+        0,
+        0,
+        0    );
+
+    SbkNatronEngineTypes[SBK_USERPARAMHOLDER_IDX]
+        = reinterpret_cast<PyTypeObject*>(Sbk_UserParamHolder_TypeF());
+#else
     SbkNatronEngineTypes[SBK_USERPARAMHOLDER_IDX] = reinterpret_cast<PyTypeObject*>(&Sbk_UserParamHolder_Type);
 
     if (!Shiboken::ObjectType::introduceWrapperType(module, "UserParamHolder", "UserParamHolder*",
         &Sbk_UserParamHolder_Type, &Shiboken::callCppDestructor< ::UserParamHolder >)) {
         return;
     }
+#endif
 
     // Register Converter
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    SbkConverter* converter = Shiboken::Conversions::createConverter(Sbk_UserParamHolder_TypeF(),
+#else
     SbkConverter* converter = Shiboken::Conversions::createConverter(&Sbk_UserParamHolder_Type,
+#endif
         UserParamHolder_PythonToCpp_UserParamHolder_PTR,
         is_UserParamHolder_PythonToCpp_UserParamHolder_PTR_Convertible,
         UserParamHolder_PTR_CppToPython_UserParamHolder);

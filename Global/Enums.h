@@ -25,6 +25,7 @@
 CLANG_DIAG_OFF(deprecated)
 #include <QtCore/QMetaType>
 CLANG_DIAG_ON(deprecated)
+#include <shiboken.h>
 
 NATRON_NAMESPACE_ENTER
 #ifdef SBK_RUN
@@ -57,6 +58,47 @@ enum TimelineChangeReasonEnum
     eTimelineChangeReasonOtherSeek
 };
 
+#if SHIBOKEN_MAJOR_VERSION >= 2
+enum StatusEnum
+{
+    // Everything went ok, the operation completed successfully
+    eStatusOK = 0,
+
+    // Something failed, the plug-in is expected to post an error message
+    // with setPersistentMessage
+    eStatusFailed = 1,
+
+    // The render failed because a mandatory input of a node is diconnected
+    // In this case there's no need for a persistent message, a black image is enough
+    eStatusInputDisconnected = 2,
+
+    // The render was aborted, everything should abort ASAP and
+    // the UI should not be updated with the processed images
+    eStatusAborted = 3,
+
+    // The action failed because of a lack of memory.
+    // If the action is using a GPU backend, it may re-try the same action on CPU right away
+    eStatusOutOfMemory = 4,
+
+    // The operation completed with default implementation
+    eStatusReplyDefault = 14
+};
+
+inline bool isFailureRetCode(StatusEnum code)
+{
+    switch (code) {
+        case eStatusAborted:
+        case eStatusFailed:
+        case eStatusOutOfMemory:
+        case eStatusInputDisconnected:
+            return true;
+        case eStatusOK:
+        case eStatusReplyDefault:
+            return false;
+    }
+    return true;
+}
+#else
 enum StatusEnum
 {
     eStatusOK = 0,
@@ -64,6 +106,7 @@ enum StatusEnum
     eStatusOutOfMemory = 2,
     eStatusReplyDefault = 14
 };
+#endif
 
 /*Copy of QMessageBox::StandardButton*/
 enum StandardButtonEnum

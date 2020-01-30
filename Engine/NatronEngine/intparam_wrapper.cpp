@@ -11,15 +11,19 @@ GCC_DIAG_UNUSED_LOCAL_TYPEDEFS_OFF
 #include <pysidesignal.h>
 #include <pysideproperty.h>
 #include <pyside.h>
+#if SHIBOKEN_MAJOR_VERSION < 2
 #include <typeresolver.h>
+#endif
 #include <typeinfo>
 #include "natronengine_python.h"
+#include "natron_helper.h"
 
 #include "intparam_wrapper.h"
 
 // Extra includes
 NATRON_NAMESPACE_USING NATRON_PYTHON_NAMESPACE_USING
 #include <PyParameter.h>
+
 
 
 // Native ---------------------------------------------------------
@@ -95,8 +99,12 @@ static PyObject* Sbk_IntParamFunc_addAsDependencyOf(PyObject* self, PyObject* ar
     return pyResult;
 
     Sbk_IntParamFunc_addAsDependencyOf_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >=2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.IntParam.addAsDependencyOf");
+#else
         const char* overloads[] = {"int, NatronEngine.Param, int", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.IntParam.addAsDependencyOf", overloads);
+#endif
         return 0;
 }
 
@@ -167,8 +175,12 @@ static PyObject* Sbk_IntParamFunc_get(PyObject* self, PyObject* args)
     return pyResult;
 
     Sbk_IntParamFunc_get_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.IntParam.get");
+#else
         const char* overloads[] = {"", "float", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.IntParam.get", overloads);
+#endif
         return 0;
 }
 
@@ -238,8 +250,12 @@ static PyObject* Sbk_IntParamFunc_getDefaultValue(PyObject* self, PyObject* args
     return pyResult;
 
     Sbk_IntParamFunc_getDefaultValue_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.IntParam.getDefaultValue");
+#else
         const char* overloads[] = {"int = 0", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.IntParam.getDefaultValue", overloads);
+#endif
         return 0;
 }
 
@@ -283,8 +299,12 @@ static PyObject* Sbk_IntParamFunc_getDisplayMaximum(PyObject* self, PyObject* py
     return pyResult;
 
     Sbk_IntParamFunc_getDisplayMaximum_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.IntParam.getDisplayMaximum");
+#else
         const char* overloads[] = {"int", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.IntParam.getDisplayMaximum", overloads);
+#endif
         return 0;
 }
 
@@ -328,8 +348,12 @@ static PyObject* Sbk_IntParamFunc_getDisplayMinimum(PyObject* self, PyObject* py
     return pyResult;
 
     Sbk_IntParamFunc_getDisplayMinimum_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.IntParam.getDisplayMinimum");
+#else
         const char* overloads[] = {"int", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.IntParam.getDisplayMinimum", overloads);
+#endif
         return 0;
 }
 
@@ -399,8 +423,12 @@ static PyObject* Sbk_IntParamFunc_getMaximum(PyObject* self, PyObject* args, PyO
     return pyResult;
 
     Sbk_IntParamFunc_getMaximum_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.IntParam.getMaximum");
+#else
         const char* overloads[] = {"int = 0", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.IntParam.getMaximum", overloads);
+#endif
         return 0;
 }
 
@@ -470,8 +498,12 @@ static PyObject* Sbk_IntParamFunc_getMinimum(PyObject* self, PyObject* args, PyO
     return pyResult;
 
     Sbk_IntParamFunc_getMinimum_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.IntParam.getMinimum");
+#else
         const char* overloads[] = {"int = 0", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.IntParam.getMinimum", overloads);
+#endif
         return 0;
 }
 
@@ -541,8 +573,12 @@ static PyObject* Sbk_IntParamFunc_getValue(PyObject* self, PyObject* args, PyObj
     return pyResult;
 
     Sbk_IntParamFunc_getValue_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.IntParam.getValue");
+#else
         const char* overloads[] = {"int = 0", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.IntParam.getValue", overloads);
+#endif
         return 0;
 }
 
@@ -619,8 +655,12 @@ static PyObject* Sbk_IntParamFunc_getValueAtTime(PyObject* self, PyObject* args,
     return pyResult;
 
     Sbk_IntParamFunc_getValueAtTime_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.IntParam.getValueAtTime");
+#else
         const char* overloads[] = {"float, int = 0", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.IntParam.getValueAtTime", overloads);
+#endif
         return 0;
 }
 
@@ -693,8 +733,12 @@ static PyObject* Sbk_IntParamFunc_restoreDefaultValue(PyObject* self, PyObject* 
     Py_RETURN_NONE;
 
     Sbk_IntParamFunc_restoreDefaultValue_TypeError:
+ #if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.IntParam.restoreDefaultValue");
+#else
         const char* overloads[] = {"int = 0", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.IntParam.restoreDefaultValue", overloads);
+#endif
         return 0;
 }
 
@@ -779,8 +823,12 @@ static PyObject* Sbk_IntParamFunc_set(PyObject* self, PyObject* args)
     Py_RETURN_NONE;
 
     Sbk_IntParamFunc_set_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.IntParam.set");
+#else
         const char* overloads[] = {"int", "int, float", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.IntParam.set", overloads);
+#endif
         return 0;
 }
 
@@ -854,8 +902,12 @@ static PyObject* Sbk_IntParamFunc_setDefaultValue(PyObject* self, PyObject* args
     Py_RETURN_NONE;
 
     Sbk_IntParamFunc_setDefaultValue_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.IntParam.setDefaultValue");
+#else
         const char* overloads[] = {"int, int = 0", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.IntParam.setDefaultValue", overloads);
+#endif
         return 0;
 }
 
@@ -929,8 +981,12 @@ static PyObject* Sbk_IntParamFunc_setDisplayMaximum(PyObject* self, PyObject* ar
     Py_RETURN_NONE;
 
     Sbk_IntParamFunc_setDisplayMaximum_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.IntParam.setDisplayMaximum");
+#else
         const char* overloads[] = {"int, int = 0", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.IntParam.setDisplayMaximum", overloads);
+#endif
         return 0;
 }
 
@@ -1004,8 +1060,12 @@ static PyObject* Sbk_IntParamFunc_setDisplayMinimum(PyObject* self, PyObject* ar
     Py_RETURN_NONE;
 
     Sbk_IntParamFunc_setDisplayMinimum_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.IntParam.setDisplayMinimum");
+#else
         const char* overloads[] = {"int, int = 0", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.IntParam.setDisplayMinimum", overloads);
+#endif
         return 0;
 }
 
@@ -1079,8 +1139,12 @@ static PyObject* Sbk_IntParamFunc_setMaximum(PyObject* self, PyObject* args, PyO
     Py_RETURN_NONE;
 
     Sbk_IntParamFunc_setMaximum_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.IntParam.setMaximum");
+#else
         const char* overloads[] = {"int, int = 0", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.IntParam.setMaximum", overloads);
+#endif
         return 0;
 }
 
@@ -1154,8 +1218,12 @@ static PyObject* Sbk_IntParamFunc_setMinimum(PyObject* self, PyObject* args, PyO
     Py_RETURN_NONE;
 
     Sbk_IntParamFunc_setMinimum_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.IntParam.setMinimum");
+#else
         const char* overloads[] = {"int, int = 0", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.IntParam.setMinimum", overloads);
+#endif
         return 0;
 }
 
@@ -1235,8 +1303,12 @@ static PyObject* Sbk_IntParamFunc_setValue(PyObject* self, PyObject* args, PyObj
     Py_RETURN_NONE;
 
     Sbk_IntParamFunc_setValue_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.IntParam.setValue");
+#else
         const char* overloads[] = {"int, int = 0", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.IntParam.setValue", overloads);
+#endif
         return 0;
 }
 
@@ -1320,8 +1392,12 @@ static PyObject* Sbk_IntParamFunc_setValueAtTime(PyObject* self, PyObject* args,
     Py_RETURN_NONE;
 
     Sbk_IntParamFunc_setValueAtTime_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.IntParam.setValueAtTime");
+#else
         const char* overloads[] = {"int, float, int = 0", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.IntParam.setValueAtTime", overloads);
+#endif
         return 0;
 }
 
@@ -1352,14 +1428,57 @@ static PyMethodDef Sbk_IntParam_methods[] = {
 
 static int Sbk_IntParam_traverse(PyObject* self, visitproc visit, void* arg)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    return reinterpret_cast<PyTypeObject *>(SbkObject_TypeF())->tp_traverse(self, visit, arg);
+#else
     return reinterpret_cast<PyTypeObject*>(&SbkObject_Type)->tp_traverse(self, visit, arg);
+#endif
 }
 static int Sbk_IntParam_clear(PyObject* self)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    return reinterpret_cast<PyTypeObject *>(SbkObject_TypeF())->tp_clear(self);
+#else
     return reinterpret_cast<PyTypeObject*>(&SbkObject_Type)->tp_clear(self);
+#endif
 }
 // Class Definition -----------------------------------------------
 extern "C" {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+static SbkObjectType *_Sbk_IntParam_Type = nullptr;
+static SbkObjectType *Sbk_IntParam_TypeF(void)
+{
+    return _Sbk_IntParam_Type;
+}
+
+static PyType_Slot Sbk_IntParam_slots[] = {
+    {Py_tp_base,        nullptr}, // inserted by introduceWrapperType
+    {Py_tp_dealloc,     reinterpret_cast<void*>(&SbkDeallocWrapper)},
+    {Py_tp_repr,        nullptr},
+    {Py_tp_hash,        nullptr},
+    {Py_tp_call,        nullptr},
+    {Py_tp_str,         nullptr},
+    {Py_tp_getattro,    nullptr},
+    {Py_tp_setattro,    nullptr},
+    {Py_tp_traverse,    reinterpret_cast<void*>(Sbk_IntParam_traverse)},
+    {Py_tp_clear,       reinterpret_cast<void*>(Sbk_IntParam_clear)},
+    {Py_tp_richcompare, nullptr},
+    {Py_tp_iter,        nullptr},
+    {Py_tp_iternext,    nullptr},
+    {Py_tp_methods,     reinterpret_cast<void*>(Sbk_IntParam_methods)},
+    {Py_tp_getset,      nullptr},
+    {Py_tp_init,        nullptr},
+    {Py_tp_new,         reinterpret_cast<void*>(SbkDummyNew /* PYSIDE-595: Prevent replacement of "0" with base->tp_new. */)},
+    {0, nullptr}
+};
+static PyType_Spec Sbk_IntParam_spec = {
+    "NatronEngine.IntParam",
+    sizeof(SbkObject),
+    0,
+    Py_TPFLAGS_DEFAULT|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_GC,
+    Sbk_IntParam_slots
+};
+#else
 static SbkObjectType Sbk_IntParam_Type = { { {
     PyVarObject_HEAD_INIT(&SbkObjectType_Type, 0)
     /*tp_name*/             "NatronEngine.IntParam",
@@ -1409,6 +1528,7 @@ static SbkObjectType Sbk_IntParam_Type = { { {
 }, },
     /*priv_data*/           0
 };
+#endif
 } //extern
 
 static void* Sbk_IntParam_typeDiscovery(void* cptr, SbkObjectType* instanceType)
@@ -1423,13 +1543,21 @@ static void* Sbk_IntParam_typeDiscovery(void* cptr, SbkObjectType* instanceType)
 
 // Python to C++ pointer conversion - returns the C++ object of the Python wrapper (keeps object identity).
 static void IntParam_PythonToCpp_IntParam_PTR(PyObject* pyIn, void* cppOut) {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    Shiboken::Conversions::pythonToCppPointer(Sbk_IntParam_TypeF(), pyIn, cppOut);
+#else
     Shiboken::Conversions::pythonToCppPointer(&Sbk_IntParam_Type, pyIn, cppOut);
+#endif
 }
 static PythonToCppFunc is_IntParam_PythonToCpp_IntParam_PTR_Convertible(PyObject* pyIn) {
     if (pyIn == Py_None)
         return Shiboken::Conversions::nonePythonToCppNullPtr;
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    if (PyObject_TypeCheck(pyIn, reinterpret_cast<PyTypeObject*>(Sbk_IntParam_TypeF())))
+#else
     if (PyObject_TypeCheck(pyIn, (PyTypeObject*)&Sbk_IntParam_Type))
-        return IntParam_PythonToCpp_IntParam_PTR;
+#endif
+      return IntParam_PythonToCpp_IntParam_PTR;
     return 0;
 }
 
@@ -1440,21 +1568,83 @@ static PyObject* IntParam_PTR_CppToPython_IntParam(const void* cppIn) {
         Py_INCREF(pyOut);
         return pyOut;
     }
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        bool changedTypeName = false;
+    auto tCppIn = reinterpret_cast<const ::IntParam *>(cppIn);
+    const char *typeName = typeid(*tCppIn).name();
+    auto sbkType = Shiboken::ObjectType::typeForTypeName(typeName);
+    if (sbkType && Shiboken::ObjectType::hasSpecialCastFunction(sbkType)) {
+        typeName = typeNameOf(tCppIn);
+        changedTypeName = true;
+     }
+    PyObject *result = Shiboken::Object::newObject(Sbk_IntParam_TypeF(), const_cast<void*>(cppIn), false, /* exactType */ changedTypeName, typeName);
+    if (changedTypeName)
+        delete [] typeName;
+    return result;
+#else
     const char* typeName = typeid(*((::IntParam*)cppIn)).name();
     return Shiboken::Object::newObject(&Sbk_IntParam_Type, const_cast<void*>(cppIn), false, false, typeName);
+#endif
 }
+
+#if SHIBOKEN_MAJOR_VERSION >= 2
+// The signatures string for the functions.
+// Multiple signatures have their index "n:" in front.
+static const char *IntParam_SignatureStrings[] = {
+    "NatronEngine.IntParam.addAsDependencyOf(fromExprDimension:int,param:NatronEngine.Param,thisDimension:int)->int",
+    "0:NatronEngine.IntParam.get()->int",
+    "1:NatronEngine.IntParam.get(frame:double)->int",
+    "NatronEngine.IntParam.getDefaultValue(dimension:int=0)->int",
+    "NatronEngine.IntParam.getDisplayMaximum(dimension:int)->int",
+    "NatronEngine.IntParam.getDisplayMinimum(dimension:int)->int",
+    "NatronEngine.IntParam.getMaximum(dimension:int=0)->int",
+    "NatronEngine.IntParam.getMinimum(dimension:int=0)->int",
+    "NatronEngine.IntParam.getValue(dimension:int=0)->int",
+    "NatronEngine.IntParam.getValueAtTime(time:double,dimension:int=0)->int",
+    "NatronEngine.IntParam.restoreDefaultValue(dimension:int=-1)",
+    "0:NatronEngine.IntParam.set(x:int)",
+    "1:NatronEngine.IntParam.set(x:int,frame:double)",
+    "NatronEngine.IntParam.setDefaultValue(value:int,dimension:int=0)",
+    "NatronEngine.IntParam.setDisplayMaximum(maximum:int,dimension:int=0)",
+    "NatronEngine.IntParam.setDisplayMinimum(minimum:int,dimension:int=0)",
+    "NatronEngine.IntParam.setMaximum(maximum:int,dimension:int=0)",
+    "NatronEngine.IntParam.setMinimum(minimum:int,dimension:int=0)",
+    "NatronEngine.IntParam.setValue(value:int,dimension:int=0)",
+    "NatronEngine.IntParam.setValueAtTime(value:int,time:double,dimension:int=0)",
+    nullptr}; // Sentinel
+#endif
 
 void init_IntParam(PyObject* module)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    _Sbk_IntParam_Type = Shiboken::ObjectType::introduceWrapperType(
+        module,
+        "IntParam",
+        "IntParam*",
+        &Sbk_IntParam_spec,
+        IntParam_SignatureStrings,
+        &Shiboken::callCppDestructor< ::IntParam >,
+        reinterpret_cast<SbkObjectType *>(SbkNatronEngineTypes[SBK_ANIMATEDPARAM_IDX]),
+        0,
+        0    );
+
+    SbkNatronEngineTypes[SBK_INTPARAM_IDX]
+        = reinterpret_cast<PyTypeObject*>(Sbk_IntParam_TypeF());
+#else  
     SbkNatronEngineTypes[SBK_INTPARAM_IDX] = reinterpret_cast<PyTypeObject*>(&Sbk_IntParam_Type);
 
     if (!Shiboken::ObjectType::introduceWrapperType(module, "IntParam", "IntParam*",
         &Sbk_IntParam_Type, &Shiboken::callCppDestructor< ::IntParam >, (SbkObjectType*)SbkNatronEngineTypes[SBK_ANIMATEDPARAM_IDX])) {
         return;
     }
+#endif
 
     // Register Converter
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    SbkConverter* converter = Shiboken::Conversions::createConverter(Sbk_IntParam_TypeF(),
+#else
     SbkConverter* converter = Shiboken::Conversions::createConverter(&Sbk_IntParam_Type,
+#endif
         IntParam_PythonToCpp_IntParam_PTR,
         is_IntParam_PythonToCpp_IntParam_PTR_Convertible,
         IntParam_PTR_CppToPython_IntParam);
@@ -1466,8 +1656,11 @@ void init_IntParam(PyObject* module)
     Shiboken::Conversions::registerConverterName(converter, typeid(::IntParamWrapper).name());
 
 
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    Shiboken::ObjectType::setTypeDiscoveryFunctionV2(Sbk_IntParam_TypeF(), &Sbk_IntParam_typeDiscovery);
+#else
     Shiboken::ObjectType::setTypeDiscoveryFunctionV2(&Sbk_IntParam_Type, &Sbk_IntParam_typeDiscovery);
-
+#endif
 
     IntParamWrapper::pysideInitQtMetaTypes();
 }

@@ -11,15 +11,17 @@ GCC_DIAG_UNUSED_LOCAL_TYPEDEFS_OFF
 #include <pysidesignal.h>
 #include <pysideproperty.h>
 #include <pyside.h>
+#if SHIBOKEN_MAJOR_VERSION < 2
 #include <typeresolver.h>
+#endif
 #include <typeinfo>
 #include "natronengine_python.h"
+#include "natron_helper.h"
 
 #include "double2dtuple_wrapper.h"
 
 // Extra includes
 NATRON_NAMESPACE_USING NATRON_PYTHON_NAMESPACE_USING
-
 
 
 // Target ---------------------------------------------------------
@@ -166,16 +168,61 @@ static PyGetSetDef Sbk_Double2DTuple_getsetlist[] = {
 
 static int Sbk_Double2DTuple_traverse(PyObject* self, visitproc visit, void* arg)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    return reinterpret_cast<PyTypeObject *>(SbkObject_TypeF())->tp_traverse(self, visit, arg);
+#else
     return reinterpret_cast<PyTypeObject*>(&SbkObject_Type)->tp_traverse(self, visit, arg);
+#endif
 }
 static int Sbk_Double2DTuple_clear(PyObject* self)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    return reinterpret_cast<PyTypeObject *>(SbkObject_TypeF())->tp_clear(self);
+#else
     return reinterpret_cast<PyTypeObject*>(&SbkObject_Type)->tp_clear(self);
+#endif
 }
 // Class Definition -----------------------------------------------
 extern "C" {
 static PySequenceMethods Sbk_Double2DTuple_TypeAsSequence;
 
+#if SHIBOKEN_MAJOR_VERSION >= 2
+static SbkObjectType *_Sbk_Double2DTuple_Type = nullptr;
+static SbkObjectType *Sbk_Double2DTuple_TypeF(void)
+{
+    return _Sbk_Double2DTuple_Type;
+}
+
+static PyType_Slot Sbk_Double2DTuple_slots[] = {
+    {Py_tp_base,        nullptr}, // inserted by introduceWrapperType
+    {Py_tp_dealloc,     reinterpret_cast<void*>(&SbkDeallocWrapper)},
+    {Py_tp_repr,        nullptr},
+    {Py_tp_hash,        nullptr},
+    {Py_tp_call,        nullptr},
+    {Py_tp_str,         nullptr},
+    {Py_tp_getattro,    nullptr},
+    {Py_tp_setattro,    nullptr},
+    {Py_tp_traverse,    reinterpret_cast<void*>(Sbk_Double2DTuple_traverse)},
+    {Py_tp_clear,       reinterpret_cast<void*>(Sbk_Double2DTuple_clear)},
+    {Py_tp_richcompare, nullptr},
+    {Py_tp_iter,        nullptr},
+    {Py_tp_iternext,    nullptr},
+    {Py_tp_methods,     reinterpret_cast<void*>(Sbk_Double2DTuple_methods)},
+    {Py_tp_getset,      reinterpret_cast<void*>(Sbk_Double2DTuple_getsetlist)},
+    {Py_tp_init,        reinterpret_cast<void*>(Sbk_Double2DTuple_Init)},
+    {Py_tp_new,         reinterpret_cast<void*>(SbkObjectTpNew)},
+    // type supports sequence protocol
+    {Py_sq_item, (void *)&Sbk_Double2DTupleFunc___getitem__},
+    {0, nullptr}
+};
+static PyType_Spec Sbk_Double2DTuple_spec = {
+    "NatronEngine.Double2DTuple",
+    sizeof(SbkObject),
+    0,
+    Py_TPFLAGS_DEFAULT|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_GC,
+    Sbk_Double2DTuple_slots
+};
+#else
 static SbkObjectType Sbk_Double2DTuple_Type = { { {
     PyVarObject_HEAD_INIT(&SbkObjectType_Type, 0)
     /*tp_name*/             "NatronEngine.Double2DTuple",
@@ -225,6 +272,7 @@ static SbkObjectType Sbk_Double2DTuple_Type = { { {
 }, },
     /*priv_data*/           0
 };
+#endif
 } //extern
 
 
@@ -232,12 +280,20 @@ static SbkObjectType Sbk_Double2DTuple_Type = { { {
 
 // Python to C++ pointer conversion - returns the C++ object of the Python wrapper (keeps object identity).
 static void Double2DTuple_PythonToCpp_Double2DTuple_PTR(PyObject* pyIn, void* cppOut) {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    Shiboken::Conversions::pythonToCppPointer(Sbk_Double2DTuple_TypeF(), pyIn, cppOut);
+#else
     Shiboken::Conversions::pythonToCppPointer(&Sbk_Double2DTuple_Type, pyIn, cppOut);
+#endif
 }
 static PythonToCppFunc is_Double2DTuple_PythonToCpp_Double2DTuple_PTR_Convertible(PyObject* pyIn) {
     if (pyIn == Py_None)
         return Shiboken::Conversions::nonePythonToCppNullPtr;
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    if (PyObject_TypeCheck(pyIn, reinterpret_cast<PyTypeObject*>(Sbk_Double2DTuple_TypeF())))
+#else
     if (PyObject_TypeCheck(pyIn, (PyTypeObject*)&Sbk_Double2DTuple_Type))
+#endif
         return Double2DTuple_PythonToCpp_Double2DTuple_PTR;
     return 0;
 }
@@ -249,15 +305,53 @@ static PyObject* Double2DTuple_PTR_CppToPython_Double2DTuple(const void* cppIn) 
         Py_INCREF(pyOut);
         return pyOut;
     }
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    bool changedTypeName = false;
+    auto tCppIn = reinterpret_cast<const ::Double2DTuple *>(cppIn);
+    const char *typeName = typeid(*tCppIn).name();
+    auto sbkType = Shiboken::ObjectType::typeForTypeName(typeName);
+    if (sbkType && Shiboken::ObjectType::hasSpecialCastFunction(sbkType)) {
+        typeName = typeNameOf(tCppIn);
+        changedTypeName = true;
+     }
+    PyObject *result = Shiboken::Object::newObject(Sbk_Double2DTuple_TypeF(), const_cast<void*>(cppIn), false, /* exactType */ changedTypeName, typeName);
+    if (changedTypeName)
+        delete [] typeName;
+    return result;
+#else
     const char* typeName = typeid(*((::Double2DTuple*)cppIn)).name();
     return Shiboken::Object::newObject(&Sbk_Double2DTuple_Type, const_cast<void*>(cppIn), false, false, typeName);
+#endif
 }
+
+// The signatures string for the functions.
+// Multiple signatures have their index "n:" in front.
+static const char *Double2DTuple_SignatureStrings[] = {
+    "NatronEngine.Double2DTuple()",
+    nullptr}; // Sentinel
 
 void init_Double2DTuple(PyObject* module)
 {
     // type supports sequence protocol
     memset(&Sbk_Double2DTuple_TypeAsSequence, 0, sizeof(PySequenceMethods));
     Sbk_Double2DTuple_TypeAsSequence.sq_item = &Sbk_Double2DTupleFunc___getitem__;
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    _Sbk_Double2DTuple_Type = Shiboken::ObjectType::introduceWrapperType(
+        module,
+        "Double2DTuple",
+        "Double2DTuple*",
+        &Sbk_Double2DTuple_spec,
+        Double2DTuple_SignatureStrings,
+        &Shiboken::callCppDestructor< ::Double2DTuple >,
+        0,
+        0,
+        0    );
+
+    reinterpret_cast<PyTypeObject*>(Sbk_Double2DTuple_TypeF())->tp_as_sequence = &Sbk_Double2DTuple_TypeAsSequence;
+
+    SbkNatronEngineTypes[SBK_DOUBLE2DTUPLE_IDX]
+        = reinterpret_cast<PyTypeObject*>(Sbk_Double2DTuple_TypeF());
+#else
     Sbk_Double2DTuple_Type.super.ht_type.tp_as_sequence = &Sbk_Double2DTuple_TypeAsSequence;
 
     SbkNatronEngineTypes[SBK_DOUBLE2DTUPLE_IDX] = reinterpret_cast<PyTypeObject*>(&Sbk_Double2DTuple_Type);
@@ -266,9 +360,14 @@ void init_Double2DTuple(PyObject* module)
         &Sbk_Double2DTuple_Type, &Shiboken::callCppDestructor< ::Double2DTuple >)) {
         return;
     }
+#endif
 
     // Register Converter
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    SbkConverter* converter = Shiboken::Conversions::createConverter(Sbk_Double2DTuple_TypeF(),
+#else
     SbkConverter* converter = Shiboken::Conversions::createConverter(&Sbk_Double2DTuple_Type,
+#endif
         Double2DTuple_PythonToCpp_Double2DTuple_PTR,
         is_Double2DTuple_PythonToCpp_Double2DTuple_PTR_Convertible,
         Double2DTuple_PTR_CppToPython_Double2DTuple);

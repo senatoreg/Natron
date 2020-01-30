@@ -4,7 +4,9 @@
 #define SBK_NATRONGUI_PYTHON_H
 
 #include <sbkpython.h>
+#if SHIBOKEN_MAJOR_VERSION < 2
 #include <conversions.h>
+#endif
 #include <sbkenum.h>
 #include <basewrapper.h>
 #include <bindingmanager.h>
@@ -15,14 +17,23 @@
 CLANG_DIAG_OFF(deprecated)
 CLANG_DIAG_OFF(uninitialized)
 CLANG_DIAG_OFF(keyword-macro)
+#if SHIBOKEN_MAJOR_VERSION >= 2
+#include <pyside2_qtgui_python.h> // produces warnings
+#include <pyside2_qtwidgets_python.h> // produces warnings
+#else
 #include <pyside_qtgui_python.h> // produces warnings
+#endif
 CLANG_DIAG_ON(deprecated)
 CLANG_DIAG_ON(uninitialized)
 CLANG_DIAG_ON(keyword-macro)
 CLANG_DIAG_OFF(deprecated)
 CLANG_DIAG_OFF(uninitialized)
 CLANG_DIAG_OFF(keyword-macro)
+#if SHIBOKEN_MAJOR_VERSION >= 2
+#include <pyside2_qtcore_python.h> // produces warnings
+#else
 #include <pyside_qtcore_python.h> // produces warnings
+#endif
 CLANG_DIAG_ON(deprecated)
 CLANG_DIAG_ON(uninitialized)
 CLANG_DIAG_ON(keyword-macro)
@@ -37,7 +48,9 @@ CLANG_DIAG_ON(keyword-macro)
 #include <qabstractitemmodel.h>
 #include <QString>
 #include <signalmanager.h>
+#if SHIBOKEN_MAJOR_VERSION < 2
 #include <typeresolver.h>
+#endif
 #include <QtConcurrentFilter>
 
 // Conversion Includes - Container Types
@@ -51,7 +64,9 @@ CLANG_DIAG_ON(keyword-macro)
 #include <vector>
 #include <list>
 #include <QPair>
+#if SHIBOKEN_MAJOR_VERSION < 2
 #include <pysideconversions.h>
+#endif
 #include <map>
 #include <QQueue>
 #include <QList>
@@ -93,12 +108,12 @@ namespace Shiboken
 {
 
 // PyType functions, to get the PyObjectType for a type T
-template<> inline PyTypeObject* SbkType<NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::PyTabWidget >() { return reinterpret_cast<PyTypeObject*>(SbkNatronGuiTypes[SBK_PYTABWIDGET_IDX]); }
-template<> inline PyTypeObject* SbkType<NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::PyViewer >() { return reinterpret_cast<PyTypeObject*>(SbkNatronGuiTypes[SBK_PYVIEWER_IDX]); }
-template<> inline PyTypeObject* SbkType<NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::GuiApp >() { return reinterpret_cast<PyTypeObject*>(SbkNatronGuiTypes[SBK_GUIAPP_IDX]); }
-template<> inline PyTypeObject* SbkType<NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::PyGuiApplication >() { return reinterpret_cast<PyTypeObject*>(SbkNatronGuiTypes[SBK_PYGUIAPPLICATION_IDX]); }
-template<> inline PyTypeObject* SbkType<NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::PyPanel >() { return reinterpret_cast<PyTypeObject*>(SbkNatronGuiTypes[SBK_PYPANEL_IDX]); }
-template<> inline PyTypeObject* SbkType<NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::PyModalDialog >() { return reinterpret_cast<PyTypeObject*>(SbkNatronGuiTypes[SBK_PYMODALDIALOG_IDX]); }
+template<> inline PyTypeObject* SbkType<Natron::Python::PyTabWidget >() { return reinterpret_cast<PyTypeObject*>(SbkNatronGuiTypes[SBK_PYTABWIDGET_IDX]); }
+template<> inline PyTypeObject* SbkType<Natron::Python::PyViewer >() { return reinterpret_cast<PyTypeObject*>(SbkNatronGuiTypes[SBK_PYVIEWER_IDX]); }
+template<> inline PyTypeObject* SbkType<Natron::Python::GuiApp >() { return reinterpret_cast<PyTypeObject*>(SbkNatronGuiTypes[SBK_GUIAPP_IDX]); }
+template<> inline PyTypeObject* SbkType<Natron::Python::PyGuiApplication >() { return reinterpret_cast<PyTypeObject*>(SbkNatronGuiTypes[SBK_PYGUIAPPLICATION_IDX]); }
+template<> inline PyTypeObject* SbkType<Natron::Python::PyPanel >() { return reinterpret_cast<PyTypeObject*>(SbkNatronGuiTypes[SBK_PYPANEL_IDX]); }
+template<> inline PyTypeObject* SbkType<Natron::Python::PyModalDialog >() { return reinterpret_cast<PyTypeObject*>(SbkNatronGuiTypes[SBK_PYMODALDIALOG_IDX]); }
 
 } // namespace Shiboken
 

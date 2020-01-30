@@ -11,9 +11,12 @@ GCC_DIAG_UNUSED_LOCAL_TYPEDEFS_OFF
 #include <pysidesignal.h>
 #include <pysideproperty.h>
 #include <pyside.h>
+#if SHIBOKEN_MAJOR_VERSION < 2
 #include <typeresolver.h>
+#endif
 #include <typeinfo>
 #include "natronengine_python.h"
+#include "natron_helper.h"
 
 #include "nodecreationproperty_wrapper.h"
 
@@ -79,14 +82,57 @@ static PyMethodDef Sbk_NodeCreationProperty_methods[] = {
 
 static int Sbk_NodeCreationProperty_traverse(PyObject* self, visitproc visit, void* arg)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    return reinterpret_cast<PyTypeObject *>(SbkObject_TypeF())->tp_traverse(self, visit, arg);  
+#else
     return reinterpret_cast<PyTypeObject*>(&SbkObject_Type)->tp_traverse(self, visit, arg);
+#endif
 }
 static int Sbk_NodeCreationProperty_clear(PyObject* self)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    return reinterpret_cast<PyTypeObject *>(SbkObject_TypeF())->tp_clear(self);
+#else
     return reinterpret_cast<PyTypeObject*>(&SbkObject_Type)->tp_clear(self);
+#endif
 }
 // Class Definition -----------------------------------------------
 extern "C" {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+static SbkObjectType *_Sbk_NodeCreationProperty_Type = nullptr;
+static SbkObjectType *Sbk_NodeCreationProperty_TypeF(void)
+{
+    return _Sbk_NodeCreationProperty_Type;
+}
+
+static PyType_Slot Sbk_NodeCreationProperty_slots[] = {
+    {Py_tp_base,        nullptr}, // inserted by introduceWrapperType
+    {Py_tp_dealloc,     reinterpret_cast<void*>(&SbkDeallocWrapper)},
+    {Py_tp_repr,        nullptr},
+    {Py_tp_hash,        nullptr},
+    {Py_tp_call,        nullptr},
+    {Py_tp_str,         nullptr},
+    {Py_tp_getattro,    nullptr},
+    {Py_tp_setattro,    nullptr},
+    {Py_tp_traverse,    reinterpret_cast<void*>(Sbk_NodeCreationProperty_traverse)},
+    {Py_tp_clear,       reinterpret_cast<void*>(Sbk_NodeCreationProperty_clear)},
+    {Py_tp_richcompare, nullptr},
+    {Py_tp_iter,        nullptr},
+    {Py_tp_iternext,    nullptr},
+    {Py_tp_methods,     reinterpret_cast<void*>(Sbk_NodeCreationProperty_methods)},
+    {Py_tp_getset,      nullptr},
+    {Py_tp_init,        reinterpret_cast<void*>(Sbk_NodeCreationProperty_Init)},
+    {Py_tp_new,         reinterpret_cast<void*>(SbkObjectTpNew)},
+    {0, nullptr}
+};
+static PyType_Spec Sbk_NodeCreationProperty_spec = {
+    "NatronEngine.NodeCreationProperty",
+    sizeof(SbkObject),
+    0,
+    Py_TPFLAGS_DEFAULT|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_GC,
+    Sbk_NodeCreationProperty_slots
+};
+#else
 static SbkObjectType Sbk_NodeCreationProperty_Type = { { {
     PyVarObject_HEAD_INIT(&SbkObjectType_Type, 0)
     /*tp_name*/             "NatronEngine.NodeCreationProperty",
@@ -136,6 +182,7 @@ static SbkObjectType Sbk_NodeCreationProperty_Type = { { {
 }, },
     /*priv_data*/           0
 };
+#endif
 } //extern
 
 
@@ -143,13 +190,21 @@ static SbkObjectType Sbk_NodeCreationProperty_Type = { { {
 
 // Python to C++ pointer conversion - returns the C++ object of the Python wrapper (keeps object identity).
 static void NodeCreationProperty_PythonToCpp_NodeCreationProperty_PTR(PyObject* pyIn, void* cppOut) {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    Shiboken::Conversions::pythonToCppPointer(Sbk_NodeCreationProperty_TypeF(), pyIn, cppOut);
+#else
     Shiboken::Conversions::pythonToCppPointer(&Sbk_NodeCreationProperty_Type, pyIn, cppOut);
+#endif
 }
 static PythonToCppFunc is_NodeCreationProperty_PythonToCpp_NodeCreationProperty_PTR_Convertible(PyObject* pyIn) {
     if (pyIn == Py_None)
         return Shiboken::Conversions::nonePythonToCppNullPtr;
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    if (PyObject_TypeCheck(pyIn, reinterpret_cast<PyTypeObject*>(Sbk_NodeCreationProperty_TypeF())))
+#else
     if (PyObject_TypeCheck(pyIn, (PyTypeObject*)&Sbk_NodeCreationProperty_Type))
         return NodeCreationProperty_PythonToCpp_NodeCreationProperty_PTR;
+#endif
     return 0;
 }
 
@@ -160,22 +215,65 @@ static PyObject* NodeCreationProperty_PTR_CppToPython_NodeCreationProperty(const
         Py_INCREF(pyOut);
         return pyOut;
     }
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    bool changedTypeName = false;
+    auto tCppIn = reinterpret_cast<const ::NodeCreationProperty *>(cppIn);
+    const char *typeName = typeid(*tCppIn).name();
+    auto sbkType = Shiboken::ObjectType::typeForTypeName(typeName);
+    if (sbkType && Shiboken::ObjectType::hasSpecialCastFunction(sbkType)) {
+        typeName = typeNameOf(tCppIn);
+        changedTypeName = true;
+     }
+    PyObject *result = Shiboken::Object::newObject(Sbk_NodeCreationProperty_TypeF(), const_cast<void*>(cppIn), false, /* exactType */ changedTypeName, typeName);
+    if (changedTypeName)
+        delete [] typeName;
+    return result;
+#else
     const char* typeName = typeid(*((::NodeCreationProperty*)cppIn)).name();
     return Shiboken::Object::newObject(&Sbk_NodeCreationProperty_Type, const_cast<void*>(cppIn), false, false, typeName);
+#endif
 }
+
+#if SHIBOKEN_MAJOR_VERSION >= 2
+// The signatures string for the functions.
+// Multiple signatures have their index "n:" in front.
+static const char *NodeCreationProperty_SignatureStrings[] = {
+    "NatronEngine.NodeCreationProperty()",
+    nullptr}; // Sentinel
+#endif
 
 void init_NodeCreationProperty(PyObject* module)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    _Sbk_NodeCreationProperty_Type = Shiboken::ObjectType::introduceWrapperType(
+        module,
+        "NodeCreationProperty",
+        "NodeCreationProperty*",
+        &Sbk_NodeCreationProperty_spec,
+        NodeCreationProperty_SignatureStrings,
+        &Shiboken::callCppDestructor< ::NodeCreationProperty >,
+        0,
+        0,
+        0    );
+
+    SbkNatronEngineTypes[SBK_NODECREATIONPROPERTY_IDX]
+        = reinterpret_cast<PyTypeObject*>(Sbk_NodeCreationProperty_TypeF());
+#else
     SbkNatronEngineTypes[SBK_NODECREATIONPROPERTY_IDX] = reinterpret_cast<PyTypeObject*>(&Sbk_NodeCreationProperty_Type);
 
     if (!Shiboken::ObjectType::introduceWrapperType(module, "NodeCreationProperty", "NodeCreationProperty*",
         &Sbk_NodeCreationProperty_Type, &Shiboken::callCppDestructor< ::NodeCreationProperty >)) {
         return;
     }
+#endif
 
     // Register Converter
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    SbkConverter* converter = Shiboken::Conversions::createConverter(Sbk_NodeCreationProperty_TypeF(),
+#else
     SbkConverter* converter = Shiboken::Conversions::createConverter(&Sbk_NodeCreationProperty_Type,
-        NodeCreationProperty_PythonToCpp_NodeCreationProperty_PTR,
+#endif
+	NodeCreationProperty_PythonToCpp_NodeCreationProperty_PTR,
         is_NodeCreationProperty_PythonToCpp_NodeCreationProperty_PTR_Convertible,
         NodeCreationProperty_PTR_CppToPython_NodeCreationProperty);
 

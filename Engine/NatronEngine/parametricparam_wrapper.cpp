@@ -11,9 +11,12 @@ GCC_DIAG_UNUSED_LOCAL_TYPEDEFS_OFF
 #include <pysidesignal.h>
 #include <pysideproperty.h>
 #include <pyside.h>
+#if SHIBOKEN_MAJOR_VERSION < 2
 #include <typeresolver.h>
+#endif
 #include <typeinfo>
 #include "natronengine_python.h"
+#include "natron_helper.h"
 
 #include "parametricparam_wrapper.h"
 
@@ -66,23 +69,23 @@ static PyObject* Sbk_ParametricParamFunc_addControlPoint(PyObject* self, PyObjec
 
 
     // Overloaded function decisor
-    // 0: addControlPoint(int,double,double,NATRON_NAMESPACE::KeyframeTypeEnum)
-    // 1: addControlPoint(int,double,double,double,double,NATRON_NAMESPACE::KeyframeTypeEnum)
+    // 0: addControlPoint(int,double,double,Natron::KeyframeTypeEnum)
+    // 1: addControlPoint(int,double,double,double,double,Natron::KeyframeTypeEnum)
     if (numArgs >= 3
         && (pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(Shiboken::Conversions::PrimitiveTypeConverter<int>(), (pyArgs[0])))
         && (pythonToCpp[1] = Shiboken::Conversions::isPythonToCppConvertible(Shiboken::Conversions::PrimitiveTypeConverter<double>(), (pyArgs[1])))
         && (pythonToCpp[2] = Shiboken::Conversions::isPythonToCppConvertible(Shiboken::Conversions::PrimitiveTypeConverter<double>(), (pyArgs[2])))) {
         if (numArgs == 3) {
-            overloadId = 0; // addControlPoint(int,double,double,NATRON_NAMESPACE::KeyframeTypeEnum)
-        } else if ((pythonToCpp[3] = Shiboken::Conversions::isPythonToCppConvertible(SBK_CONVERTER(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_KEYFRAMETYPEENUM_IDX]), (pyArgs[3])))) {
-            overloadId = 0; // addControlPoint(int,double,double,NATRON_NAMESPACE::KeyframeTypeEnum)
+            overloadId = 0; // addControlPoint(int,double,double,Natron::KeyframeTypeEnum)
+        } else if ((pythonToCpp[3] = Shiboken::Conversions::isPythonToCppConvertible(SBK_CONVERTER(SbkNatronEngineTypes[SBK_NATRON_KEYFRAMETYPEENUM_IDX]), (pyArgs[3])))) {
+            overloadId = 0; // addControlPoint(int,double,double,Natron::KeyframeTypeEnum)
         } else if (numArgs >= 5
             && (pythonToCpp[3] = Shiboken::Conversions::isPythonToCppConvertible(Shiboken::Conversions::PrimitiveTypeConverter<double>(), (pyArgs[3])))
             && (pythonToCpp[4] = Shiboken::Conversions::isPythonToCppConvertible(Shiboken::Conversions::PrimitiveTypeConverter<double>(), (pyArgs[4])))) {
             if (numArgs == 5) {
-                overloadId = 1; // addControlPoint(int,double,double,double,double,NATRON_NAMESPACE::KeyframeTypeEnum)
-            } else if ((pythonToCpp[5] = Shiboken::Conversions::isPythonToCppConvertible(SBK_CONVERTER(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_KEYFRAMETYPEENUM_IDX]), (pyArgs[5])))) {
-                overloadId = 1; // addControlPoint(int,double,double,double,double,NATRON_NAMESPACE::KeyframeTypeEnum)
+                overloadId = 1; // addControlPoint(int,double,double,double,double,Natron::KeyframeTypeEnum)
+            } else if ((pythonToCpp[5] = Shiboken::Conversions::isPythonToCppConvertible(SBK_CONVERTER(SbkNatronEngineTypes[SBK_NATRON_KEYFRAMETYPEENUM_IDX]), (pyArgs[5])))) {
+                overloadId = 1; // addControlPoint(int,double,double,double,double,Natron::KeyframeTypeEnum)
             }
         }
     }
@@ -92,7 +95,7 @@ static PyObject* Sbk_ParametricParamFunc_addControlPoint(PyObject* self, PyObjec
 
     // Call function/method
     switch (overloadId) {
-        case 0: // addControlPoint(int dimension, double key, double value, NATRON_NAMESPACE::KeyframeTypeEnum interpolation)
+        case 0: // addControlPoint(int dimension, double key, double value, Natron::KeyframeTypeEnum interpolation)
         {
             if (kwds) {
                 PyObject* value = PyDict_GetItemString(kwds, "interpolation");
@@ -101,7 +104,7 @@ static PyObject* Sbk_ParametricParamFunc_addControlPoint(PyObject* self, PyObjec
                     return 0;
                 } else if (value) {
                     pyArgs[3] = value;
-                    if (!(pythonToCpp[3] = Shiboken::Conversions::isPythonToCppConvertible(SBK_CONVERTER(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_KEYFRAMETYPEENUM_IDX]), (pyArgs[3]))))
+                    if (!(pythonToCpp[3] = Shiboken::Conversions::isPythonToCppConvertible(SBK_CONVERTER(SbkNatronEngineTypes[SBK_NATRON_KEYFRAMETYPEENUM_IDX]), (pyArgs[3]))))
                         goto Sbk_ParametricParamFunc_addControlPoint_TypeError;
                 }
             }
@@ -111,17 +114,17 @@ static PyObject* Sbk_ParametricParamFunc_addControlPoint(PyObject* self, PyObjec
             pythonToCpp[1](pyArgs[1], &cppArg1);
             double cppArg2;
             pythonToCpp[2](pyArgs[2], &cppArg2);
-            ::NATRON_NAMESPACE::KeyframeTypeEnum cppArg3 = NATRON_NAMESPACE::eKeyframeTypeSmooth;
+            ::Natron::KeyframeTypeEnum cppArg3 = Natron::eKeyframeTypeSmooth;
             if (pythonToCpp[3]) pythonToCpp[3](pyArgs[3], &cppArg3);
 
             if (!PyErr_Occurred()) {
-                // addControlPoint(int,double,double,NATRON_NAMESPACE::KeyframeTypeEnum)
-                NATRON_NAMESPACE::StatusEnum cppResult = NATRON_NAMESPACE::StatusEnum(cppSelf->addControlPoint(cppArg0, cppArg1, cppArg2, cppArg3));
-                pyResult = Shiboken::Conversions::copyToPython(SBK_CONVERTER(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_STATUSENUM_IDX]), &cppResult);
+                // addControlPoint(int,double,double,Natron::KeyframeTypeEnum)
+                Natron::StatusEnum cppResult = Natron::StatusEnum(cppSelf->addControlPoint(cppArg0, cppArg1, cppArg2, cppArg3));
+                pyResult = Shiboken::Conversions::copyToPython(SBK_CONVERTER(SbkNatronEngineTypes[SBK_NATRON_STATUSENUM_IDX]), &cppResult);
             }
             break;
         }
-        case 1: // addControlPoint(int dimension, double key, double value, double leftDerivative, double rightDerivative, NATRON_NAMESPACE::KeyframeTypeEnum interpolation)
+        case 1: // addControlPoint(int dimension, double key, double value, double leftDerivative, double rightDerivative, Natron::KeyframeTypeEnum interpolation)
         {
             if (kwds) {
                 PyObject* value = PyDict_GetItemString(kwds, "interpolation");
@@ -130,7 +133,7 @@ static PyObject* Sbk_ParametricParamFunc_addControlPoint(PyObject* self, PyObjec
                     return 0;
                 } else if (value) {
                     pyArgs[5] = value;
-                    if (!(pythonToCpp[5] = Shiboken::Conversions::isPythonToCppConvertible(SBK_CONVERTER(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_KEYFRAMETYPEENUM_IDX]), (pyArgs[5]))))
+                    if (!(pythonToCpp[5] = Shiboken::Conversions::isPythonToCppConvertible(SBK_CONVERTER(SbkNatronEngineTypes[SBK_NATRON_KEYFRAMETYPEENUM_IDX]), (pyArgs[5]))))
                         goto Sbk_ParametricParamFunc_addControlPoint_TypeError;
                 }
             }
@@ -144,13 +147,13 @@ static PyObject* Sbk_ParametricParamFunc_addControlPoint(PyObject* self, PyObjec
             pythonToCpp[3](pyArgs[3], &cppArg3);
             double cppArg4;
             pythonToCpp[4](pyArgs[4], &cppArg4);
-            ::NATRON_NAMESPACE::KeyframeTypeEnum cppArg5 = NATRON_NAMESPACE::eKeyframeTypeSmooth;
+            ::Natron::KeyframeTypeEnum cppArg5 = Natron::eKeyframeTypeSmooth;
             if (pythonToCpp[5]) pythonToCpp[5](pyArgs[5], &cppArg5);
 
             if (!PyErr_Occurred()) {
-                // addControlPoint(int,double,double,double,double,NATRON_NAMESPACE::KeyframeTypeEnum)
-                NATRON_NAMESPACE::StatusEnum cppResult = NATRON_NAMESPACE::StatusEnum(cppSelf->addControlPoint(cppArg0, cppArg1, cppArg2, cppArg3, cppArg4, cppArg5));
-                pyResult = Shiboken::Conversions::copyToPython(SBK_CONVERTER(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_STATUSENUM_IDX]), &cppResult);
+                // addControlPoint(int,double,double,double,double,Natron::KeyframeTypeEnum)
+                Natron::StatusEnum cppResult = Natron::StatusEnum(cppSelf->addControlPoint(cppArg0, cppArg1, cppArg2, cppArg3, cppArg4, cppArg5));
+                pyResult = Shiboken::Conversions::copyToPython(SBK_CONVERTER(SbkNatronEngineTypes[SBK_NATRON_STATUSENUM_IDX]), &cppResult);
             }
             break;
         }
@@ -163,8 +166,12 @@ static PyObject* Sbk_ParametricParamFunc_addControlPoint(PyObject* self, PyObjec
     return pyResult;
 
     Sbk_ParametricParamFunc_addControlPoint_TypeError:
-        const char* overloads[] = {"int, float, float, NatronEngine.NATRON_NAMESPACE.KeyframeTypeEnum = eKeyframeTypeSmooth", "int, float, float, float, float, NatronEngine.NATRON_NAMESPACE.KeyframeTypeEnum = eKeyframeTypeSmooth", 0};
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ParametricParam.addControlPoint");
+#else
+        const char* overloads[] = {"int, float, float, NatronEngine.Natron.KeyframeTypeEnum = eKeyframeTypeSmooth", "int, float, float, float, float, NatronEngine.Natron.KeyframeTypeEnum = eKeyframeTypeSmooth", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ParametricParam.addControlPoint", overloads);
+#endif
         return 0;
 }
 
@@ -196,8 +203,8 @@ static PyObject* Sbk_ParametricParamFunc_deleteAllControlPoints(PyObject* self, 
 
         if (!PyErr_Occurred()) {
             // deleteAllControlPoints(int)
-            NATRON_NAMESPACE::StatusEnum cppResult = NATRON_NAMESPACE::StatusEnum(cppSelf->deleteAllControlPoints(cppArg0));
-            pyResult = Shiboken::Conversions::copyToPython(SBK_CONVERTER(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_STATUSENUM_IDX]), &cppResult);
+            Natron::StatusEnum cppResult = Natron::StatusEnum(cppSelf->deleteAllControlPoints(cppArg0));
+            pyResult = Shiboken::Conversions::copyToPython(SBK_CONVERTER(SbkNatronEngineTypes[SBK_NATRON_STATUSENUM_IDX]), &cppResult);
         }
     }
 
@@ -208,8 +215,12 @@ static PyObject* Sbk_ParametricParamFunc_deleteAllControlPoints(PyObject* self, 
     return pyResult;
 
     Sbk_ParametricParamFunc_deleteAllControlPoints_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.ParametricParam.deleteAllControlPoints");
+#else
         const char* overloads[] = {"int", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.ParametricParam.deleteAllControlPoints", overloads);
+#endif
         return 0;
 }
 
@@ -254,8 +265,8 @@ static PyObject* Sbk_ParametricParamFunc_deleteControlPoint(PyObject* self, PyOb
 
         if (!PyErr_Occurred()) {
             // deleteControlPoint(int,int)
-            NATRON_NAMESPACE::StatusEnum cppResult = NATRON_NAMESPACE::StatusEnum(cppSelf->deleteControlPoint(cppArg0, cppArg1));
-            pyResult = Shiboken::Conversions::copyToPython(SBK_CONVERTER(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_STATUSENUM_IDX]), &cppResult);
+            Natron::StatusEnum cppResult = Natron::StatusEnum(cppSelf->deleteControlPoint(cppArg0, cppArg1));
+            pyResult = Shiboken::Conversions::copyToPython(SBK_CONVERTER(SbkNatronEngineTypes[SBK_NATRON_STATUSENUM_IDX]), &cppResult);
         }
     }
 
@@ -266,8 +277,12 @@ static PyObject* Sbk_ParametricParamFunc_deleteControlPoint(PyObject* self, PyOb
     return pyResult;
 
     Sbk_ParametricParamFunc_deleteControlPoint_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ParametricParam.deleteControlPoint");
+#else
         const char* overloads[] = {"int, int", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ParametricParam.deleteControlPoint", overloads);
+#endif
         return 0;
 }
 
@@ -319,8 +334,12 @@ static PyObject* Sbk_ParametricParamFunc_getCurveColor(PyObject* self, PyObject*
     return pyResult;
 
     Sbk_ParametricParamFunc_getCurveColor_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.ParametricParam.getCurveColor");
+#else
         const char* overloads[] = {"int, NatronEngine.ColorTuple", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.ParametricParam.getCurveColor", overloads);
+#endif
         return 0;
 }
 
@@ -364,8 +383,12 @@ static PyObject* Sbk_ParametricParamFunc_getNControlPoints(PyObject* self, PyObj
     return pyResult;
 
     Sbk_ParametricParamFunc_getNControlPoints_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.ParametricParam.getNControlPoints");
+#else
         const char* overloads[] = {"int", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.ParametricParam.getNControlPoints", overloads);
+#endif
         return 0;
 }
 
@@ -413,9 +436,9 @@ static PyObject* Sbk_ParametricParamFunc_getNthControlPoint(PyObject* self, PyOb
             // Begin code injection
 
             double key,value,left,right;
-            NATRON_NAMESPACE::StatusEnum cppResult = cppSelf->getNthControlPoint(cppArg0, cppArg1,&key,&value, &left, &right);
+            Natron::StatusEnum cppResult = cppSelf->getNthControlPoint(cppArg0, cppArg1,&key,&value, &left, &right);
             pyResult = PyTuple_New(5);
-            PyTuple_SET_ITEM(pyResult, 0, Shiboken::Conversions::copyToPython(SBK_CONVERTER(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_STATUSENUM_IDX]), &cppResult));
+            PyTuple_SET_ITEM(pyResult, 0, Shiboken::Conversions::copyToPython(SBK_CONVERTER(SbkNatronEngineTypes[SBK_NATRON_STATUSENUM_IDX]), &cppResult));
             PyTuple_SET_ITEM(pyResult, 1, Shiboken::Conversions::copyToPython(Shiboken::Conversions::PrimitiveTypeConverter<double>(), &key));
             PyTuple_SET_ITEM(pyResult, 2, Shiboken::Conversions::copyToPython(Shiboken::Conversions::PrimitiveTypeConverter<double>(), &value));
             PyTuple_SET_ITEM(pyResult, 3, Shiboken::Conversions::copyToPython(Shiboken::Conversions::PrimitiveTypeConverter<double>(), &left));
@@ -435,8 +458,12 @@ static PyObject* Sbk_ParametricParamFunc_getNthControlPoint(PyObject* self, PyOb
     return pyResult;
 
     Sbk_ParametricParamFunc_getNthControlPoint_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ParametricParam.getNthControlPoint");
+#else
         const char* overloads[] = {"int, int, PySide.QtCore.double, PySide.QtCore.double, PySide.QtCore.double, PySide.QtCore.double", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ParametricParam.getNthControlPoint", overloads);
+#endif
         return 0;
 }
 
@@ -493,8 +520,12 @@ static PyObject* Sbk_ParametricParamFunc_getValue(PyObject* self, PyObject* args
     return pyResult;
 
     Sbk_ParametricParamFunc_getValue_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ParametricParam.getValue");
+#else
         const char* overloads[] = {"int, float", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ParametricParam.getValue", overloads);
+#endif
         return 0;
 }
 
@@ -554,8 +585,12 @@ static PyObject* Sbk_ParametricParamFunc_setCurveColor(PyObject* self, PyObject*
     Py_RETURN_NONE;
 
     Sbk_ParametricParamFunc_setCurveColor_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ParametricParam.setCurveColor");
+#else
         const char* overloads[] = {"int, float, float, float", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ParametricParam.setCurveColor", overloads);
+#endif
         return 0;
 }
 
@@ -635,8 +670,8 @@ static PyObject* Sbk_ParametricParamFunc_setNthControlPoint(PyObject* self, PyOb
 
         if (!PyErr_Occurred()) {
             // setNthControlPoint(int,int,double,double,double,double)
-            NATRON_NAMESPACE::StatusEnum cppResult = NATRON_NAMESPACE::StatusEnum(cppSelf->setNthControlPoint(cppArg0, cppArg1, cppArg2, cppArg3, cppArg4, cppArg5));
-            pyResult = Shiboken::Conversions::copyToPython(SBK_CONVERTER(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_STATUSENUM_IDX]), &cppResult);
+            Natron::StatusEnum cppResult = Natron::StatusEnum(cppSelf->setNthControlPoint(cppArg0, cppArg1, cppArg2, cppArg3, cppArg4, cppArg5));
+            pyResult = Shiboken::Conversions::copyToPython(SBK_CONVERTER(SbkNatronEngineTypes[SBK_NATRON_STATUSENUM_IDX]), &cppResult);
         }
     }
 
@@ -647,8 +682,12 @@ static PyObject* Sbk_ParametricParamFunc_setNthControlPoint(PyObject* self, PyOb
     return pyResult;
 
     Sbk_ParametricParamFunc_setNthControlPoint_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ParametricParam.setNthControlPoint");
+#else
         const char* overloads[] = {"int, int, float, float, float, float", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ParametricParam.setNthControlPoint", overloads);
+#endif
         return 0;
 }
 
@@ -671,14 +710,57 @@ static PyMethodDef Sbk_ParametricParam_methods[] = {
 
 static int Sbk_ParametricParam_traverse(PyObject* self, visitproc visit, void* arg)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    return reinterpret_cast<PyTypeObject *>(SbkObject_TypeF())->tp_traverse(self, visit, arg);
+#else
     return reinterpret_cast<PyTypeObject*>(&SbkObject_Type)->tp_traverse(self, visit, arg);
+#endif
 }
 static int Sbk_ParametricParam_clear(PyObject* self)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    return reinterpret_cast<PyTypeObject *>(SbkObject_TypeF())->tp_clear(self);
+#else
     return reinterpret_cast<PyTypeObject*>(&SbkObject_Type)->tp_clear(self);
+#endif
 }
 // Class Definition -----------------------------------------------
 extern "C" {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+static SbkObjectType *_Sbk_ParametricParam_Type = nullptr;
+static SbkObjectType *Sbk_ParametricParam_TypeF(void)
+{
+    return _Sbk_ParametricParam_Type;
+}
+
+static PyType_Slot Sbk_ParametricParam_slots[] = {
+    {Py_tp_base,        nullptr}, // inserted by introduceWrapperType
+    {Py_tp_dealloc,     reinterpret_cast<void*>(&SbkDeallocWrapper)},
+    {Py_tp_repr,        nullptr},
+    {Py_tp_hash,        nullptr},
+    {Py_tp_call,        nullptr},
+    {Py_tp_str,         nullptr},
+    {Py_tp_getattro,    nullptr},
+    {Py_tp_setattro,    nullptr},
+    {Py_tp_traverse,    reinterpret_cast<void*>(Sbk_ParametricParam_traverse)},
+    {Py_tp_clear,       reinterpret_cast<void*>(Sbk_ParametricParam_clear)},
+    {Py_tp_richcompare, nullptr},
+    {Py_tp_iter,        nullptr},
+    {Py_tp_iternext,    nullptr},
+    {Py_tp_methods,     reinterpret_cast<void*>(Sbk_ParametricParam_methods)},
+    {Py_tp_getset,      nullptr},
+    {Py_tp_init,        nullptr},
+    {Py_tp_new,         reinterpret_cast<void*>(SbkDummyNew /* PYSIDE-595: Prevent replacement of "0" with base->tp_new. */)},
+    {0, nullptr}
+};
+static PyType_Spec Sbk_ParametricParam_spec = {
+    "NatronEngine.ParametricParam",
+    sizeof(SbkObject),
+    0,
+    Py_TPFLAGS_DEFAULT|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_GC,
+    Sbk_ParametricParam_slots
+};
+#else
 static SbkObjectType Sbk_ParametricParam_Type = { { {
     PyVarObject_HEAD_INIT(&SbkObjectType_Type, 0)
     /*tp_name*/             "NatronEngine.ParametricParam",
@@ -728,6 +810,7 @@ static SbkObjectType Sbk_ParametricParam_Type = { { {
 }, },
     /*priv_data*/           0
 };
+#endif
 } //extern
 
 static void* Sbk_ParametricParam_typeDiscovery(void* cptr, SbkObjectType* instanceType)
@@ -742,12 +825,20 @@ static void* Sbk_ParametricParam_typeDiscovery(void* cptr, SbkObjectType* instan
 
 // Python to C++ pointer conversion - returns the C++ object of the Python wrapper (keeps object identity).
 static void ParametricParam_PythonToCpp_ParametricParam_PTR(PyObject* pyIn, void* cppOut) {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    Shiboken::Conversions::pythonToCppPointer(Sbk_ParametricParam_TypeF(), pyIn, cppOut);
+#else
     Shiboken::Conversions::pythonToCppPointer(&Sbk_ParametricParam_Type, pyIn, cppOut);
+#endif
 }
 static PythonToCppFunc is_ParametricParam_PythonToCpp_ParametricParam_PTR_Convertible(PyObject* pyIn) {
     if (pyIn == Py_None)
         return Shiboken::Conversions::nonePythonToCppNullPtr;
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    if (PyObject_TypeCheck(pyIn, reinterpret_cast<PyTypeObject*>(Sbk_ParametricParam_TypeF())))
+#else
     if (PyObject_TypeCheck(pyIn, (PyTypeObject*)&Sbk_ParametricParam_Type))
+#endif
         return ParametricParam_PythonToCpp_ParametricParam_PTR;
     return 0;
 }
@@ -759,21 +850,75 @@ static PyObject* ParametricParam_PTR_CppToPython_ParametricParam(const void* cpp
         Py_INCREF(pyOut);
         return pyOut;
     }
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    bool changedTypeName = false;
+    auto tCppIn = reinterpret_cast<const ::ParametricParam *>(cppIn);
+    const char *typeName = typeid(*tCppIn).name();
+    auto sbkType = Shiboken::ObjectType::typeForTypeName(typeName);
+    if (sbkType && Shiboken::ObjectType::hasSpecialCastFunction(sbkType)) {
+        typeName = typeNameOf(tCppIn);
+        changedTypeName = true;
+     }
+    PyObject *result = Shiboken::Object::newObject(Sbk_ParametricParam_TypeF(), const_cast<void*>(cppIn), false, /* exactType */ changedTypeName, typeName);
+    if (changedTypeName)
+        delete [] typeName;
+    return result;
+#else
     const char* typeName = typeid(*((::ParametricParam*)cppIn)).name();
     return Shiboken::Object::newObject(&Sbk_ParametricParam_Type, const_cast<void*>(cppIn), false, false, typeName);
+#endif
 }
+
+#if SHIBOKEN_MAJOR_VERSION >= 2
+// The signatures string for the functions.
+// Multiple signatures have their index "n:" in front.
+static const char *ParametricParam_SignatureStrings[] = {
+    "0:NatronEngine.ParametricParam.addControlPoint(dimension:int,key:double,value:double,interpolation:NatronEngine.Natron.KeyframeTypeEnum=NatronEngine.Natron.KeyframeTypeEnum.eKeyframeTypeSmooth)->NatronEngine.Natron.StatusEnum",
+    "1:NatronEngine.ParametricParam.addControlPoint(dimension:int,key:double,value:double,leftDerivative:double,rightDerivative:double,interpolation:NatronEngine.Natron.KeyframeTypeEnum=NatronEngine.Natron.KeyframeTypeEnum.eKeyframeTypeSmooth)->NatronEngine.Natron.StatusEnum",
+    "NatronEngine.ParametricParam.deleteAllControlPoints(dimension:int)->NatronEngine.Natron.StatusEnum",
+    "NatronEngine.ParametricParam.deleteControlPoint(dimension:int,nthCtl:int)->NatronEngine.Natron.StatusEnum",
+    "NatronEngine.ParametricParam.getCurveColor(dimension:int,ret:NatronEngine.ColorTuple)",
+    "NatronEngine.ParametricParam.getNControlPoints(dimension:int)->int",
+    "NatronEngine.ParametricParam.getNthControlPoint(dimension:int,nthCtl:int,key:double*,value:double*,leftDerivative:double*,rightDerivative:double*)->NatronEngine.Natron.StatusEnum",
+    "NatronEngine.ParametricParam.getValue(dimension:int,parametricPosition:double)->double",
+    "NatronEngine.ParametricParam.setCurveColor(dimension:int,r:double,g:double,b:double)",
+    "NatronEngine.ParametricParam.setDefaultCurvesFromCurrentCurves()",
+    "NatronEngine.ParametricParam.setNthControlPoint(dimension:int,nthCtl:int,key:double,value:double,leftDerivative:double,rightDerivative:double)->NatronEngine.Natron.StatusEnum",
+    "NatronEngine.ParametricParam.setNthControlPointInterpolation(dimension:int,nThCtl:int,interpolation:NatronEngine.Natron.KeyframeTypeEnum)->NatronEngine.Natron.StatusEnum",
+    nullptr}; // Sentinel
+#endif
 
 void init_ParametricParam(PyObject* module)
 {
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    _Sbk_ParametricParam_Type = Shiboken::ObjectType::introduceWrapperType(
+        module,
+        "ParametricParam",
+        "ParametricParam*",
+        &Sbk_ParametricParam_spec,
+        ParametricParam_SignatureStrings,
+        &Shiboken::callCppDestructor< ::ParametricParam >,
+        reinterpret_cast<SbkObjectType *>(SbkNatronEngineTypes[SBK_PARAM_IDX]),
+        0,
+        0    );
+
+    SbkNatronEngineTypes[SBK_PARAMETRICPARAM_IDX]
+        = reinterpret_cast<PyTypeObject*>(Sbk_ParametricParam_TypeF());
+#else
     SbkNatronEngineTypes[SBK_PARAMETRICPARAM_IDX] = reinterpret_cast<PyTypeObject*>(&Sbk_ParametricParam_Type);
 
     if (!Shiboken::ObjectType::introduceWrapperType(module, "ParametricParam", "ParametricParam*",
         &Sbk_ParametricParam_Type, &Shiboken::callCppDestructor< ::ParametricParam >, (SbkObjectType*)SbkNatronEngineTypes[SBK_PARAM_IDX])) {
         return;
     }
+#endif
 
     // Register Converter
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    SbkConverter* converter = Shiboken::Conversions::createConverter(Sbk_ParametricParam_TypeF(),
+#else
     SbkConverter* converter = Shiboken::Conversions::createConverter(&Sbk_ParametricParam_Type,
+#endif
         ParametricParam_PythonToCpp_ParametricParam_PTR,
         is_ParametricParam_PythonToCpp_ParametricParam_PTR_Convertible,
         ParametricParam_PTR_CppToPython_ParametricParam);
@@ -785,7 +930,11 @@ void init_ParametricParam(PyObject* module)
     Shiboken::Conversions::registerConverterName(converter, typeid(::ParametricParamWrapper).name());
 
 
+#if SHIBOKEN_MAJOR_VERSION >= 2
+    Shiboken::ObjectType::setTypeDiscoveryFunctionV2(Sbk_ParametricParam_TypeF(), &Sbk_ParametricParam_typeDiscovery);
+#else
     Shiboken::ObjectType::setTypeDiscoveryFunctionV2(&Sbk_ParametricParam_Type, &Sbk_ParametricParam_typeDiscovery);
+#endif
 
 
     ParametricParamWrapper::pysideInitQtMetaTypes();

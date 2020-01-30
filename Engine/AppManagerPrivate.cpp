@@ -158,11 +158,13 @@ AppManagerPrivate::~AppManagerPrivate()
         free(commandLineArgsUtf8Original[i]);
 #endif
     }
+#if 0
 #if PY_MAJOR_VERSION >= 3
     // Python 3
     for (std::size_t i = 0; i < commandLineArgsWideOriginal.size(); ++i) {
         free(commandLineArgsWideOriginal[i]);
     }
+#endif
 #endif
 }
 
@@ -1028,7 +1030,9 @@ AppManagerPrivate::copyUtf8ArgsToMembers(const std::vector<std::string>& utf8Arg
         // Python 3 needs wchar_t arguments
 #if PY_MAJOR_VERSION >= 3
         // Python 3
-        mbstowcs(commandLineArgsWideOriginal[i], utf8Args[i].c_str(), strlen(utf8Args[i].c_str()));
+        int arglen = strlen(utf8Args[i].c_str());
+        commandLineArgsWideOriginal[i] = new wchar_t[arglen + 1];
+        mbstowcs(commandLineArgsWideOriginal[i], utf8Args[i].c_str(), arglen + 1);
 #else
         commandLineArgsUtf8Original[i] = strdup(utf8Args[i].c_str());
 #endif
