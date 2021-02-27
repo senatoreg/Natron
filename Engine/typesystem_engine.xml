@@ -209,8 +209,7 @@
     </container-type>
 
      <!--Natron global enums-->
-    <!-- <namespace-type name="NATRON_NAMESPACE"> -->
-    <namespace-type name="Natron">
+    <namespace-type name="NATRON_NAMESPACE">
     <enum-type name="StatusEnum"/>
     <enum-type name="MergingFunctionEnum"/>
     <enum-type name="StandardButtonEnum" flags="StandardButtons"/>

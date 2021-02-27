@@ -487,8 +487,8 @@ static PyObject* Sbk_EffectFunc_getBitDepth(PyObject* self)
 
         if (!PyErr_Occurred()) {
             // getBitDepth()const
-            Natron::ImageBitDepthEnum cppResult = Natron::ImageBitDepthEnum(const_cast<const ::Effect*>(cppSelf)->getBitDepth());
-            pyResult = Shiboken::Conversions::copyToPython(SBK_CONVERTER(SbkNatronEngineTypes[SBK_NATRON_IMAGEBITDEPTHENUM_IDX]), &cppResult);
+            NATRON_NAMESPACE::ImageBitDepthEnum cppResult = NATRON_NAMESPACE::ImageBitDepthEnum(const_cast<const ::Effect*>(cppSelf)->getBitDepth());
+            pyResult = Shiboken::Conversions::copyToPython(SBK_CONVERTER(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_IMAGEBITDEPTHENUM_IDX]), &cppResult);
         }
     }
 
@@ -1003,8 +1003,8 @@ static PyObject* Sbk_EffectFunc_getPremult(PyObject* self)
 
         if (!PyErr_Occurred()) {
             // getPremult()const
-            Natron::ImagePremultiplicationEnum cppResult = Natron::ImagePremultiplicationEnum(const_cast<const ::Effect*>(cppSelf)->getPremult());
-            pyResult = Shiboken::Conversions::copyToPython(SBK_CONVERTER(SbkNatronEngineTypes[SBK_NATRON_IMAGEPREMULTIPLICATIONENUM_IDX]), &cppResult);
+            NATRON_NAMESPACE::ImagePremultiplicationEnum cppResult = NATRON_NAMESPACE::ImagePremultiplicationEnum(const_cast<const ::Effect*>(cppSelf)->getPremult());
+            pyResult = Shiboken::Conversions::copyToPython(SBK_CONVERTER(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_IMAGEPREMULTIPLICATIONENUM_IDX]), &cppResult);
         }
     }
 

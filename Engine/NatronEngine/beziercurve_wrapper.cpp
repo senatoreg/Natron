@@ -281,8 +281,8 @@ static PyObject* Sbk_BezierCurveFunc_getCompositingOperator(PyObject* self)
 
         if (!PyErr_Occurred()) {
             // getCompositingOperator()const
-            Natron::MergingFunctionEnum cppResult = Natron::MergingFunctionEnum(const_cast<const ::BezierCurve*>(cppSelf)->getCompositingOperator());
-            pyResult = Shiboken::Conversions::copyToPython(SBK_CONVERTER(SbkNatronEngineTypes[SBK_NATRON_MERGINGFUNCTIONENUM_IDX]), &cppResult);
+            NATRON_NAMESPACE::MergingFunctionEnum cppResult = NATRON_NAMESPACE::MergingFunctionEnum(const_cast<const ::BezierCurve*>(cppSelf)->getCompositingOperator());
+            pyResult = Shiboken::Conversions::copyToPython(SBK_CONVERTER(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_MERGINGFUNCTIONENUM_IDX]), &cppResult);
         }
     }
 
@@ -1323,8 +1323,8 @@ static PyObject* Sbk_BezierCurveFunc_setCompositingOperator(PyObject* self, PyOb
     SBK_UNUSED(pythonToCpp)
 
     // Overloaded function decisor
-    // 0: setCompositingOperator(Natron::MergingFunctionEnum)
-    if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(SBK_CONVERTER(SbkNatronEngineTypes[SBK_NATRON_MERGINGFUNCTIONENUM_IDX]), (pyArg)))) {
+    // 0: setCompositingOperator(NATRON_NAMESPACE::MergingFunctionEnum)
+    if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(SBK_CONVERTER(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_MERGINGFUNCTIONENUM_IDX]), (pyArg)))) {
         overloadId = 0; // setCompositingOperator(Natron::MergingFunctionEnum)
     }
 
@@ -1333,11 +1333,11 @@ static PyObject* Sbk_BezierCurveFunc_setCompositingOperator(PyObject* self, PyOb
 
     // Call function/method
     {
-        ::Natron::MergingFunctionEnum cppArg0 = ((::Natron::MergingFunctionEnum)0);
+        ::NATRON_NAMESPACE::MergingFunctionEnum cppArg0 = ((::Natron::MergingFunctionEnum)0);
         pythonToCpp(pyArg, &cppArg0);
 
         if (!PyErr_Occurred()) {
-            // setCompositingOperator(Natron::MergingFunctionEnum)
+            // setCompositingOperator(NATRON_NAMESPACE::MergingFunctionEnum)
             cppSelf->setCompositingOperator(cppArg0);
         }
     }
@@ -1351,7 +1351,7 @@ static PyObject* Sbk_BezierCurveFunc_setCompositingOperator(PyObject* self, PyOb
 #if SHIBOKEN_MAJOR_VERSION >= 2
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.BezierCurve.setCompositingOperator");
 #else
-        const char* overloads[] = {"NatronEngine.Natron.MergingFunctionEnum", 0};
+        const char* overloads[] = {"NatronEngine.NATRON_NAMESPACE.MergingFunctionEnum", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronEngine.BezierCurve.setCompositingOperator", overloads);
 #endif
         return 0;

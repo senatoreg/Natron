@@ -86,7 +86,7 @@ void init_BoolNodeCreationProperty(PyObject* module);
 void init_StringNodeCreationProperty(PyObject* module);
 void init_RectI(PyObject* module);
 void init_RectD(PyObject* module);
-void init_Natron(PyObject* module);
+void init_NATRON_NAMESPACE(PyObject* module);
 
 // Required modules' type and converter arrays.
 #if SHIBOKEN_MAJOR_VERSION >= 2
@@ -1011,7 +1011,7 @@ SBK_MODULE_INIT_FUNCTION_BEGIN(NatronEngine)
 #if PY_MAJOR_VERSION == 2
     init_RectI(module);
     init_RectD(module);
-    init_Natron(module);
+    init_NATRON_NAMESPACE(module);
 #endif
 
     // Register converter for type 'NatronEngine.std::size_t'.

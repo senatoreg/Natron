@@ -39,7 +39,7 @@ static PyObject* Sbk_NatronFunc_getAmountFreePhysicalRAM(PyObject* self)
 
         if (!PyErr_Occurred()) {
             // getAmountFreePhysicalRAM()
-            std::size_t cppResult = ::Natron::getAmountFreePhysicalRAM();
+            std::size_t cppResult = ::NATRON_NAMESPACE::getAmountFreePhysicalRAM();
             pyResult = Shiboken::Conversions::copyToPython(SbkNatronEngineTypeConverters[SBK_STD_SIZE_T_IDX], &cppResult);
         }
     }
@@ -59,9 +59,9 @@ static PyObject* Sbk_NatronFunc_getSizeOfForBitDepth(PyObject* self, PyObject* p
     SBK_UNUSED(pythonToCpp)
 
     // Overloaded function decisor
-    // 0: static Natron::getSizeOfForBitDepth(Natron::ImageBitDepthEnum)
-    if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(*PepType_SGTP(SbkNatronEngineTypes[SBK_NATRON_IMAGEBITDEPTHENUM_IDX])->converter, (pyArg)))) {
-        overloadId = 0; // getSizeOfForBitDepth(Natron::ImageBitDepthEnum)
+    // 0: static NATRON_NAMESPACE::getSizeOfForBitDepth(NATRON_NAMESPACE::ImageBitDepthEnum)
+    if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(*PepType_SGTP(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_IMAGEBITDEPTHENUM_IDX])->converter, (pyArg)))) {
+        overloadId = 0; // getSizeOfForBitDepth(NATRON_NAMESPACE::ImageBitDepthEnum)
     }
 
     // Function signature not found.
@@ -69,12 +69,12 @@ static PyObject* Sbk_NatronFunc_getSizeOfForBitDepth(PyObject* self, PyObject* p
 
     // Call function/method
     {
-        ::Natron::ImageBitDepthEnum cppArg0{Natron::eImageBitDepthNone};
+        ::NATRON_NAMESPACE::ImageBitDepthEnum cppArg0{NATRON_NAMESPACE::eImageBitDepthNone};
         pythonToCpp(pyArg, &cppArg0);
 
         if (!PyErr_Occurred()) {
-            // getSizeOfForBitDepth(Natron::ImageBitDepthEnum)
-          int cppResult = ::Natron::getSizeOfForBitDepth(cppArg0);
+            // getSizeOfForBitDepth(NATRON_NAMESPACE::ImageBitDepthEnum)
+          int cppResult = ::NATRON_NAMESPACE::getSizeOfForBitDepth(cppArg0);
             pyResult = Shiboken::Conversions::copyToPython(Shiboken::Conversions::PrimitiveTypeConverter<int>(), &cppResult);
         }
     }
@@ -99,7 +99,7 @@ static PyObject* Sbk_NatronFunc_isApplication32Bits(PyObject* self)
 
         if (!PyErr_Occurred()) {
             // isApplication32Bits()
-            bool cppResult = ::Natron::isApplication32Bits();
+            bool cppResult = ::NATRON_NAMESPACE::isApplication32Bits();
             pyResult = Shiboken::Conversions::copyToPython(Shiboken::Conversions::PrimitiveTypeConverter<bool>(), &cppResult);
         }
     }
@@ -119,9 +119,9 @@ static PyObject* Sbk_NatronFunc_isFailureRetCode(PyObject* self, PyObject* pyArg
     SBK_UNUSED(pythonToCpp)
 
     // Overloaded function decisor
-    // 0: static Natron::isFailureRetCode(Natron::StatusEnum)
-    if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(SBK_CONVERTER(SbkNatronEngineTypes[SBK_NATRON_STATUSENUM_IDX]), (pyArg)))) {
-        overloadId = 0; // isFailureRetCode(Natron::StatusEnum)
+    // 0: static NATRON_NAMESPACE::isFailureRetCode(NATRON_NAMESPACE::StatusEnum)
+    if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(SBK_CONVERTER(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_STATUSENUM_IDX]), (pyArg)))) {
+        overloadId = 0; // isFailureRetCode(NATRON_NAMESPACE::StatusEnum)
     }
 
     // Function signature not found.
@@ -129,12 +129,12 @@ static PyObject* Sbk_NatronFunc_isFailureRetCode(PyObject* self, PyObject* pyArg
 
     // Call function/method
     {
-        ::Natron::StatusEnum cppArg0{Natron::eStatusOK};
+        ::NATRON_NAMESPACE::StatusEnum cppArg0{NATRON_NAMESPACE::eStatusOK};
         pythonToCpp(pyArg, &cppArg0);
 
         if (!PyErr_Occurred()) {
-            // isFailureRetCode(Natron::StatusEnum)
-            bool cppResult = ::Natron::isFailureRetCode(cppArg0);
+            // isFailureRetCode(NATRON_NAMESPACE::StatusEnum)
+            bool cppResult = ::NATRON_NAMESPACE::isFailureRetCode(cppArg0);
             pyResult = Shiboken::Conversions::copyToPython(Shiboken::Conversions::PrimitiveTypeConverter<bool>(), &cppResult);
         }
     }
@@ -152,7 +152,7 @@ static PyObject* Sbk_NatronFunc_isFailureRetCode(PyObject* self, PyObject* pyArg
 
 #endif
 
-static PyMethodDef Sbk_Natron_methods[] = {
+static PyMethodDef Sbk_NATRON_NAMESPACE_methods[] = {
 #if SHIBOKEN_MAJOR_VERSION >= 2
     {"getAmountFreePhysicalRAM", reinterpret_cast<PyCFunction>(Sbk_NatronFunc_getAmountFreePhysicalRAM), METH_NOARGS|METH_STATIC},
     {"getSizeOfForBitDepth", reinterpret_cast<PyCFunction>(Sbk_NatronFunc_getSizeOfForBitDepth), METH_O|METH_STATIC},
@@ -165,7 +165,7 @@ static PyMethodDef Sbk_Natron_methods[] = {
 
 } // extern "C"
 
-static int Sbk_Natron_traverse(PyObject* self, visitproc visit, void* arg)
+static int Sbk_NATRON_NAMESPACE_traverse(PyObject* self, visitproc visit, void* arg)
 {
 #if SHIBOKEN_MAJOR_VERSION >= 2
     return reinterpret_cast<PyTypeObject*>(SbkObject_TypeF())->tp_traverse(self, visit, arg);
@@ -173,7 +173,7 @@ static int Sbk_Natron_traverse(PyObject* self, visitproc visit, void* arg)
     return reinterpret_cast<PyTypeObject*>(&SbkObject_Type)->tp_traverse(self, visit, arg);
 #endif
 }
-static int Sbk_Natron_clear(PyObject* self)
+static int Sbk_NATRON_NAMESPACE_clear(PyObject* self)
 {
 #if SHIBOKEN_MAJOR_VERSION >= 2
     return reinterpret_cast<PyTypeObject*>(SbkObject_TypeF())->tp_clear(self);
@@ -184,13 +184,13 @@ static int Sbk_Natron_clear(PyObject* self)
 // Class Definition -----------------------------------------------
 extern "C" {
 #if SHIBOKEN_MAJOR_VERSION >= 2
-static SbkObjectType *_Sbk_Natron_Type = nullptr;
-static SbkObjectType *Sbk_Natron_TypeF(void)
+static SbkObjectType *_Sbk_NATRON_NAMESPACE_Type = nullptr;
+static SbkObjectType *Sbk_NATRON_NAMESPACE_TypeF(void)
 {
-    return _Sbk_Natron_Type;
+    return _Sbk_NATRON_NAMESPACE_Type;
 }
 
-static PyType_Slot Sbk_Natron_slots[] = {
+static PyType_Slot Sbk_NATRON_NAMESPACE_slots[] = {
     {Py_tp_base,        nullptr}, // inserted by introduceWrapperType
     {Py_tp_dealloc,     reinterpret_cast<void*>(&SbkDeallocWrapper)},
     {Py_tp_repr,        nullptr},
@@ -199,18 +199,18 @@ static PyType_Slot Sbk_Natron_slots[] = {
     {Py_tp_str,         nullptr},
     {Py_tp_getattro,    nullptr},
     {Py_tp_setattro,    nullptr},
-    {Py_tp_traverse,    reinterpret_cast<void*>(Sbk_Natron_traverse)},
-    {Py_tp_clear,       reinterpret_cast<void*>(Sbk_Natron_clear)},
+    {Py_tp_traverse,    reinterpret_cast<void*>(Sbk_NATRON_NAMESPACE_traverse)},
+    {Py_tp_clear,       reinterpret_cast<void*>(Sbk_NATRON_NAMESPACE_clear)},
     {Py_tp_richcompare, nullptr},
     {Py_tp_iter,        nullptr},
     {Py_tp_iternext,    nullptr},
-    {Py_tp_methods,     reinterpret_cast<void*>(Sbk_Natron_methods)},
+    {Py_tp_methods,     reinterpret_cast<void*>(Sbk_NATRON_NAMESPACE_methods)},
     {Py_tp_getset,      nullptr},
     {Py_tp_init,        nullptr},
     {Py_tp_new,         reinterpret_cast<void*>(SbkDummyNew /* PYSIDE-595: Prevent replacement of "0" with base->tp_new. */)},
     {0, nullptr}
 };
-static PyType_Spec Sbk_Natron_spec = {
+static PyType_Spec Sbk_NATRON_NAMESPACE_spec = {
     "NatronEngine.Natron",
     sizeof(SbkObject),
     0,
@@ -218,7 +218,7 @@ static PyType_Spec Sbk_Natron_spec = {
     Sbk_Natron_slots
 };
 #else
-static SbkObjectType Sbk_Natron_Type = { { {
+static SbkObjectType Sbk_NATRON_NAMESPACE_Type = { { {
     PyVarObject_HEAD_INIT(&SbkObjectType_Type, 0)
     /*tp_name*/             "NatronEngine.Natron",
     /*tp_basicsize*/        sizeof(SbkObject),
@@ -240,13 +240,13 @@ static SbkObjectType Sbk_Natron_Type = { { {
     /*tp_as_buffer*/        0,
     /*tp_flags*/            Py_TPFLAGS_DEFAULT|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_GC,
     /*tp_doc*/              0,
-    /*tp_traverse*/         Sbk_Natron_traverse,
-    /*tp_clear*/            Sbk_Natron_clear,
+    /*tp_traverse*/         Sbk_NATRON_NAMESPACE_traverse,
+    /*tp_clear*/            Sbk_NATRON_NAMESPACE_clear,
     /*tp_richcompare*/      0,
     /*tp_weaklistoffset*/   0,
     /*tp_iter*/             0,
     /*tp_iternext*/         0,
-    /*tp_methods*/          Sbk_Natron_methods,
+    /*tp_methods*/          Sbk_NATRON_NAMESPACE_methods,
     /*tp_members*/          0,
     /*tp_getset*/           0,
     /*tp_base*/             reinterpret_cast<PyTypeObject*>(&SbkObject_Type),
@@ -270,92 +270,92 @@ static SbkObjectType Sbk_Natron_Type = { { {
 #endif
 } //extern
 
-PyObject* SbkNatronEngine_Natron_StandardButtonEnum___and__(PyObject* self, PyObject* pyArg)
+PyObject* SbkNatronEngine_NATRON_NAMESPACE_StandardButtonEnum___and__(PyObject* self, PyObject* pyArg)
 {
-    ::Natron::StandardButtons cppResult, cppSelf, cppArg;
+    ::NATRON_NAMESPACE::StandardButtons cppResult, cppSelf, cppArg;
 #ifdef IS_PY3K
-    cppSelf = static_cast<::Natron::StandardButtons>(int(PyLong_AsLong(self)));
-    cppArg = static_cast<Natron::StandardButtons>(int(PyLong_AsLong(pyArg)));
+    cppSelf = static_cast<::NATRON_NAMESPACE::StandardButtons>(int(PyLong_AsLong(self)));
+    cppArg = static_cast<NATRON_NAMESPACE::StandardButtons>(int(PyLong_AsLong(pyArg)));
 #else
-    cppSelf = static_cast<::Natron::StandardButtons>(int(PyInt_AsLong(self)));
-    cppArg = static_cast<Natron::StandardButtons>(int(PyInt_AsLong(pyArg)));
+    cppSelf = static_cast<::NATRON_NAMESPACE::StandardButtons>(int(PyInt_AsLong(self)));
+    cppArg = static_cast<NATRON_NAMESPACE::StandardButtons>(int(PyInt_AsLong(pyArg)));
 #endif
 
     cppResult = cppSelf & cppArg;
-    return Shiboken::Conversions::copyToPython(SBK_CONVERTER(SbkNatronEngineTypes[SBK_QFLAGS_NATRON_STANDARDBUTTONENUM__IDX]), &cppResult);
+    return Shiboken::Conversions::copyToPython(SBK_CONVERTER(SbkNatronEngineTypes[SBK_QFLAGS_NATRON_NAMESPACE_STANDARDBUTTONENUM__IDX]), &cppResult);
 }
 
-PyObject* SbkNatronEngine_Natron_StandardButtonEnum___or__(PyObject* self, PyObject* pyArg)
+PyObject* SbkNatronEngine_NATRON_NAMESPACE_StandardButtonEnum___or__(PyObject* self, PyObject* pyArg)
 {
-    ::Natron::StandardButtons cppResult, cppSelf, cppArg;
+    ::NATRON_NAMESPACE::StandardButtons cppResult, cppSelf, cppArg;
 #ifdef IS_PY3K
-    cppSelf = static_cast<::Natron::StandardButtons>(int(PyLong_AsLong(self)));
-    cppArg = static_cast<Natron::StandardButtons>(int(PyLong_AsLong(pyArg)));
+    cppSelf = static_cast<::NATRON_NAMESPACE::StandardButtons>(int(PyLong_AsLong(self)));
+    cppArg = static_cast<NATRON_NAMESPACE::StandardButtons>(int(PyLong_AsLong(pyArg)));
 #else
-    cppSelf = static_cast<::Natron::StandardButtons>(int(PyInt_AsLong(self)));
-    cppArg = static_cast<Natron::StandardButtons>(int(PyInt_AsLong(pyArg)));
+    cppSelf = static_cast<::NATRON_NAMESPACE::StandardButtons>(int(PyInt_AsLong(self)));
+    cppArg = static_cast<NATRON_NAMESPACE::StandardButtons>(int(PyInt_AsLong(pyArg)));
 #endif
 
     cppResult = cppSelf | cppArg;
-    return Shiboken::Conversions::copyToPython(SBK_CONVERTER(SbkNatronEngineTypes[SBK_QFLAGS_NATRON_STANDARDBUTTONENUM__IDX]), &cppResult);
+    return Shiboken::Conversions::copyToPython(SBK_CONVERTER(SbkNatronEngineTypes[SBK_QFLAGS_NATRON_NAMESPACE_STANDARDBUTTONENUM__IDX]), &cppResult);
 }
 
-PyObject* SbkNatronEngine_Natron_StandardButtonEnum___xor__(PyObject* self, PyObject* pyArg)
+PyObject* SbkNatronEngine_NATRON_NAMESPACE_StandardButtonEnum___xor__(PyObject* self, PyObject* pyArg)
 {
-    ::Natron::StandardButtons cppResult, cppSelf, cppArg;
+    ::NATRON_NAMESPACE::StandardButtons cppResult, cppSelf, cppArg;
 #ifdef IS_PY3K
-    cppSelf = static_cast<::Natron::StandardButtons>(int(PyLong_AsLong(self)));
-    cppArg = static_cast<Natron::StandardButtons>(int(PyLong_AsLong(pyArg)));
+    cppSelf = static_cast<::NATRON_NAMESPACE::StandardButtons>(int(PyLong_AsLong(self)));
+    cppArg = static_cast<NATRON_NAMESPACE::StandardButtons>(int(PyLong_AsLong(pyArg)));
 #else
-    cppSelf = static_cast<::Natron::StandardButtons>(int(PyInt_AsLong(self)));
-    cppArg = static_cast<Natron::StandardButtons>(int(PyInt_AsLong(pyArg)));
+    cppSelf = static_cast<::NATRON_NAMESPACE::StandardButtons>(int(PyInt_AsLong(self)));
+    cppArg = static_cast<NATRON_NAMESPACE::StandardButtons>(int(PyInt_AsLong(pyArg)));
 #endif
 
     cppResult = cppSelf ^ cppArg;
-    return Shiboken::Conversions::copyToPython(SBK_CONVERTER(SbkNatronEngineTypes[SBK_QFLAGS_NATRON_STANDARDBUTTONENUM__IDX]), &cppResult);
+    return Shiboken::Conversions::copyToPython(SBK_CONVERTER(SbkNatronEngineTypes[SBK_QFLAGS_NATRON_NAMESPACE_STANDARDBUTTONENUM__IDX]), &cppResult);
 }
 
-PyObject* SbkNatronEngine_Natron_StandardButtonEnum___invert__(PyObject* self, PyObject* pyArg)
+PyObject* SbkNatronEngine_NATRON_NAMESPACE_StandardButtonEnum___invert__(PyObject* self, PyObject* pyArg)
 {
-    ::Natron::StandardButtons cppSelf;
+    ::NATRON_NAMESPACE::StandardButtons cppSelf;
     Shiboken::Conversions::pythonToCppCopy(SBK_CONVERTER(SbkNatronEngineTypes[SBK_QFLAGS_NATRON_STANDARDBUTTONENUM__IDX]), self, &cppSelf);
-    ::Natron::StandardButtons cppResult = ~cppSelf;
+    ::NATRON_NAMESPACE::StandardButtons cppResult = ~cppSelf;
     return Shiboken::Conversions::copyToPython(SBK_CONVERTER(SbkNatronEngineTypes[SBK_QFLAGS_NATRON_STANDARDBUTTONENUM__IDX]), &cppResult);
 }
 
-static PyObject* SbkNatronEngine_Natron_StandardButtonEnum_long(PyObject* self)
+static PyObject* SbkNatronEngine_NATRON_NAMESPACE_StandardButtonEnum_long(PyObject* self)
 {
     int val;
-    Shiboken::Conversions::pythonToCppCopy(SBK_CONVERTER(SbkNatronEngineTypes[SBK_QFLAGS_NATRON_STANDARDBUTTONENUM__IDX]), self, &val);
+    Shiboken::Conversions::pythonToCppCopy(SBK_CONVERTER(SbkNatronEngineTypes[SBK_QFLAGS_NATRON_NAMESPACE_STANDARDBUTTONENUM__IDX]), self, &val);
     return Shiboken::Conversions::copyToPython(Shiboken::Conversions::PrimitiveTypeConverter<int>(), &val);
 }
-static int SbkNatronEngine_Natron_StandardButtonEnum__nonzero(PyObject* self)
+static int SbkNatronEngine_NATRON_NAMESPACE_StandardButtonEnum__nonzero(PyObject* self)
 {
     int val;
-    Shiboken::Conversions::pythonToCppCopy(SBK_CONVERTER(SbkNatronEngineTypes[SBK_QFLAGS_NATRON_STANDARDBUTTONENUM__IDX]), self, &val);
+    Shiboken::Conversions::pythonToCppCopy(SBK_CONVERTER(SbkNatronEngineTypes[SBK_QFLAGS_NATRON_NAMESPACE_STANDARDBUTTONENUM__IDX]), self, &val);
     return val != 0;
 }
 
 #if SHIBOKEN_MAJOR_VERSION >=2
-static PyType_Slot SbkNatronEngine_Natron_StandardButtonEnum_number_slots[] = {
+static PyType_Slot SbkNatronEngine_NATRON_NAMESPACE_StandardButtonEnum_number_slots[] = {
 #ifdef IS_PY3K
-    {Py_nb_bool,    (void *)SbkNatronEngine_Natron_StandardButtonEnum__nonzero},
+    {Py_nb_bool,    (void *)SbkNatronEngine_NATRON_NAMESPACE_StandardButtonEnum__nonzero},
 #else
-    {Py_nb_nonzero, (void *)SbkNatronEngine_Natron_StandardButtonEnum__nonzero},
-    {Py_nb_long,    (void *)SbkNatronEngine_Natron_StandardButtonEnum_long},
+    {Py_nb_nonzero, (void *)SbkNatronEngine_NATRON_NAMESPACE_StandardButtonEnum__nonzero},
+    {Py_nb_long,    (void *)SbkNatronEngine_NATRON_NAMESPACE_StandardButtonEnum_long},
 #endif
-    {Py_nb_invert,  (void *)SbkNatronEngine_Natron_StandardButtonEnum___invert__},
-    {Py_nb_and,     (void *)SbkNatronEngine_Natron_StandardButtonEnum___and__},
-    {Py_nb_xor,     (void *)SbkNatronEngine_Natron_StandardButtonEnum___xor__},
-    {Py_nb_or,      (void *)SbkNatronEngine_Natron_StandardButtonEnum___or__},
-    {Py_nb_int,     (void *)SbkNatronEngine_Natron_StandardButtonEnum_long},
+    {Py_nb_invert,  (void *)SbkNatronEngine_NATRON_NAMESPACE_StandardButtonEnum___invert__},
+    {Py_nb_and,     (void *)SbkNatronEngine_NATRON_NAMESPACE_StandardButtonEnum___and__},
+    {Py_nb_xor,     (void *)SbkNatronEngine_NATRON_NAMESPACE_StandardButtonEnum___xor__},
+    {Py_nb_or,      (void *)SbkNatronEngine_NATRON_NAMESPACE_StandardButtonEnum___or__},
+    {Py_nb_int,     (void *)SbkNatronEngine_NATRON_NAMESPACE_StandardButtonEnum_long},
 #ifndef IS_PY3K
-    {Py_nb_long,    (void *)SbkNatronEngine_Natron_StandardButtonEnum_long},
+    {Py_nb_long,    (void *)SbkNatronEngine_NATRON_NAMESPACE_StandardButtonEnum_long},
 #endif
     {0, nullptr} // sentinel
 };
 #else
-static PyNumberMethods SbkNatronEngine_Natron_StandardButtonEnum_as_number = {
+static PyNumberMethods SbkNatronEngine_NATRON_NAMESPACE_StandardButtonEnum_as_number = {
     /*nb_add*/                  0,
     /*nb_subtract*/             0,
     /*nb_multiply*/             0,
@@ -368,17 +368,17 @@ static PyNumberMethods SbkNatronEngine_Natron_StandardButtonEnum_as_number = {
     /*nb_negative*/             0,
     /*nb_positive*/             0,
     /*nb_absolute*/             0,
-    /*nb_nonzero*/              SbkNatronEngine_Natron_StandardButtonEnum__nonzero,
-    /*nb_invert*/               (unaryfunc)SbkNatronEngine_Natron_StandardButtonEnum___invert__,
+    /*nb_nonzero*/              SbkNatronEngine_NATRON_NAMESPACE_StandardButtonEnum__nonzero,
+    /*nb_invert*/               (unaryfunc)SbkNatronEngine_NATRON_NAMESPACE_StandardButtonEnum___invert__,
     /*nb_lshift*/               0,
     /*nb_rshift*/               0,
-    /*nb_and*/                  (binaryfunc)SbkNatronEngine_Natron_StandardButtonEnum___and__,
-    /*nb_xor*/                  (binaryfunc)SbkNatronEngine_Natron_StandardButtonEnum___xor__,
-    /*nb_or*/                   (binaryfunc)SbkNatronEngine_Natron_StandardButtonEnum___or__,
+    /*nb_and*/                  (binaryfunc)SbkNatronEngine_NATRON_NAMESPACE_StandardButtonEnum___and__,
+    /*nb_xor*/                  (binaryfunc)SbkNatronEngine_NATRON_NAMESPACE_StandardButtonEnum___xor__,
+    /*nb_or*/                   (binaryfunc)SbkNatronEngine_NATRON_NAMESPACE_StandardButtonEnum___or__,
     #ifndef IS_PY3K
     /* nb_coerce */             0,
     #endif
-    /*nb_int*/                  SbkNatronEngine_Natron_StandardButtonEnum_long,
+    /*nb_int*/                  SbkNatronEngine_NATRON_NAMESPACE_StandardButtonEnum_long,
     #ifdef IS_PY3K
     /*nb_reserved*/             0,
     /*nb_float*/                0,
@@ -410,257 +410,258 @@ static PyNumberMethods SbkNatronEngine_Natron_StandardButtonEnum_as_number = {
 #endif
 
 
+
 // Type conversion functions.
 
 // Python to C++ enum conversion.
-static void Natron_StatusEnum_PythonToCpp_Natron_StatusEnum(PyObject* pyIn, void* cppOut) {
-    *((::Natron::StatusEnum*)cppOut) = (::Natron::StatusEnum) Shiboken::Enum::getValue(pyIn);
+static void NATRON_NAMESPACE_StatusEnum_PythonToCpp_NATRON_NAMESPACE_StatusEnum(PyObject* pyIn, void* cppOut) {
+    *((::NATRON_NAMESPACE::StatusEnum*)cppOut) = (::NATRON_NAMESPACE::StatusEnum) Shiboken::Enum::getValue(pyIn);
 
 }
-static PythonToCppFunc is_Natron_StatusEnum_PythonToCpp_Natron_StatusEnum_Convertible(PyObject* pyIn) {
-    if (PyObject_TypeCheck(pyIn, SbkNatronEngineTypes[SBK_NATRON_STATUSENUM_IDX]))
-        return Natron_StatusEnum_PythonToCpp_Natron_StatusEnum;
+static PythonToCppFunc is_NATRON_NAMESPACE_StatusEnum_PythonToCpp_NATRON_NAMESPACE_StatusEnum_Convertible(PyObject* pyIn) {
+    if (PyObject_TypeCheck(pyIn, SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_STATUSENUM_IDX]))
+        return NATRON_NAMESPACE_StatusEnum_PythonToCpp_Natron_StatusEnum;
     return 0;
 }
-static PyObject* Natron_StatusEnum_CppToPython_Natron_StatusEnum(const void* cppIn) {
-    int castCppIn = *((::Natron::StatusEnum*)cppIn);
-    return Shiboken::Enum::newItem(SbkNatronEngineTypes[SBK_NATRON_STATUSENUM_IDX], castCppIn);
+static PyObject* NATRON_NAMESPACE_StatusEnum_CppToPython_NATRON_NAMESPACE_StatusEnum(const void* cppIn) {
+    int castCppIn = *((::NATRON_NAMESPACE::StatusEnum*)cppIn);
+    return Shiboken::Enum::newItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_STATUSENUM_IDX], castCppIn);
 
 }
 
-static void Natron_StandardButtonEnum_PythonToCpp_Natron_StandardButtonEnum(PyObject* pyIn, void* cppOut) {
-    *((::Natron::StandardButtonEnum*)cppOut) = (::Natron::StandardButtonEnum) Shiboken::Enum::getValue(pyIn);
+static void NATRON_NAMESPACE_StandardButtonEnum_PythonToCpp_NATRON_NAMESPACE_StandardButtonEnum(PyObject* pyIn, void* cppOut) {
+    *((::NATRON_NAMESPACE::StandardButtonEnum*)cppOut) = (::NATRON_NAMESPACE::StandardButtonEnum) Shiboken::Enum::getValue(pyIn);
 
 }
-static PythonToCppFunc is_Natron_StandardButtonEnum_PythonToCpp_Natron_StandardButtonEnum_Convertible(PyObject* pyIn) {
-    if (PyObject_TypeCheck(pyIn, SbkNatronEngineTypes[SBK_NATRON_STANDARDBUTTONENUM_IDX]))
+static PythonToCppFunc is_NATRON_NAMESPACE_StandardButtonEnum_PythonToCpp_NATRON_NAMESPACE_StandardButtonEnum_Convertible(PyObject* pyIn) {
+    if (PyObject_TypeCheck(pyIn, SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_STANDARDBUTTONENUM_IDX]))
         return Natron_StandardButtonEnum_PythonToCpp_Natron_StandardButtonEnum;
     return 0;
 }
-static PyObject* Natron_StandardButtonEnum_CppToPython_Natron_StandardButtonEnum(const void* cppIn) {
-    int castCppIn = *((::Natron::StandardButtonEnum*)cppIn);
-    return Shiboken::Enum::newItem(SbkNatronEngineTypes[SBK_NATRON_STANDARDBUTTONENUM_IDX], castCppIn);
+static PyObject* NATRON_NAMESPACE_StandardButtonEnum_CppToPython_NATRON_NAMESPACE_StandardButtonEnum(const void* cppIn) {
+    int castCppIn = *((::NATRON_NAMESPACE::StandardButtonEnum*)cppIn);
+    return Shiboken::Enum::newItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_STANDARDBUTTONENUM_IDX], castCppIn);
 
 }
 
-static void QFlags_Natron_StandardButtonEnum__PythonToCpp_QFlags_Natron_StandardButtonEnum_(PyObject* pyIn, void* cppOut) {
-    *((::QFlags<Natron::StandardButtonEnum>*)cppOut) = ::QFlags<Natron::StandardButtonEnum>(QFlag(int(PySide::QFlags::getValue(reinterpret_cast<PySideQFlagsObject*>(pyIn)))));
+static void QFlags_NATRON_NAMESPACE_StandardButtonEnum__PythonToCpp_QFlags_NATRON_NAMESPACE_StandardButtonEnum_(PyObject* pyIn, void* cppOut) {
+    *((::QFlags<NATRON_NAMESPACE::StandardButtonEnum>*)cppOut) = ::QFlags<NATRON_NAMESPACE::StandardButtonEnum>(QFlag(int(PySide::QFlags::getValue(reinterpret_cast<PySideQFlagsObject*>(pyIn)))));
 
 }
-static PythonToCppFunc is_QFlags_Natron_StandardButtonEnum__PythonToCpp_QFlags_Natron_StandardButtonEnum__Convertible(PyObject* pyIn) {
-    if (PyObject_TypeCheck(pyIn, SbkNatronEngineTypes[SBK_QFLAGS_NATRON_STANDARDBUTTONENUM__IDX]))
-        return QFlags_Natron_StandardButtonEnum__PythonToCpp_QFlags_Natron_StandardButtonEnum_;
+static PythonToCppFunc is_QFlags_NATRON_NAMESPACE_StandardButtonEnum__PythonToCpp_QFlags_NATRON_NAMESPACE_StandardButtonEnum__Convertible(PyObject* pyIn) {
+    if (PyObject_TypeCheck(pyIn, SbkNatronEngineTypes[SBK_QFLAGS_NATRON_NAMESPACE_STANDARDBUTTONENUM__IDX]))
+        return QFlags_NATRON_NAMESPACE_StandardButtonEnum__PythonToCpp_QFlags_NATRON_NAMESPACE_StandardButtonEnum_;
     return 0;
 }
-static PyObject* QFlags_Natron_StandardButtonEnum__CppToPython_QFlags_Natron_StandardButtonEnum_(const void* cppIn) {
-    int castCppIn = *((::QFlags<Natron::StandardButtonEnum>*)cppIn);
-    return reinterpret_cast<PyObject*>(PySide::QFlags::newObject(castCppIn, SbkNatronEngineTypes[SBK_QFLAGS_NATRON_STANDARDBUTTONENUM__IDX]));
+static PyObject* QFlags_NATRON_NAMESPACE_StandardButtonEnum__CppToPython_QFlags_NATRON_NAMESPACE_StandardButtonEnum_(const void* cppIn) {
+    int castCppIn = *((::QFlags<NATRON_NAMESPACE::StandardButtonEnum>*)cppIn);
+    return reinterpret_cast<PyObject*>(PySide::QFlags::newObject(castCppIn, SbkNatronEngineTypes[SBK_QFLAGS_NATRON_NAMESPACE_STANDARDBUTTONENUM__IDX]));
 
 }
 
-static void Natron_StandardButtonEnum_PythonToCpp_QFlags_Natron_StandardButtonEnum_(PyObject* pyIn, void* cppOut) {
-  *((::QFlags<Natron::StandardButtonEnum>*)cppOut) = ::QFlags<Natron::StandardButtonEnum>(QFlag(int(Shiboken::Enum::getValue(pyIn))));
+static void NATRON_NAMESPACE_StandardButtonEnum_PythonToCpp_QFlags_NATRON_NAMESPACE_StandardButtonEnum_(PyObject* pyIn, void* cppOut) {
+  *((::QFlags<NATRON_NAMESPACE::StandardButtonEnum>*)cppOut) = ::QFlags<NATRON_NAMESPACE::StandardButtonEnum>(QFlag(int(Shiboken::Enum::getValue(pyIn))));
 
 }
-static PythonToCppFunc is_Natron_StandardButtonEnum_PythonToCpp_QFlags_Natron_StandardButtonEnum__Convertible(PyObject* pyIn) {
-    if (PyObject_TypeCheck(pyIn, SbkNatronEngineTypes[SBK_NATRON_STANDARDBUTTONENUM_IDX]))
-        return Natron_StandardButtonEnum_PythonToCpp_QFlags_Natron_StandardButtonEnum_;
+static PythonToCppFunc is_NATRON_NAMESPACE_StandardButtonEnum_PythonToCpp_QFlags_NATRON_NAMESPACE_StandardButtonEnum__Convertible(PyObject* pyIn) {
+    if (PyObject_TypeCheck(pyIn, SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_STANDARDBUTTONENUM_IDX]))
+        return NATRON_NAMESPACE_StandardButtonEnum_PythonToCpp_QFlags_NATRON_NAMESPACE_StandardButtonEnum_;
     return 0;
 }
-static void number_PythonToCpp_QFlags_Natron_StandardButtonEnum_(PyObject* pyIn, void* cppOut) {
+static void number_PythonToCpp_QFlags_NATRON_NAMESPACE_StandardButtonEnum_(PyObject* pyIn, void* cppOut) {
     Shiboken::AutoDecRef pyLong(PyNumber_Long(pyIn));
-    *((::QFlags<Natron::StandardButtonEnum>*)cppOut) = ::QFlags<Natron::StandardButtonEnum>(QFlag(int(PyLong_AsLong(pyLong.object()))));
+    *((::QFlags<NATRON_NAMESPACE::StandardButtonEnum>*)cppOut) = ::QFlags<NATRON_NAMESPACE::StandardButtonEnum>(QFlag(int(PyLong_AsLong(pyLong.object()))));
 
 }
-static PythonToCppFunc is_number_PythonToCpp_QFlags_Natron_StandardButtonEnum__Convertible(PyObject* pyIn) {
+static PythonToCppFunc is_number_PythonToCpp_QFlags_NATRON_NAMESPACE_StandardButtonEnum__Convertible(PyObject* pyIn) {
     if (PyNumber_Check(pyIn))
-        return number_PythonToCpp_QFlags_Natron_StandardButtonEnum_;
+        return number_PythonToCpp_QFlags_NATRON_NAMESPACE_StandardButtonEnum_;
     return 0;
 }
-static void Natron_KeyframeTypeEnum_PythonToCpp_Natron_KeyframeTypeEnum(PyObject* pyIn, void* cppOut) {
-    *((::Natron::KeyframeTypeEnum*)cppOut) = (::Natron::KeyframeTypeEnum) Shiboken::Enum::getValue(pyIn);
+static void NATRON_NAMESPACE_KeyframeTypeEnum_PythonToCpp_NATRON_NAMESPACE_KeyframeTypeEnum(PyObject* pyIn, void* cppOut) {
+    *((::NATRON_NAMESPACE::KeyframeTypeEnum*)cppOut) = (::NATRON_NAMESPACE::KeyframeTypeEnum) Shiboken::Enum::getValue(pyIn);
 
 }
-static PythonToCppFunc is_Natron_KeyframeTypeEnum_PythonToCpp_Natron_KeyframeTypeEnum_Convertible(PyObject* pyIn) {
-    if (PyObject_TypeCheck(pyIn, SbkNatronEngineTypes[SBK_NATRON_KEYFRAMETYPEENUM_IDX]))
-        return Natron_KeyframeTypeEnum_PythonToCpp_Natron_KeyframeTypeEnum;
+static PythonToCppFunc is_NATRON_NAMESPACE_KeyframeTypeEnum_PythonToCpp_NATRON_NAMESPACE_KeyframeTypeEnum_Convertible(PyObject* pyIn) {
+    if (PyObject_TypeCheck(pyIn, SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_KEYFRAMETYPEENUM_IDX]))
+        return NATRON_NAMESPACE_KeyframeTypeEnum_PythonToCpp_NATRON_NAMESPACE_KeyframeTypeEnum;
     return 0;
 }
-static PyObject* Natron_KeyframeTypeEnum_CppToPython_Natron_KeyframeTypeEnum(const void* cppIn) {
-    int castCppIn = *((::Natron::KeyframeTypeEnum*)cppIn);
-    return Shiboken::Enum::newItem(SbkNatronEngineTypes[SBK_NATRON_KEYFRAMETYPEENUM_IDX], castCppIn);
+static PyObject* NATRON_NAMESPACE_KeyframeTypeEnum_CppToPython_NATRON_NAMESPACE_KeyframeTypeEnum(const void* cppIn) {
+    int castCppIn = *((::NATRON_NAMESPACE::KeyframeTypeEnum*)cppIn);
+    return Shiboken::Enum::newItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_KEYFRAMETYPEENUM_IDX], castCppIn);
 
 }
 
-static void Natron_PixmapEnum_PythonToCpp_Natron_PixmapEnum(PyObject* pyIn, void* cppOut) {
-    *((::Natron::PixmapEnum*)cppOut) = (::Natron::PixmapEnum) Shiboken::Enum::getValue(pyIn);
+static void NATRON_NAMESPACE_PixmapEnum_PythonToCpp_NATRON_NAMESPACE_PixmapEnum(PyObject* pyIn, void* cppOut) {
+    *((::NATRON_NAMESPACE::PixmapEnum*)cppOut) = (::NATRON_NAMESPACE::PixmapEnum) Shiboken::Enum::getValue(pyIn);
 
 }
-static PythonToCppFunc is_Natron_PixmapEnum_PythonToCpp_Natron_PixmapEnum_Convertible(PyObject* pyIn) {
-    if (PyObject_TypeCheck(pyIn, SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX]))
-        return Natron_PixmapEnum_PythonToCpp_Natron_PixmapEnum;
+static PythonToCppFunc is_NATRON_NAMESPACE_PixmapEnum_PythonToCpp_NATRON_NAMESPACE_PixmapEnum_Convertible(PyObject* pyIn) {
+    if (PyObject_TypeCheck(pyIn, SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX]))
+        return NATRON_NAMESPACE_PixmapEnum_PythonToCpp_NATRON_NAMESPACE_PixmapEnum;
     return 0;
 }
-static PyObject* Natron_PixmapEnum_CppToPython_Natron_PixmapEnum(const void* cppIn) {
-    int castCppIn = *((::Natron::PixmapEnum*)cppIn);
-    return Shiboken::Enum::newItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX], castCppIn);
+static PyObject* NATRON_NAMESPACE_PixmapEnum_CppToPython_NATRON_NAMESPACE_PixmapEnum(const void* cppIn) {
+    int castCppIn = *((::NATRON_NAMESPACE::PixmapEnum*)cppIn);
+    return Shiboken::Enum::newItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX], castCppIn);
 
 }
 
-static void Natron_ValueChangedReasonEnum_PythonToCpp_Natron_ValueChangedReasonEnum(PyObject* pyIn, void* cppOut) {
-    *((::Natron::ValueChangedReasonEnum*)cppOut) = (::Natron::ValueChangedReasonEnum) Shiboken::Enum::getValue(pyIn);
+static void NATRON_NAMESPACE_ValueChangedReasonEnum_PythonToCpp_NATRON_NAMESPACE_ValueChangedReasonEnum(PyObject* pyIn, void* cppOut) {
+    *((::NATRON_NAMESPACE::ValueChangedReasonEnum*)cppOut) = (::NATRON_NAMESPACE::ValueChangedReasonEnum) Shiboken::Enum::getValue(pyIn);
 
 }
-static PythonToCppFunc is_Natron_ValueChangedReasonEnum_PythonToCpp_Natron_ValueChangedReasonEnum_Convertible(PyObject* pyIn) {
-    if (PyObject_TypeCheck(pyIn, SbkNatronEngineTypes[SBK_NATRON_VALUECHANGEDREASONENUM_IDX]))
-        return Natron_ValueChangedReasonEnum_PythonToCpp_Natron_ValueChangedReasonEnum;
+static PythonToCppFunc is_NATRON_NAMESPACE_ValueChangedReasonEnum_PythonToCpp_NATRON_NAMESPACE_ValueChangedReasonEnum_Convertible(PyObject* pyIn) {
+    if (PyObject_TypeCheck(pyIn, SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_VALUECHANGEDREASONENUM_IDX]))
+        return NATRON_NAMESPACE_ValueChangedReasonEnum_PythonToCpp_NATRON_NAMESPACE_ValueChangedReasonEnum;
     return 0;
 }
-static PyObject* Natron_ValueChangedReasonEnum_CppToPython_Natron_ValueChangedReasonEnum(const void* cppIn) {
-    int castCppIn = *((::Natron::ValueChangedReasonEnum*)cppIn);
-    return Shiboken::Enum::newItem(SbkNatronEngineTypes[SBK_NATRON_VALUECHANGEDREASONENUM_IDX], castCppIn);
+static PyObject* NATRON_NAMESPACE_ValueChangedReasonEnum_CppToPython_NATRON_NAMESPACE_ValueChangedReasonEnum(const void* cppIn) {
+    int castCppIn = *((::NATRON_NAMESPACE::ValueChangedReasonEnum*)cppIn);
+    return Shiboken::Enum::newItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_VALUECHANGEDREASONENUM_IDX], castCppIn);
 
 }
 
-static void Natron_AnimationLevelEnum_PythonToCpp_Natron_AnimationLevelEnum(PyObject* pyIn, void* cppOut) {
-    *((::Natron::AnimationLevelEnum*)cppOut) = (::Natron::AnimationLevelEnum) Shiboken::Enum::getValue(pyIn);
+static void NATRON_NAMESPACE_AnimationLevelEnum_PythonToCpp_NATRON_NAMESPACE_AnimationLevelEnum(PyObject* pyIn, void* cppOut) {
+    *((::NATRON_NAMESPACE::AnimationLevelEnum*)cppOut) = (::NATRON_NAMESPACE::AnimationLevelEnum) Shiboken::Enum::getValue(pyIn);
 
 }
-static PythonToCppFunc is_Natron_AnimationLevelEnum_PythonToCpp_Natron_AnimationLevelEnum_Convertible(PyObject* pyIn) {
-    if (PyObject_TypeCheck(pyIn, SbkNatronEngineTypes[SBK_NATRON_ANIMATIONLEVELENUM_IDX]))
-        return Natron_AnimationLevelEnum_PythonToCpp_Natron_AnimationLevelEnum;
+static PythonToCppFunc is_NATRON_NAMESPACE_AnimationLevelEnum_PythonToCpp_NATRON_NAMESPACE_AnimationLevelEnum_Convertible(PyObject* pyIn) {
+    if (PyObject_TypeCheck(pyIn, SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_ANIMATIONLEVELENUM_IDX]))
+        return NATRON_NAMESPACE_AnimationLevelEnum_PythonToCpp_NATRON_NAMESPACE_AnimationLevelEnum;
     return 0;
 }
-static PyObject* Natron_AnimationLevelEnum_CppToPython_Natron_AnimationLevelEnum(const void* cppIn) {
-    int castCppIn = *((::Natron::AnimationLevelEnum*)cppIn);
-    return Shiboken::Enum::newItem(SbkNatronEngineTypes[SBK_NATRON_ANIMATIONLEVELENUM_IDX], castCppIn);
+static PyObject* NATRON_NAMESPACE_AnimationLevelEnum_CppToPython_NATRON_NAMESPACE_AnimationLevelEnum(const void* cppIn) {
+    int castCppIn = *((::NATRON_NAMESPACE::AnimationLevelEnum*)cppIn);
+    return Shiboken::Enum::newItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_ANIMATIONLEVELENUM_IDX], castCppIn);
 
 }
 
-static void Natron_ImagePremultiplicationEnum_PythonToCpp_Natron_ImagePremultiplicationEnum(PyObject* pyIn, void* cppOut) {
-    *((::Natron::ImagePremultiplicationEnum*)cppOut) = (::Natron::ImagePremultiplicationEnum) Shiboken::Enum::getValue(pyIn);
+static void NATRON_NAMESPACE_ImagePremultiplicationEnum_PythonToCpp_NATRON_NAMESPACE_ImagePremultiplicationEnum(PyObject* pyIn, void* cppOut) {
+    *((::NATRON_NAMESPACE::ImagePremultiplicationEnum*)cppOut) = (::NATRON_NAMESPACE::ImagePremultiplicationEnum) Shiboken::Enum::getValue(pyIn);
 
 }
-static PythonToCppFunc is_Natron_ImagePremultiplicationEnum_PythonToCpp_Natron_ImagePremultiplicationEnum_Convertible(PyObject* pyIn) {
-    if (PyObject_TypeCheck(pyIn, SbkNatronEngineTypes[SBK_NATRON_IMAGEPREMULTIPLICATIONENUM_IDX]))
-        return Natron_ImagePremultiplicationEnum_PythonToCpp_Natron_ImagePremultiplicationEnum;
+static PythonToCppFunc is_NATRON_NAMESPACE_ImagePremultiplicationEnum_PythonToCpp_NATRON_NAMESPACE_ImagePremultiplicationEnum_Convertible(PyObject* pyIn) {
+    if (PyObject_TypeCheck(pyIn, SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_IMAGEPREMULTIPLICATIONENUM_IDX]))
+        return NATRON_NAMESPACE_ImagePremultiplicationEnum_PythonToCpp_NATRON_NAMESPACE_ImagePremultiplicationEnum;
     return 0;
 }
-static PyObject* Natron_ImagePremultiplicationEnum_CppToPython_Natron_ImagePremultiplicationEnum(const void* cppIn) {
-    int castCppIn = *((::Natron::ImagePremultiplicationEnum*)cppIn);
-    return Shiboken::Enum::newItem(SbkNatronEngineTypes[SBK_NATRON_IMAGEPREMULTIPLICATIONENUM_IDX], castCppIn);
+static PyObject* NATRON_NAMESPACE_ImagePremultiplicationEnum_CppToPython_NATRON_NAMESPACE_ImagePremultiplicationEnum(const void* cppIn) {
+    int castCppIn = *((::NATRON_NAMESPACE::ImagePremultiplicationEnum*)cppIn);
+    return Shiboken::Enum::newItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_IMAGEPREMULTIPLICATIONENUM_IDX], castCppIn);
 
 }
 
-static void Natron_ViewerCompositingOperatorEnum_PythonToCpp_Natron_ViewerCompositingOperatorEnum(PyObject* pyIn, void* cppOut) {
-    *((::Natron::ViewerCompositingOperatorEnum*)cppOut) = (::Natron::ViewerCompositingOperatorEnum) Shiboken::Enum::getValue(pyIn);
+static void NATRON_NAMESPACE_ViewerCompositingOperatorEnum_PythonToCpp_NATRON_NAMESPACE_ViewerCompositingOperatorEnum(PyObject* pyIn, void* cppOut) {
+    *((::NATRON_NAMESPACE::ViewerCompositingOperatorEnum*)cppOut) = (::NATRON_NAMESPACE::ViewerCompositingOperatorEnum) Shiboken::Enum::getValue(pyIn);
 
 }
-static PythonToCppFunc is_Natron_ViewerCompositingOperatorEnum_PythonToCpp_Natron_ViewerCompositingOperatorEnum_Convertible(PyObject* pyIn) {
-    if (PyObject_TypeCheck(pyIn, SbkNatronEngineTypes[SBK_NATRON_VIEWERCOMPOSITINGOPERATORENUM_IDX]))
-        return Natron_ViewerCompositingOperatorEnum_PythonToCpp_Natron_ViewerCompositingOperatorEnum;
+static PythonToCppFunc is_NATRON_NAMESPACE_ViewerCompositingOperatorEnum_PythonToCpp_NATRON_NAMESPACE_ViewerCompositingOperatorEnum_Convertible(PyObject* pyIn) {
+    if (PyObject_TypeCheck(pyIn, SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_VIEWERCOMPOSITINGOPERATORENUM_IDX]))
+        return NATRON_NAMESPACE_ViewerCompositingOperatorEnum_PythonToCpp_NATRON_NAMESPACE_ViewerCompositingOperatorEnum;
     return 0;
 }
-static PyObject* Natron_ViewerCompositingOperatorEnum_CppToPython_Natron_ViewerCompositingOperatorEnum(const void* cppIn) {
-    int castCppIn = *((::Natron::ViewerCompositingOperatorEnum*)cppIn);
-    return Shiboken::Enum::newItem(SbkNatronEngineTypes[SBK_NATRON_VIEWERCOMPOSITINGOPERATORENUM_IDX], castCppIn);
+static PyObject* NATRON_NAMESPACE_ViewerCompositingOperatorEnum_CppToPython_NATRON_NAMESPACE_ViewerCompositingOperatorEnum(const void* cppIn) {
+    int castCppIn = *((::NATRON_NAMESPACE::ViewerCompositingOperatorEnum*)cppIn);
+    return Shiboken::Enum::newItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_VIEWERCOMPOSITINGOPERATORENUM_IDX], castCppIn);
 
 }
 
-static void Natron_ViewerColorSpaceEnum_PythonToCpp_Natron_ViewerColorSpaceEnum(PyObject* pyIn, void* cppOut) {
-    *((::Natron::ViewerColorSpaceEnum*)cppOut) = (::Natron::ViewerColorSpaceEnum) Shiboken::Enum::getValue(pyIn);
+static void NATRON_NAMESPACE_ViewerColorSpaceEnum_PythonToCpp_NATRON_NAMESPACE_ViewerColorSpaceEnum(PyObject* pyIn, void* cppOut) {
+    *((::NATRON_NAMESPACE::ViewerColorSpaceEnum*)cppOut) = (::NATRON_NAMESPACE::ViewerColorSpaceEnum) Shiboken::Enum::getValue(pyIn);
 
 }
-static PythonToCppFunc is_Natron_ViewerColorSpaceEnum_PythonToCpp_Natron_ViewerColorSpaceEnum_Convertible(PyObject* pyIn) {
-    if (PyObject_TypeCheck(pyIn, SbkNatronEngineTypes[SBK_NATRON_VIEWERCOLORSPACEENUM_IDX]))
-        return Natron_ViewerColorSpaceEnum_PythonToCpp_Natron_ViewerColorSpaceEnum;
+static PythonToCppFunc is_NATRON_NAMESPACE_ViewerColorSpaceEnum_PythonToCpp_NATRON_NAMESPACE_ViewerColorSpaceEnum_Convertible(PyObject* pyIn) {
+    if (PyObject_TypeCheck(pyIn, SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_VIEWERCOLORSPACEENUM_IDX]))
+        return NATRON_NAMESPACE_ViewerColorSpaceEnum_PythonToCpp_NATRON_NAMESPACE_ViewerColorSpaceEnum;
     return 0;
 }
-static PyObject* Natron_ViewerColorSpaceEnum_CppToPython_Natron_ViewerColorSpaceEnum(const void* cppIn) {
-    int castCppIn = *((::Natron::ViewerColorSpaceEnum*)cppIn);
-    return Shiboken::Enum::newItem(SbkNatronEngineTypes[SBK_NATRON_VIEWERCOLORSPACEENUM_IDX], castCppIn);
+static PyObject* NATRON_NAMESPACE_ViewerColorSpaceEnum_CppToPython_NATRON_NAMESPACE_ViewerColorSpaceEnum(const void* cppIn) {
+    int castCppIn = *((::NATRON_NAMESPACE::ViewerColorSpaceEnum*)cppIn);
+    return Shiboken::Enum::newItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_VIEWERCOLORSPACEENUM_IDX], castCppIn);
 
 }
 
-static void Natron_ImageBitDepthEnum_PythonToCpp_Natron_ImageBitDepthEnum(PyObject* pyIn, void* cppOut) {
-    *((::Natron::ImageBitDepthEnum*)cppOut) = (::Natron::ImageBitDepthEnum) Shiboken::Enum::getValue(pyIn);
+static void NATRON_NAMESPACE_ImageBitDepthEnum_PythonToCpp_NATRON_NAMESPACE_ImageBitDepthEnum(PyObject* pyIn, void* cppOut) {
+    *((::NATRON_NAMESPACE::ImageBitDepthEnum*)cppOut) = (::NATRON_NAMESPACE::ImageBitDepthEnum) Shiboken::Enum::getValue(pyIn);
 
 }
-static PythonToCppFunc is_Natron_ImageBitDepthEnum_PythonToCpp_Natron_ImageBitDepthEnum_Convertible(PyObject* pyIn) {
-    if (PyObject_TypeCheck(pyIn, SbkNatronEngineTypes[SBK_NATRON_IMAGEBITDEPTHENUM_IDX]))
-        return Natron_ImageBitDepthEnum_PythonToCpp_Natron_ImageBitDepthEnum;
+static PythonToCppFunc is_NATRON_NAMESPACE_ImageBitDepthEnum_PythonToCpp_NATRON_NAMESPACE_ImageBitDepthEnum_Convertible(PyObject* pyIn) {
+    if (PyObject_TypeCheck(pyIn, SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_IMAGEBITDEPTHENUM_IDX]))
+        return NATRON_NAMESPACE_ImageBitDepthEnum_PythonToCpp_NATRON_NAMESPACE_ImageBitDepthEnum;
     return 0;
 }
-static PyObject* Natron_ImageBitDepthEnum_CppToPython_Natron_ImageBitDepthEnum(const void* cppIn) {
-    int castCppIn = *((::Natron::ImageBitDepthEnum*)cppIn);
-    return Shiboken::Enum::newItem(SbkNatronEngineTypes[SBK_NATRON_IMAGEBITDEPTHENUM_IDX], castCppIn);
+static PyObject* NATRON_NAMESPACE_ImageBitDepthEnum_CppToPython_NATRON_NAMESPACE_ImageBitDepthEnum(const void* cppIn) {
+    int castCppIn = *((::NATRON_NAMESPACE::ImageBitDepthEnum*)cppIn);
+    return Shiboken::Enum::newItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_IMAGEBITDEPTHENUM_IDX], castCppIn);
 
 }
 
-static void Natron_OrientationEnum_PythonToCpp_Natron_OrientationEnum(PyObject* pyIn, void* cppOut) {
-    *((::Natron::OrientationEnum*)cppOut) = (::Natron::OrientationEnum) Shiboken::Enum::getValue(pyIn);
+static void NATRON_NAMESPACE_OrientationEnum_PythonToCpp_NATRON_NAMESPACE_OrientationEnum(PyObject* pyIn, void* cppOut) {
+    *((::NATRON_NAMESPACE::OrientationEnum*)cppOut) = (::NATRON_NAMESPACE::OrientationEnum) Shiboken::Enum::getValue(pyIn);
 
 }
-static PythonToCppFunc is_Natron_OrientationEnum_PythonToCpp_Natron_OrientationEnum_Convertible(PyObject* pyIn) {
-    if (PyObject_TypeCheck(pyIn, SbkNatronEngineTypes[SBK_NATRON_ORIENTATIONENUM_IDX]))
-        return Natron_OrientationEnum_PythonToCpp_Natron_OrientationEnum;
+static PythonToCppFunc is_NATRON_NAMESPACE_OrientationEnum_PythonToCpp_NATRON_NAMESPACE_OrientationEnum_Convertible(PyObject* pyIn) {
+    if (PyObject_TypeCheck(pyIn, SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_ORIENTATIONENUM_IDX]))
+        return NATRON_NAMESPACE_OrientationEnum_PythonToCpp_NATRON_NAMESPACE_OrientationEnum;
     return 0;
 }
-static PyObject* Natron_OrientationEnum_CppToPython_Natron_OrientationEnum(const void* cppIn) {
-    int castCppIn = *((::Natron::OrientationEnum*)cppIn);
-    return Shiboken::Enum::newItem(SbkNatronEngineTypes[SBK_NATRON_ORIENTATIONENUM_IDX], castCppIn);
+static PyObject* NATRON_NAMESPACE_OrientationEnum_CppToPython_NATRON_NAMESPACE_OrientationEnum(const void* cppIn) {
+    int castCppIn = *((::NATRON_NAMESPACE::OrientationEnum*)cppIn);
+    return Shiboken::Enum::newItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_ORIENTATIONENUM_IDX], castCppIn);
 
 }
 
-static void Natron_PlaybackModeEnum_PythonToCpp_Natron_PlaybackModeEnum(PyObject* pyIn, void* cppOut) {
-    *((::Natron::PlaybackModeEnum*)cppOut) = (::Natron::PlaybackModeEnum) Shiboken::Enum::getValue(pyIn);
+static void NATRON_NAMESPACE_PlaybackModeEnum_PythonToCpp_NATRON_NAMESPACE_PlaybackModeEnum(PyObject* pyIn, void* cppOut) {
+    *((::NATRON_NAMESPACE::PlaybackModeEnum*)cppOut) = (::NATRON_NAMESPACE::PlaybackModeEnum) Shiboken::Enum::getValue(pyIn);
 
 }
-static PythonToCppFunc is_Natron_PlaybackModeEnum_PythonToCpp_Natron_PlaybackModeEnum_Convertible(PyObject* pyIn) {
-    if (PyObject_TypeCheck(pyIn, SbkNatronEngineTypes[SBK_NATRON_PLAYBACKMODEENUM_IDX]))
-        return Natron_PlaybackModeEnum_PythonToCpp_Natron_PlaybackModeEnum;
+static PythonToCppFunc is_NATRON_NAMESPACE_PlaybackModeEnum_PythonToCpp_NATRON_NAMESPACE_PlaybackModeEnum_Convertible(PyObject* pyIn) {
+    if (PyObject_TypeCheck(pyIn, SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PLAYBACKMODEENUM_IDX]))
+        return NATRON_NAMESPACE_PlaybackModeEnum_PythonToCpp_NATRON_NAMESPACE_PlaybackModeEnum;
     return 0;
 }
-static PyObject* Natron_PlaybackModeEnum_CppToPython_Natron_PlaybackModeEnum(const void* cppIn) {
-    int castCppIn = *((::Natron::PlaybackModeEnum*)cppIn);
-    return Shiboken::Enum::newItem(SbkNatronEngineTypes[SBK_NATRON_PLAYBACKMODEENUM_IDX], castCppIn);
+static PyObject* NATRON_NAMESPACE_PlaybackModeEnum_CppToPython_NATRON_NAMESPACE_PlaybackModeEnum(const void* cppIn) {
+    int castCppIn = *((::NATRON_NAMESPACE::PlaybackModeEnum*)cppIn);
+    return Shiboken::Enum::newItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PLAYBACKMODEENUM_IDX], castCppIn);
 
 }
 
-static void Natron_DisplayChannelsEnum_PythonToCpp_Natron_DisplayChannelsEnum(PyObject* pyIn, void* cppOut) {
-    *((::Natron::DisplayChannelsEnum*)cppOut) = (::Natron::DisplayChannelsEnum) Shiboken::Enum::getValue(pyIn);
+static void NATRON_NAMESPACE_DisplayChannelsEnum_PythonToCpp_NATRON_NAMESPACE_DisplayChannelsEnum(PyObject* pyIn, void* cppOut) {
+    *((::NATRON_NAMESPACE::DisplayChannelsEnum*)cppOut) = (::NATRON_NAMESPACE::DisplayChannelsEnum) Shiboken::Enum::getValue(pyIn);
 
 }
-static PythonToCppFunc is_Natron_DisplayChannelsEnum_PythonToCpp_Natron_DisplayChannelsEnum_Convertible(PyObject* pyIn) {
-    if (PyObject_TypeCheck(pyIn, SbkNatronEngineTypes[SBK_NATRON_DISPLAYCHANNELSENUM_IDX]))
-        return Natron_DisplayChannelsEnum_PythonToCpp_Natron_DisplayChannelsEnum;
+static PythonToCppFunc is_NATRON_NAMESPACE_DisplayChannelsEnum_PythonToCpp_NATRON_NAMESPACE_DisplayChannelsEnum_Convertible(PyObject* pyIn) {
+    if (PyObject_TypeCheck(pyIn, SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_DISPLAYCHANNELSENUM_IDX]))
+        return NATRON_NAMESPACE_DisplayChannelsEnum_PythonToCpp_NATRON_NAMESPACE_DisplayChannelsEnum;
     return 0;
 }
-static PyObject* Natron_DisplayChannelsEnum_CppToPython_Natron_DisplayChannelsEnum(const void* cppIn) {
-    int castCppIn = *((::Natron::DisplayChannelsEnum*)cppIn);
-    return Shiboken::Enum::newItem(SbkNatronEngineTypes[SBK_NATRON_DISPLAYCHANNELSENUM_IDX], castCppIn);
+static PyObject* NATRON_NAMESPACE_DisplayChannelsEnum_CppToPython_NATRON_NAMESPACE_DisplayChannelsEnum(const void* cppIn) {
+    int castCppIn = *((::NATRON_NAMESPACE::DisplayChannelsEnum*)cppIn);
+    return Shiboken::Enum::newItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_DISPLAYCHANNELSENUM_IDX], castCppIn);
 
 }
 
-static void Natron_MergingFunctionEnum_PythonToCpp_Natron_MergingFunctionEnum(PyObject* pyIn, void* cppOut) {
-    *((::Natron::MergingFunctionEnum*)cppOut) = (::Natron::MergingFunctionEnum) Shiboken::Enum::getValue(pyIn);
+static void NATRON_NAMESPACE_MergingFunctionEnum_PythonToCpp_NATRON_NAMESPACE_MergingFunctionEnum(PyObject* pyIn, void* cppOut) {
+    *((::NATRON_NAMESPACE::MergingFunctionEnum*)cppOut) = (::NATRON_NAMESPACE::MergingFunctionEnum) Shiboken::Enum::getValue(pyIn);
 
 }
-static PythonToCppFunc is_Natron_MergingFunctionEnum_PythonToCpp_Natron_MergingFunctionEnum_Convertible(PyObject* pyIn) {
-    if (PyObject_TypeCheck(pyIn, SbkNatronEngineTypes[SBK_NATRON_MERGINGFUNCTIONENUM_IDX]))
-        return Natron_MergingFunctionEnum_PythonToCpp_Natron_MergingFunctionEnum;
+static PythonToCppFunc is_NATRON_NAMESPACE_MergingFunctionEnum_PythonToCpp_NATRON_NAMESPACE_MergingFunctionEnum_Convertible(PyObject* pyIn) {
+    if (PyObject_TypeCheck(pyIn, SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_MERGINGFUNCTIONENUM_IDX]))
+        return NATRON_NAMESPACE_MergingFunctionEnum_PythonToCpp_NATRON_NAMESPACE_MergingFunctionEnum;
     return 0;
 }
-static PyObject* Natron_MergingFunctionEnum_CppToPython_Natron_MergingFunctionEnum(const void* cppIn) {
-    int castCppIn = *((::Natron::MergingFunctionEnum*)cppIn);
-    return Shiboken::Enum::newItem(SbkNatronEngineTypes[SBK_NATRON_MERGINGFUNCTIONENUM_IDX], castCppIn);
+static PyObject* NATRON_NAMESPACE_MergingFunctionEnum_CppToPython_NATRON_NAMESPACE_MergingFunctionEnum(const void* cppIn) {
+    int castCppIn = *((::NATRON_NAMESPACE::MergingFunctionEnum*)cppIn);
+    return Shiboken::Enum::newItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_MERGINGFUNCTIONENUM_IDX], castCppIn);
 
 }
 
 #if SHIBOKEN_MAJOR_VERSION >= 2
 // The signatures string for the functions.
 // Multiple signatures have their index "n:" in front.
-static const char *Natron_SignatureStrings[] = {
+static const char *NATRON_NAMESPACE_SignatureStrings[] = {
     "NatronEngine.Natron.getAmountFreePhysicalRAM()->std.size_t",
     "NatronEngine.Natron.getSizeOfForBitDepth(bitdepth:NatronEngine.Natron.ImageBitDepthEnum)->int",
     "NatronEngine.Natron.isApplication32Bits()->bool",
@@ -671,7 +672,7 @@ static const char *Natron_SignatureStrings[] = {
 void init_Natron(PyObject* module)
 {
 #if SHIBOKEN_MAJOR_VERSION >= 2
-    _Sbk_Natron_Type = Shiboken::ObjectType::introduceWrapperType(
+    _Sbk_NATRON_NAMESPACE_Type = Shiboken::ObjectType::introduceWrapperType(
         module,
         "Natron",
         "Natron",
@@ -683,13 +684,13 @@ void init_Natron(PyObject* module)
         0,
         0    );
 
-    SbkNatronEngineTypes[SBK_NATRON_IDX]
-        = reinterpret_cast<PyTypeObject*>(Sbk_Natron_TypeF());
+    SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_IDX]
+        = reinterpret_cast<PyTypeObject*>(Sbk_NATRON_NAMESPACE_TypeF());
 #else
-    SbkNatronEngineTypes[SBK_NATRON_IDX] = reinterpret_cast<PyTypeObject*>(&Sbk_Natron_Type);
+    SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_IDX] = reinterpret_cast<PyTypeObject*>(&Sbk_NATRON_NAMESPACE_Type);
 
     if (!Shiboken::ObjectType::introduceWrapperType(module, "Natron", "Natron",
-        &Sbk_Natron_Type)) {
+        &Sbk_NATRON_NAMESPACE_Type)) {
         return;
     }
 #endif
@@ -698,75 +699,75 @@ void init_Natron(PyObject* module)
     // Initialization of enums.
 
     // Initialization of enum 'StatusEnum'.
-    SbkNatronEngineTypes[SBK_NATRON_STATUSENUM_IDX] = Shiboken::Enum::createScopedEnum(
+    SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_STATUSENUM_IDX] = Shiboken::Enum::createScopedEnum(
 #if SHIBOKEN_MAJOR_VERSION >= 2
-    Sbk_Natron_TypeF(),
+    Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-    &Sbk_Natron_Type,
+    &Sbk_NATRON_NAMESPACE_Type,
 #endif
         "StatusEnum",
         "NatronEngine.Natron.StatusEnum",
         "Natron::StatusEnum");
-    if (!SbkNatronEngineTypes[SBK_NATRON_STATUSENUM_IDX])
+    if (!SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_STATUSENUM_IDX])
         return ;
 
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_STATUSENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_STATUSENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eStatusOK", (long) Natron::eStatusOK))
+        "eStatusOK", (long) NATRON_NAMESPACE::eStatusOK))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_STATUSENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_STATUSENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eStatusFailed", (long) Natron::eStatusFailed))
+        "eStatusFailed", (long) NATRON_NAMESPACE::eStatusFailed))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_STATUSENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_STATUSENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eStatusInputDisconnected", (long) Natron::eStatusInputDisconnected))
+        "eStatusInputDisconnected", (long) NATRON_NAMESPACE::eStatusInputDisconnected))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_STATUSENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_STATUSENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eStatusAborted", (long) Natron::eStatusAborted))
+        "eStatusAborted", (long) NATRON_NAMESPACE::eStatusAborted))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_STATUSENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_STATUSENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eStatusOutOfMemory", (long) Natron::eStatusOutOfMemory))
+        "eStatusOutOfMemory", (long) NATRON_NAMESPACE::eStatusOutOfMemory))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_STATUSENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_STATUSENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eStatusReplyDefault", (long) Natron::eStatusReplyDefault))
+        "eStatusReplyDefault", (long) NATRON_NAMESPACE::eStatusReplyDefault))
         return ;
-    // Register converter for enum 'Natron::StatusEnum'.
+    // Register converter for enum 'NATRON_NAMESPACE::StatusEnum'.
     {
-        SbkConverter* converter = Shiboken::Conversions::createConverter(SbkNatronEngineTypes[SBK_NATRON_STATUSENUM_IDX],
+        SbkConverter* converter = Shiboken::Conversions::createConverter(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_STATUSENUM_IDX],
             Natron_StatusEnum_CppToPython_Natron_StatusEnum);
         Shiboken::Conversions::addPythonToCppValueConversion(converter,
             Natron_StatusEnum_PythonToCpp_Natron_StatusEnum,
             is_Natron_StatusEnum_PythonToCpp_Natron_StatusEnum_Convertible);
-        Shiboken::Enum::setTypeConverter(SbkNatronEngineTypes[SBK_NATRON_STATUSENUM_IDX], converter);
-        Shiboken::Enum::setTypeConverter(SbkNatronEngineTypes[SBK_NATRON_STATUSENUM_IDX], converter);
+        Shiboken::Enum::setTypeConverter(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_STATUSENUM_IDX], converter);
+        Shiboken::Enum::setTypeConverter(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_STATUSENUM_IDX], converter);
         Shiboken::Conversions::registerConverterName(converter, "Natron::StatusEnum");
         Shiboken::Conversions::registerConverterName(converter, "StatusEnum");
     }
@@ -778,192 +779,192 @@ void init_Natron(PyObject* module)
 #else
     SbkNatronEngineTypes[SBK_QFLAGS_NATRON_STANDARDBUTTONENUM__IDX] = PySide::QFlags::create("StandardButtons", &SbkNatronEngine_Natron_StandardButtonEnum_as_number);
 #endif
-    SbkNatronEngineTypes[SBK_NATRON_STANDARDBUTTONENUM_IDX] = Shiboken::Enum::createScopedEnum(
+    SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_STANDARDBUTTONENUM_IDX] = Shiboken::Enum::createScopedEnum(
 #if SHIBOKEN_MAJOR_VERSION >= 2
-    Sbk_Natron_TypeF(),
+    Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-    &Sbk_Natron_Type,
+    &Sbk_NATRON_NAMESPACE_Type,
 #endif
         "StandardButtonEnum",
         "NatronEngine.Natron.StandardButtonEnum",
         "Natron::StandardButtonEnum",
         SbkNatronEngineTypes[SBK_QFLAGS_NATRON_STANDARDBUTTONENUM__IDX]);
-    if (!SbkNatronEngineTypes[SBK_NATRON_STANDARDBUTTONENUM_IDX])
+    if (!SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_STANDARDBUTTONENUM_IDX])
         return ;
 
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_STANDARDBUTTONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_STANDARDBUTTONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-    Sbk_Natron_TypeF(),
+    Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-    &Sbk_Natron_Type,
+    &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eStandardButtonNoButton", (long) Natron::eStandardButtonNoButton))
+        "eStandardButtonNoButton", (long) NATRON_NAMESPACE::eStandardButtonNoButton))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_STANDARDBUTTONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_STANDARDBUTTONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eStandardButtonEscape", (long) Natron::eStandardButtonEscape))
+        "eStandardButtonEscape", (long) NATRON_NAMESPACE::eStandardButtonEscape))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_STANDARDBUTTONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_STANDARDBUTTONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eStandardButtonOk", (long) Natron::eStandardButtonOk))
+        "eStandardButtonOk", (long) NATRON_NAMESPACE::eStandardButtonOk))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_STANDARDBUTTONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_STANDARDBUTTONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eStandardButtonSave", (long) Natron::eStandardButtonSave))
+        "eStandardButtonSave", (long) NATRON_NAMESPACE::eStandardButtonSave))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_STANDARDBUTTONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_STANDARDBUTTONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eStandardButtonSaveAll", (long) Natron::eStandardButtonSaveAll))
+        "eStandardButtonSaveAll", (long) NATRON_NAMESPACE::eStandardButtonSaveAll))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_STANDARDBUTTONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_STANDARDBUTTONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eStandardButtonOpen", (long) Natron::eStandardButtonOpen))
+        "eStandardButtonOpen", (long) NATRON_NAMESPACE::eStandardButtonOpen))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_STANDARDBUTTONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_STANDARDBUTTONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eStandardButtonYes", (long) Natron::eStandardButtonYes))
+        "eStandardButtonYes", (long) NATRON_NAMESPACE::eStandardButtonYes))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_STANDARDBUTTONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_STANDARDBUTTONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eStandardButtonYesToAll", (long) Natron::eStandardButtonYesToAll))
+        "eStandardButtonYesToAll", (long) NATRON_NAMESPACE::eStandardButtonYesToAll))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_STANDARDBUTTONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_STANDARDBUTTONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eStandardButtonNo", (long) Natron::eStandardButtonNo))
+        "eStandardButtonNo", (long) NATRON_NAMESPACE::eStandardButtonNo))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_STANDARDBUTTONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_STANDARDBUTTONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eStandardButtonNoToAll", (long) Natron::eStandardButtonNoToAll))
+        "eStandardButtonNoToAll", (long) NATRON_NAMESPACE::eStandardButtonNoToAll))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_STANDARDBUTTONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_STANDARDBUTTONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eStandardButtonAbort", (long) Natron::eStandardButtonAbort))
+        "eStandardButtonAbort", (long) NATRON_NAMESPACE::eStandardButtonAbort))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_STANDARDBUTTONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_STANDARDBUTTONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eStandardButtonRetry", (long) Natron::eStandardButtonRetry))
+        "eStandardButtonRetry", (long) NATRON_NAMESPACE::eStandardButtonRetry))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_STANDARDBUTTONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_STANDARDBUTTONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eStandardButtonIgnore", (long) Natron::eStandardButtonIgnore))
+        "eStandardButtonIgnore", (long) NATRON_NAMESPACE::eStandardButtonIgnore))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_STANDARDBUTTONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_STANDARDBUTTONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eStandardButtonClose", (long) Natron::eStandardButtonClose))
+        "eStandardButtonClose", (long) NATRON_NAMESPACE::eStandardButtonClose))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_STANDARDBUTTONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_STANDARDBUTTONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eStandardButtonCancel", (long) Natron::eStandardButtonCancel))
+        "eStandardButtonCancel", (long) NATRON_NAMESPACE::eStandardButtonCancel))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_STANDARDBUTTONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_STANDARDBUTTONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eStandardButtonDiscard", (long) Natron::eStandardButtonDiscard))
+        "eStandardButtonDiscard", (long) NATRON_NAMESPACE::eStandardButtonDiscard))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_STANDARDBUTTONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_STANDARDBUTTONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eStandardButtonHelp", (long) Natron::eStandardButtonHelp))
+        "eStandardButtonHelp", (long) NATRON_NAMESPACE::eStandardButtonHelp))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_STANDARDBUTTONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_STANDARDBUTTONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eStandardButtonApply", (long) Natron::eStandardButtonApply))
+        "eStandardButtonApply", (long) NATRON_NAMESPACE::eStandardButtonApply))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_STANDARDBUTTONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_STANDARDBUTTONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eStandardButtonReset", (long) Natron::eStandardButtonReset))
+        "eStandardButtonReset", (long) NATRON_NAMESPACE::eStandardButtonReset))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_STANDARDBUTTONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_STANDARDBUTTONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eStandardButtonRestoreDefaults", (long) Natron::eStandardButtonRestoreDefaults))
+        "eStandardButtonRestoreDefaults", (long) NATRON_NAMESPACE::eStandardButtonRestoreDefaults))
         return ;
-    // Register converter for enum 'Natron::StandardButtonEnum'.
+    // Register converter for enum 'NATRON_NAMESPACE::StandardButtonEnum'.
     {
-        SbkConverter* converter = Shiboken::Conversions::createConverter(SbkNatronEngineTypes[SBK_NATRON_STANDARDBUTTONENUM_IDX],
+        SbkConverter* converter = Shiboken::Conversions::createConverter(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_STANDARDBUTTONENUM_IDX],
             Natron_StandardButtonEnum_CppToPython_Natron_StandardButtonEnum);
         Shiboken::Conversions::addPythonToCppValueConversion(converter,
             Natron_StandardButtonEnum_PythonToCpp_Natron_StandardButtonEnum,
             is_Natron_StandardButtonEnum_PythonToCpp_Natron_StandardButtonEnum_Convertible);
-        Shiboken::Enum::setTypeConverter(SbkNatronEngineTypes[SBK_NATRON_STANDARDBUTTONENUM_IDX], converter);
-        Shiboken::Enum::setTypeConverter(SbkNatronEngineTypes[SBK_NATRON_STANDARDBUTTONENUM_IDX], converter);
+        Shiboken::Enum::setTypeConverter(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_STANDARDBUTTONENUM_IDX], converter);
+        Shiboken::Enum::setTypeConverter(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_STANDARDBUTTONENUM_IDX], converter);
         Shiboken::Conversions::registerConverterName(converter, "Natron::StandardButtonEnum");
         Shiboken::Conversions::registerConverterName(converter, "StandardButtonEnum");
     }
-    // Register converter for flag 'QFlags<Natron::StandardButtonEnum>'.
+    // Register converter for flag 'QFlags<NATRON_NAMESPACE::StandardButtonEnum>'.
     {
         SbkConverter* converter = Shiboken::Conversions::createConverter(SbkNatronEngineTypes[SBK_QFLAGS_NATRON_STANDARDBUTTONENUM__IDX],
             QFlags_Natron_StandardButtonEnum__CppToPython_QFlags_Natron_StandardButtonEnum_);
@@ -984,2895 +985,2895 @@ void init_Natron(PyObject* module)
     // End of 'StandardButtonEnum' enum/flags.
 
     // Initialization of enum 'KeyframeTypeEnum'.
-    SbkNatronEngineTypes[SBK_NATRON_KEYFRAMETYPEENUM_IDX] = Shiboken::Enum::createScopedEnum(
+    SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_KEYFRAMETYPEENUM_IDX] = Shiboken::Enum::createScopedEnum(
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
         "KeyframeTypeEnum",
         "NatronEngine.Natron.KeyframeTypeEnum",
         "Natron::KeyframeTypeEnum");
-    if (!SbkNatronEngineTypes[SBK_NATRON_KEYFRAMETYPEENUM_IDX])
+    if (!SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_KEYFRAMETYPEENUM_IDX])
         return ;
 
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_KEYFRAMETYPEENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_KEYFRAMETYPEENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eKeyframeTypeConstant", (long) Natron::eKeyframeTypeConstant))
+        "eKeyframeTypeConstant", (long) NATRON_NAMESPACE::eKeyframeTypeConstant))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_KEYFRAMETYPEENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_KEYFRAMETYPEENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eKeyframeTypeLinear", (long) Natron::eKeyframeTypeLinear))
+        "eKeyframeTypeLinear", (long) NATRON_NAMESPACE::eKeyframeTypeLinear))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_KEYFRAMETYPEENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_KEYFRAMETYPEENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eKeyframeTypeSmooth", (long) Natron::eKeyframeTypeSmooth))
+        "eKeyframeTypeSmooth", (long) NATRON_NAMESPACE::eKeyframeTypeSmooth))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_KEYFRAMETYPEENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_KEYFRAMETYPEENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eKeyframeTypeCatmullRom", (long) Natron::eKeyframeTypeCatmullRom))
+        "eKeyframeTypeCatmullRom", (long) NATRON_NAMESPACE::eKeyframeTypeCatmullRom))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_KEYFRAMETYPEENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_KEYFRAMETYPEENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eKeyframeTypeCubic", (long) Natron::eKeyframeTypeCubic))
+        "eKeyframeTypeCubic", (long) NATRON_NAMESPACE::eKeyframeTypeCubic))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_KEYFRAMETYPEENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_KEYFRAMETYPEENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eKeyframeTypeHorizontal", (long) Natron::eKeyframeTypeHorizontal))
+        "eKeyframeTypeHorizontal", (long) NATRON_NAMESPACE::eKeyframeTypeHorizontal))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_KEYFRAMETYPEENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_KEYFRAMETYPEENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eKeyframeTypeFree", (long) Natron::eKeyframeTypeFree))
+        "eKeyframeTypeFree", (long) NATRON_NAMESPACE::eKeyframeTypeFree))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_KEYFRAMETYPEENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_KEYFRAMETYPEENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eKeyframeTypeBroken", (long) Natron::eKeyframeTypeBroken))
+        "eKeyframeTypeBroken", (long) NATRON_NAMESPACE::eKeyframeTypeBroken))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_KEYFRAMETYPEENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_KEYFRAMETYPEENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eKeyframeTypeNone", (long) Natron::eKeyframeTypeNone))
+        "eKeyframeTypeNone", (long) NATRON_NAMESPACE::eKeyframeTypeNone))
         return ;
-    // Register converter for enum 'Natron::KeyframeTypeEnum'.
+    // Register converter for enum 'NATRON_NAMESPACE::KeyframeTypeEnum'.
     {
-        SbkConverter* converter = Shiboken::Conversions::createConverter(SbkNatronEngineTypes[SBK_NATRON_KEYFRAMETYPEENUM_IDX],
+        SbkConverter* converter = Shiboken::Conversions::createConverter(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_KEYFRAMETYPEENUM_IDX],
             Natron_KeyframeTypeEnum_CppToPython_Natron_KeyframeTypeEnum);
         Shiboken::Conversions::addPythonToCppValueConversion(converter,
             Natron_KeyframeTypeEnum_PythonToCpp_Natron_KeyframeTypeEnum,
             is_Natron_KeyframeTypeEnum_PythonToCpp_Natron_KeyframeTypeEnum_Convertible);
-        Shiboken::Enum::setTypeConverter(SbkNatronEngineTypes[SBK_NATRON_KEYFRAMETYPEENUM_IDX], converter);
-        Shiboken::Enum::setTypeConverter(SbkNatronEngineTypes[SBK_NATRON_KEYFRAMETYPEENUM_IDX], converter);
+        Shiboken::Enum::setTypeConverter(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_KEYFRAMETYPEENUM_IDX], converter);
+        Shiboken::Enum::setTypeConverter(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_KEYFRAMETYPEENUM_IDX], converter);
         Shiboken::Conversions::registerConverterName(converter, "Natron::KeyframeTypeEnum");
         Shiboken::Conversions::registerConverterName(converter, "KeyframeTypeEnum");
     }
     // End of 'KeyframeTypeEnum' enum.
 
     // Initialization of enum 'PixmapEnum'.
-    SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX] = Shiboken::Enum::createScopedEnum(
+    SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX] = Shiboken::Enum::createScopedEnum(
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
         "PixmapEnum",
         "NatronEngine.Natron.PixmapEnum",
         "Natron::PixmapEnum");
-    if (!SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX])
+    if (!SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX])
         return ;
 
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_PLAYER_PREVIOUS", (long) Natron::NATRON_PIXMAP_PLAYER_PREVIOUS))
+        "NATRON_PIXMAP_PLAYER_PREVIOUS", (long) NATRON_NAMESPACE::NATRON_PIXMAP_PLAYER_PREVIOUS))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_PLAYER_FIRST_FRAME", (long) Natron::NATRON_PIXMAP_PLAYER_FIRST_FRAME))
+        "NATRON_PIXMAP_PLAYER_FIRST_FRAME", (long) NATRON_NAMESPACE::NATRON_PIXMAP_PLAYER_FIRST_FRAME))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_PLAYER_NEXT", (long) Natron::NATRON_PIXMAP_PLAYER_NEXT))
+        "NATRON_PIXMAP_PLAYER_NEXT", (long) NATRON_NAMESPACE::NATRON_PIXMAP_PLAYER_NEXT))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_PLAYER_LAST_FRAME", (long) Natron::NATRON_PIXMAP_PLAYER_LAST_FRAME))
+        "NATRON_PIXMAP_PLAYER_LAST_FRAME", (long) NATRON_NAMESPACE::NATRON_PIXMAP_PLAYER_LAST_FRAME))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_PLAYER_NEXT_INCR", (long) Natron::NATRON_PIXMAP_PLAYER_NEXT_INCR))
+        "NATRON_PIXMAP_PLAYER_NEXT_INCR", (long) NATRON_NAMESPACE::NATRON_PIXMAP_PLAYER_NEXT_INCR))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_PLAYER_NEXT_KEY", (long) Natron::NATRON_PIXMAP_PLAYER_NEXT_KEY))
+        "NATRON_PIXMAP_PLAYER_NEXT_KEY", (long) NATRON_NAMESPACE::NATRON_PIXMAP_PLAYER_NEXT_KEY))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_PLAYER_PREVIOUS_INCR", (long) Natron::NATRON_PIXMAP_PLAYER_PREVIOUS_INCR))
+        "NATRON_PIXMAP_PLAYER_PREVIOUS_INCR", (long) NATRON_NAMESPACE::NATRON_PIXMAP_PLAYER_PREVIOUS_INCR))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_PLAYER_PREVIOUS_KEY", (long) Natron::NATRON_PIXMAP_PLAYER_PREVIOUS_KEY))
+        "NATRON_PIXMAP_PLAYER_PREVIOUS_KEY", (long) NATRON_NAMESPACE::NATRON_PIXMAP_PLAYER_PREVIOUS_KEY))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_PLAYER_REWIND_ENABLED", (long) Natron::NATRON_PIXMAP_PLAYER_REWIND_ENABLED))
+        "NATRON_PIXMAP_PLAYER_REWIND_ENABLED", (long) NATRON_NAMESPACE::NATRON_PIXMAP_PLAYER_REWIND_ENABLED))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_PLAYER_REWIND_DISABLED", (long) Natron::NATRON_PIXMAP_PLAYER_REWIND_DISABLED))
+        "NATRON_PIXMAP_PLAYER_REWIND_DISABLED", (long) NATRON_NAMESPACE::NATRON_PIXMAP_PLAYER_REWIND_DISABLED))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_PLAYER_PLAY_ENABLED", (long) Natron::NATRON_PIXMAP_PLAYER_PLAY_ENABLED))
+        "NATRON_PIXMAP_PLAYER_PLAY_ENABLED", (long) NATRON_NAMESPACE::NATRON_PIXMAP_PLAYER_PLAY_ENABLED))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_PLAYER_PLAY_DISABLED", (long) Natron::NATRON_PIXMAP_PLAYER_PLAY_DISABLED))
+        "NATRON_PIXMAP_PLAYER_PLAY_DISABLED", (long) NATRON_NAMESPACE::NATRON_PIXMAP_PLAYER_PLAY_DISABLED))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_PLAYER_STOP_DISABLED", (long) Natron::NATRON_PIXMAP_PLAYER_STOP_DISABLED))
+        "NATRON_PIXMAP_PLAYER_STOP_DISABLED", (long) NATRON_NAMESPACE::NATRON_PIXMAP_PLAYER_STOP_DISABLED))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_PLAYER_STOP_ENABLED", (long) Natron::NATRON_PIXMAP_PLAYER_STOP_ENABLED))
+        "NATRON_PIXMAP_PLAYER_STOP_ENABLED", (long) NATRON_NAMESPACE::NATRON_PIXMAP_PLAYER_STOP_ENABLED))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_PLAYER_PAUSE_DISABLED", (long) Natron::NATRON_PIXMAP_PLAYER_PAUSE_DISABLED))
+        "NATRON_PIXMAP_PLAYER_PAUSE_DISABLED", (long) NATRON_NAMESPACE::NATRON_PIXMAP_PLAYER_PAUSE_DISABLED))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_PLAYER_PAUSE_ENABLED", (long) Natron::NATRON_PIXMAP_PLAYER_PAUSE_ENABLED))
+        "NATRON_PIXMAP_PLAYER_PAUSE_ENABLED", (long) NATRON_NAMESPACE::NATRON_PIXMAP_PLAYER_PAUSE_ENABLED))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_PLAYER_LOOP_MODE", (long) Natron::NATRON_PIXMAP_PLAYER_LOOP_MODE))
+        "NATRON_PIXMAP_PLAYER_LOOP_MODE", (long) NATRON_NAMESPACE::NATRON_PIXMAP_PLAYER_LOOP_MODE))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_PLAYER_BOUNCE", (long) Natron::NATRON_PIXMAP_PLAYER_BOUNCE))
+        "NATRON_PIXMAP_PLAYER_BOUNCE", (long) NATRON_NAMESPACE::NATRON_PIXMAP_PLAYER_BOUNCE))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_PLAYER_PLAY_ONCE", (long) Natron::NATRON_PIXMAP_PLAYER_PLAY_ONCE))
+        "NATRON_PIXMAP_PLAYER_PLAY_ONCE", (long) NATRON_NAMESPACE::NATRON_PIXMAP_PLAYER_PLAY_ONCE))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_PLAYER_TIMELINE_IN", (long) Natron::NATRON_PIXMAP_PLAYER_TIMELINE_IN))
+        "NATRON_PIXMAP_PLAYER_TIMELINE_IN", (long) NATRON_NAMESPACE::NATRON_PIXMAP_PLAYER_TIMELINE_IN))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_PLAYER_TIMELINE_OUT", (long) Natron::NATRON_PIXMAP_PLAYER_TIMELINE_OUT))
+        "NATRON_PIXMAP_PLAYER_TIMELINE_OUT", (long) NATRON_NAMESPACE::NATRON_PIXMAP_PLAYER_TIMELINE_OUT))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_MAXIMIZE_WIDGET", (long) Natron::NATRON_PIXMAP_MAXIMIZE_WIDGET))
+        "NATRON_PIXMAP_MAXIMIZE_WIDGET", (long) NATRON_NAMESPACE::NATRON_PIXMAP_MAXIMIZE_WIDGET))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_MINIMIZE_WIDGET", (long) Natron::NATRON_PIXMAP_MINIMIZE_WIDGET))
+        "NATRON_PIXMAP_MINIMIZE_WIDGET", (long) NATRON_NAMESPACE::NATRON_PIXMAP_MINIMIZE_WIDGET))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_CLOSE_WIDGET", (long) Natron::NATRON_PIXMAP_CLOSE_WIDGET))
+        "NATRON_PIXMAP_CLOSE_WIDGET", (long) NATRON_NAMESPACE::NATRON_PIXMAP_CLOSE_WIDGET))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_HELP_WIDGET", (long) Natron::NATRON_PIXMAP_HELP_WIDGET))
+        "NATRON_PIXMAP_HELP_WIDGET", (long) NATRON_NAMESPACE::NATRON_PIXMAP_HELP_WIDGET))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_CLOSE_PANEL", (long) Natron::NATRON_PIXMAP_CLOSE_PANEL))
+        "NATRON_PIXMAP_CLOSE_PANEL", (long) NATRON_NAMESPACE::NATRON_PIXMAP_CLOSE_PANEL))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_HIDE_UNMODIFIED", (long) Natron::NATRON_PIXMAP_HIDE_UNMODIFIED))
+        "NATRON_PIXMAP_HIDE_UNMODIFIED", (long) NATRON_NAMESPACE::NATRON_PIXMAP_HIDE_UNMODIFIED))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_UNHIDE_UNMODIFIED", (long) Natron::NATRON_PIXMAP_UNHIDE_UNMODIFIED))
+        "NATRON_PIXMAP_UNHIDE_UNMODIFIED", (long) NATRON_NAMESPACE::NATRON_PIXMAP_UNHIDE_UNMODIFIED))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_GROUPBOX_FOLDED", (long) Natron::NATRON_PIXMAP_GROUPBOX_FOLDED))
+        "NATRON_PIXMAP_GROUPBOX_FOLDED", (long) NATRON_NAMESPACE::NATRON_PIXMAP_GROUPBOX_FOLDED))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_GROUPBOX_UNFOLDED", (long) Natron::NATRON_PIXMAP_GROUPBOX_UNFOLDED))
+        "NATRON_PIXMAP_GROUPBOX_UNFOLDED", (long) NATRON_NAMESPACE::NATRON_PIXMAP_GROUPBOX_UNFOLDED))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_UNDO", (long) Natron::NATRON_PIXMAP_UNDO))
+        "NATRON_PIXMAP_UNDO", (long) NATRON_NAMESPACE::NATRON_PIXMAP_UNDO))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_REDO", (long) Natron::NATRON_PIXMAP_REDO))
+        "NATRON_PIXMAP_REDO", (long) NATRON_NAMESPACE::NATRON_PIXMAP_REDO))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_UNDO_GRAYSCALE", (long) Natron::NATRON_PIXMAP_UNDO_GRAYSCALE))
+        "NATRON_PIXMAP_UNDO_GRAYSCALE", (long) NATRON_NAMESPACE::NATRON_PIXMAP_UNDO_GRAYSCALE))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_REDO_GRAYSCALE", (long) Natron::NATRON_PIXMAP_REDO_GRAYSCALE))
+        "NATRON_PIXMAP_REDO_GRAYSCALE", (long) NATRON_NAMESPACE::NATRON_PIXMAP_REDO_GRAYSCALE))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_RESTORE_DEFAULTS_ENABLED", (long) Natron::NATRON_PIXMAP_RESTORE_DEFAULTS_ENABLED))
+        "NATRON_PIXMAP_RESTORE_DEFAULTS_ENABLED", (long) NATRON_NAMESPACE::NATRON_PIXMAP_RESTORE_DEFAULTS_ENABLED))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_RESTORE_DEFAULTS_DISABLED", (long) Natron::NATRON_PIXMAP_RESTORE_DEFAULTS_DISABLED))
+        "NATRON_PIXMAP_RESTORE_DEFAULTS_DISABLED", (long) NATRON_NAMESPACE::NATRON_PIXMAP_RESTORE_DEFAULTS_DISABLED))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_TAB_WIDGET_LAYOUT_BUTTON", (long) Natron::NATRON_PIXMAP_TAB_WIDGET_LAYOUT_BUTTON))
+        "NATRON_PIXMAP_TAB_WIDGET_LAYOUT_BUTTON", (long) NATRON_NAMESPACE::NATRON_PIXMAP_TAB_WIDGET_LAYOUT_BUTTON))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_TAB_WIDGET_LAYOUT_BUTTON_ANCHOR", (long) Natron::NATRON_PIXMAP_TAB_WIDGET_LAYOUT_BUTTON_ANCHOR))
+        "NATRON_PIXMAP_TAB_WIDGET_LAYOUT_BUTTON_ANCHOR", (long) NATRON_NAMESPACE::NATRON_PIXMAP_TAB_WIDGET_LAYOUT_BUTTON_ANCHOR))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_TAB_WIDGET_SPLIT_HORIZONTALLY", (long) Natron::NATRON_PIXMAP_TAB_WIDGET_SPLIT_HORIZONTALLY))
+        "NATRON_PIXMAP_TAB_WIDGET_SPLIT_HORIZONTALLY", (long) NATRON_NAMESPACE::NATRON_PIXMAP_TAB_WIDGET_SPLIT_HORIZONTALLY))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_TAB_WIDGET_SPLIT_VERTICALLY", (long) Natron::NATRON_PIXMAP_TAB_WIDGET_SPLIT_VERTICALLY))
+        "NATRON_PIXMAP_TAB_WIDGET_SPLIT_VERTICALLY", (long) NATRON_NAMESPACE::NATRON_PIXMAP_TAB_WIDGET_SPLIT_VERTICALLY))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_VIEWER_CENTER", (long) Natron::NATRON_PIXMAP_VIEWER_CENTER))
+        "NATRON_PIXMAP_VIEWER_CENTER", (long) NATRON_NAMESPACE::NATRON_PIXMAP_VIEWER_CENTER))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_VIEWER_CLIP_TO_PROJECT_ENABLED", (long) Natron::NATRON_PIXMAP_VIEWER_CLIP_TO_PROJECT_ENABLED))
+        "NATRON_PIXMAP_VIEWER_CLIP_TO_PROJECT_ENABLED", (long) NATRON_NAMESPACE::NATRON_PIXMAP_VIEWER_CLIP_TO_PROJECT_ENABLED))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_VIEWER_CLIP_TO_PROJECT_DISABLED", (long) Natron::NATRON_PIXMAP_VIEWER_CLIP_TO_PROJECT_DISABLED))
+        "NATRON_PIXMAP_VIEWER_CLIP_TO_PROJECT_DISABLED", (long) NATRON_NAMESPACE::NATRON_PIXMAP_VIEWER_CLIP_TO_PROJECT_DISABLED))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_VIEWER_FULL_FRAME_ON", (long) Natron::NATRON_PIXMAP_VIEWER_FULL_FRAME_ON))
+        "NATRON_PIXMAP_VIEWER_FULL_FRAME_ON", (long) NATRON_NAMESPACE::NATRON_PIXMAP_VIEWER_FULL_FRAME_ON))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_VIEWER_FULL_FRAME_OFF", (long) Natron::NATRON_PIXMAP_VIEWER_FULL_FRAME_OFF))
+        "NATRON_PIXMAP_VIEWER_FULL_FRAME_OFF", (long) NATRON_NAMESPACE::NATRON_PIXMAP_VIEWER_FULL_FRAME_OFF))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_VIEWER_REFRESH", (long) Natron::NATRON_PIXMAP_VIEWER_REFRESH))
+        "NATRON_PIXMAP_VIEWER_REFRESH", (long) NATRON_NAMESPACE::NATRON_PIXMAP_VIEWER_REFRESH))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_VIEWER_REFRESH_ACTIVE", (long) Natron::NATRON_PIXMAP_VIEWER_REFRESH_ACTIVE))
+        "NATRON_PIXMAP_VIEWER_REFRESH_ACTIVE", (long) NATRON_NAMESPACE::NATRON_PIXMAP_VIEWER_REFRESH_ACTIVE))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_VIEWER_ROI_ENABLED", (long) Natron::NATRON_PIXMAP_VIEWER_ROI_ENABLED))
+        "NATRON_PIXMAP_VIEWER_ROI_ENABLED", (long) NATRON_NAMESPACE::NATRON_PIXMAP_VIEWER_ROI_ENABLED))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_VIEWER_ROI_DISABLED", (long) Natron::NATRON_PIXMAP_VIEWER_ROI_DISABLED))
+        "NATRON_PIXMAP_VIEWER_ROI_DISABLED", (long) NATRON_NAMESPACE::NATRON_PIXMAP_VIEWER_ROI_DISABLED))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_VIEWER_RENDER_SCALE", (long) Natron::NATRON_PIXMAP_VIEWER_RENDER_SCALE))
+        "NATRON_PIXMAP_VIEWER_RENDER_SCALE", (long) NATRON_NAMESPACE::NATRON_PIXMAP_VIEWER_RENDER_SCALE))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_VIEWER_RENDER_SCALE_CHECKED", (long) Natron::NATRON_PIXMAP_VIEWER_RENDER_SCALE_CHECKED))
+        "NATRON_PIXMAP_VIEWER_RENDER_SCALE_CHECKED", (long) NATRON_NAMESPACE::NATRON_PIXMAP_VIEWER_RENDER_SCALE_CHECKED))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_VIEWER_AUTOCONTRAST_ENABLED", (long) Natron::NATRON_PIXMAP_VIEWER_AUTOCONTRAST_ENABLED))
+        "NATRON_PIXMAP_VIEWER_AUTOCONTRAST_ENABLED", (long) NATRON_NAMESPACE::NATRON_PIXMAP_VIEWER_AUTOCONTRAST_ENABLED))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_VIEWER_AUTOCONTRAST_DISABLED", (long) Natron::NATRON_PIXMAP_VIEWER_AUTOCONTRAST_DISABLED))
+        "NATRON_PIXMAP_VIEWER_AUTOCONTRAST_DISABLED", (long) NATRON_NAMESPACE::NATRON_PIXMAP_VIEWER_AUTOCONTRAST_DISABLED))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_OPEN_FILE", (long) Natron::NATRON_PIXMAP_OPEN_FILE))
+        "NATRON_PIXMAP_OPEN_FILE", (long) NATRON_NAMESPACE::NATRON_PIXMAP_OPEN_FILE))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_COLORWHEEL", (long) Natron::NATRON_PIXMAP_COLORWHEEL))
+        "NATRON_PIXMAP_COLORWHEEL", (long) NATRON_NAMESPACE::NATRON_PIXMAP_COLORWHEEL))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_OVERLAY", (long) Natron::NATRON_PIXMAP_OVERLAY))
+        "NATRON_PIXMAP_OVERLAY", (long) NATRON_NAMESPACE::NATRON_PIXMAP_OVERLAY))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_ROTO_MERGE", (long) Natron::NATRON_PIXMAP_ROTO_MERGE))
+        "NATRON_PIXMAP_ROTO_MERGE", (long) NATRON_NAMESPACE::NATRON_PIXMAP_ROTO_MERGE))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_COLOR_PICKER", (long) Natron::NATRON_PIXMAP_COLOR_PICKER))
+        "NATRON_PIXMAP_COLOR_PICKER", (long) NATRON_NAMESPACE::NATRON_PIXMAP_COLOR_PICKER))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_IO_GROUPING", (long) Natron::NATRON_PIXMAP_IO_GROUPING))
+        "NATRON_PIXMAP_IO_GROUPING", (long) NATRON_NAMESPACE::NATRON_PIXMAP_IO_GROUPING))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_3D_GROUPING", (long) Natron::NATRON_PIXMAP_3D_GROUPING))
+        "NATRON_PIXMAP_3D_GROUPING", (long) NATRON_NAMESPACE::NATRON_PIXMAP_3D_GROUPING))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_CHANNEL_GROUPING", (long) Natron::NATRON_PIXMAP_CHANNEL_GROUPING))
+        "NATRON_PIXMAP_CHANNEL_GROUPING", (long) NATRON_NAMESPACE::NATRON_PIXMAP_CHANNEL_GROUPING))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_MERGE_GROUPING", (long) Natron::NATRON_PIXMAP_MERGE_GROUPING))
+        "NATRON_PIXMAP_MERGE_GROUPING", (long) NATRON_NAMESPACE::NATRON_PIXMAP_MERGE_GROUPING))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_COLOR_GROUPING", (long) Natron::NATRON_PIXMAP_COLOR_GROUPING))
+        "NATRON_PIXMAP_COLOR_GROUPING", (long) NATRON_NAMESPACE::NATRON_PIXMAP_COLOR_GROUPING))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_TRANSFORM_GROUPING", (long) Natron::NATRON_PIXMAP_TRANSFORM_GROUPING))
+        "NATRON_PIXMAP_TRANSFORM_GROUPING", (long) NATRON_NAMESPACE::NATRON_PIXMAP_TRANSFORM_GROUPING))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_DEEP_GROUPING", (long) Natron::NATRON_PIXMAP_DEEP_GROUPING))
+        "NATRON_PIXMAP_DEEP_GROUPING", (long) NATRON_NAMESPACE::NATRON_PIXMAP_DEEP_GROUPING))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_FILTER_GROUPING", (long) Natron::NATRON_PIXMAP_FILTER_GROUPING))
+        "NATRON_PIXMAP_FILTER_GROUPING", (long) NATRON_NAMESPACE::NATRON_PIXMAP_FILTER_GROUPING))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_MULTIVIEW_GROUPING", (long) Natron::NATRON_PIXMAP_MULTIVIEW_GROUPING))
+        "NATRON_PIXMAP_MULTIVIEW_GROUPING", (long) NATRON_NAMESPACE::NATRON_PIXMAP_MULTIVIEW_GROUPING))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_TOOLSETS_GROUPING", (long) Natron::NATRON_PIXMAP_TOOLSETS_GROUPING))
+        "NATRON_PIXMAP_TOOLSETS_GROUPING", (long) NATRON_NAMESPACE::NATRON_PIXMAP_TOOLSETS_GROUPING))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_MISC_GROUPING", (long) Natron::NATRON_PIXMAP_MISC_GROUPING))
+        "NATRON_PIXMAP_MISC_GROUPING", (long) NATRON_NAMESPACE::NATRON_PIXMAP_MISC_GROUPING))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_OPEN_EFFECTS_GROUPING", (long) Natron::NATRON_PIXMAP_OPEN_EFFECTS_GROUPING))
+        "NATRON_PIXMAP_OPEN_EFFECTS_GROUPING", (long) NATRON_NAMESPACE::NATRON_PIXMAP_OPEN_EFFECTS_GROUPING))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_TIME_GROUPING", (long) Natron::NATRON_PIXMAP_TIME_GROUPING))
+        "NATRON_PIXMAP_TIME_GROUPING", (long) NATRON_NAMESPACE::NATRON_PIXMAP_TIME_GROUPING))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_PAINT_GROUPING", (long) Natron::NATRON_PIXMAP_PAINT_GROUPING))
+        "NATRON_PIXMAP_PAINT_GROUPING", (long) NATRON_NAMESPACE::NATRON_PIXMAP_PAINT_GROUPING))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_KEYER_GROUPING", (long) Natron::NATRON_PIXMAP_KEYER_GROUPING))
+        "NATRON_PIXMAP_KEYER_GROUPING", (long) NATRON_NAMESPACE::NATRON_PIXMAP_KEYER_GROUPING))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_OTHER_PLUGINS", (long) Natron::NATRON_PIXMAP_OTHER_PLUGINS))
+        "NATRON_PIXMAP_OTHER_PLUGINS", (long) NATRON_NAMESPACE::NATRON_PIXMAP_OTHER_PLUGINS))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_READ_IMAGE", (long) Natron::NATRON_PIXMAP_READ_IMAGE))
+        "NATRON_PIXMAP_READ_IMAGE", (long) NATRON_NAMESPACE::NATRON_PIXMAP_READ_IMAGE))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_WRITE_IMAGE", (long) Natron::NATRON_PIXMAP_WRITE_IMAGE))
+        "NATRON_PIXMAP_WRITE_IMAGE", (long) NATRON_NAMESPACE::NATRON_PIXMAP_WRITE_IMAGE))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_COMBOBOX", (long) Natron::NATRON_PIXMAP_COMBOBOX))
+        "NATRON_PIXMAP_COMBOBOX", (long) NATRON_NAMESPACE::NATRON_PIXMAP_COMBOBOX))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_COMBOBOX_PRESSED", (long) Natron::NATRON_PIXMAP_COMBOBOX_PRESSED))
+        "NATRON_PIXMAP_COMBOBOX_PRESSED", (long) NATRON_NAMESPACE::NATRON_PIXMAP_COMBOBOX_PRESSED))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_ADD_KEYFRAME", (long) Natron::NATRON_PIXMAP_ADD_KEYFRAME))
+        "NATRON_PIXMAP_ADD_KEYFRAME", (long) NATRON_NAMESPACE::NATRON_PIXMAP_ADD_KEYFRAME))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_REMOVE_KEYFRAME", (long) Natron::NATRON_PIXMAP_REMOVE_KEYFRAME))
+        "NATRON_PIXMAP_REMOVE_KEYFRAME", (long) NATRON_NAMESPACE::NATRON_PIXMAP_REMOVE_KEYFRAME))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_INVERTED", (long) Natron::NATRON_PIXMAP_INVERTED))
+        "NATRON_PIXMAP_INVERTED", (long) NATRON_NAMESPACE::NATRON_PIXMAP_INVERTED))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_UNINVERTED", (long) Natron::NATRON_PIXMAP_UNINVERTED))
+        "NATRON_PIXMAP_UNINVERTED", (long) NATRON_NAMESPACE::NATRON_PIXMAP_UNINVERTED))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_VISIBLE", (long) Natron::NATRON_PIXMAP_VISIBLE))
+        "NATRON_PIXMAP_VISIBLE", (long) NATRON_NAMESPACE::NATRON_PIXMAP_VISIBLE))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_UNVISIBLE", (long) Natron::NATRON_PIXMAP_UNVISIBLE))
+        "NATRON_PIXMAP_UNVISIBLE", (long) NATRON_NAMESPACE::NATRON_PIXMAP_UNVISIBLE))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_LOCKED", (long) Natron::NATRON_PIXMAP_LOCKED))
+        "NATRON_PIXMAP_LOCKED", (long) NATRON_NAMESPACE::NATRON_PIXMAP_LOCKED))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_UNLOCKED", (long) Natron::NATRON_PIXMAP_UNLOCKED))
+        "NATRON_PIXMAP_UNLOCKED", (long) NATRON_NAMESPACE::NATRON_PIXMAP_UNLOCKED))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_LAYER", (long) Natron::NATRON_PIXMAP_LAYER))
+        "NATRON_PIXMAP_LAYER", (long) NATRON_NAMESPACE::NATRON_PIXMAP_LAYER))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_BEZIER", (long) Natron::NATRON_PIXMAP_BEZIER))
+        "NATRON_PIXMAP_BEZIER", (long) NATRON_NAMESPACE::NATRON_PIXMAP_BEZIER))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_PENCIL", (long) Natron::NATRON_PIXMAP_PENCIL))
+        "NATRON_PIXMAP_PENCIL", (long) NATRON_NAMESPACE::NATRON_PIXMAP_PENCIL))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_CURVE", (long) Natron::NATRON_PIXMAP_CURVE))
+        "NATRON_PIXMAP_CURVE", (long) NATRON_NAMESPACE::NATRON_PIXMAP_CURVE))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_BEZIER_32", (long) Natron::NATRON_PIXMAP_BEZIER_32))
+        "NATRON_PIXMAP_BEZIER_32", (long) NATRON_NAMESPACE::NATRON_PIXMAP_BEZIER_32))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_ELLIPSE", (long) Natron::NATRON_PIXMAP_ELLIPSE))
+        "NATRON_PIXMAP_ELLIPSE", (long) NATRON_NAMESPACE::NATRON_PIXMAP_ELLIPSE))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_RECTANGLE", (long) Natron::NATRON_PIXMAP_RECTANGLE))
+        "NATRON_PIXMAP_RECTANGLE", (long) NATRON_NAMESPACE::NATRON_PIXMAP_RECTANGLE))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_ADD_POINTS", (long) Natron::NATRON_PIXMAP_ADD_POINTS))
+        "NATRON_PIXMAP_ADD_POINTS", (long) NATRON_NAMESPACE::NATRON_PIXMAP_ADD_POINTS))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_REMOVE_POINTS", (long) Natron::NATRON_PIXMAP_REMOVE_POINTS))
+        "NATRON_PIXMAP_REMOVE_POINTS", (long) NATRON_NAMESPACE::NATRON_PIXMAP_REMOVE_POINTS))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_CUSP_POINTS", (long) Natron::NATRON_PIXMAP_CUSP_POINTS))
+        "NATRON_PIXMAP_CUSP_POINTS", (long) NATRON_NAMESPACE::NATRON_PIXMAP_CUSP_POINTS))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_SMOOTH_POINTS", (long) Natron::NATRON_PIXMAP_SMOOTH_POINTS))
+        "NATRON_PIXMAP_SMOOTH_POINTS", (long) NATRON_NAMESPACE::NATRON_PIXMAP_SMOOTH_POINTS))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_REMOVE_FEATHER", (long) Natron::NATRON_PIXMAP_REMOVE_FEATHER))
+        "NATRON_PIXMAP_REMOVE_FEATHER", (long) NATRON_NAMESPACE::NATRON_PIXMAP_REMOVE_FEATHER))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_OPEN_CLOSE_CURVE", (long) Natron::NATRON_PIXMAP_OPEN_CLOSE_CURVE))
+        "NATRON_PIXMAP_OPEN_CLOSE_CURVE", (long) NATRON_NAMESPACE::NATRON_PIXMAP_OPEN_CLOSE_CURVE))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_SELECT_ALL", (long) Natron::NATRON_PIXMAP_SELECT_ALL))
+        "NATRON_PIXMAP_SELECT_ALL", (long) NATRON_NAMESPACE::NATRON_PIXMAP_SELECT_ALL))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_SELECT_POINTS", (long) Natron::NATRON_PIXMAP_SELECT_POINTS))
+        "NATRON_PIXMAP_SELECT_POINTS", (long) NATRON_NAMESPACE::NATRON_PIXMAP_SELECT_POINTS))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_SELECT_FEATHER", (long) Natron::NATRON_PIXMAP_SELECT_FEATHER))
+        "NATRON_PIXMAP_SELECT_FEATHER", (long) NATRON_NAMESPACE::NATRON_PIXMAP_SELECT_FEATHER))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_SELECT_CURVES", (long) Natron::NATRON_PIXMAP_SELECT_CURVES))
+        "NATRON_PIXMAP_SELECT_CURVES", (long) NATRON_NAMESPACE::NATRON_PIXMAP_SELECT_CURVES))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_AUTO_KEYING_ENABLED", (long) Natron::NATRON_PIXMAP_AUTO_KEYING_ENABLED))
+        "NATRON_PIXMAP_AUTO_KEYING_ENABLED", (long) NATRON_NAMESPACE::NATRON_PIXMAP_AUTO_KEYING_ENABLED))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_AUTO_KEYING_DISABLED", (long) Natron::NATRON_PIXMAP_AUTO_KEYING_DISABLED))
+        "NATRON_PIXMAP_AUTO_KEYING_DISABLED", (long) NATRON_NAMESPACE::NATRON_PIXMAP_AUTO_KEYING_DISABLED))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_STICKY_SELECTION_ENABLED", (long) Natron::NATRON_PIXMAP_STICKY_SELECTION_ENABLED))
+        "NATRON_PIXMAP_STICKY_SELECTION_ENABLED", (long) NATRON_NAMESPACE::NATRON_PIXMAP_STICKY_SELECTION_ENABLED))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_STICKY_SELECTION_DISABLED", (long) Natron::NATRON_PIXMAP_STICKY_SELECTION_DISABLED))
+        "NATRON_PIXMAP_STICKY_SELECTION_DISABLED", (long) NATRON_NAMESPACE::NATRON_PIXMAP_STICKY_SELECTION_DISABLED))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_FEATHER_LINK_ENABLED", (long) Natron::NATRON_PIXMAP_FEATHER_LINK_ENABLED))
+        "NATRON_PIXMAP_FEATHER_LINK_ENABLED", (long) NATRON_NAMESPACE::NATRON_PIXMAP_FEATHER_LINK_ENABLED))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_FEATHER_LINK_DISABLED", (long) Natron::NATRON_PIXMAP_FEATHER_LINK_DISABLED))
+        "NATRON_PIXMAP_FEATHER_LINK_DISABLED", (long) NATRON_NAMESPACE::NATRON_PIXMAP_FEATHER_LINK_DISABLED))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_FEATHER_VISIBLE", (long) Natron::NATRON_PIXMAP_FEATHER_VISIBLE))
+        "NATRON_PIXMAP_FEATHER_VISIBLE", (long) NATRON_NAMESPACE::NATRON_PIXMAP_FEATHER_VISIBLE))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_FEATHER_UNVISIBLE", (long) Natron::NATRON_PIXMAP_FEATHER_UNVISIBLE))
+        "NATRON_PIXMAP_FEATHER_UNVISIBLE", (long) NATRON_NAMESPACE::NATRON_PIXMAP_FEATHER_UNVISIBLE))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_RIPPLE_EDIT_ENABLED", (long) Natron::NATRON_PIXMAP_RIPPLE_EDIT_ENABLED))
+        "NATRON_PIXMAP_RIPPLE_EDIT_ENABLED", (long) NATRON_NAMESPACE::NATRON_PIXMAP_RIPPLE_EDIT_ENABLED))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_RIPPLE_EDIT_DISABLED", (long) Natron::NATRON_PIXMAP_RIPPLE_EDIT_DISABLED))
+        "NATRON_PIXMAP_RIPPLE_EDIT_DISABLED", (long) NATRON_NAMESPACE::NATRON_PIXMAP_RIPPLE_EDIT_DISABLED))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_ROTOPAINT_BLUR", (long) Natron::NATRON_PIXMAP_ROTOPAINT_BLUR))
+        "NATRON_PIXMAP_ROTOPAINT_BLUR", (long) NATRON_NAMESPACE::NATRON_PIXMAP_ROTOPAINT_BLUR))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_ROTOPAINT_BUILDUP_ENABLED", (long) Natron::NATRON_PIXMAP_ROTOPAINT_BUILDUP_ENABLED))
+        "NATRON_PIXMAP_ROTOPAINT_BUILDUP_ENABLED", (long) NATRON_NAMESPACE::NATRON_PIXMAP_ROTOPAINT_BUILDUP_ENABLED))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_ROTOPAINT_BUILDUP_DISABLED", (long) Natron::NATRON_PIXMAP_ROTOPAINT_BUILDUP_DISABLED))
+        "NATRON_PIXMAP_ROTOPAINT_BUILDUP_DISABLED", (long) NATRON_NAMESPACE::NATRON_PIXMAP_ROTOPAINT_BUILDUP_DISABLED))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_ROTOPAINT_BURN", (long) Natron::NATRON_PIXMAP_ROTOPAINT_BURN))
+        "NATRON_PIXMAP_ROTOPAINT_BURN", (long) NATRON_NAMESPACE::NATRON_PIXMAP_ROTOPAINT_BURN))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_ROTOPAINT_CLONE", (long) Natron::NATRON_PIXMAP_ROTOPAINT_CLONE))
+        "NATRON_PIXMAP_ROTOPAINT_CLONE", (long) NATRON_NAMESPACE::NATRON_PIXMAP_ROTOPAINT_CLONE))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_ROTOPAINT_DODGE", (long) Natron::NATRON_PIXMAP_ROTOPAINT_DODGE))
+        "NATRON_PIXMAP_ROTOPAINT_DODGE", (long) NATRON_NAMESPACE::NATRON_PIXMAP_ROTOPAINT_DODGE))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_ROTOPAINT_ERASER", (long) Natron::NATRON_PIXMAP_ROTOPAINT_ERASER))
+        "NATRON_PIXMAP_ROTOPAINT_ERASER", (long) NATRON_NAMESPACE::NATRON_PIXMAP_ROTOPAINT_ERASER))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_ROTOPAINT_PRESSURE_ENABLED", (long) Natron::NATRON_PIXMAP_ROTOPAINT_PRESSURE_ENABLED))
+        "NATRON_PIXMAP_ROTOPAINT_PRESSURE_ENABLED", (long) NATRON_NAMESPACE::NATRON_PIXMAP_ROTOPAINT_PRESSURE_ENABLED))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_ROTOPAINT_PRESSURE_DISABLED", (long) Natron::NATRON_PIXMAP_ROTOPAINT_PRESSURE_DISABLED))
+        "NATRON_PIXMAP_ROTOPAINT_PRESSURE_DISABLED", (long) NATRON_NAMESPACE::NATRON_PIXMAP_ROTOPAINT_PRESSURE_DISABLED))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_ROTOPAINT_REVEAL", (long) Natron::NATRON_PIXMAP_ROTOPAINT_REVEAL))
+        "NATRON_PIXMAP_ROTOPAINT_REVEAL", (long) NATRON_NAMESPACE::NATRON_PIXMAP_ROTOPAINT_REVEAL))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_ROTOPAINT_SHARPEN", (long) Natron::NATRON_PIXMAP_ROTOPAINT_SHARPEN))
+        "NATRON_PIXMAP_ROTOPAINT_SHARPEN", (long) NATRON_NAMESPACE::NATRON_PIXMAP_ROTOPAINT_SHARPEN))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_ROTOPAINT_SMEAR", (long) Natron::NATRON_PIXMAP_ROTOPAINT_SMEAR))
+        "NATRON_PIXMAP_ROTOPAINT_SMEAR", (long) NATRON_NAMESPACE::NATRON_PIXMAP_ROTOPAINT_SMEAR))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_ROTOPAINT_SOLID", (long) Natron::NATRON_PIXMAP_ROTOPAINT_SOLID))
+        "NATRON_PIXMAP_ROTOPAINT_SOLID", (long) NATRON_NAMESPACE::NATRON_PIXMAP_ROTOPAINT_SOLID))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_BOLD_CHECKED", (long) Natron::NATRON_PIXMAP_BOLD_CHECKED))
+        "NATRON_PIXMAP_BOLD_CHECKED", (long) NATRON_NAMESPACE::NATRON_PIXMAP_BOLD_CHECKED))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_BOLD_UNCHECKED", (long) Natron::NATRON_PIXMAP_BOLD_UNCHECKED))
+        "NATRON_PIXMAP_BOLD_UNCHECKED", (long) NATRON_NAMESPACE::NATRON_PIXMAP_BOLD_UNCHECKED))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_ITALIC_CHECKED", (long) Natron::NATRON_PIXMAP_ITALIC_CHECKED))
+        "NATRON_PIXMAP_ITALIC_CHECKED", (long) NATRON_NAMESPACE::NATRON_PIXMAP_ITALIC_CHECKED))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_ITALIC_UNCHECKED", (long) Natron::NATRON_PIXMAP_ITALIC_UNCHECKED))
+        "NATRON_PIXMAP_ITALIC_UNCHECKED", (long) NATRON_NAMESPACE::NATRON_PIXMAP_ITALIC_UNCHECKED))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_CLEAR_ALL_ANIMATION", (long) Natron::NATRON_PIXMAP_CLEAR_ALL_ANIMATION))
+        "NATRON_PIXMAP_CLEAR_ALL_ANIMATION", (long) NATRON_NAMESPACE::NATRON_PIXMAP_CLEAR_ALL_ANIMATION))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_CLEAR_BACKWARD_ANIMATION", (long) Natron::NATRON_PIXMAP_CLEAR_BACKWARD_ANIMATION))
+        "NATRON_PIXMAP_CLEAR_BACKWARD_ANIMATION", (long) NATRON_NAMESPACE::NATRON_PIXMAP_CLEAR_BACKWARD_ANIMATION))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_CLEAR_FORWARD_ANIMATION", (long) Natron::NATRON_PIXMAP_CLEAR_FORWARD_ANIMATION))
+        "NATRON_PIXMAP_CLEAR_FORWARD_ANIMATION", (long) NATRON_NAMESPACE::NATRON_PIXMAP_CLEAR_FORWARD_ANIMATION))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_UPDATE_VIEWER_ENABLED", (long) Natron::NATRON_PIXMAP_UPDATE_VIEWER_ENABLED))
+        "NATRON_PIXMAP_UPDATE_VIEWER_ENABLED", (long) NATRON_NAMESPACE::NATRON_PIXMAP_UPDATE_VIEWER_ENABLED))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_UPDATE_VIEWER_DISABLED", (long) Natron::NATRON_PIXMAP_UPDATE_VIEWER_DISABLED))
+        "NATRON_PIXMAP_UPDATE_VIEWER_DISABLED", (long) NATRON_NAMESPACE::NATRON_PIXMAP_UPDATE_VIEWER_DISABLED))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_ADD_TRACK", (long) Natron::NATRON_PIXMAP_ADD_TRACK))
+        "NATRON_PIXMAP_ADD_TRACK", (long) NATRON_NAMESPACE::NATRON_PIXMAP_ADD_TRACK))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_ADD_USER_KEY", (long) Natron::NATRON_PIXMAP_ADD_USER_KEY))
+        "NATRON_PIXMAP_ADD_USER_KEY", (long) NATRON_NAMESPACE::NATRON_PIXMAP_ADD_USER_KEY))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_REMOVE_USER_KEY", (long) Natron::NATRON_PIXMAP_REMOVE_USER_KEY))
+        "NATRON_PIXMAP_REMOVE_USER_KEY", (long) NATRON_NAMESPACE::NATRON_PIXMAP_REMOVE_USER_KEY))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_SHOW_TRACK_ERROR", (long) Natron::NATRON_PIXMAP_SHOW_TRACK_ERROR))
+        "NATRON_PIXMAP_SHOW_TRACK_ERROR", (long) NATRON_NAMESPACE::NATRON_PIXMAP_SHOW_TRACK_ERROR))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_HIDE_TRACK_ERROR", (long) Natron::NATRON_PIXMAP_HIDE_TRACK_ERROR))
+        "NATRON_PIXMAP_HIDE_TRACK_ERROR", (long) NATRON_NAMESPACE::NATRON_PIXMAP_HIDE_TRACK_ERROR))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_RESET_TRACK_OFFSET", (long) Natron::NATRON_PIXMAP_RESET_TRACK_OFFSET))
+        "NATRON_PIXMAP_RESET_TRACK_OFFSET", (long) NATRON_NAMESPACE::NATRON_PIXMAP_RESET_TRACK_OFFSET))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_CREATE_USER_KEY_ON_MOVE_ON", (long) Natron::NATRON_PIXMAP_CREATE_USER_KEY_ON_MOVE_ON))
+        "NATRON_PIXMAP_CREATE_USER_KEY_ON_MOVE_ON", (long) NATRON_NAMESPACE::NATRON_PIXMAP_CREATE_USER_KEY_ON_MOVE_ON))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_CREATE_USER_KEY_ON_MOVE_OFF", (long) Natron::NATRON_PIXMAP_CREATE_USER_KEY_ON_MOVE_OFF))
+        "NATRON_PIXMAP_CREATE_USER_KEY_ON_MOVE_OFF", (long) NATRON_NAMESPACE::NATRON_PIXMAP_CREATE_USER_KEY_ON_MOVE_OFF))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_RESET_USER_KEYS", (long) Natron::NATRON_PIXMAP_RESET_USER_KEYS))
+        "NATRON_PIXMAP_RESET_USER_KEYS", (long) NATRON_NAMESPACE::NATRON_PIXMAP_RESET_USER_KEYS))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_CENTER_VIEWER_ON_TRACK", (long) Natron::NATRON_PIXMAP_CENTER_VIEWER_ON_TRACK))
+        "NATRON_PIXMAP_CENTER_VIEWER_ON_TRACK", (long) NATRON_NAMESPACE::NATRON_PIXMAP_CENTER_VIEWER_ON_TRACK))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_TRACK_BACKWARD_ON", (long) Natron::NATRON_PIXMAP_TRACK_BACKWARD_ON))
+        "NATRON_PIXMAP_TRACK_BACKWARD_ON", (long) NATRON_NAMESPACE::NATRON_PIXMAP_TRACK_BACKWARD_ON))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_TRACK_BACKWARD_OFF", (long) Natron::NATRON_PIXMAP_TRACK_BACKWARD_OFF))
+        "NATRON_PIXMAP_TRACK_BACKWARD_OFF", (long) NATRON_NAMESPACE::NATRON_PIXMAP_TRACK_BACKWARD_OFF))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_TRACK_FORWARD_ON", (long) Natron::NATRON_PIXMAP_TRACK_FORWARD_ON))
+        "NATRON_PIXMAP_TRACK_FORWARD_ON", (long) NATRON_NAMESPACE::NATRON_PIXMAP_TRACK_FORWARD_ON))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_TRACK_FORWARD_OFF", (long) Natron::NATRON_PIXMAP_TRACK_FORWARD_OFF))
+        "NATRON_PIXMAP_TRACK_FORWARD_OFF", (long) NATRON_NAMESPACE::NATRON_PIXMAP_TRACK_FORWARD_OFF))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_TRACK_PREVIOUS", (long) Natron::NATRON_PIXMAP_TRACK_PREVIOUS))
+        "NATRON_PIXMAP_TRACK_PREVIOUS", (long) NATRON_NAMESPACE::NATRON_PIXMAP_TRACK_PREVIOUS))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_TRACK_NEXT", (long) Natron::NATRON_PIXMAP_TRACK_NEXT))
+        "NATRON_PIXMAP_TRACK_NEXT", (long) NATRON_NAMESPACE::NATRON_PIXMAP_TRACK_NEXT))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_TRACK_RANGE", (long) Natron::NATRON_PIXMAP_TRACK_RANGE))
+        "NATRON_PIXMAP_TRACK_RANGE", (long) NATRON_NAMESPACE::NATRON_PIXMAP_TRACK_RANGE))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_TRACK_ALL_KEYS", (long) Natron::NATRON_PIXMAP_TRACK_ALL_KEYS))
+        "NATRON_PIXMAP_TRACK_ALL_KEYS", (long) NATRON_NAMESPACE::NATRON_PIXMAP_TRACK_ALL_KEYS))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_TRACK_CURRENT_KEY", (long) Natron::NATRON_PIXMAP_TRACK_CURRENT_KEY))
+        "NATRON_PIXMAP_TRACK_CURRENT_KEY", (long) NATRON_NAMESPACE::NATRON_PIXMAP_TRACK_CURRENT_KEY))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_NEXT_USER_KEY", (long) Natron::NATRON_PIXMAP_NEXT_USER_KEY))
+        "NATRON_PIXMAP_NEXT_USER_KEY", (long) NATRON_NAMESPACE::NATRON_PIXMAP_NEXT_USER_KEY))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_PREV_USER_KEY", (long) Natron::NATRON_PIXMAP_PREV_USER_KEY))
+        "NATRON_PIXMAP_PREV_USER_KEY", (long) NATRON_NAMESPACE::NATRON_PIXMAP_PREV_USER_KEY))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_ENTER_GROUP", (long) Natron::NATRON_PIXMAP_ENTER_GROUP))
+        "NATRON_PIXMAP_ENTER_GROUP", (long) NATRON_NAMESPACE::NATRON_PIXMAP_ENTER_GROUP))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_SETTINGS", (long) Natron::NATRON_PIXMAP_SETTINGS))
+        "NATRON_PIXMAP_SETTINGS", (long) NATRON_NAMESPACE::NATRON_PIXMAP_SETTINGS))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_FREEZE_ENABLED", (long) Natron::NATRON_PIXMAP_FREEZE_ENABLED))
+        "NATRON_PIXMAP_FREEZE_ENABLED", (long) NATRON_NAMESPACE::NATRON_PIXMAP_FREEZE_ENABLED))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_FREEZE_DISABLED", (long) Natron::NATRON_PIXMAP_FREEZE_DISABLED))
+        "NATRON_PIXMAP_FREEZE_DISABLED", (long) NATRON_NAMESPACE::NATRON_PIXMAP_FREEZE_DISABLED))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_VIEWER_ICON", (long) Natron::NATRON_PIXMAP_VIEWER_ICON))
+        "NATRON_PIXMAP_VIEWER_ICON", (long) NATRON_NAMESPACE::NATRON_PIXMAP_VIEWER_ICON))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_VIEWER_CHECKERBOARD_ENABLED", (long) Natron::NATRON_PIXMAP_VIEWER_CHECKERBOARD_ENABLED))
+        "NATRON_PIXMAP_VIEWER_CHECKERBOARD_ENABLED", (long) NATRON_NAMESPACE::NATRON_PIXMAP_VIEWER_CHECKERBOARD_ENABLED))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_VIEWER_CHECKERBOARD_DISABLED", (long) Natron::NATRON_PIXMAP_VIEWER_CHECKERBOARD_DISABLED))
+        "NATRON_PIXMAP_VIEWER_CHECKERBOARD_DISABLED", (long) NATRON_NAMESPACE::NATRON_PIXMAP_VIEWER_CHECKERBOARD_DISABLED))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_VIEWER_ZEBRA_ENABLED", (long) Natron::NATRON_PIXMAP_VIEWER_ZEBRA_ENABLED))
+        "NATRON_PIXMAP_VIEWER_ZEBRA_ENABLED", (long) NATRON_NAMESPACE::NATRON_PIXMAP_VIEWER_ZEBRA_ENABLED))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_VIEWER_ZEBRA_DISABLED", (long) Natron::NATRON_PIXMAP_VIEWER_ZEBRA_DISABLED))
+        "NATRON_PIXMAP_VIEWER_ZEBRA_DISABLED", (long) NATRON_NAMESPACE::NATRON_PIXMAP_VIEWER_ZEBRA_DISABLED))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_VIEWER_GAMMA_ENABLED", (long) Natron::NATRON_PIXMAP_VIEWER_GAMMA_ENABLED))
+        "NATRON_PIXMAP_VIEWER_GAMMA_ENABLED", (long) NATRON_NAMESPACE::NATRON_PIXMAP_VIEWER_GAMMA_ENABLED))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_VIEWER_GAMMA_DISABLED", (long) Natron::NATRON_PIXMAP_VIEWER_GAMMA_DISABLED))
+        "NATRON_PIXMAP_VIEWER_GAMMA_DISABLED", (long) NATRON_NAMESPACE::NATRON_PIXMAP_VIEWER_GAMMA_DISABLED))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_VIEWER_GAIN_ENABLED", (long) Natron::NATRON_PIXMAP_VIEWER_GAIN_ENABLED))
+        "NATRON_PIXMAP_VIEWER_GAIN_ENABLED", (long) NATRON_NAMESPACE::NATRON_PIXMAP_VIEWER_GAIN_ENABLED))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_VIEWER_GAIN_DISABLED", (long) Natron::NATRON_PIXMAP_VIEWER_GAIN_DISABLED))
+        "NATRON_PIXMAP_VIEWER_GAIN_DISABLED", (long) NATRON_NAMESPACE::NATRON_PIXMAP_VIEWER_GAIN_DISABLED))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_SCRIPT_CLEAR_OUTPUT", (long) Natron::NATRON_PIXMAP_SCRIPT_CLEAR_OUTPUT))
+        "NATRON_PIXMAP_SCRIPT_CLEAR_OUTPUT", (long) NATRON_NAMESPACE::NATRON_PIXMAP_SCRIPT_CLEAR_OUTPUT))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_SCRIPT_EXEC_SCRIPT", (long) Natron::NATRON_PIXMAP_SCRIPT_EXEC_SCRIPT))
+        "NATRON_PIXMAP_SCRIPT_EXEC_SCRIPT", (long) NATRON_NAMESPACE::NATRON_PIXMAP_SCRIPT_EXEC_SCRIPT))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_SCRIPT_LOAD_EXEC_SCRIPT", (long) Natron::NATRON_PIXMAP_SCRIPT_LOAD_EXEC_SCRIPT))
+        "NATRON_PIXMAP_SCRIPT_LOAD_EXEC_SCRIPT", (long) NATRON_NAMESPACE::NATRON_PIXMAP_SCRIPT_LOAD_EXEC_SCRIPT))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_SCRIPT_LOAD_SCRIPT", (long) Natron::NATRON_PIXMAP_SCRIPT_LOAD_SCRIPT))
+        "NATRON_PIXMAP_SCRIPT_LOAD_SCRIPT", (long) NATRON_NAMESPACE::NATRON_PIXMAP_SCRIPT_LOAD_SCRIPT))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_SCRIPT_NEXT_SCRIPT", (long) Natron::NATRON_PIXMAP_SCRIPT_NEXT_SCRIPT))
+        "NATRON_PIXMAP_SCRIPT_NEXT_SCRIPT", (long) NATRON_NAMESPACE::NATRON_PIXMAP_SCRIPT_NEXT_SCRIPT))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_SCRIPT_OUTPUT_PANE_ACTIVATED", (long) Natron::NATRON_PIXMAP_SCRIPT_OUTPUT_PANE_ACTIVATED))
+        "NATRON_PIXMAP_SCRIPT_OUTPUT_PANE_ACTIVATED", (long) NATRON_NAMESPACE::NATRON_PIXMAP_SCRIPT_OUTPUT_PANE_ACTIVATED))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_SCRIPT_OUTPUT_PANE_DEACTIVATED", (long) Natron::NATRON_PIXMAP_SCRIPT_OUTPUT_PANE_DEACTIVATED))
+        "NATRON_PIXMAP_SCRIPT_OUTPUT_PANE_DEACTIVATED", (long) NATRON_NAMESPACE::NATRON_PIXMAP_SCRIPT_OUTPUT_PANE_DEACTIVATED))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_SCRIPT_PREVIOUS_SCRIPT", (long) Natron::NATRON_PIXMAP_SCRIPT_PREVIOUS_SCRIPT))
+        "NATRON_PIXMAP_SCRIPT_PREVIOUS_SCRIPT", (long) NATRON_NAMESPACE::NATRON_PIXMAP_SCRIPT_PREVIOUS_SCRIPT))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_SCRIPT_SAVE_SCRIPT", (long) Natron::NATRON_PIXMAP_SCRIPT_SAVE_SCRIPT))
+        "NATRON_PIXMAP_SCRIPT_SAVE_SCRIPT", (long) NATRON_NAMESPACE::NATRON_PIXMAP_SCRIPT_SAVE_SCRIPT))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_MERGE_ATOP", (long) Natron::NATRON_PIXMAP_MERGE_ATOP))
+        "NATRON_PIXMAP_MERGE_ATOP", (long) NATRON_NAMESPACE::NATRON_PIXMAP_MERGE_ATOP))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_MERGE_AVERAGE", (long) Natron::NATRON_PIXMAP_MERGE_AVERAGE))
+        "NATRON_PIXMAP_MERGE_AVERAGE", (long) NATRON_NAMESPACE::NATRON_PIXMAP_MERGE_AVERAGE))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_MERGE_COLOR", (long) Natron::NATRON_PIXMAP_MERGE_COLOR))
+        "NATRON_PIXMAP_MERGE_COLOR", (long) NATRON_NAMESPACE::NATRON_PIXMAP_MERGE_COLOR))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_MERGE_COLOR_BURN", (long) Natron::NATRON_PIXMAP_MERGE_COLOR_BURN))
+        "NATRON_PIXMAP_MERGE_COLOR_BURN", (long) NATRON_NAMESPACE::NATRON_PIXMAP_MERGE_COLOR_BURN))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_MERGE_COLOR_DODGE", (long) Natron::NATRON_PIXMAP_MERGE_COLOR_DODGE))
+        "NATRON_PIXMAP_MERGE_COLOR_DODGE", (long) NATRON_NAMESPACE::NATRON_PIXMAP_MERGE_COLOR_DODGE))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_MERGE_CONJOINT_OVER", (long) Natron::NATRON_PIXMAP_MERGE_CONJOINT_OVER))
+        "NATRON_PIXMAP_MERGE_CONJOINT_OVER", (long) NATRON_NAMESPACE::NATRON_PIXMAP_MERGE_CONJOINT_OVER))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_MERGE_COPY", (long) Natron::NATRON_PIXMAP_MERGE_COPY))
+        "NATRON_PIXMAP_MERGE_COPY", (long) NATRON_NAMESPACE::NATRON_PIXMAP_MERGE_COPY))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_MERGE_DIFFERENCE", (long) Natron::NATRON_PIXMAP_MERGE_DIFFERENCE))
+        "NATRON_PIXMAP_MERGE_DIFFERENCE", (long) NATRON_NAMESPACE::NATRON_PIXMAP_MERGE_DIFFERENCE))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_MERGE_DISJOINT_OVER", (long) Natron::NATRON_PIXMAP_MERGE_DISJOINT_OVER))
+        "NATRON_PIXMAP_MERGE_DISJOINT_OVER", (long) NATRON_NAMESPACE::NATRON_PIXMAP_MERGE_DISJOINT_OVER))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_MERGE_DIVIDE", (long) Natron::NATRON_PIXMAP_MERGE_DIVIDE))
+        "NATRON_PIXMAP_MERGE_DIVIDE", (long) NATRON_NAMESPACE::NATRON_PIXMAP_MERGE_DIVIDE))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_MERGE_EXCLUSION", (long) Natron::NATRON_PIXMAP_MERGE_EXCLUSION))
+        "NATRON_PIXMAP_MERGE_EXCLUSION", (long) NATRON_NAMESPACE::NATRON_PIXMAP_MERGE_EXCLUSION))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_MERGE_FREEZE", (long) Natron::NATRON_PIXMAP_MERGE_FREEZE))
+        "NATRON_PIXMAP_MERGE_FREEZE", (long) NATRON_NAMESPACE::NATRON_PIXMAP_MERGE_FREEZE))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_MERGE_FROM", (long) Natron::NATRON_PIXMAP_MERGE_FROM))
+        "NATRON_PIXMAP_MERGE_FROM", (long) NATRON_NAMESPACE::NATRON_PIXMAP_MERGE_FROM))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_MERGE_GEOMETRIC", (long) Natron::NATRON_PIXMAP_MERGE_GEOMETRIC))
+        "NATRON_PIXMAP_MERGE_GEOMETRIC", (long) NATRON_NAMESPACE::NATRON_PIXMAP_MERGE_GEOMETRIC))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_MERGE_GRAIN_EXTRACT", (long) Natron::NATRON_PIXMAP_MERGE_GRAIN_EXTRACT))
+        "NATRON_PIXMAP_MERGE_GRAIN_EXTRACT", (long) NATRON_NAMESPACE::NATRON_PIXMAP_MERGE_GRAIN_EXTRACT))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_MERGE_GRAIN_MERGE", (long) Natron::NATRON_PIXMAP_MERGE_GRAIN_MERGE))
+        "NATRON_PIXMAP_MERGE_GRAIN_MERGE", (long) NATRON_NAMESPACE::NATRON_PIXMAP_MERGE_GRAIN_MERGE))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_MERGE_HARD_LIGHT", (long) Natron::NATRON_PIXMAP_MERGE_HARD_LIGHT))
+        "NATRON_PIXMAP_MERGE_HARD_LIGHT", (long) NATRON_NAMESPACE::NATRON_PIXMAP_MERGE_HARD_LIGHT))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_MERGE_HUE", (long) Natron::NATRON_PIXMAP_MERGE_HUE))
+        "NATRON_PIXMAP_MERGE_HUE", (long) NATRON_NAMESPACE::NATRON_PIXMAP_MERGE_HUE))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_MERGE_HYPOT", (long) Natron::NATRON_PIXMAP_MERGE_HYPOT))
+        "NATRON_PIXMAP_MERGE_HYPOT", (long) NATRON_NAMESPACE::NATRON_PIXMAP_MERGE_HYPOT))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_MERGE_IN", (long) Natron::NATRON_PIXMAP_MERGE_IN))
+        "NATRON_PIXMAP_MERGE_IN", (long) NATRON_NAMESPACE::NATRON_PIXMAP_MERGE_IN))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_MERGE_LUMINOSITY", (long) Natron::NATRON_PIXMAP_MERGE_LUMINOSITY))
+        "NATRON_PIXMAP_MERGE_LUMINOSITY", (long) NATRON_NAMESPACE::NATRON_PIXMAP_MERGE_LUMINOSITY))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_MERGE_MASK", (long) Natron::NATRON_PIXMAP_MERGE_MASK))
+        "NATRON_PIXMAP_MERGE_MASK", (long) NATRON_NAMESPACE::NATRON_PIXMAP_MERGE_MASK))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_MERGE_MATTE", (long) Natron::NATRON_PIXMAP_MERGE_MATTE))
+        "NATRON_PIXMAP_MERGE_MATTE", (long) NATRON_NAMESPACE::NATRON_PIXMAP_MERGE_MATTE))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_MERGE_MAX", (long) Natron::NATRON_PIXMAP_MERGE_MAX))
+        "NATRON_PIXMAP_MERGE_MAX", (long) NATRON_NAMESPACE::NATRON_PIXMAP_MERGE_MAX))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_MERGE_MIN", (long) Natron::NATRON_PIXMAP_MERGE_MIN))
+        "NATRON_PIXMAP_MERGE_MIN", (long) NATRON_NAMESPACE::NATRON_PIXMAP_MERGE_MIN))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_MERGE_MINUS", (long) Natron::NATRON_PIXMAP_MERGE_MINUS))
+        "NATRON_PIXMAP_MERGE_MINUS", (long) NATRON_NAMESPACE::NATRON_PIXMAP_MERGE_MINUS))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_MERGE_MULTIPLY", (long) Natron::NATRON_PIXMAP_MERGE_MULTIPLY))
+        "NATRON_PIXMAP_MERGE_MULTIPLY", (long) NATRON_NAMESPACE::NATRON_PIXMAP_MERGE_MULTIPLY))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_MERGE_OUT", (long) Natron::NATRON_PIXMAP_MERGE_OUT))
+        "NATRON_PIXMAP_MERGE_OUT", (long) NATRON_NAMESPACE::NATRON_PIXMAP_MERGE_OUT))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_MERGE_OVER", (long) Natron::NATRON_PIXMAP_MERGE_OVER))
+        "NATRON_PIXMAP_MERGE_OVER", (long) NATRON_NAMESPACE::NATRON_PIXMAP_MERGE_OVER))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_MERGE_OVERLAY", (long) Natron::NATRON_PIXMAP_MERGE_OVERLAY))
+        "NATRON_PIXMAP_MERGE_OVERLAY", (long) NATRON_NAMESPACE::NATRON_PIXMAP_MERGE_OVERLAY))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_MERGE_PINLIGHT", (long) Natron::NATRON_PIXMAP_MERGE_PINLIGHT))
+        "NATRON_PIXMAP_MERGE_PINLIGHT", (long) NATRON_NAMESPACE::NATRON_PIXMAP_MERGE_PINLIGHT))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_MERGE_PLUS", (long) Natron::NATRON_PIXMAP_MERGE_PLUS))
+        "NATRON_PIXMAP_MERGE_PLUS", (long) NATRON_NAMESPACE::NATRON_PIXMAP_MERGE_PLUS))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_MERGE_REFLECT", (long) Natron::NATRON_PIXMAP_MERGE_REFLECT))
+        "NATRON_PIXMAP_MERGE_REFLECT", (long) NATRON_NAMESPACE::NATRON_PIXMAP_MERGE_REFLECT))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_MERGE_SATURATION", (long) Natron::NATRON_PIXMAP_MERGE_SATURATION))
+        "NATRON_PIXMAP_MERGE_SATURATION", (long) NATRON_NAMESPACE::NATRON_PIXMAP_MERGE_SATURATION))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_MERGE_SCREEN", (long) Natron::NATRON_PIXMAP_MERGE_SCREEN))
+        "NATRON_PIXMAP_MERGE_SCREEN", (long) NATRON_NAMESPACE::NATRON_PIXMAP_MERGE_SCREEN))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_MERGE_SOFT_LIGHT", (long) Natron::NATRON_PIXMAP_MERGE_SOFT_LIGHT))
+        "NATRON_PIXMAP_MERGE_SOFT_LIGHT", (long) NATRON_NAMESPACE::NATRON_PIXMAP_MERGE_SOFT_LIGHT))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_MERGE_STENCIL", (long) Natron::NATRON_PIXMAP_MERGE_STENCIL))
+        "NATRON_PIXMAP_MERGE_STENCIL", (long) NATRON_NAMESPACE::NATRON_PIXMAP_MERGE_STENCIL))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_MERGE_UNDER", (long) Natron::NATRON_PIXMAP_MERGE_UNDER))
+        "NATRON_PIXMAP_MERGE_UNDER", (long) NATRON_NAMESPACE::NATRON_PIXMAP_MERGE_UNDER))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_MERGE_XOR", (long) Natron::NATRON_PIXMAP_MERGE_XOR))
+        "NATRON_PIXMAP_MERGE_XOR", (long) NATRON_NAMESPACE::NATRON_PIXMAP_MERGE_XOR))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_ROTO_NODE_ICON", (long) Natron::NATRON_PIXMAP_ROTO_NODE_ICON))
+        "NATRON_PIXMAP_ROTO_NODE_ICON", (long) NATRON_NAMESPACE::NATRON_PIXMAP_ROTO_NODE_ICON))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_LINK_CURSOR", (long) Natron::NATRON_PIXMAP_LINK_CURSOR))
+        "NATRON_PIXMAP_LINK_CURSOR", (long) NATRON_NAMESPACE::NATRON_PIXMAP_LINK_CURSOR))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_LINK_MULT_CURSOR", (long) Natron::NATRON_PIXMAP_LINK_MULT_CURSOR))
+        "NATRON_PIXMAP_LINK_MULT_CURSOR", (long) NATRON_NAMESPACE::NATRON_PIXMAP_LINK_MULT_CURSOR))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_APP_ICON", (long) Natron::NATRON_PIXMAP_APP_ICON))
+        "NATRON_PIXMAP_APP_ICON", (long) NATRON_NAMESPACE::NATRON_PIXMAP_APP_ICON))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_INTERP_LINEAR", (long) Natron::NATRON_PIXMAP_INTERP_LINEAR))
+        "NATRON_PIXMAP_INTERP_LINEAR", (long) NATRON_NAMESPACE::NATRON_PIXMAP_INTERP_LINEAR))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_INTERP_CURVE", (long) Natron::NATRON_PIXMAP_INTERP_CURVE))
+        "NATRON_PIXMAP_INTERP_CURVE", (long) NATRON_NAMESPACE::NATRON_PIXMAP_INTERP_CURVE))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_INTERP_CONSTANT", (long) Natron::NATRON_PIXMAP_INTERP_CONSTANT))
+        "NATRON_PIXMAP_INTERP_CONSTANT", (long) NATRON_NAMESPACE::NATRON_PIXMAP_INTERP_CONSTANT))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_INTERP_BREAK", (long) Natron::NATRON_PIXMAP_INTERP_BREAK))
+        "NATRON_PIXMAP_INTERP_BREAK", (long) NATRON_NAMESPACE::NATRON_PIXMAP_INTERP_BREAK))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_INTERP_CURVE_C", (long) Natron::NATRON_PIXMAP_INTERP_CURVE_C))
+        "NATRON_PIXMAP_INTERP_CURVE_C", (long) NATRON_NAMESPACE::NATRON_PIXMAP_INTERP_CURVE_C))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_INTERP_CURVE_H", (long) Natron::NATRON_PIXMAP_INTERP_CURVE_H))
+        "NATRON_PIXMAP_INTERP_CURVE_H", (long) NATRON_NAMESPACE::NATRON_PIXMAP_INTERP_CURVE_H))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_INTERP_CURVE_R", (long) Natron::NATRON_PIXMAP_INTERP_CURVE_R))
+        "NATRON_PIXMAP_INTERP_CURVE_R", (long) NATRON_NAMESPACE::NATRON_PIXMAP_INTERP_CURVE_R))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "NATRON_PIXMAP_INTERP_CURVE_Z", (long) Natron::NATRON_PIXMAP_INTERP_CURVE_Z))
+        "NATRON_PIXMAP_INTERP_CURVE_Z", (long) NATRON_NAMESPACE::NATRON_PIXMAP_INTERP_CURVE_Z))
         return ;
-    // Register converter for enum 'Natron::PixmapEnum'.
+    // Register converter for enum 'NATRON_NAMESPACE::PixmapEnum'.
     {
-        SbkConverter* converter = Shiboken::Conversions::createConverter(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX],
+        SbkConverter* converter = Shiboken::Conversions::createConverter(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX],
             Natron_PixmapEnum_CppToPython_Natron_PixmapEnum);
         Shiboken::Conversions::addPythonToCppValueConversion(converter,
             Natron_PixmapEnum_PythonToCpp_Natron_PixmapEnum,
             is_Natron_PixmapEnum_PythonToCpp_Natron_PixmapEnum_Convertible);
-        Shiboken::Enum::setTypeConverter(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX], converter);
-        Shiboken::Enum::setTypeConverter(SbkNatronEngineTypes[SBK_NATRON_PIXMAPENUM_IDX], converter);
+        Shiboken::Enum::setTypeConverter(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX], converter);
+        Shiboken::Enum::setTypeConverter(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX], converter);
         Shiboken::Conversions::registerConverterName(converter, "Natron::PixmapEnum");
         Shiboken::Conversions::registerConverterName(converter, "PixmapEnum");
     }
     // End of 'PixmapEnum' enum.
 
     // Initialization of enum 'ValueChangedReasonEnum'.
-    SbkNatronEngineTypes[SBK_NATRON_VALUECHANGEDREASONENUM_IDX] = Shiboken::Enum::createScopedEnum(
+    SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_VALUECHANGEDREASONENUM_IDX] = Shiboken::Enum::createScopedEnum(
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
         "ValueChangedReasonEnum",
         "NatronEngine.Natron.ValueChangedReasonEnum",
         "Natron::ValueChangedReasonEnum");
-    if (!SbkNatronEngineTypes[SBK_NATRON_VALUECHANGEDREASONENUM_IDX])
+    if (!SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_VALUECHANGEDREASONENUM_IDX])
         return ;
 
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_VALUECHANGEDREASONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_VALUECHANGEDREASONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eValueChangedReasonUserEdited", (long) Natron::eValueChangedReasonUserEdited))
+        "eValueChangedReasonUserEdited", (long) NATRON_NAMESPACE::eValueChangedReasonUserEdited))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_VALUECHANGEDREASONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_VALUECHANGEDREASONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eValueChangedReasonPluginEdited", (long) Natron::eValueChangedReasonPluginEdited))
+        "eValueChangedReasonPluginEdited", (long) NATRON_NAMESPACE::eValueChangedReasonPluginEdited))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_VALUECHANGEDREASONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_VALUECHANGEDREASONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eValueChangedReasonNatronGuiEdited", (long) Natron::eValueChangedReasonNatronGuiEdited))
+        "eValueChangedReasonNatronGuiEdited", (long) NATRON_NAMESPACE::eValueChangedReasonNatronGuiEdited))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_VALUECHANGEDREASONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_VALUECHANGEDREASONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eValueChangedReasonNatronInternalEdited", (long) Natron::eValueChangedReasonNatronInternalEdited))
+        "eValueChangedReasonNatronInternalEdited", (long) NATRON_NAMESPACE::eValueChangedReasonNatronInternalEdited))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_VALUECHANGEDREASONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_VALUECHANGEDREASONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eValueChangedReasonTimeChanged", (long) Natron::eValueChangedReasonTimeChanged))
+        "eValueChangedReasonTimeChanged", (long) NATRON_NAMESPACE::eValueChangedReasonTimeChanged))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_VALUECHANGEDREASONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_VALUECHANGEDREASONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eValueChangedReasonSlaveRefresh", (long) Natron::eValueChangedReasonSlaveRefresh))
+        "eValueChangedReasonSlaveRefresh", (long) NATRON_NAMESPACE::eValueChangedReasonSlaveRefresh))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_VALUECHANGEDREASONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_VALUECHANGEDREASONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eValueChangedReasonRestoreDefault", (long) Natron::eValueChangedReasonRestoreDefault))
+        "eValueChangedReasonRestoreDefault", (long) NATRON_NAMESPACE::eValueChangedReasonRestoreDefault))
         return ;
-    // Register converter for enum 'Natron::ValueChangedReasonEnum'.
+    // Register converter for enum 'NATRON_NAMESPACE::ValueChangedReasonEnum'.
     {
-        SbkConverter* converter = Shiboken::Conversions::createConverter(SbkNatronEngineTypes[SBK_NATRON_VALUECHANGEDREASONENUM_IDX],
+        SbkConverter* converter = Shiboken::Conversions::createConverter(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_VALUECHANGEDREASONENUM_IDX],
             Natron_ValueChangedReasonEnum_CppToPython_Natron_ValueChangedReasonEnum);
         Shiboken::Conversions::addPythonToCppValueConversion(converter,
             Natron_ValueChangedReasonEnum_PythonToCpp_Natron_ValueChangedReasonEnum,
             is_Natron_ValueChangedReasonEnum_PythonToCpp_Natron_ValueChangedReasonEnum_Convertible);
-        Shiboken::Enum::setTypeConverter(SbkNatronEngineTypes[SBK_NATRON_VALUECHANGEDREASONENUM_IDX], converter);
-        Shiboken::Enum::setTypeConverter(SbkNatronEngineTypes[SBK_NATRON_VALUECHANGEDREASONENUM_IDX], converter);
+        Shiboken::Enum::setTypeConverter(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_VALUECHANGEDREASONENUM_IDX], converter);
+        Shiboken::Enum::setTypeConverter(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_VALUECHANGEDREASONENUM_IDX], converter);
         Shiboken::Conversions::registerConverterName(converter, "Natron::ValueChangedReasonEnum");
         Shiboken::Conversions::registerConverterName(converter, "ValueChangedReasonEnum");
     }
     // End of 'ValueChangedReasonEnum' enum.
 
     // Initialization of enum 'AnimationLevelEnum'.
-    SbkNatronEngineTypes[SBK_NATRON_ANIMATIONLEVELENUM_IDX] = Shiboken::Enum::createScopedEnum(
+    SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_ANIMATIONLEVELENUM_IDX] = Shiboken::Enum::createScopedEnum(
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
         "AnimationLevelEnum",
         "NatronEngine.Natron.AnimationLevelEnum",
         "Natron::AnimationLevelEnum");
-    if (!SbkNatronEngineTypes[SBK_NATRON_ANIMATIONLEVELENUM_IDX])
+    if (!SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_ANIMATIONLEVELENUM_IDX])
         return ;
 
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_ANIMATIONLEVELENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_ANIMATIONLEVELENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eAnimationLevelNone", (long) Natron::eAnimationLevelNone))
+        "eAnimationLevelNone", (long) NATRON_NAMESPACE::eAnimationLevelNone))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_ANIMATIONLEVELENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_ANIMATIONLEVELENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eAnimationLevelInterpolatedValue", (long) Natron::eAnimationLevelInterpolatedValue))
+        "eAnimationLevelInterpolatedValue", (long) NATRON_NAMESPACE::eAnimationLevelInterpolatedValue))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_ANIMATIONLEVELENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_ANIMATIONLEVELENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eAnimationLevelOnKeyframe", (long) Natron::eAnimationLevelOnKeyframe))
+        "eAnimationLevelOnKeyframe", (long) NATRON_NAMESPACE::eAnimationLevelOnKeyframe))
         return ;
-    // Register converter for enum 'Natron::AnimationLevelEnum'.
+    // Register converter for enum 'NATRON_NAMESPACE::AnimationLevelEnum'.
     {
-        SbkConverter* converter = Shiboken::Conversions::createConverter(SbkNatronEngineTypes[SBK_NATRON_ANIMATIONLEVELENUM_IDX],
+        SbkConverter* converter = Shiboken::Conversions::createConverter(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_ANIMATIONLEVELENUM_IDX],
             Natron_AnimationLevelEnum_CppToPython_Natron_AnimationLevelEnum);
         Shiboken::Conversions::addPythonToCppValueConversion(converter,
             Natron_AnimationLevelEnum_PythonToCpp_Natron_AnimationLevelEnum,
             is_Natron_AnimationLevelEnum_PythonToCpp_Natron_AnimationLevelEnum_Convertible);
-        Shiboken::Enum::setTypeConverter(SbkNatronEngineTypes[SBK_NATRON_ANIMATIONLEVELENUM_IDX], converter);
-        Shiboken::Enum::setTypeConverter(SbkNatronEngineTypes[SBK_NATRON_ANIMATIONLEVELENUM_IDX], converter);
+        Shiboken::Enum::setTypeConverter(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_ANIMATIONLEVELENUM_IDX], converter);
+        Shiboken::Enum::setTypeConverter(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_ANIMATIONLEVELENUM_IDX], converter);
         Shiboken::Conversions::registerConverterName(converter, "Natron::AnimationLevelEnum");
         Shiboken::Conversions::registerConverterName(converter, "AnimationLevelEnum");
     }
     // End of 'AnimationLevelEnum' enum.
 
     // Initialization of enum 'ImagePremultiplicationEnum'.
-    SbkNatronEngineTypes[SBK_NATRON_IMAGEPREMULTIPLICATIONENUM_IDX] = Shiboken::Enum::createScopedEnum(
+    SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_IMAGEPREMULTIPLICATIONENUM_IDX] = Shiboken::Enum::createScopedEnum(
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
         "ImagePremultiplicationEnum",
         "NatronEngine.Natron.ImagePremultiplicationEnum",
         "Natron::ImagePremultiplicationEnum");
-    if (!SbkNatronEngineTypes[SBK_NATRON_IMAGEPREMULTIPLICATIONENUM_IDX])
+    if (!SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_IMAGEPREMULTIPLICATIONENUM_IDX])
         return ;
 
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_IMAGEPREMULTIPLICATIONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_IMAGEPREMULTIPLICATIONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eImagePremultiplicationOpaque", (long) Natron::eImagePremultiplicationOpaque))
+        "eImagePremultiplicationOpaque", (long) NATRON_NAMESPACE::eImagePremultiplicationOpaque))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_IMAGEPREMULTIPLICATIONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_IMAGEPREMULTIPLICATIONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eImagePremultiplicationPremultiplied", (long) Natron::eImagePremultiplicationPremultiplied))
+        "eImagePremultiplicationPremultiplied", (long) NATRON_NAMESPACE::eImagePremultiplicationPremultiplied))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_IMAGEPREMULTIPLICATIONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_IMAGEPREMULTIPLICATIONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eImagePremultiplicationUnPremultiplied", (long) Natron::eImagePremultiplicationUnPremultiplied))
+        "eImagePremultiplicationUnPremultiplied", (long) NATRON_NAMESPACE::eImagePremultiplicationUnPremultiplied))
         return ;
-    // Register converter for enum 'Natron::ImagePremultiplicationEnum'.
+    // Register converter for enum 'NATRON_NAMESPACE::ImagePremultiplicationEnum'.
     {
-        SbkConverter* converter = Shiboken::Conversions::createConverter(SbkNatronEngineTypes[SBK_NATRON_IMAGEPREMULTIPLICATIONENUM_IDX],
+        SbkConverter* converter = Shiboken::Conversions::createConverter(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_IMAGEPREMULTIPLICATIONENUM_IDX],
             Natron_ImagePremultiplicationEnum_CppToPython_Natron_ImagePremultiplicationEnum);
         Shiboken::Conversions::addPythonToCppValueConversion(converter,
             Natron_ImagePremultiplicationEnum_PythonToCpp_Natron_ImagePremultiplicationEnum,
             is_Natron_ImagePremultiplicationEnum_PythonToCpp_Natron_ImagePremultiplicationEnum_Convertible);
-        Shiboken::Enum::setTypeConverter(SbkNatronEngineTypes[SBK_NATRON_IMAGEPREMULTIPLICATIONENUM_IDX], converter);
-        Shiboken::Enum::setTypeConverter(SbkNatronEngineTypes[SBK_NATRON_IMAGEPREMULTIPLICATIONENUM_IDX], converter);
+        Shiboken::Enum::setTypeConverter(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_IMAGEPREMULTIPLICATIONENUM_IDX], converter);
+        Shiboken::Enum::setTypeConverter(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_IMAGEPREMULTIPLICATIONENUM_IDX], converter);
         Shiboken::Conversions::registerConverterName(converter, "Natron::ImagePremultiplicationEnum");
         Shiboken::Conversions::registerConverterName(converter, "ImagePremultiplicationEnum");
     }
     // End of 'ImagePremultiplicationEnum' enum.
 
     // Initialization of enum 'ViewerCompositingOperatorEnum'.
-    SbkNatronEngineTypes[SBK_NATRON_VIEWERCOMPOSITINGOPERATORENUM_IDX] = Shiboken::Enum::createScopedEnum(
+    SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_VIEWERCOMPOSITINGOPERATORENUM_IDX] = Shiboken::Enum::createScopedEnum(
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
         "ViewerCompositingOperatorEnum",
         "NatronEngine.Natron.ViewerCompositingOperatorEnum",
         "Natron::ViewerCompositingOperatorEnum");
-    if (!SbkNatronEngineTypes[SBK_NATRON_VIEWERCOMPOSITINGOPERATORENUM_IDX])
+    if (!SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_VIEWERCOMPOSITINGOPERATORENUM_IDX])
         return ;
 
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_VIEWERCOMPOSITINGOPERATORENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_VIEWERCOMPOSITINGOPERATORENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eViewerCompositingOperatorNone", (long) Natron::eViewerCompositingOperatorNone))
+        "eViewerCompositingOperatorNone", (long) NATRON_NAMESPACE::eViewerCompositingOperatorNone))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_VIEWERCOMPOSITINGOPERATORENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_VIEWERCOMPOSITINGOPERATORENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eViewerCompositingOperatorWipeUnder", (long) Natron::eViewerCompositingOperatorWipeUnder))
+        "eViewerCompositingOperatorWipeUnder", (long) NATRON_NAMESPACE::eViewerCompositingOperatorWipeUnder))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_VIEWERCOMPOSITINGOPERATORENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_VIEWERCOMPOSITINGOPERATORENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eViewerCompositingOperatorWipeOver", (long) Natron::eViewerCompositingOperatorWipeOver))
+        "eViewerCompositingOperatorWipeOver", (long) NATRON_NAMESPACE::eViewerCompositingOperatorWipeOver))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_VIEWERCOMPOSITINGOPERATORENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_VIEWERCOMPOSITINGOPERATORENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eViewerCompositingOperatorWipeMinus", (long) Natron::eViewerCompositingOperatorWipeMinus))
+        "eViewerCompositingOperatorWipeMinus", (long) NATRON_NAMESPACE::eViewerCompositingOperatorWipeMinus))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_VIEWERCOMPOSITINGOPERATORENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_VIEWERCOMPOSITINGOPERATORENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eViewerCompositingOperatorWipeOnionSkin", (long) Natron::eViewerCompositingOperatorWipeOnionSkin))
+        "eViewerCompositingOperatorWipeOnionSkin", (long) NATRON_NAMESPACE::eViewerCompositingOperatorWipeOnionSkin))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_VIEWERCOMPOSITINGOPERATORENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_VIEWERCOMPOSITINGOPERATORENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eViewerCompositingOperatorStackUnder", (long) Natron::eViewerCompositingOperatorStackUnder))
+        "eViewerCompositingOperatorStackUnder", (long) NATRON_NAMESPACE::eViewerCompositingOperatorStackUnder))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_VIEWERCOMPOSITINGOPERATORENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_VIEWERCOMPOSITINGOPERATORENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eViewerCompositingOperatorStackOver", (long) Natron::eViewerCompositingOperatorStackOver))
+        "eViewerCompositingOperatorStackOver", (long) NATRON_NAMESPACE::eViewerCompositingOperatorStackOver))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_VIEWERCOMPOSITINGOPERATORENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_VIEWERCOMPOSITINGOPERATORENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eViewerCompositingOperatorStackMinus", (long) Natron::eViewerCompositingOperatorStackMinus))
+        "eViewerCompositingOperatorStackMinus", (long) NATRON_NAMESPACE::eViewerCompositingOperatorStackMinus))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_VIEWERCOMPOSITINGOPERATORENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_VIEWERCOMPOSITINGOPERATORENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eViewerCompositingOperatorStackOnionSkin", (long) Natron::eViewerCompositingOperatorStackOnionSkin))
+        "eViewerCompositingOperatorStackOnionSkin", (long) NATRON_NAMESPACE::eViewerCompositingOperatorStackOnionSkin))
         return ;
-    // Register converter for enum 'Natron::ViewerCompositingOperatorEnum'.
+    // Register converter for enum 'NATRON_NAMESPACE::ViewerCompositingOperatorEnum'.
     {
-        SbkConverter* converter = Shiboken::Conversions::createConverter(SbkNatronEngineTypes[SBK_NATRON_VIEWERCOMPOSITINGOPERATORENUM_IDX],
+        SbkConverter* converter = Shiboken::Conversions::createConverter(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_VIEWERCOMPOSITINGOPERATORENUM_IDX],
             Natron_ViewerCompositingOperatorEnum_CppToPython_Natron_ViewerCompositingOperatorEnum);
         Shiboken::Conversions::addPythonToCppValueConversion(converter,
             Natron_ViewerCompositingOperatorEnum_PythonToCpp_Natron_ViewerCompositingOperatorEnum,
             is_Natron_ViewerCompositingOperatorEnum_PythonToCpp_Natron_ViewerCompositingOperatorEnum_Convertible);
-        Shiboken::Enum::setTypeConverter(SbkNatronEngineTypes[SBK_NATRON_VIEWERCOMPOSITINGOPERATORENUM_IDX], converter);
-        Shiboken::Enum::setTypeConverter(SbkNatronEngineTypes[SBK_NATRON_VIEWERCOMPOSITINGOPERATORENUM_IDX], converter);
+        Shiboken::Enum::setTypeConverter(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_VIEWERCOMPOSITINGOPERATORENUM_IDX], converter);
+        Shiboken::Enum::setTypeConverter(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_VIEWERCOMPOSITINGOPERATORENUM_IDX], converter);
         Shiboken::Conversions::registerConverterName(converter, "Natron::ViewerCompositingOperatorEnum");
         Shiboken::Conversions::registerConverterName(converter, "ViewerCompositingOperatorEnum");
     }
     // End of 'ViewerCompositingOperatorEnum' enum.
 
     // Initialization of enum 'ViewerColorSpaceEnum'.
-    SbkNatronEngineTypes[SBK_NATRON_VIEWERCOLORSPACEENUM_IDX] = Shiboken::Enum::createScopedEnum(
+    SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_VIEWERCOLORSPACEENUM_IDX] = Shiboken::Enum::createScopedEnum(
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
         "ViewerColorSpaceEnum",
         "NatronEngine.Natron.ViewerColorSpaceEnum",
         "Natron::ViewerColorSpaceEnum");
-    if (!SbkNatronEngineTypes[SBK_NATRON_VIEWERCOLORSPACEENUM_IDX])
+    if (!SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_VIEWERCOLORSPACEENUM_IDX])
         return ;
 
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_VIEWERCOLORSPACEENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_VIEWERCOLORSPACEENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eViewerColorSpaceSRGB", (long) Natron::eViewerColorSpaceSRGB))
+        "eViewerColorSpaceSRGB", (long) NATRON_NAMESPACE::eViewerColorSpaceSRGB))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_VIEWERCOLORSPACEENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_VIEWERCOLORSPACEENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eViewerColorSpaceLinear", (long) Natron::eViewerColorSpaceLinear))
+        "eViewerColorSpaceLinear", (long) NATRON_NAMESPACE::eViewerColorSpaceLinear))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_VIEWERCOLORSPACEENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_VIEWERCOLORSPACEENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eViewerColorSpaceRec709", (long) Natron::eViewerColorSpaceRec709))
+        "eViewerColorSpaceRec709", (long) NATRON_NAMESPACE::eViewerColorSpaceRec709))
         return ;
-    // Register converter for enum 'Natron::ViewerColorSpaceEnum'.
+    // Register converter for enum 'NATRON_NAMESPACE::ViewerColorSpaceEnum'.
     {
-        SbkConverter* converter = Shiboken::Conversions::createConverter(SbkNatronEngineTypes[SBK_NATRON_VIEWERCOLORSPACEENUM_IDX],
+        SbkConverter* converter = Shiboken::Conversions::createConverter(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_VIEWERCOLORSPACEENUM_IDX],
             Natron_ViewerColorSpaceEnum_CppToPython_Natron_ViewerColorSpaceEnum);
         Shiboken::Conversions::addPythonToCppValueConversion(converter,
             Natron_ViewerColorSpaceEnum_PythonToCpp_Natron_ViewerColorSpaceEnum,
             is_Natron_ViewerColorSpaceEnum_PythonToCpp_Natron_ViewerColorSpaceEnum_Convertible);
-        Shiboken::Enum::setTypeConverter(SbkNatronEngineTypes[SBK_NATRON_VIEWERCOLORSPACEENUM_IDX], converter);
-        Shiboken::Enum::setTypeConverter(SbkNatronEngineTypes[SBK_NATRON_VIEWERCOLORSPACEENUM_IDX], converter);
+        Shiboken::Enum::setTypeConverter(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_VIEWERCOLORSPACEENUM_IDX], converter);
+        Shiboken::Enum::setTypeConverter(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_VIEWERCOLORSPACEENUM_IDX], converter);
         Shiboken::Conversions::registerConverterName(converter, "Natron::ViewerColorSpaceEnum");
         Shiboken::Conversions::registerConverterName(converter, "ViewerColorSpaceEnum");
     }
     // End of 'ViewerColorSpaceEnum' enum.
 
     // Initialization of enum 'ImageBitDepthEnum'.
-    SbkNatronEngineTypes[SBK_NATRON_IMAGEBITDEPTHENUM_IDX] = Shiboken::Enum::createScopedEnum(
+    SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_IMAGEBITDEPTHENUM_IDX] = Shiboken::Enum::createScopedEnum(
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
         "ImageBitDepthEnum",
         "NatronEngine.Natron.ImageBitDepthEnum",
         "Natron::ImageBitDepthEnum");
-    if (!SbkNatronEngineTypes[SBK_NATRON_IMAGEBITDEPTHENUM_IDX])
+    if (!SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_IMAGEBITDEPTHENUM_IDX])
         return ;
 
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_IMAGEBITDEPTHENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_IMAGEBITDEPTHENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eImageBitDepthNone", (long) Natron::eImageBitDepthNone))
+        "eImageBitDepthNone", (long) NATRON_NAMESPACE::eImageBitDepthNone))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_IMAGEBITDEPTHENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_IMAGEBITDEPTHENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eImageBitDepthByte", (long) Natron::eImageBitDepthByte))
+        "eImageBitDepthByte", (long) NATRON_NAMESPACE::eImageBitDepthByte))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_IMAGEBITDEPTHENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_IMAGEBITDEPTHENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eImageBitDepthShort", (long) Natron::eImageBitDepthShort))
+        "eImageBitDepthShort", (long) NATRON_NAMESPACE::eImageBitDepthShort))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_IMAGEBITDEPTHENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_IMAGEBITDEPTHENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eImageBitDepthHalf", (long) Natron::eImageBitDepthHalf))
+        "eImageBitDepthHalf", (long) NATRON_NAMESPACE::eImageBitDepthHalf))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_IMAGEBITDEPTHENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_IMAGEBITDEPTHENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eImageBitDepthFloat", (long) Natron::eImageBitDepthFloat))
+        "eImageBitDepthFloat", (long) NATRON_NAMESPACE::eImageBitDepthFloat))
         return ;
-    // Register converter for enum 'Natron::ImageBitDepthEnum'.
+    // Register converter for enum 'NATRON_NAMESPACE::ImageBitDepthEnum'.
     {
-        SbkConverter* converter = Shiboken::Conversions::createConverter(SbkNatronEngineTypes[SBK_NATRON_IMAGEBITDEPTHENUM_IDX],
+        SbkConverter* converter = Shiboken::Conversions::createConverter(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_IMAGEBITDEPTHENUM_IDX],
             Natron_ImageBitDepthEnum_CppToPython_Natron_ImageBitDepthEnum);
         Shiboken::Conversions::addPythonToCppValueConversion(converter,
             Natron_ImageBitDepthEnum_PythonToCpp_Natron_ImageBitDepthEnum,
             is_Natron_ImageBitDepthEnum_PythonToCpp_Natron_ImageBitDepthEnum_Convertible);
-        Shiboken::Enum::setTypeConverter(SbkNatronEngineTypes[SBK_NATRON_IMAGEBITDEPTHENUM_IDX], converter);
-        Shiboken::Enum::setTypeConverter(SbkNatronEngineTypes[SBK_NATRON_IMAGEBITDEPTHENUM_IDX], converter);
+        Shiboken::Enum::setTypeConverter(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_IMAGEBITDEPTHENUM_IDX], converter);
+        Shiboken::Enum::setTypeConverter(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_IMAGEBITDEPTHENUM_IDX], converter);
         Shiboken::Conversions::registerConverterName(converter, "Natron::ImageBitDepthEnum");
         Shiboken::Conversions::registerConverterName(converter, "ImageBitDepthEnum");
     }
     // End of 'ImageBitDepthEnum' enum.
 
     // Initialization of enum 'OrientationEnum'.
-    SbkNatronEngineTypes[SBK_NATRON_ORIENTATIONENUM_IDX] = Shiboken::Enum::createScopedEnum(
+    SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_ORIENTATIONENUM_IDX] = Shiboken::Enum::createScopedEnum(
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
         "OrientationEnum",
         "NatronEngine.Natron.OrientationEnum",
         "Natron::OrientationEnum");
-    if (!SbkNatronEngineTypes[SBK_NATRON_ORIENTATIONENUM_IDX])
+    if (!SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_ORIENTATIONENUM_IDX])
         return ;
 
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_ORIENTATIONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_ORIENTATIONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eOrientationHorizontal", (long) Natron::eOrientationHorizontal))
+        "eOrientationHorizontal", (long) NATRON_NAMESPACE::eOrientationHorizontal))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_ORIENTATIONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_ORIENTATIONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eOrientationVertical", (long) Natron::eOrientationVertical))
+        "eOrientationVertical", (long) NATRON_NAMESPACE::eOrientationVertical))
         return ;
-    // Register converter for enum 'Natron::OrientationEnum'.
+    // Register converter for enum 'NATRON_NAMESPACE::OrientationEnum'.
     {
-        SbkConverter* converter = Shiboken::Conversions::createConverter(SbkNatronEngineTypes[SBK_NATRON_ORIENTATIONENUM_IDX],
+        SbkConverter* converter = Shiboken::Conversions::createConverter(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_ORIENTATIONENUM_IDX],
             Natron_OrientationEnum_CppToPython_Natron_OrientationEnum);
         Shiboken::Conversions::addPythonToCppValueConversion(converter,
             Natron_OrientationEnum_PythonToCpp_Natron_OrientationEnum,
             is_Natron_OrientationEnum_PythonToCpp_Natron_OrientationEnum_Convertible);
-        Shiboken::Enum::setTypeConverter(SbkNatronEngineTypes[SBK_NATRON_ORIENTATIONENUM_IDX], converter);
-        Shiboken::Enum::setTypeConverter(SbkNatronEngineTypes[SBK_NATRON_ORIENTATIONENUM_IDX], converter);
+        Shiboken::Enum::setTypeConverter(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_ORIENTATIONENUM_IDX], converter);
+        Shiboken::Enum::setTypeConverter(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_ORIENTATIONENUM_IDX], converter);
         Shiboken::Conversions::registerConverterName(converter, "Natron::OrientationEnum");
         Shiboken::Conversions::registerConverterName(converter, "OrientationEnum");
     }
     // End of 'OrientationEnum' enum.
 
     // Initialization of enum 'PlaybackModeEnum'.
-    SbkNatronEngineTypes[SBK_NATRON_PLAYBACKMODEENUM_IDX] = Shiboken::Enum::createScopedEnum(
+    SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PLAYBACKMODEENUM_IDX] = Shiboken::Enum::createScopedEnum(
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
         "PlaybackModeEnum",
         "NatronEngine.Natron.PlaybackModeEnum",
         "Natron::PlaybackModeEnum");
-    if (!SbkNatronEngineTypes[SBK_NATRON_PLAYBACKMODEENUM_IDX])
+    if (!SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PLAYBACKMODEENUM_IDX])
         return ;
 
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PLAYBACKMODEENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PLAYBACKMODEENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "ePlaybackModeLoop", (long) Natron::ePlaybackModeLoop))
+        "ePlaybackModeLoop", (long) NATRON_NAMESPACE::ePlaybackModeLoop))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PLAYBACKMODEENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PLAYBACKMODEENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "ePlaybackModeBounce", (long) Natron::ePlaybackModeBounce))
+        "ePlaybackModeBounce", (long) NATRON_NAMESPACE::ePlaybackModeBounce))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_PLAYBACKMODEENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PLAYBACKMODEENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "ePlaybackModeOnce", (long) Natron::ePlaybackModeOnce))
+        "ePlaybackModeOnce", (long) NATRON_NAMESPACE::ePlaybackModeOnce))
         return ;
-    // Register converter for enum 'Natron::PlaybackModeEnum'.
+    // Register converter for enum 'NATRON_NAMESPACE::PlaybackModeEnum'.
     {
-        SbkConverter* converter = Shiboken::Conversions::createConverter(SbkNatronEngineTypes[SBK_NATRON_PLAYBACKMODEENUM_IDX],
+        SbkConverter* converter = Shiboken::Conversions::createConverter(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PLAYBACKMODEENUM_IDX],
             Natron_PlaybackModeEnum_CppToPython_Natron_PlaybackModeEnum);
         Shiboken::Conversions::addPythonToCppValueConversion(converter,
             Natron_PlaybackModeEnum_PythonToCpp_Natron_PlaybackModeEnum,
             is_Natron_PlaybackModeEnum_PythonToCpp_Natron_PlaybackModeEnum_Convertible);
-        Shiboken::Enum::setTypeConverter(SbkNatronEngineTypes[SBK_NATRON_PLAYBACKMODEENUM_IDX], converter);
-        Shiboken::Enum::setTypeConverter(SbkNatronEngineTypes[SBK_NATRON_PLAYBACKMODEENUM_IDX], converter);
+        Shiboken::Enum::setTypeConverter(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PLAYBACKMODEENUM_IDX], converter);
+        Shiboken::Enum::setTypeConverter(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PLAYBACKMODEENUM_IDX], converter);
         Shiboken::Conversions::registerConverterName(converter, "Natron::PlaybackModeEnum");
         Shiboken::Conversions::registerConverterName(converter, "PlaybackModeEnum");
     }
     // End of 'PlaybackModeEnum' enum.
 
     // Initialization of enum 'DisplayChannelsEnum'.
-    SbkNatronEngineTypes[SBK_NATRON_DISPLAYCHANNELSENUM_IDX] = Shiboken::Enum::createScopedEnum(
+    SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_DISPLAYCHANNELSENUM_IDX] = Shiboken::Enum::createScopedEnum(
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
         "DisplayChannelsEnum",
         "NatronEngine.Natron.DisplayChannelsEnum",
         "Natron::DisplayChannelsEnum");
-    if (!SbkNatronEngineTypes[SBK_NATRON_DISPLAYCHANNELSENUM_IDX])
+    if (!SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_DISPLAYCHANNELSENUM_IDX])
         return ;
 
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_DISPLAYCHANNELSENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_DISPLAYCHANNELSENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eDisplayChannelsRGB", (long) Natron::eDisplayChannelsRGB))
+        "eDisplayChannelsRGB", (long) NATRON_NAMESPACE::eDisplayChannelsRGB))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_DISPLAYCHANNELSENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_DISPLAYCHANNELSENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eDisplayChannelsR", (long) Natron::eDisplayChannelsR))
+        "eDisplayChannelsR", (long) NATRON_NAMESPACE::eDisplayChannelsR))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_DISPLAYCHANNELSENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_DISPLAYCHANNELSENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eDisplayChannelsG", (long) Natron::eDisplayChannelsG))
+        "eDisplayChannelsG", (long) NATRON_NAMESPACE::eDisplayChannelsG))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_DISPLAYCHANNELSENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_DISPLAYCHANNELSENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eDisplayChannelsB", (long) Natron::eDisplayChannelsB))
+        "eDisplayChannelsB", (long) NATRON_NAMESPACE::eDisplayChannelsB))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_DISPLAYCHANNELSENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_DISPLAYCHANNELSENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eDisplayChannelsA", (long) Natron::eDisplayChannelsA))
+        "eDisplayChannelsA", (long) NATRON_NAMESPACE::eDisplayChannelsA))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_DISPLAYCHANNELSENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_DISPLAYCHANNELSENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eDisplayChannelsY", (long) Natron::eDisplayChannelsY))
+        "eDisplayChannelsY", (long) NATRON_NAMESPACE::eDisplayChannelsY))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_DISPLAYCHANNELSENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_DISPLAYCHANNELSENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eDisplayChannelsMatte", (long) Natron::eDisplayChannelsMatte))
+        "eDisplayChannelsMatte", (long) NATRON_NAMESPACE::eDisplayChannelsMatte))
         return ;
-    // Register converter for enum 'Natron::DisplayChannelsEnum'.
+    // Register converter for enum 'NATRON_NAMESPACE::DisplayChannelsEnum'.
     {
-        SbkConverter* converter = Shiboken::Conversions::createConverter(SbkNatronEngineTypes[SBK_NATRON_DISPLAYCHANNELSENUM_IDX],
+        SbkConverter* converter = Shiboken::Conversions::createConverter(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_DISPLAYCHANNELSENUM_IDX],
             Natron_DisplayChannelsEnum_CppToPython_Natron_DisplayChannelsEnum);
         Shiboken::Conversions::addPythonToCppValueConversion(converter,
             Natron_DisplayChannelsEnum_PythonToCpp_Natron_DisplayChannelsEnum,
             is_Natron_DisplayChannelsEnum_PythonToCpp_Natron_DisplayChannelsEnum_Convertible);
-        Shiboken::Enum::setTypeConverter(SbkNatronEngineTypes[SBK_NATRON_DISPLAYCHANNELSENUM_IDX], converter);
-        Shiboken::Enum::setTypeConverter(SbkNatronEngineTypes[SBK_NATRON_DISPLAYCHANNELSENUM_IDX], converter);
+        Shiboken::Enum::setTypeConverter(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_DISPLAYCHANNELSENUM_IDX], converter);
+        Shiboken::Enum::setTypeConverter(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_DISPLAYCHANNELSENUM_IDX], converter);
         Shiboken::Conversions::registerConverterName(converter, "Natron::DisplayChannelsEnum");
         Shiboken::Conversions::registerConverterName(converter, "DisplayChannelsEnum");
     }
     // End of 'DisplayChannelsEnum' enum.
 
     // Initialization of enum 'MergingFunctionEnum'.
-    SbkNatronEngineTypes[SBK_NATRON_MERGINGFUNCTIONENUM_IDX] = Shiboken::Enum::createScopedEnum(
+    SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_MERGINGFUNCTIONENUM_IDX] = Shiboken::Enum::createScopedEnum(
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
         "MergingFunctionEnum",
         "NatronEngine.Natron.MergingFunctionEnum",
         "Natron::MergingFunctionEnum");
-    if (!SbkNatronEngineTypes[SBK_NATRON_MERGINGFUNCTIONENUM_IDX])
+    if (!SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_MERGINGFUNCTIONENUM_IDX])
         return ;
 
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_MERGINGFUNCTIONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_MERGINGFUNCTIONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eMergeATop", (long) Natron::eMergeATop))
+        "eMergeATop", (long) NATRON_NAMESPACE::eMergeATop))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_MERGINGFUNCTIONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_MERGINGFUNCTIONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eMergeAverage", (long) Natron::eMergeAverage))
+        "eMergeAverage", (long) NATRON_NAMESPACE::eMergeAverage))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_MERGINGFUNCTIONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_MERGINGFUNCTIONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eMergeColor", (long) Natron::eMergeColor))
+        "eMergeColor", (long) NATRON_NAMESPACE::eMergeColor))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_MERGINGFUNCTIONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_MERGINGFUNCTIONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eMergeColorBurn", (long) Natron::eMergeColorBurn))
+        "eMergeColorBurn", (long) NATRON_NAMESPACE::eMergeColorBurn))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_MERGINGFUNCTIONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_MERGINGFUNCTIONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eMergeColorDodge", (long) Natron::eMergeColorDodge))
+        "eMergeColorDodge", (long) NATRON_NAMESPACE::eMergeColorDodge))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_MERGINGFUNCTIONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_MERGINGFUNCTIONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eMergeConjointOver", (long) Natron::eMergeConjointOver))
+        "eMergeConjointOver", (long) NATRON_NAMESPACE::eMergeConjointOver))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_MERGINGFUNCTIONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_MERGINGFUNCTIONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eMergeCopy", (long) Natron::eMergeCopy))
+        "eMergeCopy", (long) NATRON_NAMESPACE::eMergeCopy))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_MERGINGFUNCTIONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_MERGINGFUNCTIONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eMergeDifference", (long) Natron::eMergeDifference))
+        "eMergeDifference", (long) NATRON_NAMESPACE::eMergeDifference))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_MERGINGFUNCTIONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_MERGINGFUNCTIONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eMergeDisjointOver", (long) Natron::eMergeDisjointOver))
+        "eMergeDisjointOver", (long) NATRON_NAMESPACE::eMergeDisjointOver))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_MERGINGFUNCTIONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_MERGINGFUNCTIONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eMergeDivide", (long) Natron::eMergeDivide))
+        "eMergeDivide", (long) NATRON_NAMESPACE::eMergeDivide))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_MERGINGFUNCTIONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_MERGINGFUNCTIONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eMergeExclusion", (long) Natron::eMergeExclusion))
+        "eMergeExclusion", (long) NATRON_NAMESPACE::eMergeExclusion))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_MERGINGFUNCTIONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_MERGINGFUNCTIONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eMergeFreeze", (long) Natron::eMergeFreeze))
+        "eMergeFreeze", (long) NATRON_NAMESPACE::eMergeFreeze))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_MERGINGFUNCTIONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_MERGINGFUNCTIONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eMergeFrom", (long) Natron::eMergeFrom))
+        "eMergeFrom", (long) NATRON_NAMESPACE::eMergeFrom))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_MERGINGFUNCTIONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_MERGINGFUNCTIONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eMergeGeometric", (long) Natron::eMergeGeometric))
+        "eMergeGeometric", (long) NATRON_NAMESPACE::eMergeGeometric))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_MERGINGFUNCTIONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_MERGINGFUNCTIONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eMergeGrainExtract", (long) Natron::eMergeGrainExtract))
+        "eMergeGrainExtract", (long) NATRON_NAMESPACE::eMergeGrainExtract))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_MERGINGFUNCTIONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_MERGINGFUNCTIONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eMergeGrainMerge", (long) Natron::eMergeGrainMerge))
+        "eMergeGrainMerge", (long) NATRON_NAMESPACE::eMergeGrainMerge))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_MERGINGFUNCTIONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_MERGINGFUNCTIONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eMergeHardLight", (long) Natron::eMergeHardLight))
+        "eMergeHardLight", (long) NATRON_NAMESPACE::eMergeHardLight))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_MERGINGFUNCTIONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_MERGINGFUNCTIONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eMergeHue", (long) Natron::eMergeHue))
+        "eMergeHue", (long) NATRON_NAMESPACE::eMergeHue))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_MERGINGFUNCTIONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_MERGINGFUNCTIONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eMergeHypot", (long) Natron::eMergeHypot))
+        "eMergeHypot", (long) NATRON_NAMESPACE::eMergeHypot))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_MERGINGFUNCTIONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_MERGINGFUNCTIONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eMergeIn", (long) Natron::eMergeIn))
+        "eMergeIn", (long) NATRON_NAMESPACE::eMergeIn))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_MERGINGFUNCTIONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_MERGINGFUNCTIONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eMergeLuminosity", (long) Natron::eMergeLuminosity))
+        "eMergeLuminosity", (long) NATRON_NAMESPACE::eMergeLuminosity))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_MERGINGFUNCTIONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_MERGINGFUNCTIONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eMergeMask", (long) Natron::eMergeMask))
+        "eMergeMask", (long) NATRON_NAMESPACE::eMergeMask))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_MERGINGFUNCTIONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_MERGINGFUNCTIONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eMergeMatte", (long) Natron::eMergeMatte))
+        "eMergeMatte", (long) NATRON_NAMESPACE::eMergeMatte))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_MERGINGFUNCTIONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_MERGINGFUNCTIONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eMergeMax", (long) Natron::eMergeMax))
+        "eMergeMax", (long) NATRON_NAMESPACE::eMergeMax))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_MERGINGFUNCTIONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_MERGINGFUNCTIONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eMergeMin", (long) Natron::eMergeMin))
+        "eMergeMin", (long) NATRON_NAMESPACE::eMergeMin))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_MERGINGFUNCTIONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_MERGINGFUNCTIONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eMergeMinus", (long) Natron::eMergeMinus))
+        "eMergeMinus", (long) NATRON_NAMESPACE::eMergeMinus))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_MERGINGFUNCTIONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_MERGINGFUNCTIONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eMergeMultiply", (long) Natron::eMergeMultiply))
+        "eMergeMultiply", (long) NATRON_NAMESPACE::eMergeMultiply))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_MERGINGFUNCTIONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_MERGINGFUNCTIONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eMergeOut", (long) Natron::eMergeOut))
+        "eMergeOut", (long) NATRON_NAMESPACE::eMergeOut))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_MERGINGFUNCTIONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_MERGINGFUNCTIONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eMergeOver", (long) Natron::eMergeOver))
+        "eMergeOver", (long) NATRON_NAMESPACE::eMergeOver))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_MERGINGFUNCTIONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_MERGINGFUNCTIONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eMergeOverlay", (long) Natron::eMergeOverlay))
+        "eMergeOverlay", (long) NATRON_NAMESPACE::eMergeOverlay))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_MERGINGFUNCTIONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_MERGINGFUNCTIONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eMergePinLight", (long) Natron::eMergePinLight))
+        "eMergePinLight", (long) NATRON_NAMESPACE::eMergePinLight))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_MERGINGFUNCTIONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_MERGINGFUNCTIONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eMergePlus", (long) Natron::eMergePlus))
+        "eMergePlus", (long) NATRON_NAMESPACE::eMergePlus))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_MERGINGFUNCTIONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_MERGINGFUNCTIONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eMergeReflect", (long) Natron::eMergeReflect))
+        "eMergeReflect", (long) NATRON_NAMESPACE::eMergeReflect))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_MERGINGFUNCTIONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_MERGINGFUNCTIONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eMergeSaturation", (long) Natron::eMergeSaturation))
+        "eMergeSaturation", (long) NATRON_NAMESPACE::eMergeSaturation))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_MERGINGFUNCTIONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_MERGINGFUNCTIONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eMergeScreen", (long) Natron::eMergeScreen))
+        "eMergeScreen", (long) NATRON_NAMESPACE::eMergeScreen))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_MERGINGFUNCTIONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_MERGINGFUNCTIONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eMergeSoftLight", (long) Natron::eMergeSoftLight))
+        "eMergeSoftLight", (long) NATRON_NAMESPACE::eMergeSoftLight))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_MERGINGFUNCTIONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_MERGINGFUNCTIONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eMergeStencil", (long) Natron::eMergeStencil))
+        "eMergeStencil", (long) NATRON_NAMESPACE::eMergeStencil))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_MERGINGFUNCTIONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_MERGINGFUNCTIONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eMergeUnder", (long) Natron::eMergeUnder))
+        "eMergeUnder", (long) NATRON_NAMESPACE::eMergeUnder))
         return ;
-    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_MERGINGFUNCTIONENUM_IDX],
+    if (!Shiboken::Enum::createScopedEnumItem(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_MERGINGFUNCTIONENUM_IDX],
 #if SHIBOKEN_MAJOR_VERSION >= 2
-        Sbk_Natron_TypeF(),
+        Sbk_NATRON_NAMESPACE_TypeF(),
 #else
-        &Sbk_Natron_Type,
+        &Sbk_NATRON_NAMESPACE_Type,
 #endif
-        "eMergeXOR", (long) Natron::eMergeXOR))
+        "eMergeXOR", (long) NATRON_NAMESPACE::eMergeXOR))
         return ;
-    // Register converter for enum 'Natron::MergingFunctionEnum'.
+    // Register converter for enum 'NATRON_NAMESPACE::MergingFunctionEnum'.
     {
-        SbkConverter* converter = Shiboken::Conversions::createConverter(SbkNatronEngineTypes[SBK_NATRON_MERGINGFUNCTIONENUM_IDX],
+        SbkConverter* converter = Shiboken::Conversions::createConverter(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_MERGINGFUNCTIONENUM_IDX],
             Natron_MergingFunctionEnum_CppToPython_Natron_MergingFunctionEnum);
         Shiboken::Conversions::addPythonToCppValueConversion(converter,
             Natron_MergingFunctionEnum_PythonToCpp_Natron_MergingFunctionEnum,
             is_Natron_MergingFunctionEnum_PythonToCpp_Natron_MergingFunctionEnum_Convertible);
-        Shiboken::Enum::setTypeConverter(SbkNatronEngineTypes[SBK_NATRON_MERGINGFUNCTIONENUM_IDX], converter);
-        Shiboken::Enum::setTypeConverter(SbkNatronEngineTypes[SBK_NATRON_MERGINGFUNCTIONENUM_IDX], converter);
+        Shiboken::Enum::setTypeConverter(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_MERGINGFUNCTIONENUM_IDX], converter);
+        Shiboken::Enum::setTypeConverter(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_MERGINGFUNCTIONENUM_IDX], converter);
         Shiboken::Conversions::registerConverterName(converter, "Natron::MergingFunctionEnum");
         Shiboken::Conversions::registerConverterName(converter, "MergingFunctionEnum");
     }
     // End of 'MergingFunctionEnum' enum.
 
 
-    qRegisterMetaType< ::Natron::StatusEnum >("Natron::StatusEnum");
-    qRegisterMetaType< ::Natron::StandardButtonEnum >("Natron::StandardButtonEnum");
-    qRegisterMetaType< ::Natron::StandardButtons >("Natron::StandardButtons");
-    qRegisterMetaType< ::Natron::KeyframeTypeEnum >("Natron::KeyframeTypeEnum");
-    qRegisterMetaType< ::Natron::PixmapEnum >("Natron::PixmapEnum");
-    qRegisterMetaType< ::Natron::ValueChangedReasonEnum >("Natron::ValueChangedReasonEnum");
-    qRegisterMetaType< ::Natron::AnimationLevelEnum >("Natron::AnimationLevelEnum");
-    qRegisterMetaType< ::Natron::ImagePremultiplicationEnum >("Natron::ImagePremultiplicationEnum");
-    qRegisterMetaType< ::Natron::ViewerCompositingOperatorEnum >("Natron::ViewerCompositingOperatorEnum");
-    qRegisterMetaType< ::Natron::ViewerColorSpaceEnum >("Natron::ViewerColorSpaceEnum");
-    qRegisterMetaType< ::Natron::ImageBitDepthEnum >("Natron::ImageBitDepthEnum");
-    qRegisterMetaType< ::Natron::OrientationEnum >("Natron::OrientationEnum");
-    qRegisterMetaType< ::Natron::PlaybackModeEnum >("Natron::PlaybackModeEnum");
-    qRegisterMetaType< ::Natron::DisplayChannelsEnum >("Natron::DisplayChannelsEnum");
-    qRegisterMetaType< ::Natron::MergingFunctionEnum >("Natron::MergingFunctionEnum");
+    qRegisterMetaType< ::NATRON_NAMESPACE::StatusEnum >("Natron::StatusEnum");
+    qRegisterMetaType< ::NATRON_NAMESPACE::StandardButtonEnum >("Natron::StandardButtonEnum");
+    qRegisterMetaType< ::NATRON_NAMESPACE::StandardButtons >("Natron::StandardButtons");
+    qRegisterMetaType< ::NATRON_NAMESPACE::KeyframeTypeEnum >("Natron::KeyframeTypeEnum");
+    qRegisterMetaType< ::NATRON_NAMESPACE::PixmapEnum >("Natron::PixmapEnum");
+    qRegisterMetaType< ::NATRON_NAMESPACE::ValueChangedReasonEnum >("Natron::ValueChangedReasonEnum");
+    qRegisterMetaType< ::NATRON_NAMESPACE::AnimationLevelEnum >("Natron::AnimationLevelEnum");
+    qRegisterMetaType< ::NATRON_NAMESPACE::ImagePremultiplicationEnum >("Natron::ImagePremultiplicationEnum");
+    qRegisterMetaType< ::NATRON_NAMESPACE::ViewerCompositingOperatorEnum >("Natron::ViewerCompositingOperatorEnum");
+    qRegisterMetaType< ::NATRON_NAMESPACE::ViewerColorSpaceEnum >("Natron::ViewerColorSpaceEnum");
+    qRegisterMetaType< ::NATRON_NAMESPACE::ImageBitDepthEnum >("Natron::ImageBitDepthEnum");
+    qRegisterMetaType< ::NATRON_NAMESPACE::OrientationEnum >("Natron::OrientationEnum");
+    qRegisterMetaType< ::NATRON_NAMESPACE::PlaybackModeEnum >("Natron::PlaybackModeEnum");
+    qRegisterMetaType< ::NATRON_NAMESPACE::DisplayChannelsEnum >("Natron::DisplayChannelsEnum");
+    qRegisterMetaType< ::NATRON_NAMESPACE::MergingFunctionEnum >("Natron::MergingFunctionEnum");
 }

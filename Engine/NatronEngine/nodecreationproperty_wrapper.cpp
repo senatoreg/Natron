@@ -83,7 +83,7 @@ static PyMethodDef Sbk_NodeCreationProperty_methods[] = {
 static int Sbk_NodeCreationProperty_traverse(PyObject* self, visitproc visit, void* arg)
 {
 #if SHIBOKEN_MAJOR_VERSION >= 2
-    return reinterpret_cast<PyTypeObject *>(SbkObject_TypeF())->tp_traverse(self, visit, arg);  
+    return reinterpret_cast<PyTypeObject *>(SbkObject_TypeF())->tp_traverse(self, visit, arg);
 #else
     return reinterpret_cast<PyTypeObject*>(&SbkObject_Type)->tp_traverse(self, visit, arg);
 #endif
@@ -273,7 +273,7 @@ void init_NodeCreationProperty(PyObject* module)
 #else
     SbkConverter* converter = Shiboken::Conversions::createConverter(&Sbk_NodeCreationProperty_Type,
 #endif
-	NodeCreationProperty_PythonToCpp_NodeCreationProperty_PTR,
+        NodeCreationProperty_PythonToCpp_NodeCreationProperty_PTR,
         is_NodeCreationProperty_PythonToCpp_NodeCreationProperty_PTR_Convertible,
         NodeCreationProperty_PTR_CppToPython_NodeCreationProperty);
 

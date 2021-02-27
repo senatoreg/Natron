@@ -25,7 +25,6 @@ NATRON_NAMESPACE_USING NATRON_PYTHON_NAMESPACE_USING
 #include <PyParameter.h>
 
 
-
 // Native ---------------------------------------------------------
 
 void IntParamWrapper::pysideInitQtMetaTypes()
