@@ -9,11 +9,11 @@ PortGroup                   conflicts_build 1.0
 # PHP Warning:  Version warning: Imagick was compiled against Image Magick version XXXX but version YYYY is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
 
 name                        ImageMagick
-version                     6.9.10-86
+version                     6.9.11-16
 revision                    0
-checksums                   rmd160  15a13178721e246e0e1eaae26fd54af1bed173f5 \
-                            sha256  004ffc11d55c2a5b23757f56e8b3bfcdf7358037c8f11c3b7f91a3f75039d037 \
-                            size    9064960
+checksums                   rmd160  2402446464a320ffefbaedc193dd55cd90f60af4 \
+                            sha256  6e9328e846dadf2b96832d02eddd3da9121f546ca86dbb7da15b8ae21f87ed22 \
+                            size    9075792
 
 categories                  graphics devel
 maintainers                 {ryandesign @ryandesign}
@@ -38,7 +38,7 @@ long_description            ImageMagick is a robust collection of tools and \
                             supported, including GIF, JPEG, JPEG 2000, PNG, PDF, \
                             PhotoCD and TIFF.
 
-homepage                    https://imagemagick.org
+homepage                    https://legacy.imagemagick.org
 master_sites                https://imagemagick.org/download/ \
                             http://mirror.checkdomain.de/imagemagick/ \
                             ftp://ftp.u-aizu.ac.jp/pub/graphics/image/ImageMagick/imagemagick.org/ \
@@ -67,7 +67,9 @@ depends_lib                 port:bzip2 \
                             port:libxml2 \
                             port:libheif
 
-patchfiles noclparser.patch
+patchfiles \
+    noclparser.patch \
+    ImageMagick-6.9.10-gimp210.diff
 
 # Magick-config etc. use pkg-config
 depends_lib-append          port:pkgconfig

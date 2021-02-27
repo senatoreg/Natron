@@ -928,7 +928,7 @@ static PyObject* Sbk_AnimatedParamFunc_setInterpolationAtTime(PyObject* self, Py
 #if SHIBOKEN_MAJOR_VERSION >= 2
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.AnimatedParam.setInterpolationAtTime");
 #else
-        const char* overloads[] = {"float, NatronEngine.NATRON_NAMESPACE.KeyframeTypeEnum, int = 0", 0};
+        const char* overloads[] = {"float, NatronEngine.Natron.KeyframeTypeEnum, int = 0", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.AnimatedParam.setInterpolationAtTime", overloads);
 #endif
         return 0;
