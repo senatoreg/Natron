@@ -906,7 +906,7 @@ static PyObject* Sbk_AnimatedParamFunc_setInterpolationAtTime(PyObject* self, Py
         }
         double cppArg0;
         pythonToCpp[0](pyArgs[0], &cppArg0);
-        ::NATRON_NAMESPACE::KeyframeTypeEnum cppArg1 = ((::Natron::KeyframeTypeEnum)0);
+        ::NATRON_NAMESPACE::KeyframeTypeEnum cppArg1 = ((::NATRON_NAMESPACE::KeyframeTypeEnum)0);
         pythonToCpp[1](pyArgs[1], &cppArg1);
         int cppArg2 = 0;
         if (pythonToCpp[2]) pythonToCpp[2](pyArgs[2], &cppArg2);

@@ -1325,7 +1325,7 @@ static PyObject* Sbk_BezierCurveFunc_setCompositingOperator(PyObject* self, PyOb
     // Overloaded function decisor
     // 0: setCompositingOperator(NATRON_NAMESPACE::MergingFunctionEnum)
     if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(SBK_CONVERTER(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_MERGINGFUNCTIONENUM_IDX]), (pyArg)))) {
-        overloadId = 0; // setCompositingOperator(Natron::MergingFunctionEnum)
+        overloadId = 0; // setCompositingOperator(NATRON_NAMESPAC::MergingFunctionEnum)
     }
 
     // Function signature not found.
@@ -1333,7 +1333,7 @@ static PyObject* Sbk_BezierCurveFunc_setCompositingOperator(PyObject* self, PyOb
 
     // Call function/method
     {
-        ::NATRON_NAMESPACE::MergingFunctionEnum cppArg0 = ((::Natron::MergingFunctionEnum)0);
+        ::NATRON_NAMESPACE::MergingFunctionEnum cppArg0 = ((::NATRON_NAMESPAC::MergingFunctionEnum)0);
         pythonToCpp(pyArg, &cppArg0);
 
         if (!PyErr_Occurred()) {

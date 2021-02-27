@@ -169,7 +169,7 @@ static PyObject* Sbk_ParametricParamFunc_addControlPoint(PyObject* self, PyObjec
 #if SHIBOKEN_MAJOR_VERSION >= 2
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ParametricParam.addControlPoint");
 #else
-        const char* overloads[] = {"int, float, float, NatronEngine.Natron.KeyframeTypeEnum = eKeyframeTypeSmooth", "int, float, float, float, float, NatronEngine.Natron.KeyframeTypeEnum = eKeyframeTypeSmooth", 0};
+        const char* overloads[] = {"int, float, float, NatronEngine.NATRON_NAMESPACE.KeyframeTypeEnum = eKeyframeTypeSmooth", "int, float, float, float, float, NatronEngine.NATRON_NAMESPACE.KeyframeTypeEnum = eKeyframeTypeSmooth", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ParametricParam.addControlPoint", overloads);
 #endif
         return 0;

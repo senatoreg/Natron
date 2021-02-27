@@ -180,7 +180,7 @@ namespace Shiboken
 // PyType functions, to get the PyObjectType for a type T
 template<> inline PyTypeObject* SbkType<NATRON_NAMESPACE::StatusEnum >() { return SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_STATUSENUM_IDX]; }
 template<> inline PyTypeObject* SbkType<NATRON_NAMESPACE::StandardButtonEnum >() { return SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_STANDARDBUTTONENUM_IDX]; }
-template<> inline PyTypeObject* SbkType< ::QFlags<NATRON_NAMESPACE::StandardButtonEnum> >() { return SbkNatronEngineTypes[SBK_QFLAGS_NATRON_STANDARDBUTTONENUM__IDX]; }
+template<> inline PyTypeObject* SbkType< ::QFlags<NATRON_NAMESPACE::StandardButtonEnum> >() { return SbkNatronEngineTypes[SBK_QFLAGS_NATRON_NAMESPACE_STANDARDBUTTONENUM__IDX]; }
 template<> inline PyTypeObject* SbkType<NATRON_NAMESPACE::KeyframeTypeEnum >() { return SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_KEYFRAMETYPEENUM_IDX]; }
 template<> inline PyTypeObject* SbkType<NATRON_NAMESPACE::PixmapEnum >() { return SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX]; }
 template<> inline PyTypeObject* SbkType<NATRON_NAMESPACE::ValueChangedReasonEnum >() { return SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_VALUECHANGEDREASONENUM_IDX]; }
