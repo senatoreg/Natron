@@ -697,7 +697,7 @@ static PyObject* BooleanParam_PTR_CppToPython_BooleanParam(const void* cppIn) {
     }
 #if SHIBOKEN_MAJOR_VERSION >= 2
     bool changedTypeName = false;
-    auto tCppIn = reinterpret_cast<const ::Natron::Python::BooleanParam *>(cppIn);
+    auto tCppIn = reinterpret_cast<const ::NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::BooleanParam *>(cppIn);
     const char *typeName = typeid(*tCppIn).name();
     auto sbkType = Shiboken::ObjectType::typeForTypeName(typeName);
     if (sbkType && Shiboken::ObjectType::hasSpecialCastFunction(sbkType)) {
@@ -742,7 +742,7 @@ void init_BooleanParam(PyObject* module)
         "BooleanParam*",
         &Sbk_BooleanParam_spec,
         BooleanParam_SignatureStrings,
-        &Shiboken::callCppDestructor< ::Natron::Python::BooleanParam >,
+        &Shiboken::callCppDestructor< ::NATRON_NAMESPACE::NATRON_NAMESPACE::BooleanParam >,
         reinterpret_cast<SbkObjectType *>(SbkNatronEngineTypes[SBK_ANIMATEDPARAM_IDX]),
         0,
         0    );

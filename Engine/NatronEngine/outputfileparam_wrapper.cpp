@@ -297,7 +297,7 @@ void init_OutputFileParam(PyObject* module)
         "OutputFileParam*",
         &Sbk_OutputFileParam_spec,
         OutputFileParam_SignatureStrings,
-        &Shiboken::callCppDestructor< ::Natron::Python::OutputFileParam >,
+        &Shiboken::callCppDestructor< ::NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::OutputFileParam >,
         reinterpret_cast<SbkObjectType *>(SbkNatronEngineTypes[SBK_OUTPUTFILEPARAM_IDX]),
         0,
         0    );

@@ -1325,7 +1325,7 @@ static PyObject* Sbk_BezierCurveFunc_setCompositingOperator(PyObject* self, PyOb
     // Overloaded function decisor
     // 0: setCompositingOperator(NATRON_NAMESPACE::MergingFunctionEnum)
     if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(SBK_CONVERTER(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_MERGINGFUNCTIONENUM_IDX]), (pyArg)))) {
-        overloadId = 0; // setCompositingOperator(NATRON_NAMESPAC::MergingFunctionEnum)
+        overloadId = 0; // setCompositingOperator(NATRON_NAMESPACE::MergingFunctionEnum)
     }
 
     // Function signature not found.
@@ -1333,7 +1333,7 @@ static PyObject* Sbk_BezierCurveFunc_setCompositingOperator(PyObject* self, PyOb
 
     // Call function/method
     {
-        ::NATRON_NAMESPACE::MergingFunctionEnum cppArg0 = ((::NATRON_NAMESPAC::MergingFunctionEnum)0);
+        ::NATRON_NAMESPACE::MergingFunctionEnum cppArg0 = ((::NATRON_NAMESPACE::MergingFunctionEnum)0);
         pythonToCpp(pyArg, &cppArg0);
 
         if (!PyErr_Occurred()) {
@@ -1982,7 +1982,7 @@ static PyObject* BezierCurve_PTR_CppToPython_BezierCurve(const void* cppIn) {
     }
 #if SHIBOKEN_MAJOR_VERSION >= 2
     bool changedTypeName = false;
-    auto tCppIn = reinterpret_cast<const ::Natron::Python::BezierCurve *>(cppIn);
+    auto tCppIn = reinterpret_cast<const ::NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::BezierCurve *>(cppIn);
     const char *typeName = typeid(*tCppIn).name();
     auto sbkType = Shiboken::ObjectType::typeForTypeName(typeName);
     if (sbkType && Shiboken::ObjectType::hasSpecialCastFunction(sbkType)) {

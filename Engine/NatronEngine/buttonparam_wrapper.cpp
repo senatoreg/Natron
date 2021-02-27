@@ -215,7 +215,7 @@ static PyObject* ButtonParam_PTR_CppToPython_ButtonParam(const void* cppIn) {
     }
 #if SHIBOKEN_MAJOR_VERSION >= 2
     bool changedTypeName = false;
-    auto tCppIn = reinterpret_cast<const ::Natron::Python::ButtonParam *>(cppIn);
+    auto tCppIn = reinterpret_cast<const ::NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::ButtonParam *>(cppIn);
     const char *typeName = typeid(*tCppIn).name();
     auto sbkType = Shiboken::ObjectType::typeForTypeName(typeName);
     if (sbkType && Shiboken::ObjectType::hasSpecialCastFunction(sbkType)) {
@@ -249,7 +249,7 @@ void init_ButtonParam(PyObject* module)
         "ButtonParam*",
         &Sbk_ButtonParam_spec,
         ButtonParam_SignatureStrings,
-        &Shiboken::callCppDestructor< ::Natron::Python::ButtonParam >,
+        &Shiboken::callCppDestructor< ::NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::ButtonParam >,
         reinterpret_cast<SbkObjectType *>(SbkNatronEngineTypes[SBK_PARAM_IDX]),
         0,
         0    );

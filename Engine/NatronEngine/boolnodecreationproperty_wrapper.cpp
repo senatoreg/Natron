@@ -406,7 +406,7 @@ static PyObject* BoolNodeCreationProperty_PTR_CppToPython_BoolNodeCreationProper
     }
 #if SHIBOKEN_MAJOR_VERSION >= 2
     bool changedTypeName = false;
-    auto tCppIn = reinterpret_cast<const ::Natron::Python::BoolNodeCreationProperty *>(cppIn);
+    auto tCppIn = reinterpret_cast<const ::NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::BoolNodeCreationProperty *>(cppIn);
     const char *typeName = typeid(*tCppIn).name();
     auto sbkType = Shiboken::ObjectType::typeForTypeName(typeName);
     if (sbkType && Shiboken::ObjectType::hasSpecialCastFunction(sbkType)) {
@@ -443,7 +443,7 @@ void init_BoolNodeCreationProperty(PyObject* module)
         "BoolNodeCreationProperty*",
         &Sbk_BoolNodeCreationProperty_spec,
         BoolNodeCreationProperty_SignatureStrings,
-        &Shiboken::callCppDestructor< ::Natron::Python::BoolNodeCreationProperty >,
+        &Shiboken::callCppDestructor< ::NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::BoolNodeCreationProperty >,
         reinterpret_cast<SbkObjectType *>(SbkNatronEngineTypes[SBK_NODECREATIONPROPERTY_IDX]),
         0,
         0    );
