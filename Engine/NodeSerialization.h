@@ -39,6 +39,7 @@ GCC_DIAG_OFF(sign-compare)
 #include <boost/archive/xml_iarchive.hpp>
 #include <boost/archive/xml_oarchive.hpp>
 #include <boost/serialization/vector.hpp>
+#include <boost/serialization/library_version_type.hpp>
 #include <boost/serialization/list.hpp>
 #include <boost/serialization/version.hpp>
 GCC_DIAG_ON(sign-compare)

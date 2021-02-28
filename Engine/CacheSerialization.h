@@ -41,6 +41,7 @@ GCC_DIAG_OFF(unused-parameter)
 #include <boost/archive/binary_iarchive.hpp>
 #include <boost/archive/binary_oarchive.hpp>
 #include <boost/serialization/utility.hpp>
+#include <boost/serialization/library_version_type.hpp>
 #include <boost/serialization/list.hpp>
 // /usr/local/include/boost/serialization/shared_ptr.hpp:112:5: warning: unused typedef 'boost_static_assert_typedef_112' [-Wunused-local-typedef]
 #include <boost/serialization/shared_ptr.hpp>
