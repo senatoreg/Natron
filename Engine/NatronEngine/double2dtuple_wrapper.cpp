@@ -341,8 +341,10 @@ void init_Double2DTuple(PyObject* module)
         "Double2DTuple",
         "Double2DTuple*",
         &Sbk_Double2DTuple_spec,
+#if SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 2 ))
         Double2DTuple_SignatureStrings,
-        &Shiboken::callCppDestructor< ::Double2DTuple >,
+#endif
+        &Shiboken::callCppDestructor< ::NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::Double2DTuple >,
         0,
         0,
         0    );

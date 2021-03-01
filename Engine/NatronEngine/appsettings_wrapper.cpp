@@ -356,8 +356,10 @@ void init_AppSettings(PyObject* module)
         "AppSettings",
         "AppSettings*",
         &Sbk_AppSettings_spec,
+#if SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 2 ))
         AppSettings_SignatureStrings,
-        &Shiboken::callCppDestructor< ::AppSettings >,
+#endif
+        &Shiboken::callCppDestructor< ::NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::AppSettings >,
         0,
         0,
         0    );

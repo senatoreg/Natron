@@ -178,22 +178,22 @@ namespace Shiboken
 {
 
 // PyType functions, to get the PyObjectType for a type T
-template<> inline PyTypeObject* SbkType<NATRON_NAMESPACE::StatusEnum >() { return SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_STATUSENUM_IDX]; }
-template<> inline PyTypeObject* SbkType<NATRON_NAMESPACE::StandardButtonEnum >() { return SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_STANDARDBUTTONENUM_IDX]; }
-template<> inline PyTypeObject* SbkType< ::QFlags<NATRON_NAMESPACE::StandardButtonEnum> >() { return SbkNatronEngineTypes[SBK_QFLAGS_NATRON_NAMESPACE_STANDARDBUTTONENUM__IDX]; }
-template<> inline PyTypeObject* SbkType<NATRON_NAMESPACE::KeyframeTypeEnum >() { return SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_KEYFRAMETYPEENUM_IDX]; }
-template<> inline PyTypeObject* SbkType<NATRON_NAMESPACE::PixmapEnum >() { return SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX]; }
-template<> inline PyTypeObject* SbkType<NATRON_NAMESPACE::ValueChangedReasonEnum >() { return SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_VALUECHANGEDREASONENUM_IDX]; }
-template<> inline PyTypeObject* SbkType<NATRON_NAMESPACE::AnimationLevelEnum >() { return SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_ANIMATIONLEVELENUM_IDX]; }
-template<> inline PyTypeObject* SbkType<NATRON_NAMESPACE::ImagePremultiplicationEnum >() { return SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_IMAGEPREMULTIPLICATIONENUM_IDX]; }
-template<> inline PyTypeObject* SbkType<NATRON_NAMESPACE::ViewerCompositingOperatorEnum >() { return SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_VIEWERCOMPOSITINGOPERATORENUM_IDX]; }
-template<> inline PyTypeObject* SbkType<NATRON_NAMESPACE::ViewerColorSpaceEnum >() { return SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_VIEWERCOLORSPACEENUM_IDX]; }
-template<> inline PyTypeObject* SbkType<NATRON_NAMESPACE::ImageBitDepthEnum >() { return SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_IMAGEBITDEPTHENUM_IDX]; }
-template<> inline PyTypeObject* SbkType<NATRON_NAMESPACE::OrientationEnum >() { return SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_ORIENTATIONENUM_IDX]; }
-template<> inline PyTypeObject* SbkType<NATRON_NAMESPACE::PlaybackModeEnum >() { return SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PLAYBACKMODEENUM_IDX]; }
-template<> inline PyTypeObject* SbkType<NATRON_NAMESPACE::DisplayChannelsEnum >() { return SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_DISPLAYCHANNELSENUM_IDX]; }
-template<> inline PyTypeObject* SbkType<NATRON_NAMESPACE::MergingFunctionEnum >() { return SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_MERGINGFUNCTIONENUM_IDX]; }
-template<> inline PyTypeObject* SbkType<NATRON_NAMESPACE::RectI >() { return reinterpret_cast<PyTypeObject*>(SbkNatronEngineTypes[SBK_RECTI_IDX]); }
+template<> inline PyTypeObject* SbkType< NATRON_NAMESPACE::StatusEnum >() { return SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_STATUSENUM_IDX]; }
+template<> inline PyTypeObject* SbkType< NATRON_NAMESPACE::StandardButtonEnum >() { return SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_STANDARDBUTTONENUM_IDX]; }
+template<> inline PyTypeObject* SbkType< ::QFlags< NATRON_NAMESPACE::StandardButtonEnum > >() { return SbkNatronEngineTypes[SBK_QFLAGS_NATRON_NAMESPACE_STANDARDBUTTONENUM__IDX]; }
+template<> inline PyTypeObject* SbkType< NATRON_NAMESPACE::KeyframeTypeEnum >() { return SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_KEYFRAMETYPEENUM_IDX]; }
+template<> inline PyTypeObject* SbkType< NATRON_NAMESPACE::PixmapEnum >() { return SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PIXMAPENUM_IDX]; }
+template<> inline PyTypeObject* SbkType< NATRON_NAMESPACE::ValueChangedReasonEnum >() { return SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_VALUECHANGEDREASONENUM_IDX]; }
+template<> inline PyTypeObject* SbkType< NATRON_NAMESPACE::AnimationLevelEnum >() { return SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_ANIMATIONLEVELENUM_IDX]; }
+template<> inline PyTypeObject* SbkType< NATRON_NAMESPACE::ImagePremultiplicationEnum >() { return SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_IMAGEPREMULTIPLICATIONENUM_IDX]; }
+template<> inline PyTypeObject* SbkType< NATRON_NAMESPACE::ViewerCompositingOperatorEnum >() { return SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_VIEWERCOMPOSITINGOPERATORENUM_IDX]; }
+template<> inline PyTypeObject* SbkType< NATRON_NAMESPACE::ViewerColorSpaceEnum >() { return SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_VIEWERCOLORSPACEENUM_IDX]; }
+template<> inline PyTypeObject* SbkType< NATRON_NAMESPACE::ImageBitDepthEnum >() { return SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_IMAGEBITDEPTHENUM_IDX]; }
+template<> inline PyTypeObject* SbkType< NATRON_NAMESPACE::OrientationEnum >() { return SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_ORIENTATIONENUM_IDX]; }
+template<> inline PyTypeObject* SbkType< NATRON_NAMESPACE::PlaybackModeEnum >() { return SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_PLAYBACKMODEENUM_IDX]; }
+template<> inline PyTypeObject* SbkType< NATRON_NAMESPACE::DisplayChannelsEnum >() { return SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_DISPLAYCHANNELSENUM_IDX]; }
+template<> inline PyTypeObject* SbkType< NATRON_NAMESPACE::MergingFunctionEnum >() { return SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_MERGINGFUNCTIONENUM_IDX]; }
+template<> inline PyTypeObject* SbkType< NATRON_NAMESPACE::RectI >() { return reinterpret_cast<PyTypeObject*>(SbkNatronEngineTypes[SBK_RECTI_IDX]); }
 template<> inline PyTypeObject* SbkType<NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::ColorTuple >() { return reinterpret_cast<PyTypeObject*>(SbkNatronEngineTypes[SBK_COLORTUPLE_IDX]); }
 template<> inline PyTypeObject* SbkType<NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::Double3DTuple >() { return reinterpret_cast<PyTypeObject*>(SbkNatronEngineTypes[SBK_DOUBLE3DTUPLE_IDX]); }
 template<> inline PyTypeObject* SbkType<NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::Double2DTuple >() { return reinterpret_cast<PyTypeObject*>(SbkNatronEngineTypes[SBK_DOUBLE2DTUPLE_IDX]); }
@@ -240,7 +240,7 @@ template<> inline PyTypeObject* SbkType<NATRON_NAMESPACE::NATRON_PYTHON_NAMESPAC
 template<> inline PyTypeObject* SbkType<NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::App >() { return reinterpret_cast<PyTypeObject*>(SbkNatronEngineTypes[SBK_APP_IDX]); }
 template<> inline PyTypeObject* SbkType<NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::PyCoreApplication >() { return reinterpret_cast<PyTypeObject*>(SbkNatronEngineTypes[SBK_PYCOREAPPLICATION_IDX]); }
 template<> inline PyTypeObject* SbkType<NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::ExprUtils >() { return reinterpret_cast<PyTypeObject*>(SbkNatronEngineTypes[SBK_EXPRUTILS_IDX]); }
-template<> inline PyTypeObject* SbkType<NATRON_NAMESPACE::RectD >() { return reinterpret_cast<PyTypeObject*>(SbkNatronEngineTypes[SBK_RECTD_IDX]); }
+template<> inline PyTypeObject* SbkType< NATRON_NAMESPACE::RectD >() { return reinterpret_cast<PyTypeObject*>(SbkNatronEngineTypes[SBK_RECTD_IDX]); }
 
 } // namespace Shiboken
 

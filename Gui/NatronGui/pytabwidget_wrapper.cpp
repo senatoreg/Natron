@@ -864,8 +864,10 @@ void init_PyTabWidget(PyObject* module)
         "PyTabWidget",
         "PyTabWidget*",
         &Sbk_PyTabWidget_spec,
+#if SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 2 ))
         PyTabWidget_SignatureStrings,
-        &Shiboken::callCppDestructor< ::PyTabWidget >,
+#endif
+        &Shiboken::callCppDestructor< ::NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::PyTabWidget >,
         0,
         0,
         0    );

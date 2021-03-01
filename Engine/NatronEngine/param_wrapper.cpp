@@ -1850,8 +1850,10 @@ void init_Param(PyObject* module)
         "Param",
         "Param*",
         &Sbk_Param_spec,
+#if SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 2 ))
         Param_SignatureStrings,
-        &Shiboken::callCppDestructor< ::Param >,
+#endif
+        &Shiboken::callCppDestructor< ::NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::Param >,
         0,
         0,
         0    );

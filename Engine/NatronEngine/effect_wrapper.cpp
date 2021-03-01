@@ -2027,8 +2027,10 @@ void init_Effect(PyObject* module)
         "Effect",
         "Effect*",
         &Sbk_Effect_spec,
+#if SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 2 ))
         Effect_SignatureStrings,
-        &Shiboken::callCppDestructor< ::Effect >,
+#endif
+        &Shiboken::callCppDestructor< ::NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::Effect >,
         reinterpret_cast<SbkObjectType *>(SbkNatronEngineTypes[SBK_USERPARAMHOLDER_IDX]),
         Sbk_Effect_Type_bases,
         0    );

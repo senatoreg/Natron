@@ -387,8 +387,10 @@ void init_Int3DTuple(PyObject* module)
         "Int3DTuple",
         "Int3DTuple*",
         &Sbk_Int3DTuple_spec,
+#if SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 2 ))
         Int3DTuple_SignatureStrings,
-        &Shiboken::callCppDestructor< ::Int3DTuple >,
+#endif
+        &Shiboken::callCppDestructor< ::NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::Int3DTuple >,
         0,
         0,
         0    );

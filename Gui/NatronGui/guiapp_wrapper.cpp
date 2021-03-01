@@ -1758,8 +1758,10 @@ void init_GuiApp(PyObject* module)
         "GuiApp",
         "GuiApp*",
         &Sbk_GuiApp_spec,
+#if SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 2 ))
         GuiApp_SignatureStrings,
-        &Shiboken::callCppDestructor< ::GuiApp >,
+#endif
+        &Shiboken::callCppDestructor< ::NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::GuiApp >,
         reinterpret_cast<SbkObjectType *>(SbkNatronEngineTypes[SBK_APP_IDX]),
         0,
         0    );

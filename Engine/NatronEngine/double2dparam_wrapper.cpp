@@ -485,8 +485,10 @@ void init_Double2DParam(PyObject* module)
         "Double2DParam",
         "Double2DParam*",
         &Sbk_Double2DParam_spec,
+#if SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 2 ))
         Double2DParam_SignatureStrings,
-        &Shiboken::callCppDestructor< ::Double2DParam >,
+#endif
+        &Shiboken::callCppDestructor< ::NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::Double2DParam >,
         reinterpret_cast<SbkObjectType *>(SbkNatronEngineTypes[SBK_DOUBLEPARAM_IDX]),
         0,
         0    );

@@ -401,8 +401,10 @@ void init_Int2DParam(PyObject* module)
         "Int2DParam",
         "Int2DParam*",
         &Sbk_Int2DParam_spec,
+#if SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 2 ))
         Int2DParam_SignatureStrings,
-        &Shiboken::callCppDestructor< ::Int2DParam >,
+#endif
+        &Shiboken::callCppDestructor< ::NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::Int2DParam >,
         reinterpret_cast<SbkObjectType *>(SbkNatronEngineTypes[SBK_INTPARAM_IDX]),
         0,
         0    );

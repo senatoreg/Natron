@@ -1038,8 +1038,10 @@ void init_ChoiceParam(PyObject* module)
         "ChoiceParam",
         "ChoiceParam*",
         &Sbk_ChoiceParam_spec,
+#if SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 2 ))
         ChoiceParam_SignatureStrings,
-        &Shiboken::callCppDestructor< ::ChoiceParam >,
+#endif
+        &Shiboken::callCppDestructor< ::NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::ChoiceParam >,
         reinterpret_cast<SbkObjectType *>(SbkNatronEngineTypes[SBK_ANIMATEDPARAM_IDX]),
         0,
         0    );

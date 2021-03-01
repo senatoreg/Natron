@@ -442,8 +442,10 @@ void init_FloatNodeCreationProperty(PyObject* module)
         "FloatNodeCreationProperty",
         "FloatNodeCreationProperty*",
         &Sbk_FloatNodeCreationProperty_spec,
+#if SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 2 ))
         FloatNodeCreationProperty_SignatureStrings,
-        &Shiboken::callCppDestructor< ::FloatNodeCreationProperty >,
+#endif
+        &Shiboken::callCppDestructor< ::NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::FloatNodeCreationProperty >,
         reinterpret_cast<SbkObjectType *>(SbkNatronEngineTypes[SBK_NODECREATIONPROPERTY_IDX]),
         0,
         0    );

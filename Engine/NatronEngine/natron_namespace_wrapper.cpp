@@ -275,10 +275,10 @@ PyObject* SbkNatronEngine_NATRON_NAMESPACE_StandardButtonEnum___and__(PyObject* 
     ::NATRON_NAMESPACE::StandardButtons cppResult, cppSelf, cppArg;
 #ifdef IS_PY3K
     cppSelf = static_cast<::NATRON_NAMESPACE::StandardButtons>(int(PyLong_AsLong(self)));
-    cppArg = static_cast<NATRON_NAMESPACE::StandardButtons>(int(PyLong_AsLong(pyArg)));
+    cppArg = static_cast< NATRON_NAMESPACE::StandardButtons >(int(PyLong_AsLong(pyArg)));
 #else
     cppSelf = static_cast<::NATRON_NAMESPACE::StandardButtons>(int(PyInt_AsLong(self)));
-    cppArg = static_cast<NATRON_NAMESPACE::StandardButtons>(int(PyInt_AsLong(pyArg)));
+    cppArg = static_cast< NATRON_NAMESPACE::StandardButtons >(int(PyInt_AsLong(pyArg)));
 #endif
 
     cppResult = cppSelf & cppArg;
@@ -290,10 +290,10 @@ PyObject* SbkNatronEngine_NATRON_NAMESPACE_StandardButtonEnum___or__(PyObject* s
     ::NATRON_NAMESPACE::StandardButtons cppResult, cppSelf, cppArg;
 #ifdef IS_PY3K
     cppSelf = static_cast<::NATRON_NAMESPACE::StandardButtons>(int(PyLong_AsLong(self)));
-    cppArg = static_cast<NATRON_NAMESPACE::StandardButtons>(int(PyLong_AsLong(pyArg)));
+    cppArg = static_cast< NATRON_NAMESPACE::StandardButtons >(int(PyLong_AsLong(pyArg)));
 #else
     cppSelf = static_cast<::NATRON_NAMESPACE::StandardButtons>(int(PyInt_AsLong(self)));
-    cppArg = static_cast<NATRON_NAMESPACE::StandardButtons>(int(PyInt_AsLong(pyArg)));
+    cppArg = static_cast< NATRON_NAMESPACE::StandardButtons >(int(PyInt_AsLong(pyArg)));
 #endif
 
     cppResult = cppSelf | cppArg;
@@ -305,10 +305,10 @@ PyObject* SbkNatronEngine_NATRON_NAMESPACE_StandardButtonEnum___xor__(PyObject* 
     ::NATRON_NAMESPACE::StandardButtons cppResult, cppSelf, cppArg;
 #ifdef IS_PY3K
     cppSelf = static_cast<::NATRON_NAMESPACE::StandardButtons>(int(PyLong_AsLong(self)));
-    cppArg = static_cast<NATRON_NAMESPACE::StandardButtons>(int(PyLong_AsLong(pyArg)));
+    cppArg = static_cast< NATRON_NAMESPACE::StandardButtons >(int(PyLong_AsLong(pyArg)));
 #else
     cppSelf = static_cast<::NATRON_NAMESPACE::StandardButtons>(int(PyInt_AsLong(self)));
-    cppArg = static_cast<NATRON_NAMESPACE::StandardButtons>(int(PyInt_AsLong(pyArg)));
+    cppArg = static_cast< NATRON_NAMESPACE::StandardButtons >(int(PyInt_AsLong(pyArg)));
 #endif
 
     cppResult = cppSelf ^ cppArg;
@@ -445,7 +445,7 @@ static PyObject* NATRON_NAMESPACE_StandardButtonEnum_CppToPython_NATRON_NAMESPAC
 }
 
 static void QFlags_NATRON_NAMESPACE_StandardButtonEnum__PythonToCpp_QFlags_NATRON_NAMESPACE_StandardButtonEnum_(PyObject* pyIn, void* cppOut) {
-    *((::QFlags<NATRON_NAMESPACE::StandardButtonEnum>*)cppOut) = ::QFlags<NATRON_NAMESPACE::StandardButtonEnum>(QFlag(int(PySide::QFlags::getValue(reinterpret_cast<PySideQFlagsObject*>(pyIn)))));
+    *((::QFlags< NATRON_NAMESPACE::StandardButtonEnum >*)cppOut) = ::QFlags< NATRON_NAMESPACE::StandardButtonEnum >(QFlag(int(PySide::QFlags::getValue(reinterpret_cast<PySideQFlagsObject*>(pyIn)))));
 
 }
 static PythonToCppFunc is_QFlags_NATRON_NAMESPACE_StandardButtonEnum__PythonToCpp_QFlags_NATRON_NAMESPACE_StandardButtonEnum__Convertible(PyObject* pyIn) {
@@ -454,13 +454,13 @@ static PythonToCppFunc is_QFlags_NATRON_NAMESPACE_StandardButtonEnum__PythonToCp
     return 0;
 }
 static PyObject* QFlags_NATRON_NAMESPACE_StandardButtonEnum__CppToPython_QFlags_NATRON_NAMESPACE_StandardButtonEnum_(const void* cppIn) {
-    int castCppIn = *((::QFlags<NATRON_NAMESPACE::StandardButtonEnum>*)cppIn);
+    int castCppIn = *((::QFlags< NATRON_NAMESPACE::StandardButtonEnum >*)cppIn);
     return reinterpret_cast<PyObject*>(PySide::QFlags::newObject(castCppIn, SbkNatronEngineTypes[SBK_QFLAGS_NATRON_NAMESPACE_STANDARDBUTTONENUM__IDX]));
 
 }
 
 static void NATRON_NAMESPACE_StandardButtonEnum_PythonToCpp_QFlags_NATRON_NAMESPACE_StandardButtonEnum_(PyObject* pyIn, void* cppOut) {
-  *((::QFlags<NATRON_NAMESPACE::StandardButtonEnum>*)cppOut) = ::QFlags<NATRON_NAMESPACE::StandardButtonEnum>(QFlag(int(Shiboken::Enum::getValue(pyIn))));
+  *((::QFlags< NATRON_NAMESPACE::StandardButtonEnum >*)cppOut) = ::QFlags< NATRON_NAMESPACE::StandardButtonEnum >(QFlag(int(Shiboken::Enum::getValue(pyIn))));
 
 }
 static PythonToCppFunc is_NATRON_NAMESPACE_StandardButtonEnum_PythonToCpp_QFlags_NATRON_NAMESPACE_StandardButtonEnum__Convertible(PyObject* pyIn) {
@@ -470,7 +470,7 @@ static PythonToCppFunc is_NATRON_NAMESPACE_StandardButtonEnum_PythonToCpp_QFlags
 }
 static void number_PythonToCpp_QFlags_NATRON_NAMESPACE_StandardButtonEnum_(PyObject* pyIn, void* cppOut) {
     Shiboken::AutoDecRef pyLong(PyNumber_Long(pyIn));
-    *((::QFlags<NATRON_NAMESPACE::StandardButtonEnum>*)cppOut) = ::QFlags<NATRON_NAMESPACE::StandardButtonEnum>(QFlag(int(PyLong_AsLong(pyLong.object()))));
+    *((::QFlags< NATRON_NAMESPACE::StandardButtonEnum >*)cppOut) = ::QFlags< NATRON_NAMESPACE::StandardButtonEnum >(QFlag(int(PyLong_AsLong(pyLong.object()))));
 
 }
 static PythonToCppFunc is_number_PythonToCpp_QFlags_NATRON_NAMESPACE_StandardButtonEnum__Convertible(PyObject* pyIn) {
@@ -677,8 +677,10 @@ void init_NATRON_NAMESPACE(PyObject* module)
         "Natron",
         "Natron",
         &Sbk_NATRON_NAMESPACE_spec,
+#if SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 2 ))
         NATRON_NAMESPACE_SignatureStrings,
-        //&Shiboken::callCppDestructor< ::Natron >,
+#endif
+        //&Shiboken::callCppDestructor< ::NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::Natron >,
         nullptr,
         0,
         0,
@@ -775,9 +777,9 @@ void init_NATRON_NAMESPACE(PyObject* module)
 
     // Initialization of enum 'StandardButtonEnum'.
 #if SHIBOKEN_MAJOR_VERSION >= 2
-    SbkNatronEngineTypes[SBK_QFLAGS_NATRON_STANDARDBUTTONENUM__IDX] = PySide::QFlags::create("StandardButtons", SbkNatronEngine_NATRON_NAMESPACE_StandardButtonEnum_number_slots);
+    SbkNatronEngineTypes[SBK_QFLAGS_NATRON_NAMESPACE_STANDARDBUTTONENUM__IDX] = PySide::QFlags::create("StandardButtons", SbkNatronEngine_NATRON_NAMESPACE_StandardButtonEnum_number_slots);
 #else
-    SbkNatronEngineTypes[SBK_QFLAGS_NATRON_STANDARDBUTTONENUM__IDX] = PySide::QFlags::create("StandardButtons", &SbkNatronEngine_NATRON_NAMESPACE_StandardButtonEnum_as_number);
+    SbkNatronEngineTypes[SBK_QFLAGS_NATRON_NAMESPACE_STANDARDBUTTONENUM__IDX] = PySide::QFlags::create("StandardButtons", &SbkNatronEngine_NATRON_NAMESPACE_StandardButtonEnum_as_number);
 #endif
     SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_STANDARDBUTTONENUM_IDX] = Shiboken::Enum::createScopedEnum(
 #if SHIBOKEN_MAJOR_VERSION >= 2
@@ -788,7 +790,7 @@ void init_NATRON_NAMESPACE(PyObject* module)
         "StandardButtonEnum",
         "NatronEngine.Natron.StandardButtonEnum",
         "Natron::StandardButtonEnum",
-        SbkNatronEngineTypes[SBK_QFLAGS_NATRON_STANDARDBUTTONENUM__IDX]);
+        SbkNatronEngineTypes[SBK_QFLAGS_NATRON_NAMESPACE_STANDARDBUTTONENUM__IDX]);
     if (!SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_STANDARDBUTTONENUM_IDX])
         return ;
 
@@ -964,7 +966,7 @@ void init_NATRON_NAMESPACE(PyObject* module)
         Shiboken::Conversions::registerConverterName(converter, "Natron::StandardButtonEnum");
         Shiboken::Conversions::registerConverterName(converter, "StandardButtonEnum");
     }
-    // Register converter for flag 'QFlags<NATRON_NAMESPACE::StandardButtonEnum>'.
+    // Register converter for flag 'QFlags< NATRON_NAMESPACE::StandardButtonEnum >'.
     {
         SbkConverter* converter = Shiboken::Conversions::createConverter(SbkNatronEngineTypes[SBK_QFLAGS_NATRON_NAMESPACE_STANDARDBUTTONENUM__IDX],
             QFlags_NATRON_NAMESPACE_StandardButtonEnum__CppToPython_QFlags_NATRON_NAMESPACE_StandardButtonEnum_);
@@ -979,7 +981,7 @@ void init_NATRON_NAMESPACE(PyObject* module)
             is_number_PythonToCpp_QFlags_NATRON_NAMESPACE_StandardButtonEnum__Convertible);
         Shiboken::Enum::setTypeConverter(SbkNatronEngineTypes[SBK_QFLAGS_NATRON_NAMESPACE_STANDARDBUTTONENUM__IDX], converter);
         Shiboken::Enum::setTypeConverter(SbkNatronEngineTypes[SBK_QFLAGS_NATRON_NAMESPACE_STANDARDBUTTONENUM__IDX], converter);
-        Shiboken::Conversions::registerConverterName(converter, "QFlags<QFlags<NATRON_NAMESPACE::StandardButtonEnum>");
+        Shiboken::Conversions::registerConverterName(converter, "QFlags<QFlags<Natron::StandardButtonEnumq>");
         Shiboken::Conversions::registerConverterName(converter, "QFlags<StandardButtonEnum>");
     }
     // End of 'StandardButtonEnum' enum/flags.

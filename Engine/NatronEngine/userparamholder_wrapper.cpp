@@ -1637,8 +1637,10 @@ void init_UserParamHolder(PyObject* module)
         "UserParamHolder",
         "UserParamHolder*",
         &Sbk_UserParamHolder_spec,
+#if SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 2 ))
         UserParamHolder_SignatureStrings,
-        &Shiboken::callCppDestructor< ::UserParamHolder >,
+#endif
+        &Shiboken::callCppDestructor< ::NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::UserParamHolder >,
         0,
         0,
         0    );

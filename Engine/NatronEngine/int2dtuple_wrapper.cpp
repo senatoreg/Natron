@@ -348,8 +348,10 @@ void init_Int2DTuple(PyObject* module)
         "Int2DTuple",
         "Int2DTuple*",
         &Sbk_Int2DTuple_spec,
+#if SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 2 ))
         Int2DTuple_SignatureStrings,
-        &Shiboken::callCppDestructor< ::Int2DTuple >,
+#endif
+        &Shiboken::callCppDestructor< ::NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::Int2DTuple >,
         0,
         0,
         0    );

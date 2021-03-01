@@ -14,6 +14,7 @@
 #export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed
 
 OPENCOLORIO_VERSION=$(shell /usr/bin/dpkg-parsechangelog -S Version | cut -d. -f1-2)
+MAINTAINER=$(shell /usr/bin/dpkg-parsechangelog -S Maintainer)
 
 %:
 	dh $@
@@ -36,12 +37,24 @@ override_dh_auto_configure: opencolorio-config
 	cp debian/config.pri $(CURDIR)
 	mkdir build ; \
 	cd build ; \
-	qmake -r ../Project.pro PYTHON_CONFIG=/usr/bin/python3-config BUILD=stable OpenGL_GL_PREFERENCE=GLVND  PREFIX=/usr CONFIG+=release DEFINES+=QT_NO_DEBUG_OUTPUT QMAKE_CC=/usr/bin/gcc-8 QMAKE_CXX=/usr/bin/g++-8
+	qmake -r ../Project.pro \
+		BUILD=stable \
+		CONFIG+=release \
+		CONFIG_SET=custombuild \
+		BUILD_USER_NAME="$(MAINTAINER)" \
+		QMAKE_CC=/usr/bin/gcc-8 \
+		QMAKE_CXX=/usr/bin/g++-8 \
+		PYTHON_CONFIG=/usr/bin/python3-config \
+		OpenGL_GL_PREFERENCE=GLVND \
+		DEFINES+=QT_NO_DEBUG_OUTPUT \
+		DEFINES+="NATRON_NAMESPACE=Natron" \
+		DEFINES+="NATRON_PYTHON_NAMESPACE=Python" \
+		PREFIX=/usr
 
 override_dh_auto_build:
 	mkdir build ; \
 	cd build ; \
-	bear make
+	make
 
 override_dh_auto_clean:
 	rm -rf build OpenColorIO-Configs-Natron-v$(OPENCOLORIO_VERSION)
@@ -52,5 +65,5 @@ override_dh_clean:
 
 override_dh_auto_install:
 	cd build ; \
-	make INSTALL_ROOT=$(CURDIR)/debian/natron install
+	make INSTALL_ROOT=$(CURDIR)/debian/natron-qt5 install
 

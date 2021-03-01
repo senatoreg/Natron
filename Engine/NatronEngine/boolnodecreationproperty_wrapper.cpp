@@ -442,7 +442,9 @@ void init_BoolNodeCreationProperty(PyObject* module)
         "BoolNodeCreationProperty",
         "BoolNodeCreationProperty*",
         &Sbk_BoolNodeCreationProperty_spec,
+#if SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 2 ))
         BoolNodeCreationProperty_SignatureStrings,
+#endif
         &Shiboken::callCppDestructor< ::NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::BoolNodeCreationProperty >,
         reinterpret_cast<SbkObjectType *>(SbkNatronEngineTypes[SBK_NODECREATIONPROPERTY_IDX]),
         0,

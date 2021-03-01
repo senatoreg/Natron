@@ -591,8 +591,12 @@ static PyObject* Sbk_PyViewerFunc_setChannels(PyObject* self, PyObject* pyArg)
     Py_RETURN_NONE;
 
     Sbk_PyViewerFunc_setChannels_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronGui.PyViewer.setChannels");
+#else
         const char* overloads[] = {"NatronEngine.NATRON_NAMESPACE.DisplayChannelsEnum", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronGui.PyViewer.setChannels", overloads);
+#endif
         return 0;
 }
 
@@ -633,8 +637,12 @@ static PyObject* Sbk_PyViewerFunc_setCompositingOperator(PyObject* self, PyObjec
     Py_RETURN_NONE;
 
     Sbk_PyViewerFunc_setCompositingOperator_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronGui.PyViewer.setCompositingOperator");
+#else
         const char* overloads[] = {"NatronEngine.NATRON_NAMESPACE.ViewerCompositingOperatorEnum", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronGui.PyViewer.setCompositingOperator", overloads);
+#endif
         return 0;
 }
 
@@ -780,8 +788,12 @@ static PyObject* Sbk_PyViewerFunc_setPlaybackMode(PyObject* self, PyObject* pyAr
     Py_RETURN_NONE;
 
     Sbk_PyViewerFunc_setPlaybackMode_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronGui.PyViewer.setPlaybackMode");
+#else
         const char* overloads[] = {"NatronEngine.NATRON_NAMESPACE.PlaybackModeEnum", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronGui.PyViewer.setPlaybackMode", overloads);
+#endif
         return 0;
 }
 
@@ -1143,8 +1155,10 @@ void init_PyViewer(PyObject* module)
         "PyViewer",
         "PyViewer*",
         &Sbk_PyViewer_spec,
+#if SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 2 ))
         PyViewer_SignatureStrings,
-        &Shiboken::callCppDestructor< ::PyViewer >,
+#endif
+        &Shiboken::callCppDestructor< ::NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::PyViewer >,
         0,
         0,
         0    );

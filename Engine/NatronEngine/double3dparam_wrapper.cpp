@@ -406,8 +406,10 @@ void init_Double3DParam(PyObject* module)
         "Double3DParam",
         "Double3DParam*",
         &Sbk_Double3DParam_spec,
+#if SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 2 ))
         Double3DParam_SignatureStrings,
-        &Shiboken::callCppDestructor< ::Double3DParam >,
+#endif
+        &Shiboken::callCppDestructor< ::NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::Double3DParam >,
         reinterpret_cast<SbkObjectType *>(SbkNatronEngineTypes[SBK_DOUBLE2DPARAM_IDX]),
         0,
         0    );

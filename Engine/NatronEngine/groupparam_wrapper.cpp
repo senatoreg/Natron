@@ -380,8 +380,10 @@ void init_GroupParam(PyObject* module)
         "GroupParam",
         "GroupParam*",
         &Sbk_GroupParam_spec,
+#if SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 2 ))
         GroupParam_SignatureStrings,
-        &Shiboken::callCppDestructor< ::GroupParam >,
+#endif
+        &Shiboken::callCppDestructor< ::NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::GroupParam >,
         reinterpret_cast<SbkObjectType *>(SbkNatronEngineTypes[SBK_PARAM_IDX]),
         0,
         0    );

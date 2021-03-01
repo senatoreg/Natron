@@ -419,8 +419,10 @@ void init_ColorTuple(PyObject* module)
         "ColorTuple",
         "ColorTuple*",
         &Sbk_ColorTuple_spec,
+#if SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 2 ))
         ColorTuple_SignatureStrings,
-        &Shiboken::callCppDestructor< ::ColorTuple >,
+#endif
+        &Shiboken::callCppDestructor< ::NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::ColorTuple >,
         0,
         0,
         0    );

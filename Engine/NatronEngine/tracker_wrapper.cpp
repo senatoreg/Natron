@@ -477,8 +477,10 @@ void init_Tracker(PyObject* module)
         "Tracker",
         "Tracker*",
         &Sbk_Tracker_spec,
+#if SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 2 ))
         Tracker_SignatureStrings,
-        &Shiboken::callCppDestructor< ::Tracker >,
+#endif
+        &Shiboken::callCppDestructor< ::NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::Tracker >,
         reinterpret_cast<SbkObjectType *>(SbkNatronEngineTypes[SBK_ITEMBASE_IDX]),
         0,
         0    );

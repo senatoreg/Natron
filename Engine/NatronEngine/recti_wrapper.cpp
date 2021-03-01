@@ -1531,8 +1531,10 @@ void init_RectI(PyObject* module)
         "RectI",
         "RectI*",
         &Sbk_RectI_spec,
+#if SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 2 ))
         RectI_SignatureStrings,
-        &Shiboken::callCppDestructor< ::RectI >,
+#endif
+        &Shiboken::callCppDestructor< ::NATRON_NAMESPACE::RectI >,
         0,
         0,
         Shiboken::ObjectType::WrapperFlags::InnerClass    );

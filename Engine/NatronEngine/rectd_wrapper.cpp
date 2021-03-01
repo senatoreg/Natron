@@ -1556,8 +1556,10 @@ void init_RectD(PyObject* module)
         "RectD",
         "RectD*",
         &Sbk_RectD_spec,
+#if SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 2 ))
         RectD_SignatureStrings,
-        &Shiboken::callCppDestructor< ::RectD >,
+#endif
+        &Shiboken::callCppDestructor< ::NATRON_NAMESPACE::RectD >,
         0,
         0,
         Shiboken::ObjectType::WrapperFlags::InnerClass    );

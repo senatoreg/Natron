@@ -36,6 +36,9 @@
 #include <QFontMetrics>
 #include <QtCore/QDebug>
 #include <QPainter>
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
+#include <QPainterPath>
+#endif
 GCC_DIAG_UNUSED_PRIVATE_FIELD_OFF
 CLANG_DIAG_OFF(deprecated-register) //'register' storage class specifier is deprecated
 #include <QMouseEvent>

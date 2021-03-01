@@ -1422,8 +1422,10 @@ void init_App(PyObject* module)
         "App",
         "App*",
         &Sbk_App_spec,
+#if SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 2 ))
         App_SignatureStrings,
-        &Shiboken::callCppDestructor< ::App >,
+#endif
+        &Shiboken::callCppDestructor< ::NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::App >,
         reinterpret_cast<SbkObjectType *>(SbkNatronEngineTypes[SBK_GROUP_IDX]),
         0,
         0    );

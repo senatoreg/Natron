@@ -352,8 +352,10 @@ void init_Group(PyObject* module)
         "Group",
         "Group*",
         &Sbk_Group_spec,
+#if SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 2 ))
         Group_SignatureStrings,
-        &Shiboken::callCppDestructor< ::Group >,
+#endif
+        &Shiboken::callCppDestructor< ::NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::Group >,
         0,
         0,
         0    );

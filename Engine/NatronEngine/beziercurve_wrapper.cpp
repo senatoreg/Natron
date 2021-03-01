@@ -2049,8 +2049,10 @@ void init_BezierCurve(PyObject* module)
         "BezierCurve",
         "BezierCurve*",
         &Sbk_BezierCurve_spec,
+#if SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 2 ))
         BezierCurve_SignatureStrings,
-        &Shiboken::callCppDestructor< ::BezierCurve >,
+#endif
+        &Shiboken::callCppDestructor< ::NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::BezierCurve >,
         reinterpret_cast<SbkObjectType *>(SbkNatronEngineTypes[SBK_ITEMBASE_IDX]),
         0,
         0    );

@@ -666,8 +666,10 @@ void init_ItemBase(PyObject* module)
         "ItemBase",
         "ItemBase*",
         &Sbk_ItemBase_spec,
+#if SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 2 ))
         ItemBase_SignatureStrings,
-        &Shiboken::callCppDestructor< ::ItemBase >,
+#endif
+        &Shiboken::callCppDestructor< ::NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::ItemBase >,
         0,
         0,
         0    );

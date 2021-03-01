@@ -593,8 +593,10 @@ void init_Roto(PyObject* module)
         "Roto",
         "Roto*",
         &Sbk_Roto_spec,
+#if SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 2 ))
         Roto_SignatureStrings,
-        &Shiboken::callCppDestructor< ::Roto >,
+#endif
+        &Shiboken::callCppDestructor< ::NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::Roto >,
 #if 0
         reinterpret_cast<SbkObjectType *>(SbkNatronEngineTypes[SBK_ITEMBASE_IDX]),
 #else

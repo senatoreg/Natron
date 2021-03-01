@@ -741,8 +741,10 @@ void init_BooleanParam(PyObject* module)
         "BooleanParam",
         "BooleanParam*",
         &Sbk_BooleanParam_spec,
+#if SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 2 ))
         BooleanParam_SignatureStrings,
-        &Shiboken::callCppDestructor< ::NATRON_NAMESPACE::NATRON_NAMESPACE::BooleanParam >,
+#endif
+        &Shiboken::callCppDestructor< ::NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::BooleanParam >,
         reinterpret_cast<SbkObjectType *>(SbkNatronEngineTypes[SBK_ANIMATEDPARAM_IDX]),
         0,
         0    );

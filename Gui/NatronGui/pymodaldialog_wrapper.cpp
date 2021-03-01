@@ -72,7 +72,13 @@ void PyModalDialogWrapper::accept()
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "accept"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "accept"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QDialog::accept();
@@ -93,7 +99,13 @@ void PyModalDialogWrapper::actionEvent(QActionEvent * event)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "actionEvent"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "actionEvent"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::actionEvent(event);
@@ -123,7 +135,13 @@ void PyModalDialogWrapper::changeEvent(QEvent * event)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "changeEvent"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "changeEvent"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::changeEvent(event);
@@ -153,7 +171,13 @@ void PyModalDialogWrapper::childEvent(QChildEvent * arg__1)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "childEvent"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "childEvent"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QObject::childEvent(arg__1);
@@ -183,7 +207,13 @@ void PyModalDialogWrapper::closeEvent(QCloseEvent * arg__1)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "closeEvent"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "closeEvent"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QDialog::closeEvent(arg__1);
@@ -217,7 +247,13 @@ void PyModalDialogWrapper::connectNotify(const char * signal)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "connectNotify"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "connectNotify"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QObject::connectNotify(signal);
@@ -244,7 +280,13 @@ void PyModalDialogWrapper::contextMenuEvent(QContextMenuEvent * arg__1)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "contextMenuEvent"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "contextMenuEvent"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QDialog::contextMenuEvent(arg__1);
@@ -274,7 +316,13 @@ void PyModalDialogWrapper::customEvent(QEvent * arg__1)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "customEvent"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "customEvent"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QObject::customEvent(arg__1);
@@ -304,7 +352,13 @@ int PyModalDialogWrapper::devType() const
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ((int)0);
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "devType"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "devType"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::devType();
@@ -337,7 +391,13 @@ void PyModalDialogWrapper::disconnectNotify(const char * signal)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "disconnectNotify"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "disconnectNotify"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QObject::disconnectNotify(signal);
@@ -364,7 +424,13 @@ void PyModalDialogWrapper::done(int arg__1)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "done"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "done"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QDialog::done(arg__1);
@@ -387,7 +453,13 @@ void PyModalDialogWrapper::dragEnterEvent(QDragEnterEvent * event)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "dragEnterEvent"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "dragEnterEvent"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::dragEnterEvent(event);
@@ -417,7 +489,13 @@ void PyModalDialogWrapper::dragLeaveEvent(QDragLeaveEvent * event)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "dragLeaveEvent"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "dragLeaveEvent"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::dragLeaveEvent(event);
@@ -447,7 +525,13 @@ void PyModalDialogWrapper::dragMoveEvent(QDragMoveEvent * event)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "dragMoveEvent"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "dragMoveEvent"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::dragMoveEvent(event);
@@ -477,7 +561,13 @@ void PyModalDialogWrapper::dropEvent(QDropEvent * event)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "dropEvent"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "dropEvent"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::dropEvent(event);
@@ -507,7 +597,13 @@ void PyModalDialogWrapper::enterEvent(QEvent * event)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "enterEvent"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "enterEvent"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::enterEvent(event);
@@ -537,7 +633,13 @@ bool PyModalDialogWrapper::event(QEvent * arg__1)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ((bool)0);
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "event"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "event"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::event(arg__1);
@@ -576,7 +678,13 @@ bool PyModalDialogWrapper::eventFilter(QObject * arg__1, QEvent * arg__2)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ((bool)0);
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "eventFilter"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "eventFilter"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QDialog::eventFilter(arg__1, arg__2);
@@ -617,7 +725,13 @@ void PyModalDialogWrapper::focusInEvent(QFocusEvent * event)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "focusInEvent"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "focusInEvent"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::focusInEvent(event);
@@ -647,7 +761,13 @@ bool PyModalDialogWrapper::focusNextPrevChild(bool next)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ((bool)0);
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "focusNextPrevChild"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "focusNextPrevChild"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::focusNextPrevChild(next);
@@ -679,7 +799,13 @@ void PyModalDialogWrapper::focusOutEvent(QFocusEvent * event)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "focusOutEvent"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "focusOutEvent"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::focusOutEvent(event);
@@ -709,7 +835,13 @@ int PyModalDialogWrapper::heightForWidth(int arg__1) const
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ((int)0);
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "heightForWidth"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "heightForWidth"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::heightForWidth(arg__1);
@@ -741,7 +873,13 @@ void PyModalDialogWrapper::hideEvent(QHideEvent * event)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "hideEvent"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "hideEvent"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::hideEvent(event);
@@ -771,7 +909,13 @@ void PyModalDialogWrapper::inputMethodEvent(QInputMethodEvent * event)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "inputMethodEvent"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "inputMethodEvent"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::inputMethodEvent(event);
@@ -801,7 +945,13 @@ QVariant PyModalDialogWrapper::inputMethodQuery(Qt::InputMethodQuery arg__1) con
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ::QVariant();
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "inputMethodQuery"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "inputMethodQuery"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::inputMethodQuery(arg__1);
@@ -841,7 +991,13 @@ void PyModalDialogWrapper::keyPressEvent(QKeyEvent * arg__1)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "keyPressEvent"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "keyPressEvent"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QDialog::keyPressEvent(arg__1);
@@ -871,7 +1027,13 @@ void PyModalDialogWrapper::keyReleaseEvent(QKeyEvent * event)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "keyReleaseEvent"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "keyReleaseEvent"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::keyReleaseEvent(event);
@@ -902,7 +1064,13 @@ void PyModalDialogWrapper::languageChange()
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "languageChange"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "languageChange"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::languageChange();
@@ -924,7 +1092,13 @@ void PyModalDialogWrapper::leaveEvent(QEvent * event)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "leaveEvent"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "leaveEvent"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::leaveEvent(event);
@@ -954,7 +1128,13 @@ int PyModalDialogWrapper::metric(QPaintDevice::PaintDeviceMetric arg__1) const
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ((int)0);
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "metric"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "metric"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::metric(arg__1);
@@ -990,7 +1170,13 @@ QSize PyModalDialogWrapper::minimumSizeHint() const
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ::QSize();
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "minimumSizeHint"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "minimumSizeHint"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QDialog::minimumSizeHint();
@@ -1024,7 +1210,13 @@ void PyModalDialogWrapper::mouseDoubleClickEvent(QMouseEvent * event)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "mouseDoubleClickEvent"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "mouseDoubleClickEvent"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::mouseDoubleClickEvent(event);
@@ -1054,7 +1246,13 @@ void PyModalDialogWrapper::mouseMoveEvent(QMouseEvent * event)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "mouseMoveEvent"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "mouseMoveEvent"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::mouseMoveEvent(event);
@@ -1084,7 +1282,13 @@ void PyModalDialogWrapper::mousePressEvent(QMouseEvent * event)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "mousePressEvent"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "mousePressEvent"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::mousePressEvent(event);
@@ -1114,7 +1318,13 @@ void PyModalDialogWrapper::mouseReleaseEvent(QMouseEvent * event)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "mouseReleaseEvent"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "mouseReleaseEvent"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::mouseReleaseEvent(event);
@@ -1144,7 +1354,13 @@ void PyModalDialogWrapper::moveEvent(QMoveEvent * event)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "moveEvent"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "moveEvent"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::moveEvent(event);
@@ -1174,7 +1390,13 @@ QPaintEngine * PyModalDialogWrapper::paintEngine() const
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ((::QPaintEngine*)0);
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "paintEngine"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "paintEngine"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::paintEngine();
@@ -1208,7 +1430,13 @@ void PyModalDialogWrapper::paintEvent(QPaintEvent * event)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "paintEvent"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "paintEvent"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::paintEvent(event);
@@ -1238,7 +1466,13 @@ void PyModalDialogWrapper::reject()
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "reject"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "reject"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QDialog::reject();
@@ -1259,7 +1493,13 @@ void PyModalDialogWrapper::resizeEvent(QResizeEvent * arg__1)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "resizeEvent"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "resizeEvent"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QDialog::resizeEvent(arg__1);
@@ -1289,7 +1529,13 @@ void PyModalDialogWrapper::setVisible(bool visible)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "setVisible"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "setVisible"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QDialog::setVisible(visible);
@@ -1312,7 +1558,13 @@ void PyModalDialogWrapper::showEvent(QShowEvent * arg__1)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "showEvent"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "showEvent"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QDialog::showEvent(arg__1);
@@ -1342,7 +1594,13 @@ QSize PyModalDialogWrapper::sizeHint() const
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ::QSize();
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "sizeHint"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "sizeHint"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QDialog::sizeHint();
@@ -1376,7 +1634,13 @@ void PyModalDialogWrapper::tabletEvent(QTabletEvent * event)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "tabletEvent"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "tabletEvent"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::tabletEvent(event);
@@ -1406,7 +1670,13 @@ void PyModalDialogWrapper::timerEvent(QTimerEvent * arg__1)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "timerEvent"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "timerEvent"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QObject::timerEvent(arg__1);
@@ -1436,7 +1706,13 @@ void PyModalDialogWrapper::wheelEvent(QWheelEvent * event)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "wheelEvent"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "wheelEvent"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::wheelEvent(event);
@@ -1978,8 +2254,10 @@ void init_PyModalDialog(PyObject* module)
         "PyModalDialog",
         "PyModalDialog*",
         &Sbk_PyModalDialog_spec,
+#if SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 2 ))
         PyModalDialog_SignatureStrings,
-        &Shiboken::callCppDestructor< ::PyModalDialog >,
+#endif
+        &Shiboken::callCppDestructor< ::NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::PyModalDialog >,
         reinterpret_cast<SbkObjectType *>(SbkNatronEngineTypes[SBK_USERPARAMHOLDER_IDX]),
         Sbk_PyModalDialog_Type_bases,
         0    );

@@ -319,7 +319,11 @@ static PyObject* Sbk_PyGuiApplicationFunc_getIcon(PyObject* self, PyObject* pyAr
         if (!PyErr_Occurred()) {
             // getIcon(NATRON_NAMESPACE::PixmapEnum)const
             QPixmap cppResult = const_cast<const ::PyGuiApplication*>(cppSelf)->getIcon(cppArg0);
+#if SHIBOKEN_MAJOR_VERSION >= 2
+            pyResult = Shiboken::Conversions::copyToPython((SbkObjectType*)SbkPySide2_QtGuiTypes[SBK_QPIXMAP_IDX], &cppResult);
+#else
             pyResult = Shiboken::Conversions::copyToPython((SbkObjectType*)SbkPySide_QtGuiTypes[SBK_QPIXMAP_IDX], &cppResult);
+#endif
         }
     }
 
@@ -330,8 +334,12 @@ static PyObject* Sbk_PyGuiApplicationFunc_getIcon(PyObject* self, PyObject* pyAr
     return pyResult;
 
     Sbk_PyGuiApplicationFunc_getIcon_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronGui.PyGuiApplication.getIcon");
+#else
         const char* overloads[] = {"NatronEngine.NATRON_NAMESPACE.PixmapEnum", 0};
         Shiboken::setErrorAboutWrongArguments(pyArg, "NatronGui.PyGuiApplication.getIcon", overloads);
+#endif
         return 0;
 }
 
@@ -423,8 +431,13 @@ static PyObject* Sbk_PyGuiApplicationFunc_questionDialog(PyObject* self, PyObjec
     // Overloaded function decisor
     // 0: questionDialog(QString,QString)
     if (numArgs == 2
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        && (pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[0])))
+        && (pythonToCpp[1] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[1])))) {
+#else
         && (pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[0])))
         && (pythonToCpp[1] = Shiboken::Conversions::isPythonToCppConvertible(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], (pyArgs[1])))) {
+#endif
         overloadId = 0; // questionDialog(QString,QString)
     }
 
@@ -452,8 +465,12 @@ static PyObject* Sbk_PyGuiApplicationFunc_questionDialog(PyObject* self, PyObjec
     return pyResult;
 
     Sbk_PyGuiApplicationFunc_questionDialog_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronGui.PyGuiApplication.questionDialog");
+#else
         const char* overloads[] = {"unicode, unicode", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronGui.PyGuiApplication.questionDialog", overloads);
+#endif
         return 0;
 }
 
@@ -720,8 +737,10 @@ void init_PyGuiApplication(PyObject* module)
         "PyGuiApplication",
         "PyGuiApplication*",
         &Sbk_PyGuiApplication_spec,
+#if SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 2 ))
         PyGuiApplication_SignatureStrings,
-        &Shiboken::callCppDestructor< ::PyGuiApplication >,
+#endif
+        &Shiboken::callCppDestructor< ::NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::PyGuiApplication >,
         reinterpret_cast<SbkObjectType *>(SbkNatronEngineTypes[SBK_PYCOREAPPLICATION_IDX]),
         0,
         0    );

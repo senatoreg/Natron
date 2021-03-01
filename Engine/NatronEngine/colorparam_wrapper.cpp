@@ -1607,8 +1607,10 @@ void init_ColorParam(PyObject* module)
         "ColorParam",
         "ColorParam*",
         &Sbk_ColorParam_spec,
+#if SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 2 ))
         ColorParam_SignatureStrings,
-        &Shiboken::callCppDestructor< ::ColorParam >,
+#endif
+        &Shiboken::callCppDestructor< ::NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::ColorParam >,
         reinterpret_cast<SbkObjectType *>(SbkNatronEngineTypes[SBK_ANIMATEDPARAM_IDX]),
         0,
         0    );

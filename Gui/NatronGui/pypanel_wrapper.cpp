@@ -79,7 +79,13 @@ void PyPanelWrapper::actionEvent(QActionEvent * event)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "actionEvent"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "actionEvent"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::actionEvent(event);
@@ -109,7 +115,13 @@ void PyPanelWrapper::changeEvent(QEvent * event)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "changeEvent"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "changeEvent"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::changeEvent(event);
@@ -139,7 +151,13 @@ void PyPanelWrapper::childEvent(QChildEvent * arg__1)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "childEvent"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "childEvent"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QObject::childEvent(arg__1);
@@ -169,7 +187,13 @@ void PyPanelWrapper::closeEvent(QCloseEvent * event)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "closeEvent"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "closeEvent"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::closeEvent(event);
@@ -203,7 +227,13 @@ void PyPanelWrapper::connectNotify(const char * signal)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "connectNotify"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "connectNotify"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QObject::connectNotify(signal);
@@ -230,7 +260,13 @@ void PyPanelWrapper::contextMenuEvent(QContextMenuEvent * event)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "contextMenuEvent"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "contextMenuEvent"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::contextMenuEvent(event);
@@ -260,7 +296,13 @@ void PyPanelWrapper::customEvent(QEvent * arg__1)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "customEvent"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "customEvent"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QObject::customEvent(arg__1);
@@ -290,7 +332,13 @@ int PyPanelWrapper::devType() const
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ((int)0);
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "devType"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "devType"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::devType();
@@ -324,7 +372,13 @@ void PyPanelWrapper::disconnectNotify(const char * signal)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "disconnectNotify"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "disconnectNotify"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QObject::disconnectNotify(signal);
@@ -351,7 +405,13 @@ void PyPanelWrapper::dragEnterEvent(QDragEnterEvent * event)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "dragEnterEvent"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "dragEnterEvent"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::dragEnterEvent(event);
@@ -381,7 +441,13 @@ void PyPanelWrapper::dragLeaveEvent(QDragLeaveEvent * event)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "dragLeaveEvent"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "dragLeaveEvent"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::dragLeaveEvent(event);
@@ -411,7 +477,13 @@ void PyPanelWrapper::dragMoveEvent(QDragMoveEvent * event)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "dragMoveEvent"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "dragMoveEvent"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::dragMoveEvent(event);
@@ -441,7 +513,13 @@ void PyPanelWrapper::dropEvent(QDropEvent * event)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "dropEvent"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "dropEvent"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::dropEvent(event);
@@ -471,7 +549,13 @@ void PyPanelWrapper::enterEvent(QEvent * event)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "enterEvent"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "enterEvent"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::enterEvent(event);
@@ -501,7 +585,13 @@ bool PyPanelWrapper::event(QEvent * arg__1)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ((bool)0);
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "event"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "event"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::event(arg__1);
@@ -540,7 +630,13 @@ bool PyPanelWrapper::eventFilter(QObject * arg__1, QEvent * arg__2)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ((bool)0);
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "eventFilter"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "eventFilter"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QObject::eventFilter(arg__1, arg__2);
@@ -581,7 +677,13 @@ void PyPanelWrapper::focusInEvent(QFocusEvent * event)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "focusInEvent"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "focusInEvent"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::focusInEvent(event);
@@ -611,7 +713,13 @@ bool PyPanelWrapper::focusNextPrevChild(bool next)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ((bool)0);
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "focusNextPrevChild"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "focusNextPrevChild"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::focusNextPrevChild(next);
@@ -643,7 +751,13 @@ void PyPanelWrapper::focusOutEvent(QFocusEvent * event)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "focusOutEvent"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "focusOutEvent"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::focusOutEvent(event);
@@ -673,7 +787,13 @@ int PyPanelWrapper::heightForWidth(int arg__1) const
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ((int)0);
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "heightForWidth"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "heightForWidth"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::heightForWidth(arg__1);
@@ -705,7 +825,13 @@ void PyPanelWrapper::hideEvent(QHideEvent * event)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "hideEvent"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "hideEvent"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::hideEvent(event);
@@ -735,7 +861,13 @@ void PyPanelWrapper::inputMethodEvent(QInputMethodEvent * event)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "inputMethodEvent"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "inputMethodEvent"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::inputMethodEvent(event);
@@ -765,7 +897,13 @@ QVariant PyPanelWrapper::inputMethodQuery(Qt::InputMethodQuery arg__1) const
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ::QVariant();
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "inputMethodQuery"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "inputMethodQuery"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::inputMethodQuery(arg__1);
@@ -805,7 +943,13 @@ void PyPanelWrapper::keyPressEvent(QKeyEvent * event)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "keyPressEvent"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "keyPressEvent"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::keyPressEvent(event);
@@ -835,7 +979,13 @@ void PyPanelWrapper::keyReleaseEvent(QKeyEvent * event)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "keyReleaseEvent"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "keyReleaseEvent"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::keyReleaseEvent(event);
@@ -866,7 +1016,13 @@ void PyPanelWrapper::languageChange()
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "languageChange"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "languageChange"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::languageChange();
@@ -888,7 +1044,13 @@ void PyPanelWrapper::leaveEvent(QEvent * event)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "leaveEvent"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "leaveEvent"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::leaveEvent(event);
@@ -918,7 +1080,13 @@ int PyPanelWrapper::metric(QPaintDevice::PaintDeviceMetric arg__1) const
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ((int)0);
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "metric"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "metric"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::metric(arg__1);
@@ -954,7 +1122,13 @@ QSize PyPanelWrapper::minimumSizeHint() const
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ::QSize();
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "minimumSizeHint"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "minimumSizeHint"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::minimumSizeHint();
@@ -988,7 +1162,13 @@ void PyPanelWrapper::mouseDoubleClickEvent(QMouseEvent * event)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "mouseDoubleClickEvent"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "mouseDoubleClickEvent"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::mouseDoubleClickEvent(event);
@@ -1018,7 +1198,13 @@ void PyPanelWrapper::mouseMoveEvent(QMouseEvent * event)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "mouseMoveEvent"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "mouseMoveEvent"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::mouseMoveEvent(event);
@@ -1048,7 +1234,13 @@ void PyPanelWrapper::mousePressEvent(QMouseEvent * event)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "mousePressEvent"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "mousePressEvent"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::mousePressEvent(event);
@@ -1078,7 +1270,13 @@ void PyPanelWrapper::mouseReleaseEvent(QMouseEvent * event)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "mouseReleaseEvent"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "mouseReleaseEvent"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::mouseReleaseEvent(event);
@@ -1108,7 +1306,13 @@ void PyPanelWrapper::moveEvent(QMoveEvent * event)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "moveEvent"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "moveEvent"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::moveEvent(event);
@@ -1138,7 +1342,13 @@ QPaintEngine * PyPanelWrapper::paintEngine() const
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ((::QPaintEngine*)0);
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "paintEngine"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "paintEngine"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::paintEngine();
@@ -1172,7 +1382,13 @@ void PyPanelWrapper::paintEvent(QPaintEvent * event)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "paintEvent"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "paintEvent"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::paintEvent(event);
@@ -1202,7 +1418,13 @@ void PyPanelWrapper::resizeEvent(QResizeEvent * event)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "resizeEvent"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "resizeEvent"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::resizeEvent(event);
@@ -1232,7 +1454,13 @@ void PyPanelWrapper::restore(const QString & arg__1)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "restore"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "restore"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::PyPanel::restore(arg__1);
@@ -1259,7 +1487,13 @@ QString PyPanelWrapper::save()
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ::QString();
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "save"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "save"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::PyPanel::save();
@@ -1293,7 +1527,13 @@ void PyPanelWrapper::setVisible(bool visible)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "setVisible"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "setVisible"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::setVisible(visible);
@@ -1316,7 +1556,13 @@ void PyPanelWrapper::showEvent(QShowEvent * event)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "showEvent"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "showEvent"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::showEvent(event);
@@ -1346,7 +1592,13 @@ QSize PyPanelWrapper::sizeHint() const
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ::QSize();
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "sizeHint"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "sizeHint"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::sizeHint();
@@ -1380,7 +1632,13 @@ void PyPanelWrapper::tabletEvent(QTabletEvent * event)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "tabletEvent"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "tabletEvent"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::tabletEvent(event);
@@ -1410,7 +1668,13 @@ void PyPanelWrapper::timerEvent(QTimerEvent * arg__1)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "timerEvent"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "timerEvent"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QObject::timerEvent(arg__1);
@@ -1440,7 +1704,13 @@ void PyPanelWrapper::wheelEvent(QWheelEvent * event)
     Shiboken::GilState gil;
     if (PyErr_Occurred())
         return ;
+#if SHIBOKEN_MAJOR_VERSION < 2 || ( SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 1 )))
     Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, "wheelEvent"));
+#else
+    void* nameCache = malloc(2 * sizeof(PyObject*));
+    Shiboken::AutoDecRef pyOverride(Shiboken::BindingManager::instance().getOverride(this, (PyObject**)nameCache, "wheelEvent"));
+    free(nameCache);
+#endif
     if (pyOverride.isNull()) {
         gil.release();
         return this->::QWidget::wheelEvent(event);
@@ -2354,8 +2624,10 @@ void init_PyPanel(PyObject* module)
         "PyPanel",
         "PyPanel*",
         &Sbk_PyPanel_spec,
+#if SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 2 ))
         PyPanel_SignatureStrings,
-        &Shiboken::callCppDestructor< ::PyPanel >,
+#endif
+        &Shiboken::callCppDestructor< ::NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::PyPanel >,
         reinterpret_cast<SbkObjectType *>(SbkNatronEngineTypes[SBK_USERPARAMHOLDER_IDX]),
         Sbk_PyPanel_Type_bases,
         0    );

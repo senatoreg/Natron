@@ -404,8 +404,10 @@ void init_PathParam(PyObject* module)
         "PathParam",
         "PathParam*",
         &Sbk_PathParam_spec,
+#if SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 2 ))
         PathParam_SignatureStrings,
-        &Shiboken::callCppDestructor< ::PathParam >,
+#endif
+        &Shiboken::callCppDestructor< ::NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::PathParam >,
         reinterpret_cast<SbkObjectType *>(SbkNatronEngineTypes[SBK_STRINGPARAMBASE_IDX]),
         0,
         0    );

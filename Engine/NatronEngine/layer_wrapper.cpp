@@ -448,8 +448,10 @@ void init_Layer(PyObject* module)
         "Layer",
         "Layer*",
         &Sbk_Layer_spec,
+#if SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 2 ))
         Layer_SignatureStrings,
-        &Shiboken::callCppDestructor< ::Layer >,
+#endif
+        &Shiboken::callCppDestructor< ::NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::Layer >,
         0,
         0,
         0    );

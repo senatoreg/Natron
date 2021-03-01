@@ -442,8 +442,10 @@ void init_IntNodeCreationProperty(PyObject* module)
         "IntNodeCreationProperty",
         "IntNodeCreationProperty*",
         &Sbk_IntNodeCreationProperty_spec,
+#if SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 2 ))
         IntNodeCreationProperty_SignatureStrings,
-        &Shiboken::callCppDestructor< ::IntNodeCreationProperty >,
+#endif
+        &Shiboken::callCppDestructor< ::NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::IntNodeCreationProperty >,
         reinterpret_cast<SbkObjectType *>(SbkNatronEngineTypes[SBK_NODECREATIONPROPERTY_IDX]),
         0,
         0    );

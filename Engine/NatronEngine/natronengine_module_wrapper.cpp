@@ -621,7 +621,11 @@ static PyObject* conststd_map_QString_NodeCreationPropertyPTR_REF_CppToPython_co
             for (; it != cppInRef.end(); ++it) {
             ::QString key = it->first;
             ::NodeCreationProperty* value = it->second;
+#if SHIBOKEN_MAJOR_VERSION >= 2
+            PyObject* pyKey = Shiboken::Conversions::copyToPython(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], &key);
+#else
             PyObject* pyKey = Shiboken::Conversions::copyToPython(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], &key);
+#endif
             PyObject* pyValue = Shiboken::Conversions::pointerToPython((SbkObjectType*)SbkNatronEngineTypes[SBK_NODECREATIONPROPERTY_IDX], value);
             PyDict_SetItem(pyOut, pyKey, pyValue);
             Py_DECREF(pyKey);
@@ -640,7 +644,11 @@ static void conststd_map_QString_NodeCreationPropertyPTR_REF_PythonToCpp_constst
         Py_ssize_t pos = 0;
         while (PyDict_Next(pyIn, &pos, &key, &value)) {
         ::QString cppKey = ::QString();
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pythonToCppCopy(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], key, &(cppKey));
+#else
         Shiboken::Conversions::pythonToCppCopy(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], key, &(cppKey));
+#endif
         ::NodeCreationProperty* cppValue = ((::NodeCreationProperty*)0);
         Shiboken::Conversions::pythonToCppPointer((SbkObjectType*)SbkNatronEngineTypes[SBK_NODECREATIONPROPERTY_IDX], value, &(cppValue));
         cppOutRef.insert(std::make_pair(cppKey, cppValue));
@@ -667,7 +675,11 @@ static PyObject* std_list_QString__CppToPython_std_list_QString_(const void* cpp
             ::std::list<QString >::const_iterator it = cppInRef.begin();
             for (int idx = 0; it != cppInRef.end(); ++it, ++idx) {
             ::QString cppItem(*it);
+#if SHIBOKEN_MAJOR_VERSION >= 2
+            PyList_SET_ITEM(pyOut, idx, Shiboken::Conversions::copyToPython(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], &cppItem));
+#else
             PyList_SET_ITEM(pyOut, idx, Shiboken::Conversions::copyToPython(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], &cppItem));
+#endif
             }
             return pyOut;
         // TEMPLATE - stdListToPyList - END
@@ -680,7 +692,11 @@ static void std_list_QString__PythonToCpp_std_list_QString_(PyObject* pyIn, void
         for (int i = 0; i < PySequence_Size(pyIn); i++) {
         Shiboken::AutoDecRef pyItem(PySequence_GetItem(pyIn, i));
         ::QString cppItem = ::QString();
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::Conversions::pythonToCppCopy(SbkPySide2_QtCoreTypeConverters[SBK_QSTRING_IDX], pyItem, &(cppItem));
+#else
         Shiboken::Conversions::pythonToCppCopy(SbkPySide_QtCoreTypeConverters[SBK_QSTRING_IDX], pyItem, &(cppItem));
+#endif
         cppOutRef.push_back(cppItem);
         }
     // TEMPLATE - pyListToStdList - END
@@ -943,8 +959,8 @@ SBK_MODULE_INIT_FUNCTION_BEGIN(NatronEngine)
     // Initialize classes in the type system
 #if PY_MAJOR_VERSION >= 3
     init_NATRON_NAMESPACE(module);
-    init_RectI(reinterpret_cast<PyTypeObject *>(SbkNatronEngineTypes[SBK_NATRON_IDX])->tp_dict);
-    init_RectD(reinterpret_cast<PyTypeObject *>(SbkNatronEngineTypes[SBK_NATRON_IDX])->tp_dict);
+    init_RectI(reinterpret_cast<PyTypeObject *>(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_IDX])->tp_dict);
+    init_RectD(reinterpret_cast<PyTypeObject *>(SbkNatronEngineTypes[SBK_NATRON_NAMESPACE_IDX])->tp_dict);
 #endif
     init_ExprUtils(module);
     init_PyCoreApplication(module);

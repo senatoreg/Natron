@@ -223,8 +223,10 @@ void init_SeparatorParam(PyObject* module)
         "SeparatorParam",
         "SeparatorParam*",
         &Sbk_SeparatorParam_spec,
+#if SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 2 ))
         SeparatorParam_SignatureStrings,
-        &Shiboken::callCppDestructor< ::SeparatorParam >,
+#endif
+        &Shiboken::callCppDestructor< ::NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::SeparatorParam >,
         reinterpret_cast<SbkObjectType *>(SbkNatronEngineTypes[SBK_PARAM_IDX]),
         0,
         0    );

@@ -2533,8 +2533,10 @@ void init_ExprUtils(PyObject* module)
         "ExprUtils",
         "ExprUtils*",
         &Sbk_ExprUtils_spec,
+#if SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 2 ))
         ExprUtils_SignatureStrings,
-        &Shiboken::callCppDestructor< ::ExprUtils >,
+#endif
+        &Shiboken::callCppDestructor< ::NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::ExprUtils >,
         0,
         0,
         0    );

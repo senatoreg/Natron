@@ -248,7 +248,9 @@ void init_ButtonParam(PyObject* module)
         "ButtonParam",
         "ButtonParam*",
         &Sbk_ButtonParam_spec,
+#if SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 2 ))
         ButtonParam_SignatureStrings,
+#endif
         &Shiboken::callCppDestructor< ::NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::ButtonParam >,
         reinterpret_cast<SbkObjectType *>(SbkNatronEngineTypes[SBK_PARAM_IDX]),
         0,

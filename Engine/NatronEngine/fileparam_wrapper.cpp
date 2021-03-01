@@ -321,8 +321,10 @@ void init_FileParam(PyObject* module)
         "FileParam",
         "FileParam*",
         &Sbk_FileParam_spec,
+#if SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 2 ))
         FileParam_SignatureStrings,
-        &Shiboken::callCppDestructor< ::FileParam >,
+#endif
+        &Shiboken::callCppDestructor< ::NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::FileParam >,
         reinterpret_cast<SbkObjectType *>(SbkNatronEngineTypes[SBK_STRINGPARAMBASE_IDX]),
         0,
         0    );

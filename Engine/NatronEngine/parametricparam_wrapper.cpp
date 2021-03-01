@@ -747,8 +747,12 @@ static PyObject* Sbk_ParametricParamFunc_setNthControlPointInterpolation(PyObjec
     return pyResult;
 
     Sbk_ParametricParamFunc_setNthControlPointInterpolation_TypeError:
+#if SHIBOKEN_MAJOR_VERSION >= 2
+        Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ParametricParam.setNthControlPointInterpolation");
+#else
         const char* overloads[] = {"int, int, NatronEngine.Natron.KeyframeTypeEnum", 0};
         Shiboken::setErrorAboutWrongArguments(args, "NatronEngine.ParametricParam.setNthControlPointInterpolation", overloads);
+#endif
         return 0;
 }
 
@@ -958,8 +962,10 @@ void init_ParametricParam(PyObject* module)
         "ParametricParam",
         "ParametricParam*",
         &Sbk_ParametricParam_spec,
+#if SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 2 ))
         ParametricParam_SignatureStrings,
-        &Shiboken::callCppDestructor< ::ParametricParam >,
+#endif
+        &Shiboken::callCppDestructor< ::NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::ParametricParam >,
         reinterpret_cast<SbkObjectType *>(SbkNatronEngineTypes[SBK_PARAM_IDX]),
         0,
         0    );

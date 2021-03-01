@@ -440,8 +440,10 @@ void init_Track(PyObject* module)
         "Track",
         "Track*",
         &Sbk_Track_spec,
+#if SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 2 ))
         Track_SignatureStrings,
-        &Shiboken::callCppDestructor< ::Track >,
+#endif
+        &Shiboken::callCppDestructor< ::NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::Track >,
         reinterpret_cast<SbkObjectType *>(SbkNatronEngineTypes[SBK_ITEMBASE_IDX]),
         0,
         0    );

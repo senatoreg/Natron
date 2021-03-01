@@ -250,8 +250,10 @@ void init_NodeCreationProperty(PyObject* module)
         "NodeCreationProperty",
         "NodeCreationProperty*",
         &Sbk_NodeCreationProperty_spec,
+#if SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 2 ))
         NodeCreationProperty_SignatureStrings,
-        &Shiboken::callCppDestructor< ::NodeCreationProperty >,
+#endif
+        &Shiboken::callCppDestructor< ::NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::NodeCreationProperty >,
         0,
         0,
         0    );

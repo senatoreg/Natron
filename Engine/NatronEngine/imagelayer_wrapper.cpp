@@ -829,8 +829,10 @@ void init_ImageLayer(PyObject* module)
         "ImageLayer",
         "ImageLayer",
         &Sbk_ImageLayer_spec,
+#if SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 2 ))
         ImageLayer_SignatureStrings,
-        &Shiboken::callCppDestructor< ::ImageLayer >,
+#endif
+        &Shiboken::callCppDestructor< ::NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::ImageLayer >,
         0,
         0,
         0    );

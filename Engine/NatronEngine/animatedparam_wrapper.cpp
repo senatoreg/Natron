@@ -1113,7 +1113,9 @@ static PyObject* AnimatedParam_PTR_CppToPython_AnimatedParam(const void* cppIn) 
 #endif
 }
 
-#if SHIBOKEN_MAJOR_VERSION >= 2
+#if SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 2 ))
+// The signatures string for the functions.
+// Multiple signatures have their index "n:" in front.
 static const char *AnimatedParam_SignatureStrings[] = {
     "NatronEngine.AnimatedParam.deleteValueAtTime(time:double,dimension:int=0)",
     "NatronEngine.AnimatedParam.getCurrentTime()->int",
@@ -1138,8 +1140,10 @@ void init_AnimatedParam(PyObject* module)
         "AnimatedParam",
         "AnimatedParam*",
         &Sbk_AnimatedParam_spec,
+#if SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 2 ))
         AnimatedParam_SignatureStrings,
-        &Shiboken::callCppDestructor< ::AnimatedParam >,
+#endif
+        &Shiboken::callCppDestructor< ::NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::AnimatedParam >,
         reinterpret_cast<SbkObjectType *>(SbkNatronEngineTypes[SBK_PARAM_IDX]),
         0,
         0    );

@@ -273,8 +273,10 @@ void init_PageParam(PyObject* module)
         "PageParam",
         "PageParam*",
         &Sbk_PageParam_spec,
+#if SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 2 ))
         PageParam_SignatureStrings,
-        &Shiboken::callCppDestructor< ::PageParam >,
+#endif
+        &Shiboken::callCppDestructor< ::NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::PageParam >,
         reinterpret_cast<SbkObjectType *>(SbkNatronEngineTypes[SBK_PARAM_IDX]),
         0,
         0    );

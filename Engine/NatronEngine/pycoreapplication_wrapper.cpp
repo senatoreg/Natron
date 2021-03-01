@@ -1074,8 +1074,10 @@ void init_PyCoreApplication(PyObject* module)
         "PyCoreApplication",
         "PyCoreApplication*",
         &Sbk_PyCoreApplication_spec,
+#if SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 2 ))
         PyCoreApplication_SignatureStrings,
-        &Shiboken::callCppDestructor< ::PyCoreApplication >,
+#endif
+        &Shiboken::callCppDestructor< ::NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::PyCoreApplication >,
         0,
         0,
         0    );

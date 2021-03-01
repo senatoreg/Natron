@@ -296,7 +296,9 @@ void init_OutputFileParam(PyObject* module)
         "OutputFileParam",
         "OutputFileParam*",
         &Sbk_OutputFileParam_spec,
+#if SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 2 ))
         OutputFileParam_SignatureStrings,
+#endif
         &Shiboken::callCppDestructor< ::NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::OutputFileParam >,
         reinterpret_cast<SbkObjectType *>(SbkNatronEngineTypes[SBK_OUTPUTFILEPARAM_IDX]),
         0,

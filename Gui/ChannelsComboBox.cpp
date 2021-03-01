@@ -35,6 +35,9 @@ GCC_DIAG_UNUSED_PRIVATE_FIELD_OFF
 #include <QtGui/QPaintEvent>
 GCC_DIAG_UNUSED_PRIVATE_FIELD_ON
 #include <QPainter>
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
+#include <QPainterPath>
+#endif
 #include <QPen>
 
 NATRON_NAMESPACE_ENTER

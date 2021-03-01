@@ -4573,7 +4573,7 @@ NATRON_PYTHON_NAMESPACE::getFunctionArguments(const std::string& pyFunc,
     std::string output;
     bool ok = NATRON_PYTHON_NAMESPACE::interpretPythonScript(script, error, &output);
     if (!ok) {
-        throw std::runtime_error("NATRON_PYTHON_NAMESPACE::getFunctionArguments(): interpretPythonScript(" + script + " failed!");
+        throw std::runtime_error("Python::getFunctionArguments(): interpretPythonScript(" + script + " failed!");
     }
     PyObject* mainModule = NATRON_PYTHON_NAMESPACE::getMainModule();
     PyObject* args_specObj = 0;

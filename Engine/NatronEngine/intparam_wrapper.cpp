@@ -1621,8 +1621,10 @@ void init_IntParam(PyObject* module)
         "IntParam",
         "IntParam*",
         &Sbk_IntParam_spec,
+#if SHIBOKEN_MAJOR_VERSION == 2 && ( SHIBOKEN_MINOR_VERSION < 15 || ( SHIBOKEN_MINOR_VERSION == 15 && SHIBOKEN_MICRO_VERSION < 2 ))
         IntParam_SignatureStrings,
-        &Shiboken::callCppDestructor< ::IntParam >,
+#endif
+        &Shiboken::callCppDestructor< ::NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::IntParam >,
         reinterpret_cast<SbkObjectType *>(SbkNatronEngineTypes[SBK_ANIMATEDPARAM_IDX]),
         0,
         0    );
