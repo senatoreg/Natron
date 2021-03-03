@@ -4,116 +4,87 @@
 #define SBK_NATRONGUI_PYTHON_H
 
 #include <sbkpython.h>
-#if SHIBOKEN_MAJOR_VERSION < 2
-#include <conversions.h>
-#endif
-#include <sbkenum.h>
-#include <basewrapper.h>
-#include <bindingmanager.h>
-#include <memory>
-
-#include <pysidesignal.h>
+#include <sbkconverter.h>
 // Module Includes
-CLANG_DIAG_OFF(deprecated)
-CLANG_DIAG_OFF(uninitialized)
-CLANG_DIAG_OFF(keyword-macro)
-#if SHIBOKEN_MAJOR_VERSION >= 2
-#include <pyside2_qtgui_python.h> // produces warnings
-#include <pyside2_qtwidgets_python.h> // produces warnings
-#else
-#include <pyside_qtgui_python.h> // produces warnings
-#endif
-CLANG_DIAG_ON(deprecated)
-CLANG_DIAG_ON(uninitialized)
-CLANG_DIAG_ON(keyword-macro)
-CLANG_DIAG_OFF(deprecated)
-CLANG_DIAG_OFF(uninitialized)
-CLANG_DIAG_OFF(keyword-macro)
-#if SHIBOKEN_MAJOR_VERSION >= 2
-#include <pyside2_qtcore_python.h> // produces warnings
-#else
-#include <pyside_qtcore_python.h> // produces warnings
-#endif
-CLANG_DIAG_ON(deprecated)
-CLANG_DIAG_ON(uninitialized)
-CLANG_DIAG_ON(keyword-macro)
+#include <pyside2_qtgui_python.h>
+#include <pyside2_qtcore_python.h>
 #include <natronengine_python.h>
 
-// Binded library includes
-#include <PyGuiApp.h>
+// Bound library includes
 #include <PythonPanels.h>
 #include <PyGlobalGui.h>
+#include <PyGuiApp.h>
 // Conversion Includes - Primitive Types
-#include <QStringList>
 #include <qabstractitemmodel.h>
 #include <QString>
+#include <QStringList>
 #include <signalmanager.h>
-#if SHIBOKEN_MAJOR_VERSION < 2
-#include <typeresolver.h>
-#endif
-#include <QtConcurrentFilter>
 
 // Conversion Includes - Container Types
-#include <QMap>
-#include <QStack>
+#include <pysideqflags.h>
 #include <QLinkedList>
-#include <QVector>
-#include <set>
-#include <QSet>
-#include <map>
-#include <vector>
-#include <list>
-#include <QPair>
-#if SHIBOKEN_MAJOR_VERSION < 2
-#include <pysideconversions.h>
-#endif
-#include <map>
-#include <QQueue>
 #include <QList>
-#include <utility>
+#include <QMap>
 #include <QMultiMap>
+#include <QPair>
+#include <QQueue>
+#include <QSet>
+#include <QStack>
+#include <QVector>
+#include <list>
+#include <map>
+#include <map>
+#include <utility>
+#include <set>
+#include <vector>
 
 // Type indices
-#define SBK_PYTABWIDGET_IDX                                          4
-#define SBK_PYVIEWER_IDX                                             5
-#define SBK_GUIAPP_IDX                                               0
-#define SBK_PYGUIAPPLICATION_IDX                                     1
-#define SBK_PYPANEL_IDX                                              3
-#define SBK_PYMODALDIALOG_IDX                                        2
-#define SBK_NatronGui_IDX_COUNT                                      6
-
+enum : int {
+    SBK_NATRON_PYTHON_GUIAPP_IDX                             = 2,
+    SBK_NATRON_PYTHON_PYGUIAPPLICATION_IDX                   = 3,
+    SBK_NATRON_PYTHON_PYMODALDIALOG_IDX                      = 4,
+    SBK_NATRON_PYTHON_PYPANEL_IDX                            = 5,
+    SBK_NATRON_PYTHON_PYTABWIDGET_IDX                        = 6,
+    SBK_NATRON_PYTHON_PYVIEWER_IDX                           = 7,
+    SBK_NatronGui_IDX_COUNT                                  = 8
+};
 // This variable stores all Python types exported by this module.
-extern PyTypeObject** SbkNatronGuiTypes;
+extern PyTypeObject **SbkNatronGuiTypes;
+
+// This variable stores the Python module object exported by this module.
+extern PyObject *SbkNatronGuiModuleObject;
 
 // This variable stores all type converters exported by this module.
-extern SbkConverter** SbkNatronGuiTypeConverters;
+extern SbkConverter **SbkNatronGuiTypeConverters;
 
 // Converter indices
-#define SBK_NATRONGUI_STD_MAP_QSTRING_NODECREATIONPROPERTYPTR_IDX    0 // const std::map<QString, NodeCreationProperty * > &
-#define SBK_NATRONGUI_STD_LIST_EFFECTPTR_IDX                         1 // std::list<Effect * >
-#define SBK_NATRONGUI_STD_LIST_QSTRING_IDX                           2 // std::list<QString >
-#define SBK_NATRONGUI_STD_LIST_INT_IDX                               3 // const std::list<int > &
-#define SBK_NATRONGUI_QLIST_QACTIONPTR_IDX                           4 // QList<QAction * >
-#define SBK_NATRONGUI_QLIST_QOBJECTPTR_IDX                           5 // const QList<QObject * > &
-#define SBK_NATRONGUI_QLIST_QBYTEARRAY_IDX                           6 // QList<QByteArray >
-#define SBK_NATRONGUI_STD_LIST_PARAMPTR_IDX                          7 // std::list<Param * >
-#define SBK_NATRONGUI_QLIST_QVARIANT_IDX                             8 // QList<QVariant >
-#define SBK_NATRONGUI_QLIST_QSTRING_IDX                              9 // QList<QString >
-#define SBK_NATRONGUI_QMAP_QSTRING_QVARIANT_IDX                      10 // QMap<QString, QVariant >
-#define SBK_NatronGui_CONVERTERS_IDX_COUNT                           11
-
+enum : int {
+    SBK_NATRONGUI_STD_MAP_QSTRING_NATRON_PYTHON_NODECREATIONPROPERTYPTR_IDX = 0, // const std::map<QString,Natron::Python::NodeCreationProperty* > &
+    SBK_NATRONGUI_STD_LIST_NATRON_PYTHON_EFFECTPTR_IDX       = 1, // std::list<Natron::Python::Effect* >
+    SBK_NATRONGUI_STD_LIST_QSTRING_IDX                       = 2, // std::list<QString >
+    SBK_NATRONGUI_STD_LIST_INT_IDX                           = 3, // const std::list<int > &
+    SBK_NATRONGUI_STD_VECTOR_STD_STRING_IDX                  = 4, // std::vector<std::string > *
+    SBK_NATRONGUI_STD_LIST_NATRON_PYTHON_PARAMPTR_IDX        = 5, // std::list<Natron::Python::Param* >
+    SBK_NATRONGUI_QLIST_QVARIANT_IDX                         = 6, // QList<QVariant >
+    SBK_NATRONGUI_QLIST_QSTRING_IDX                          = 7, // QList<QString >
+    SBK_NATRONGUI_QMAP_QSTRING_QVARIANT_IDX                  = 8, // QMap<QString,QVariant >
+    SBK_NatronGui_CONVERTERS_IDX_COUNT                       = 9
+};
 // Macros for type check
 
 namespace Shiboken
 {
 
 // PyType functions, to get the PyObjectType for a type T
-template<> inline PyTypeObject* SbkType<NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::PyTabWidget >() { return reinterpret_cast<PyTypeObject*>(SbkNatronGuiTypes[SBK_PYTABWIDGET_IDX]); }
-template<> inline PyTypeObject* SbkType<NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::PyViewer >() { return reinterpret_cast<PyTypeObject*>(SbkNatronGuiTypes[SBK_PYVIEWER_IDX]); }
-template<> inline PyTypeObject* SbkType<NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::GuiApp >() { return reinterpret_cast<PyTypeObject*>(SbkNatronGuiTypes[SBK_GUIAPP_IDX]); }
-template<> inline PyTypeObject* SbkType<NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::PyGuiApplication >() { return reinterpret_cast<PyTypeObject*>(SbkNatronGuiTypes[SBK_PYGUIAPPLICATION_IDX]); }
-template<> inline PyTypeObject* SbkType<NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::PyPanel >() { return reinterpret_cast<PyTypeObject*>(SbkNatronGuiTypes[SBK_PYPANEL_IDX]); }
-template<> inline PyTypeObject* SbkType<NATRON_NAMESPACE::NATRON_PYTHON_NAMESPACE::PyModalDialog >() { return reinterpret_cast<PyTypeObject*>(SbkNatronGuiTypes[SBK_PYMODALDIALOG_IDX]); }
+QT_WARNING_PUSH
+QT_WARNING_DISABLE_DEPRECATED
+template<> inline PyTypeObject *SbkType< ::Natron::Python::GuiApp >() { return reinterpret_cast<PyTypeObject *>(SbkNatronGuiTypes[SBK_NATRON_PYTHON_GUIAPP_IDX]); }
+template<> inline PyTypeObject *SbkType< ::Natron::Python::PyGuiApplication >() { return reinterpret_cast<PyTypeObject *>(SbkNatronGuiTypes[SBK_NATRON_PYTHON_PYGUIAPPLICATION_IDX]); }
+template<> inline PyTypeObject *SbkType< ::Natron::Python::PyModalDialog >() { return reinterpret_cast<PyTypeObject *>(SbkNatronGuiTypes[SBK_NATRON_PYTHON_PYMODALDIALOG_IDX]); }
+template<> inline PyTypeObject *SbkType< ::Natron::Python::PyPanel >() { return reinterpret_cast<PyTypeObject *>(SbkNatronGuiTypes[SBK_NATRON_PYTHON_PYPANEL_IDX]); }
+template<> inline PyTypeObject *SbkType< ::Natron::Python::PyTabWidget >() { return reinterpret_cast<PyTypeObject *>(SbkNatronGuiTypes[SBK_NATRON_PYTHON_PYTABWIDGET_IDX]); }
+template<> inline PyTypeObject *SbkType< ::Natron::Python::PyViewer >() { return reinterpret_cast<PyTypeObject *>(SbkNatronGuiTypes[SBK_NATRON_PYTHON_PYVIEWER_IDX]); }
+QT_WARNING_POP
 
 } // namespace Shiboken
 

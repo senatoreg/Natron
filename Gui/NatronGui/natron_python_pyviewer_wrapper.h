@@ -1,0 +1,7 @@
+#ifndef SBK_NATRON_PYTHON_PYVIEWER_H
+#define SBK_NATRON_PYTHON_PYVIEWER_H
+
+#include <PyGuiApp.h>
+
+#endif // SBK_NATRON_PYTHON_PYVIEWER_H
+

@@ -216,12 +216,12 @@ SOURCES += \
     ViewerTabPrivate.cpp \
     ViewerToolButton.cpp \
     ticks.cpp \
-    NatronGui/guiapp_wrapper.cpp \
-    NatronGui/pyguiapplication_wrapper.cpp \
-    NatronGui/pymodaldialog_wrapper.cpp \
-    NatronGui/pypanel_wrapper.cpp \
-    NatronGui/pytabwidget_wrapper.cpp \
-    NatronGui/pyviewer_wrapper.cpp \
+    NatronGui/natron_python_guiapp_wrapper.cpp \
+    NatronGui/natron_python_pyguiapplication_wrapper.cpp \
+    NatronGui/natron_python_pymodaldialog_wrapper.cpp \
+    NatronGui/natron_python_pypanel_wrapper.cpp \
+    NatronGui/natron_python_pytabwidget_wrapper.cpp \
+    NatronGui/natron_python_pyviewer_wrapper.cpp \
     NatronGui/natrongui_module_wrapper.cpp \
 
 HEADERS += \
@@ -377,13 +377,13 @@ HEADERS += \
     ../libs/OpenFX/include/nuke/fnPublicOfxExtensions.h \
     ../libs/OpenFX/include/tuttle/ofxReadWrite.h \
     ../libs/OpenFX_extensions/ofxhParametricParam.h \
-    NatronGui/guiapp_wrapper.h \
+    NatronGui/natron_python_guiapp_wrapper.h \
     NatronGui/natrongui_python.h \
-    NatronGui/pyguiapplication_wrapper.h \
-    NatronGui/pymodaldialog_wrapper.h \
-    NatronGui/pypanel_wrapper.h \
-    NatronGui/pytabwidget_wrapper.h \
-    NatronGui/pyviewer_wrapper.h
+    NatronGui/natron_python_pyguiapplication_wrapper.h \
+    NatronGui/natron_python_pymodaldialog_wrapper.h \
+    NatronGui/natron_python_pypanel_wrapper.h \
+    NatronGui/natron_python_pytabwidget_wrapper.h \
+    NatronGui/natron_python_pyviewer_wrapper.h
 
 RESOURCES += \
     GuiResources.qrc

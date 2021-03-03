@@ -1,0 +1,7 @@
+#ifndef SBK_NATRON_PYTHON_TRACKER_H
+#define SBK_NATRON_PYTHON_TRACKER_H
+
+#include <PyTracker.h>
+
+#endif // SBK_NATRON_PYTHON_TRACKER_H
+

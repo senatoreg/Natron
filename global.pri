@@ -371,9 +371,9 @@ win32-g++ {
     expat:     PKGCONFIG += expat
     cairo:     PKGCONFIG += cairo
     equals(QT_MAJOR_VERSION, 5) {
-        shiboken:  INCLUDEPATH += $$system(python2 -c \"from distutils.sysconfig import get_python_lib; print(get_python_lib())\")/PySide2/include/shiboken
-    	pyside:    INCLUDEPATH += $$system(python2 -c \"from distutils.sysconfig import get_python_lib; print(get_python_lib())\")/PySide2/include/PySide2
-   	pyside:    INCLUDEPATH += $$system(python2 -c \"from distutils.sysconfig import get_python_lib; print(get_python_lib())\")/PySide2/include/PySide2/QtCore
+        shiboken:  INCLUDEPATH += $$system(python3 -c \"from distutils.sysconfig import get_python_lib; print(get_python_lib())\")/PySide2/include/shiboken
+    	pyside:    INCLUDEPATH += $$system(python3 -c \"from distutils.sysconfig import get_python_lib; print(get_python_lib())\")/PySide2/include/PySide2
+   	pyside:    INCLUDEPATH += $$system(python3 -c \"from distutils.sysconfig import get_python_lib; print(get_python_lib())\")/PySide2/include/PySide2/QtCore
     }
     equals(QT_MAJOR_VERSION, 4) {
         shiboken:  PKGCONFIG += shiboken-py2
@@ -412,10 +412,10 @@ unix {
          LIBS += -ldl
      }
 
-     # User may specify an alternate python2-config from the command-line,
-     # as in "qmake PYTHON_CONFIG=python2.7-config"
+     # User may specify an alternate python3-config from the command-line,
+     # as in "qmake PYTHON_CONFIG=python3-config"
      isEmpty(PYTHON_CONFIG) {
-         PYTHON_CONFIG = python2-config
+         PYTHON_CONFIG = python3-config
      }
      python {
           #PKGCONFIG += python
@@ -427,14 +427,14 @@ unix {
      }
 
      equals(QT_MAJOR_VERSION, 5) {
-         shiboken:  INCLUDEPATH += $$system(python2 -c \"from distutils.sysconfig import get_python_lib; print(get_python_lib())\")/PySide2/include/shiboken
-    	 pyside:    INCLUDEPATH += $$system(python2 -c \"from distutils.sysconfig import get_python_lib; print(get_python_lib())\")/PySide2/include/PySide2
-   	 pyside:    INCLUDEPATH += $$system(python2 -c \"from distutils.sysconfig import get_python_lib; print(get_python_lib())\")/PySide2/include/PySide2/QtCore
+         shiboken:  INCLUDEPATH += $$system(python3 -c \"from distutils.sysconfig import get_python_lib; print(get_python_lib())\")/PySide2/include/shiboken
+    	 pyside:    INCLUDEPATH += $$system(python3 -c \"from distutils.sysconfig import get_python_lib; print(get_python_lib())\")/PySide2/include/PySide2
+   	 pyside:    INCLUDEPATH += $$system(python3 -c \"from distutils.sysconfig import get_python_lib; print(get_python_lib())\")/PySide2/include/PySide2/QtCore
      }
 
      equals(QT_MAJOR_VERSION, 4) {
          # There may be different pyside.pc/shiboken.pc for different versions of python.
-         # pkg-config will probably give a bad answer, unless python2 is the system default.
+         # pkg-config will probably give a bad answer, unless python3 is the system default.
          # See for example tools/travis/install_dependencies.sh for a solution that works on Linux,
          # using a custom config.pri
          shiboken: PKGCONFIG += shiboken
