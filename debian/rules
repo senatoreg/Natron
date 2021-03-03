@@ -34,7 +34,7 @@ opencolorio-config:
 	fi
 
 override_dh_auto_configure: opencolorio-config
-	cp debian/config.pri $(CURDIR)
+	cp debian/debian-config.pri $(CURDIR)/config.pri
 	mkdir build ; \
 	cd build ; \
 	qmake -r ../Project.pro \
