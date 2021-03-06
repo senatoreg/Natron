@@ -23,7 +23,7 @@ PyTypeObject **SbkNatronGuiTypes = nullptr;
 PyObject *SbkNatronGuiModuleObject = nullptr;
 // Current module's converter array.
 SbkConverter **SbkNatronGuiTypeConverters = nullptr;
-void cleanTypesAttributes(void) {
+void cleanGuiTypesAttributes(void) {
     if (PY_VERSION_HEX >= 0x03000000 && PY_VERSION_HEX < 0x03060000)
         return; // PYSIDE-953: testbinding crashes in Python 3.5 when hasattr touches types!
     for (int i = 0, imax = SBK_NatronGui_IDX_COUNT; i < imax; i++) {
@@ -34,653 +34,8 @@ void cleanTypesAttributes(void) {
     }
 }
 // Global functions ------------------------------------------------------------
-static PyObject *Sbk_Natron_PythonFunc_PyStringToStdString(PyObject *self, PyObject *pyArg)
-{
-    PyObject *pyResult{};
-    int overloadId = -1;
-    PythonToCppFunc pythonToCpp{};
-    SBK_UNUSED(pythonToCpp)
-
-    // Overloaded function decisor
-    // 0: static Python::PyStringToStdString(PyObject*)
-    if (PyObject_Check(pyArg)) {
-        overloadId = 0; // PyStringToStdString(PyObject*)
-    }
-
-    // Function signature not found.
-    if (overloadId == -1) goto Sbk_Natron_PythonFunc_PyStringToStdString_TypeError;
-
-    // Call function/method
-    {
-
-        if (!PyErr_Occurred()) {
-            // PyStringToStdString(PyObject*)
-            std::string cppResult = ::Natron::Python::PyStringToStdString(cppArg0);
-            pyResult = Shiboken::Conversions::copyToPython(Shiboken::Conversions::PrimitiveTypeConverter<std::string>(), &cppResult);
-        }
-    }
-
-    if (PyErr_Occurred() || !pyResult) {
-        Py_XDECREF(pyResult);
-        return {};
-    }
-    return pyResult;
-
-    Sbk_Natron_PythonFunc_PyStringToStdString_TypeError:
-        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronGui.Python.PyStringToStdString");
-        return {};
-}
-
-static PyObject *Sbk_NatronFunc_getAmountFreePhysicalRAM(PyObject *self)
-{
-    PyObject *pyResult{};
-
-    // Call function/method
-    {
-
-        if (!PyErr_Occurred()) {
-            // getAmountFreePhysicalRAM()
-            std::size_t cppResult = ::Natron::getAmountFreePhysicalRAM();
-            pyResult = Shiboken::Conversions::copyToPython(SbkNatronEngineTypeConverters[SBK_STD_SIZE_T_IDX], &cppResult);
-        }
-    }
-
-    if (PyErr_Occurred() || !pyResult) {
-        Py_XDECREF(pyResult);
-        return {};
-    }
-    return pyResult;
-}
-
-static PyObject *Sbk_Natron_PythonFunc_getAttrRecursive(PyObject *self, PyObject *args)
-{
-    PyObject *pyResult{};
-    int overloadId = -1;
-    PythonToCppFunc pythonToCpp[] = { nullptr, nullptr, nullptr };
-    SBK_UNUSED(pythonToCpp)
-    const Py_ssize_t numArgs = PyTuple_GET_SIZE(args);
-    SBK_UNUSED(numArgs)
-    PyObject *pyArgs[] = {0, 0, 0};
-
-    // invalid argument lengths
-
-
-    if (!PyArg_UnpackTuple(args, "getAttrRecursive", 3, 3, &(pyArgs[0]), &(pyArgs[1]), &(pyArgs[2])))
-        return {};
-
-
-    // Overloaded function decisor
-    // 0: static Python::getAttrRecursive(std::string,PyObject*,bool*)
-    if (numArgs == 3
-        && (pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(Shiboken::Conversions::PrimitiveTypeConverter<std::string>(), (pyArgs[0])))
-        && PyObject_Check(pyArgs[1])
-        && PyBool_Check(pyArgs[2]) && (pythonToCpp[2] = Shiboken::Conversions::isPythonToCppConvertible(Shiboken::Conversions::PrimitiveTypeConverter<bool>(), (pyArgs[2])))) {
-        overloadId = 0; // getAttrRecursive(std::string,PyObject*,bool*)
-    }
-
-    // Function signature not found.
-    if (overloadId == -1) goto Sbk_Natron_PythonFunc_getAttrRecursive_TypeError;
-
-    // Call function/method
-    {
-        ::std::string cppArg0;
-        pythonToCpp[0](pyArgs[0], &cppArg0);
-        bool *cppArg2;
-        pythonToCpp[2](pyArgs[2], &cppArg2);
-
-        if (!PyErr_Occurred()) {
-            // getAttrRecursive(std::string,PyObject*,bool*)
-            PyObject * cppResult = ::Natron::Python::getAttrRecursive(cppArg0, cppArg1, cppArg2);
-            pyResult = Shiboken::Conversions::copyToPython(, &cppResult);
-        }
-    }
-
-    if (PyErr_Occurred() || !pyResult) {
-        Py_XDECREF(pyResult);
-        return {};
-    }
-    return pyResult;
-
-    Sbk_Natron_PythonFunc_getAttrRecursive_TypeError:
-        Shiboken::setErrorAboutWrongArguments(args, "NatronGui.Python.getAttrRecursive");
-        return {};
-}
-
-static PyObject *Sbk_Natron_PythonFunc_getFunctionArguments(PyObject *self, PyObject *args)
-{
-    int overloadId = -1;
-    PythonToCppFunc pythonToCpp[] = { nullptr, nullptr, nullptr };
-    SBK_UNUSED(pythonToCpp)
-    const Py_ssize_t numArgs = PyTuple_GET_SIZE(args);
-    SBK_UNUSED(numArgs)
-    PyObject *pyArgs[] = {0, 0, 0};
-
-    // invalid argument lengths
-
-
-    if (!PyArg_UnpackTuple(args, "getFunctionArguments", 3, 3, &(pyArgs[0]), &(pyArgs[1]), &(pyArgs[2])))
-        return {};
-
-
-    // Overloaded function decisor
-    // 0: static Python::getFunctionArguments(std::string,std::string*,std::vector<std::string>*)
-    if (numArgs == 3
-        && (pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(Shiboken::Conversions::PrimitiveTypeConverter<std::string>(), (pyArgs[0])))
-        && (pythonToCpp[1] = Shiboken::Conversions::isPythonToCppConvertible(Shiboken::Conversions::PrimitiveTypeConverter<std::string>(), (pyArgs[1])))
-        && (pythonToCpp[2] = Shiboken::Conversions::isPythonToCppConvertible(SbkNatronGuiTypeConverters[SBK_NATRONGUI_STD_VECTOR_STD_STRING_IDX], (pyArgs[2])))) {
-        overloadId = 0; // getFunctionArguments(std::string,std::string*,std::vector<std::string>*)
-    }
-
-    // Function signature not found.
-    if (overloadId == -1) goto Sbk_Natron_PythonFunc_getFunctionArguments_TypeError;
-
-    // Call function/method
-    {
-        ::std::string cppArg0;
-        pythonToCpp[0](pyArgs[0], &cppArg0);
-        ::std::string *cppArg1;
-        pythonToCpp[1](pyArgs[1], &cppArg1);
-        ::std::vector<std::string > *cppArg2;
-        pythonToCpp[2](pyArgs[2], &cppArg2);
-
-        if (!PyErr_Occurred()) {
-            // getFunctionArguments(std::string,std::string*,std::vector<std::string>*)
-            ::Natron::Python::getFunctionArguments(cppArg0, cppArg1, cppArg2);
-        }
-    }
-
-    if (PyErr_Occurred()) {
-        return {};
-    }
-    Py_RETURN_NONE;
-
-    Sbk_Natron_PythonFunc_getFunctionArguments_TypeError:
-        Shiboken::setErrorAboutWrongArguments(args, "NatronGui.Python.getFunctionArguments");
-        return {};
-}
-
-static PyObject *Sbk_Natron_PythonFunc_getGroupInfos(PyObject *self, PyObject *args)
-{
-    PyObject *pyResult{};
-    int overloadId = -1;
-    PythonToCppFunc pythonToCpp[] = { nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr };
-    SBK_UNUSED(pythonToCpp)
-    const Py_ssize_t numArgs = PyTuple_GET_SIZE(args);
-    SBK_UNUSED(numArgs)
-    PyObject *pyArgs[] = {0, 0, 0, 0, 0, 0, 0, 0, 0};
-
-    // invalid argument lengths
-
-
-    if (!PyArg_UnpackTuple(args, "getGroupInfos", 9, 9, &(pyArgs[0]), &(pyArgs[1]), &(pyArgs[2]), &(pyArgs[3]), &(pyArgs[4]), &(pyArgs[5]), &(pyArgs[6]), &(pyArgs[7]), &(pyArgs[8])))
-        return {};
-
-
-    // Overloaded function decisor
-    // 0: static Python::getGroupInfos(std::string,std::string,std::string*,std::string*,std::string*,std::string*,std::string*,bool*,uint*)
-    if (numArgs == 9
-        && (pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(Shiboken::Conversions::PrimitiveTypeConverter<std::string>(), (pyArgs[0])))
-        && (pythonToCpp[1] = Shiboken::Conversions::isPythonToCppConvertible(Shiboken::Conversions::PrimitiveTypeConverter<std::string>(), (pyArgs[1])))
-        && (pythonToCpp[2] = Shiboken::Conversions::isPythonToCppConvertible(Shiboken::Conversions::PrimitiveTypeConverter<std::string>(), (pyArgs[2])))
-        && (pythonToCpp[3] = Shiboken::Conversions::isPythonToCppConvertible(Shiboken::Conversions::PrimitiveTypeConverter<std::string>(), (pyArgs[3])))
-        && (pythonToCpp[4] = Shiboken::Conversions::isPythonToCppConvertible(Shiboken::Conversions::PrimitiveTypeConverter<std::string>(), (pyArgs[4])))
-        && (pythonToCpp[5] = Shiboken::Conversions::isPythonToCppConvertible(Shiboken::Conversions::PrimitiveTypeConverter<std::string>(), (pyArgs[5])))
-        && (pythonToCpp[6] = Shiboken::Conversions::isPythonToCppConvertible(Shiboken::Conversions::PrimitiveTypeConverter<std::string>(), (pyArgs[6])))
-        && PyBool_Check(pyArgs[7]) && (pythonToCpp[7] = Shiboken::Conversions::isPythonToCppConvertible(Shiboken::Conversions::PrimitiveTypeConverter<bool>(), (pyArgs[7])))
-        && (pythonToCpp[8] = Shiboken::Conversions::isPythonToCppConvertible(Shiboken::Conversions::PrimitiveTypeConverter<unsigned int>(), (pyArgs[8])))) {
-        overloadId = 0; // getGroupInfos(std::string,std::string,std::string*,std::string*,std::string*,std::string*,std::string*,bool*,uint*)
-    }
-
-    // Function signature not found.
-    if (overloadId == -1) goto Sbk_Natron_PythonFunc_getGroupInfos_TypeError;
-
-    // Call function/method
-    {
-        ::std::string cppArg0;
-        pythonToCpp[0](pyArgs[0], &cppArg0);
-        ::std::string cppArg1;
-        pythonToCpp[1](pyArgs[1], &cppArg1);
-        ::std::string *cppArg2;
-        pythonToCpp[2](pyArgs[2], &cppArg2);
-        ::std::string *cppArg3;
-        pythonToCpp[3](pyArgs[3], &cppArg3);
-        ::std::string *cppArg4;
-        pythonToCpp[4](pyArgs[4], &cppArg4);
-        ::std::string *cppArg5;
-        pythonToCpp[5](pyArgs[5], &cppArg5);
-        ::std::string *cppArg6;
-        pythonToCpp[6](pyArgs[6], &cppArg6);
-        bool *cppArg7;
-        pythonToCpp[7](pyArgs[7], &cppArg7);
-        unsigned int *cppArg8;
-        pythonToCpp[8](pyArgs[8], &cppArg8);
-
-        if (!PyErr_Occurred()) {
-            // getGroupInfos(std::string,std::string,std::string*,std::string*,std::string*,std::string*,std::string*,bool*,uint*)
-            bool cppResult = ::Natron::Python::getGroupInfos(cppArg0, cppArg1, cppArg2, cppArg3, cppArg4, cppArg5, cppArg6, cppArg7, cppArg8);
-            pyResult = Shiboken::Conversions::copyToPython(Shiboken::Conversions::PrimitiveTypeConverter<bool>(), &cppResult);
-        }
-    }
-
-    if (PyErr_Occurred() || !pyResult) {
-        Py_XDECREF(pyResult);
-        return {};
-    }
-    return pyResult;
-
-    Sbk_Natron_PythonFunc_getGroupInfos_TypeError:
-        Shiboken::setErrorAboutWrongArguments(args, "NatronGui.Python.getGroupInfos");
-        return {};
-}
-
-static PyObject *Sbk_Natron_PythonFunc_getMainModule(PyObject *self)
-{
-    PyObject *pyResult{};
-
-    // Call function/method
-    {
-
-        if (!PyErr_Occurred()) {
-            // getMainModule()
-            PyObject * cppResult = ::Natron::Python::getMainModule();
-            pyResult = Shiboken::Conversions::copyToPython(, &cppResult);
-        }
-    }
-
-    if (PyErr_Occurred() || !pyResult) {
-        Py_XDECREF(pyResult);
-        return {};
-    }
-    return pyResult;
-}
-
-static PyObject *Sbk_Natron_PythonFunc_interpretPythonScript(PyObject *self, PyObject *args)
-{
-    PyObject *pyResult{};
-    int overloadId = -1;
-    PythonToCppFunc pythonToCpp[] = { nullptr, nullptr, nullptr };
-    SBK_UNUSED(pythonToCpp)
-    const Py_ssize_t numArgs = PyTuple_GET_SIZE(args);
-    SBK_UNUSED(numArgs)
-    PyObject *pyArgs[] = {0, 0, 0};
-
-    // invalid argument lengths
-
-
-    if (!PyArg_UnpackTuple(args, "interpretPythonScript", 3, 3, &(pyArgs[0]), &(pyArgs[1]), &(pyArgs[2])))
-        return {};
-
-
-    // Overloaded function decisor
-    // 0: static Python::interpretPythonScript(std::string,std::string*,std::string*)
-    if (numArgs == 3
-        && (pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(Shiboken::Conversions::PrimitiveTypeConverter<std::string>(), (pyArgs[0])))
-        && (pythonToCpp[1] = Shiboken::Conversions::isPythonToCppConvertible(Shiboken::Conversions::PrimitiveTypeConverter<std::string>(), (pyArgs[1])))
-        && (pythonToCpp[2] = Shiboken::Conversions::isPythonToCppConvertible(Shiboken::Conversions::PrimitiveTypeConverter<std::string>(), (pyArgs[2])))) {
-        overloadId = 0; // interpretPythonScript(std::string,std::string*,std::string*)
-    }
-
-    // Function signature not found.
-    if (overloadId == -1) goto Sbk_Natron_PythonFunc_interpretPythonScript_TypeError;
-
-    // Call function/method
-    {
-        ::std::string cppArg0;
-        pythonToCpp[0](pyArgs[0], &cppArg0);
-        ::std::string *cppArg1;
-        pythonToCpp[1](pyArgs[1], &cppArg1);
-        ::std::string *cppArg2;
-        pythonToCpp[2](pyArgs[2], &cppArg2);
-
-        if (!PyErr_Occurred()) {
-            // interpretPythonScript(std::string,std::string*,std::string*)
-            bool cppResult = ::Natron::Python::interpretPythonScript(cppArg0, cppArg1, cppArg2);
-            pyResult = Shiboken::Conversions::copyToPython(Shiboken::Conversions::PrimitiveTypeConverter<bool>(), &cppResult);
-        }
-    }
-
-    if (PyErr_Occurred() || !pyResult) {
-        Py_XDECREF(pyResult);
-        return {};
-    }
-    return pyResult;
-
-    Sbk_Natron_PythonFunc_interpretPythonScript_TypeError:
-        Shiboken::setErrorAboutWrongArguments(args, "NatronGui.Python.interpretPythonScript");
-        return {};
-}
-
-static PyObject *Sbk_NatronFunc_isApplication32Bits(PyObject *self)
-{
-    PyObject *pyResult{};
-
-    // Call function/method
-    {
-
-        if (!PyErr_Occurred()) {
-            // isApplication32Bits()
-            bool cppResult = ::Natron::isApplication32Bits();
-            pyResult = Shiboken::Conversions::copyToPython(Shiboken::Conversions::PrimitiveTypeConverter<bool>(), &cppResult);
-        }
-    }
-
-    if (PyErr_Occurred() || !pyResult) {
-        Py_XDECREF(pyResult);
-        return {};
-    }
-    return pyResult;
-}
-
-static PyObject *Sbk_NatronFunc_isFailureRetCode(PyObject *self, PyObject *pyArg)
-{
-    PyObject *pyResult{};
-    int overloadId = -1;
-    PythonToCppFunc pythonToCpp{};
-    SBK_UNUSED(pythonToCpp)
-
-    // Overloaded function decisor
-    // 0: static Natron::isFailureRetCode(Natron::StatusEnum)
-    if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(*PepType_SGTP(SbkNatronEngineTypes[SBK_NATRON_STATUSENUM_IDX])->converter, (pyArg)))) {
-        overloadId = 0; // isFailureRetCode(Natron::StatusEnum)
-    }
-
-    // Function signature not found.
-    if (overloadId == -1) goto Sbk_NatronFunc_isFailureRetCode_TypeError;
-
-    // Call function/method
-    {
-        ::Natron::StatusEnum cppArg0{Natron::eStatusOK};
-        pythonToCpp(pyArg, &cppArg0);
-
-        if (!PyErr_Occurred()) {
-            // isFailureRetCode(Natron::StatusEnum)
-            bool cppResult = ::Natron::isFailureRetCode(cppArg0);
-            pyResult = Shiboken::Conversions::copyToPython(Shiboken::Conversions::PrimitiveTypeConverter<bool>(), &cppResult);
-        }
-    }
-
-    if (PyErr_Occurred() || !pyResult) {
-        Py_XDECREF(pyResult);
-        return {};
-    }
-    return pyResult;
-
-    Sbk_NatronFunc_isFailureRetCode_TypeError:
-        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronGui.Natron.isFailureRetCode");
-        return {};
-}
-
-static PyObject *Sbk_Natron_PythonFunc_makeNameScriptFriendly(PyObject *self, PyObject *pyArg)
-{
-    PyObject *pyResult{};
-    int overloadId = -1;
-    PythonToCppFunc pythonToCpp{};
-    SBK_UNUSED(pythonToCpp)
-
-    // Overloaded function decisor
-    // 0: static Python::makeNameScriptFriendly(std::string)
-    if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(Shiboken::Conversions::PrimitiveTypeConverter<std::string>(), (pyArg)))) {
-        overloadId = 0; // makeNameScriptFriendly(std::string)
-    }
-
-    // Function signature not found.
-    if (overloadId == -1) goto Sbk_Natron_PythonFunc_makeNameScriptFriendly_TypeError;
-
-    // Call function/method
-    {
-        ::std::string cppArg0;
-        pythonToCpp(pyArg, &cppArg0);
-
-        if (!PyErr_Occurred()) {
-            // makeNameScriptFriendly(std::string)
-            std::string cppResult = ::Natron::Python::makeNameScriptFriendly(cppArg0);
-            pyResult = Shiboken::Conversions::copyToPython(Shiboken::Conversions::PrimitiveTypeConverter<std::string>(), &cppResult);
-        }
-    }
-
-    if (PyErr_Occurred() || !pyResult) {
-        Py_XDECREF(pyResult);
-        return {};
-    }
-    return pyResult;
-
-    Sbk_Natron_PythonFunc_makeNameScriptFriendly_TypeError:
-        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronGui.Python.makeNameScriptFriendly");
-        return {};
-}
-
-static PyObject *Sbk_Natron_PythonFunc_makeNameScriptFriendlyWithDots(PyObject *self, PyObject *pyArg)
-{
-    PyObject *pyResult{};
-    int overloadId = -1;
-    PythonToCppFunc pythonToCpp{};
-    SBK_UNUSED(pythonToCpp)
-
-    // Overloaded function decisor
-    // 0: static Python::makeNameScriptFriendlyWithDots(std::string)
-    if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(Shiboken::Conversions::PrimitiveTypeConverter<std::string>(), (pyArg)))) {
-        overloadId = 0; // makeNameScriptFriendlyWithDots(std::string)
-    }
-
-    // Function signature not found.
-    if (overloadId == -1) goto Sbk_Natron_PythonFunc_makeNameScriptFriendlyWithDots_TypeError;
-
-    // Call function/method
-    {
-        ::std::string cppArg0;
-        pythonToCpp(pyArg, &cppArg0);
-
-        if (!PyErr_Occurred()) {
-            // makeNameScriptFriendlyWithDots(std::string)
-            std::string cppResult = ::Natron::Python::makeNameScriptFriendlyWithDots(cppArg0);
-            pyResult = Shiboken::Conversions::copyToPython(Shiboken::Conversions::PrimitiveTypeConverter<std::string>(), &cppResult);
-        }
-    }
-
-    if (PyErr_Occurred() || !pyResult) {
-        Py_XDECREF(pyResult);
-        return {};
-    }
-    return pyResult;
-
-    Sbk_Natron_PythonFunc_makeNameScriptFriendlyWithDots_TypeError:
-        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronGui.Python.makeNameScriptFriendlyWithDots");
-        return {};
-}
-
-static PyObject *Sbk_NatronFunc___rne__(PyObject *self, PyObject *pyArg)
-{
-    PyObject *pyResult{};
-    int overloadId = -1;
-    PythonToCppFunc pythonToCpp{};
-    SBK_UNUSED(pythonToCpp)
-    const Py_ssize_t numArgs = PyTuple_GET_SIZE(args);
-    SBK_UNUSED(numArgs)
-    PyObject *pyArgs[] = {0, 0};
-
-    // invalid argument lengths
-
-
-    if (!PyArg_UnpackTuple(args, "__rne__", 2, 2, &(pyArgs[0]), &(pyArgs[1])))
-        return {};
-
-
-    // Overloaded function decisor
-    // 0: static Natron::operator!=(Natron::RectD,Natron::RectD)
-    // 1: static Natron::operator!=(Natron::RectI,Natron::RectI)
-    if (numArgs >= 2
-        && (pythonToCpp = Shiboken::Conversions::isPythonToCppReferenceConvertible(reinterpret_cast<SbkObjectType *>(SbkNatronEngineTypes[SBK_NATRON_RECTI_IDX]), (pyArg)))
-        && (pythonToCpp = Shiboken::Conversions::isPythonToCppReferenceConvertible(reinterpret_cast<SbkObjectType *>(SbkNatronEngineTypes[SBK_NATRON_RECTI_IDX]), (pyArg)))) {
-        overloadId = 1; // operator!=(Natron::RectI,Natron::RectI)
-    } else if (numArgs >= 2
-        && (pythonToCpp = Shiboken::Conversions::isPythonToCppReferenceConvertible(reinterpret_cast<SbkObjectType *>(SbkNatronEngineTypes[SBK_NATRON_RECTD_IDX]), (pyArg)))
-        && (pythonToCpp = Shiboken::Conversions::isPythonToCppReferenceConvertible(reinterpret_cast<SbkObjectType *>(SbkNatronEngineTypes[SBK_NATRON_RECTD_IDX]), (pyArg)))) {
-        overloadId = 0; // operator!=(Natron::RectD,Natron::RectD)
-    }
-
-    if (isReverse && overloadId == -1) {
-        PyErr_SetString(PyExc_NotImplementedError, "reverse operator not implemented.");
-        return {};
-    }
-
-    // Function signature not found.
-    if (overloadId == -1) goto Sbk_NatronFunc___rne___TypeError;
-
-    // Call function/method
-    switch (overloadId) {
-        case 0: // operator!=(const Natron::RectD & b1, const Natron::RectD & b2)
-        {
-            if (!Shiboken::Object::isValid(pyArg))
-                return {};
-            ::Natron::RectD *cppArg0;
-            pythonToCpp(pyArg, &cppArg0);
-            if (!Shiboken::Object::isValid(pyArg))
-                return {};
-            ::Natron::RectD *cppArg1;
-            pythonToCpp(pyArg, &cppArg1);
-
-            if (!PyErr_Occurred()) {
-                // operator!=(Natron::RectD,Natron::RectD)
-                bool cppResult = (*cppSelf) != (*cppArg0);
-                pyResult = Shiboken::Conversions::copyToPython(Shiboken::Conversions::PrimitiveTypeConverter<bool>(), &cppResult);
-            }
-            break;
-        }
-        case 1: // operator!=(const Natron::RectI & b1, const Natron::RectI & b2)
-        {
-            if (!Shiboken::Object::isValid(pyArg))
-                return {};
-            ::Natron::RectI *cppArg0;
-            pythonToCpp(pyArg, &cppArg0);
-            if (!Shiboken::Object::isValid(pyArg))
-                return {};
-            ::Natron::RectI *cppArg1;
-            pythonToCpp(pyArg, &cppArg1);
-
-            if (!PyErr_Occurred()) {
-                // operator!=(Natron::RectI,Natron::RectI)
-                bool cppResult = (*cppSelf) != (*cppArg0);
-                pyResult = Shiboken::Conversions::copyToPython(Shiboken::Conversions::PrimitiveTypeConverter<bool>(), &cppResult);
-            }
-            break;
-        }
-    }
-
-    if (PyErr_Occurred() || !pyResult) {
-        Py_XDECREF(pyResult);
-        return {};
-    }
-    return pyResult;
-
-    Sbk_NatronFunc___rne___TypeError:
-        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronGui.Natron.__rne__");
-        return {};
-}
-
-static PyObject *Sbk_NatronFunc___req__(PyObject *self, PyObject *pyArg)
-{
-    PyObject *pyResult{};
-    int overloadId = -1;
-    PythonToCppFunc pythonToCpp{};
-    SBK_UNUSED(pythonToCpp)
-    const Py_ssize_t numArgs = PyTuple_GET_SIZE(args);
-    SBK_UNUSED(numArgs)
-    PyObject *pyArgs[] = {0, 0};
-
-    // invalid argument lengths
-
-
-    if (!PyArg_UnpackTuple(args, "__req__", 2, 2, &(pyArgs[0]), &(pyArgs[1])))
-        return {};
-
-
-    // Overloaded function decisor
-    // 0: static Natron::operator==(Natron::RectD,Natron::RectD)
-    // 1: static Natron::operator==(Natron::RectI,Natron::RectI)
-    if (numArgs >= 2
-        && (pythonToCpp = Shiboken::Conversions::isPythonToCppReferenceConvertible(reinterpret_cast<SbkObjectType *>(SbkNatronEngineTypes[SBK_NATRON_RECTI_IDX]), (pyArg)))
-        && (pythonToCpp = Shiboken::Conversions::isPythonToCppReferenceConvertible(reinterpret_cast<SbkObjectType *>(SbkNatronEngineTypes[SBK_NATRON_RECTI_IDX]), (pyArg)))) {
-        overloadId = 1; // operator==(Natron::RectI,Natron::RectI)
-    } else if (numArgs >= 2
-        && (pythonToCpp = Shiboken::Conversions::isPythonToCppReferenceConvertible(reinterpret_cast<SbkObjectType *>(SbkNatronEngineTypes[SBK_NATRON_RECTD_IDX]), (pyArg)))
-        && (pythonToCpp = Shiboken::Conversions::isPythonToCppReferenceConvertible(reinterpret_cast<SbkObjectType *>(SbkNatronEngineTypes[SBK_NATRON_RECTD_IDX]), (pyArg)))) {
-        overloadId = 0; // operator==(Natron::RectD,Natron::RectD)
-    }
-
-    if (isReverse && overloadId == -1) {
-        PyErr_SetString(PyExc_NotImplementedError, "reverse operator not implemented.");
-        return {};
-    }
-
-    // Function signature not found.
-    if (overloadId == -1) goto Sbk_NatronFunc___req___TypeError;
-
-    // Call function/method
-    switch (overloadId) {
-        case 0: // operator==(const Natron::RectD & b1, const Natron::RectD & b2)
-        {
-            if (!Shiboken::Object::isValid(pyArg))
-                return {};
-            ::Natron::RectD *cppArg0;
-            pythonToCpp(pyArg, &cppArg0);
-            if (!Shiboken::Object::isValid(pyArg))
-                return {};
-            ::Natron::RectD *cppArg1;
-            pythonToCpp(pyArg, &cppArg1);
-
-            if (!PyErr_Occurred()) {
-                // operator==(Natron::RectD,Natron::RectD)
-                bool cppResult = (*cppSelf) == (*cppArg0);
-                pyResult = Shiboken::Conversions::copyToPython(Shiboken::Conversions::PrimitiveTypeConverter<bool>(), &cppResult);
-            }
-            break;
-        }
-        case 1: // operator==(const Natron::RectI & b1, const Natron::RectI & b2)
-        {
-            if (!Shiboken::Object::isValid(pyArg))
-                return {};
-            ::Natron::RectI *cppArg0;
-            pythonToCpp(pyArg, &cppArg0);
-            if (!Shiboken::Object::isValid(pyArg))
-                return {};
-            ::Natron::RectI *cppArg1;
-            pythonToCpp(pyArg, &cppArg1);
-
-            if (!PyErr_Occurred()) {
-                // operator==(Natron::RectI,Natron::RectI)
-                bool cppResult = (*cppSelf) == (*cppArg0);
-                pyResult = Shiboken::Conversions::copyToPython(Shiboken::Conversions::PrimitiveTypeConverter<bool>(), &cppResult);
-            }
-            break;
-        }
-    }
-
-    if (PyErr_Occurred() || !pyResult) {
-        Py_XDECREF(pyResult);
-        return {};
-    }
-    return pyResult;
-
-    Sbk_NatronFunc___req___TypeError:
-        Shiboken::setErrorAboutWrongArguments(pyArg, "NatronGui.Natron.__req__");
-        return {};
-}
-
 
 static PyMethodDef NatronGui_methods[] = {
-    {"PyStringToStdString", reinterpret_cast<PyCFunction>(Sbk_Natron_PythonFunc_PyStringToStdString), METH_O},
-    {"getAmountFreePhysicalRAM", reinterpret_cast<PyCFunction>(Sbk_NatronFunc_getAmountFreePhysicalRAM), METH_NOARGS},
-    {"getAttrRecursive", reinterpret_cast<PyCFunction>(Sbk_Natron_PythonFunc_getAttrRecursive), METH_VARARGS},
-    {"getFunctionArguments", reinterpret_cast<PyCFunction>(Sbk_Natron_PythonFunc_getFunctionArguments), METH_VARARGS},
-    {"getGroupInfos", reinterpret_cast<PyCFunction>(Sbk_Natron_PythonFunc_getGroupInfos), METH_VARARGS},
-    {"getMainModule", reinterpret_cast<PyCFunction>(Sbk_Natron_PythonFunc_getMainModule), METH_NOARGS},
-    {"interpretPythonScript", reinterpret_cast<PyCFunction>(Sbk_Natron_PythonFunc_interpretPythonScript), METH_VARARGS},
-    {"isApplication32Bits", reinterpret_cast<PyCFunction>(Sbk_NatronFunc_isApplication32Bits), METH_NOARGS},
-    {"isFailureRetCode", reinterpret_cast<PyCFunction>(Sbk_NatronFunc_isFailureRetCode), METH_O},
-    {"makeNameScriptFriendly", reinterpret_cast<PyCFunction>(Sbk_Natron_PythonFunc_makeNameScriptFriendly), METH_O},
-    {"makeNameScriptFriendlyWithDots", reinterpret_cast<PyCFunction>(Sbk_Natron_PythonFunc_makeNameScriptFriendlyWithDots), METH_O},
-    {"operator!=", reinterpret_cast<PyCFunction>(Sbk_NatronFunc___rne__), METH_VARARGS},
-    {"operator==", reinterpret_cast<PyCFunction>(Sbk_NatronFunc___req__), METH_VARARGS},
     {0} // Sentinel
 };
 
@@ -695,10 +50,8 @@ void init_Natron_Python_GuiApp(PyObject *module);
 // Required modules' type and converter arrays.
 PyTypeObject **SbkPySide2_QtGuiTypes;
 SbkConverter **SbkPySide2_QtGuiTypeConverters;
-PyTypeObject **SbkPySide2_QtCoreTypes;
-SbkConverter **SbkPySide2_QtCoreTypeConverters;
-PyTypeObject **SbkNatronEngineTypes;
-SbkConverter **SbkNatronEngineTypeConverters;
+PyTypeObject **SbkPySide2_QtWidgetsTypes;
+SbkConverter **SbkPySide2_QtWidgetsTypeConverters;
 
 // Module initialization ------------------------------------------------------------
 // Container Type converters.
@@ -874,6 +227,46 @@ static PythonToCppFunc is__std_vector_std_string_PTR_PythonToCpp__std_vector_std
     return {};
 }
 
+// C++ to Python conversion for type 'QList<QAction* >'.
+static PyObject *_QList_QActionPTR__CppToPython__QList_QActionPTR_(const void *cppIn) {
+    auto &cppInRef = *reinterpret_cast<::QList<QAction* > *>(const_cast<void *>(cppIn));
+    // TEMPLATE - cpplist_to_pylist_conversion - START
+    PyObject* pyOut = PyList_New((int) cppInRef.size());
+    ::QList<QAction* >::const_iterator it = cppInRef.begin();
+    for (int idx = 0; it != cppInRef.end(); ++it, ++idx) {
+        ::QAction* cppItem(*it);
+        PyList_SET_ITEM(pyOut, idx, Shiboken::Conversions::pointerToPython(reinterpret_cast<SbkObjectType *>(SbkPySide2_QtWidgetsTypes[SBK_QACTION_IDX]), cppItem));
+    }
+    return pyOut;
+    // TEMPLATE - cpplist_to_pylist_conversion - END
+
+}
+static void _QList_QActionPTR__PythonToCpp__QList_QActionPTR_(PyObject *pyIn, void *cppOut) {
+    auto &cppOutRef = *reinterpret_cast<::QList<QAction* > *>(cppOut);
+    // TEMPLATE - pyseq_to_cpplist_conversion - START
+    // PYSIDE-795: Turn all sequences into iterables.
+    Shiboken::AutoDecRef it(PyObject_GetIter(pyIn));
+    PyObject *(*iternext)(PyObject *) = *Py_TYPE(it)->tp_iternext;
+    for (;;) {
+        Shiboken::AutoDecRef pyItem(iternext(it));
+        if (pyItem.isNull()) {
+            if (PyErr_Occurred() && PyErr_ExceptionMatches(PyExc_StopIteration))
+                PyErr_Clear();
+            break;
+        }
+        ::QAction* cppItem{nullptr};
+        Shiboken::Conversions::pythonToCppPointer(reinterpret_cast<SbkObjectType *>(SbkPySide2_QtWidgetsTypes[SBK_QACTION_IDX]), pyItem, &(cppItem));
+        cppOutRef << cppItem;
+    }
+    // TEMPLATE - pyseq_to_cpplist_conversion - END
+
+}
+static PythonToCppFunc is__QList_QActionPTR__PythonToCpp__QList_QActionPTR__Convertible(PyObject *pyIn) {
+    if (Shiboken::Conversions::checkSequenceTypes(SbkPySide2_QtWidgetsTypes[SBK_QACTION_IDX], pyIn))
+        return _QList_QActionPTR__PythonToCpp__QList_QActionPTR_;
+    return {};
+}
+
 // C++ to Python conversion for type 'std::list<Natron::Python::Param* >'.
 static PyObject *_std_list_Natron_Python_ParamPTR__CppToPython__std_list_Natron_Python_ParamPTR_(const void *cppIn) {
     auto &cppInRef = *reinterpret_cast<::std::list<Natron::Python::Param* > *>(const_cast<void *>(cppIn));
@@ -1045,24 +438,17 @@ static struct PyModuleDef moduledef = {
 // The signatures string for the global functions.
 // Multiple signatures have their index "n:" in front.
 static const char *NatronGui_SignatureStrings[] = {
-    "NatronGui.Python.PyStringToStdString(obj:PyObject)->std.string",
-    "NatronGui.Natron.getAmountFreePhysicalRAM()->std.size_t",
-    "NatronGui.Python.getAttrRecursive(fullyQualifiedName:std.string,parentObj:PyObject,isDefined:bool*)->PyObject",
-    "NatronGui.Python.getFunctionArguments(pyFunc:std.string,error:std.string*,args:std.vector[std.string])",
-    "NatronGui.Python.getGroupInfos(modulePath:std.string,pythonModule:std.string,pluginID:std.string*,pluginLabel:std.string*,iconFilePath:std.string*,grouping:std.string*,description:std.string*,isToolset:bool*,version:unsigned int*)->bool",
-    "NatronGui.Python.getMainModule()->PyObject",
-    "NatronGui.Python.interpretPythonScript(script:std.string,error:std.string*,output:std.string*)->bool",
-    "NatronGui.Natron.isApplication32Bits()->bool",
-    "NatronGui.Natron.isFailureRetCode(code:NatronEngine.Natron.StatusEnum)->bool",
-    "NatronGui.Python.makeNameScriptFriendly(str:std.string)->std.string",
-    "NatronGui.Python.makeNameScriptFriendlyWithDots(str:std.string)->std.string",
-    "1:NatronGui.Natron.__rne__(b1:NatronEngine.Natron.RectD,b2:NatronEngine.Natron.RectD)->bool",
-    "0:NatronGui.Natron.__rne__(b1:NatronEngine.Natron.RectI,b2:NatronEngine.Natron.RectI)->bool",
-    "1:NatronGui.Natron.__req__(b1:NatronEngine.Natron.RectD,b2:NatronEngine.Natron.RectD)->bool",
-    "0:NatronGui.Natron.__req__(b1:NatronEngine.Natron.RectI,b2:NatronEngine.Natron.RectI)->bool",
     nullptr}; // Sentinel
 
 SBK_MODULE_INIT_FUNCTION_BEGIN(NatronGui)
+    {
+        Shiboken::AutoDecRef requiredModule(Shiboken::Module::import("PySide2.QtCore"));
+        if (requiredModule.isNull())
+            return SBK_MODULE_INIT_ERROR;
+        SbkPySide2_QtCoreTypes = Shiboken::Module::getTypes(requiredModule);
+        SbkPySide2_QtCoreTypeConverters = Shiboken::Module::getTypeConverters(requiredModule);
+    }
+
     {
         Shiboken::AutoDecRef requiredModule(Shiboken::Module::import("PySide2.QtGui"));
         if (requiredModule.isNull())
@@ -1072,11 +458,11 @@ SBK_MODULE_INIT_FUNCTION_BEGIN(NatronGui)
     }
 
     {
-        Shiboken::AutoDecRef requiredModule(Shiboken::Module::import("PySide2.QtCore"));
+        Shiboken::AutoDecRef requiredModule(Shiboken::Module::import("PySide2.QtWidgets"));
         if (requiredModule.isNull())
             return SBK_MODULE_INIT_ERROR;
-        SbkPySide2_QtCoreTypes = Shiboken::Module::getTypes(requiredModule);
-        SbkPySide2_QtCoreTypeConverters = Shiboken::Module::getTypeConverters(requiredModule);
+        SbkPySide2_QtWidgetsTypes = Shiboken::Module::getTypes(requiredModule);
+        SbkPySide2_QtWidgetsTypeConverters = Shiboken::Module::getTypeConverters(requiredModule);
     }
 
     {
@@ -1149,6 +535,13 @@ SBK_MODULE_INIT_FUNCTION_BEGIN(NatronGui)
         _std_vector_std_string_PTR_PythonToCpp__std_vector_std_string_PTR,
         is__std_vector_std_string_PTR_PythonToCpp__std_vector_std_string_PTR_Convertible);
 
+    // Register converter for type 'QList<QAction*>'.
+    SbkNatronGuiTypeConverters[SBK_NATRONGUI_QLIST_QACTIONPTR_IDX] = Shiboken::Conversions::createConverter(&PyList_Type, _QList_QActionPTR__CppToPython__QList_QActionPTR_);
+    Shiboken::Conversions::registerConverterName(SbkNatronGuiTypeConverters[SBK_NATRONGUI_QLIST_QACTIONPTR_IDX], "QList<QAction*>");
+    Shiboken::Conversions::addPythonToCppValueConversion(SbkNatronGuiTypeConverters[SBK_NATRONGUI_QLIST_QACTIONPTR_IDX],
+        _QList_QActionPTR__PythonToCpp__QList_QActionPTR_,
+        is__QList_QActionPTR__PythonToCpp__QList_QActionPTR__Convertible);
+
     // Register converter for type 'std::list<Natron::Python::Param*>'.
     SbkNatronGuiTypeConverters[SBK_NATRONGUI_STD_LIST_NATRON_PYTHON_PARAMPTR_IDX] = Shiboken::Conversions::createConverter(&PyList_Type, _std_list_Natron_Python_ParamPTR__CppToPython__std_list_Natron_Python_ParamPTR_);
     Shiboken::Conversions::registerConverterName(SbkNatronGuiTypeConverters[SBK_NATRONGUI_STD_LIST_NATRON_PYTHON_PARAMPTR_IDX], "std::list<Natron::Python::Param*>");
@@ -1186,7 +579,7 @@ SBK_MODULE_INIT_FUNCTION_BEGIN(NatronGui)
         PyErr_Print();
         Py_FatalError("can't initialize module NatronGui");
     }
-    PySide::registerCleanupFunction(cleanTypesAttributes);
+    PySide::registerCleanupFunction(cleanGuiTypesAttributes);
 
     FinishSignatureInitialization(module, NatronGui_SignatureStrings);
 

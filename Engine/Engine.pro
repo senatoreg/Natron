@@ -238,6 +238,7 @@ SOURCES += \
     NatronEngine/natron_python_itembase_wrapper.cpp \
     NatronEngine/natron_python_layer_wrapper.cpp \
     NatronEngine/natron_wrapper.cpp \
+    NatronEngine/natron_python_wrapper.cpp \
     NatronEngine/natronengine_module_wrapper.cpp \
     NatronEngine/natron_python_nodecreationproperty_wrapper.cpp \
     NatronEngine/natron_python_outputfileparam_wrapper.cpp \
@@ -503,6 +504,8 @@ HEADERS += \
     NatronEngine/natron_python_intparam_wrapper.h \
     NatronEngine/natron_python_itembase_wrapper.h \
     NatronEngine/natron_python_layer_wrapper.h \
+    NatronEngine/natron_wrapper.h \
+    NatronEngine/natron_python_wrapper.h \
     NatronEngine/natronengine_python.h \
     NatronEngine/natron_python_nodecreationproperty_wrapper.h \
     NatronEngine/natron_python_outputfileparam_wrapper.h \
@@ -550,7 +553,6 @@ OTHER_FILES += \
 # NatronEngine/intparam_wrapper.cpp		\
 # NatronEngine/itembase_wrapper.cpp		\
 # NatronEngine/layer_wrapper.cpp			\
-# NatronEngine/natron_wrapper.cpp			\
 # NatronEngine/natronengine_module_wrapper.cpp	\
 # NatronEngine/outputfileparam_wrapper.cpp	\
 # NatronEngine/pageparam_wrapper.cpp		\

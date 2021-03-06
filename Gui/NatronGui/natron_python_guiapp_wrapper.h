@@ -11,8 +11,8 @@
 #include <PyNode.h>
 #include <PyNodeGroup.h>
 #include <PyGuiApp.h>
-#include <map>
 #include <PyAppInstance.h>
+#include <map>
 class GuiAppWrapper : public Natron::Python::GuiApp
 {
 public:

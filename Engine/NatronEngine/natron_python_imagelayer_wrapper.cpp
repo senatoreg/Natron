@@ -602,7 +602,7 @@ static Py_hash_t Sbk_Natron_Python_ImageLayer_HashFunc(PyObject *self) {
         return {};
     auto cppSelf = reinterpret_cast< ::Natron::Python::ImageLayer *>(Shiboken::Conversions::cppPointer(SbkNatronEngineTypes[SBK_NATRON_PYTHON_IMAGELAYER_IDX], reinterpret_cast<SbkObject *>(self)));
     SBK_UNUSED(cppSelf)
-    return Py_hash_t(ImageLayer::getHash(*cppSelf));
+    return Py_hash_t(Natron::Python::ImageLayer::getHash(*cppSelf));
 }
 
 static int Sbk_Natron_Python_ImageLayer_traverse(PyObject *self, visitproc visit, void *arg)

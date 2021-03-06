@@ -210,7 +210,7 @@
 
      <!--Natron global enums-->
     <!-- <namespace-type name="NATRON_NAMESPACE"> -->
-    <namespace-type name="Natron">
+    <namespace-type name="Natron" generate="yes">
     <enum-type name="StatusEnum"/>
     <enum-type name="MergingFunctionEnum"/>
     <enum-type name="StandardButtonEnum" flags="StandardButtons"/>
@@ -225,6 +225,36 @@
     <enum-type name="OrientationEnum"/>
     <enum-type name="PlaybackModeEnum"/>
     <enum-type name="DisplayChannelsEnum"/>
+
+    <enum-type name="TimelineStateEnum"/>
+    <enum-type name="TimelineChangeReasonEnum"/>
+    <enum-type name="MessageTypeEnum"/>
+    <enum-type name="ImagePlaneDescEnum"/>
+    <enum-type name="ImageFieldingOrderEnum"/>
+    <enum-type name="SequentialPreferenceEnum"/>
+    <enum-type name="StorageModeEnum"/>
+    <enum-type name="SchedulingPolicyEnum"/>
+    <enum-type name="ContextEnum"/>
+    <enum-type name="RotoStrokeType"/>
+    <enum-type name="RenderSafetyEnum"/>
+    <enum-type name="PenType"/>
+    <enum-type name="PluginOpenGLRenderSupport"/>
+    <enum-type name="CurveChangeReason"/>
+    <enum-type name="OpenGLRequirementsTypeEnum"/>
+    <enum-type name="DopeSheetItemType"/>
+    <enum-type name="CreateNodeReason"/>
+    <enum-type name="KnobClipBoardType"/>
+    <enum-type name="ValueIsNormalizedEnum"/>
+    <enum-type name="CursorEnum"/>
+    <enum-type name="Key"/>
+    <enum-type name="KeyboardModifierEnum"/>
+    <enum-type name="AppInstanceStatusEnum"/>
+    <enum-type name="ScaleTypeEnum"/>
+
+    <modify-function signature="operator!=(Natron::RectD,Natron::RectD)" remove="all"/>
+    <modify-function signature="operator!=(Natron::RectI,Natron::RectI)" remove="all"/>
+    <modify-function signature="operator==(Natron::RectD,Natron::RectD)" remove="all"/>
+    <modify-function signature="operator==(Natron::RectI,Natron::RectI)" remove="all"/>
     <!-- </namespace-type> -->
     
    
@@ -238,7 +268,7 @@
        <modify-function signature="downscalePowerOfTwoSmallestEnclosing(unsigned int)const" remove="all"/>
        <modify-function signature="toCanonical(unsigned int,double,Natron::RectD,Natron::RectD*)const" remove="all"/>
        <modify-function signature="toCanonical_noClipping(unsigned int,double,Natron::RectD*)const" remove="all"/>
-       <modify-function signature="debug()const" remove="all"/>
+       <!-- <modify-function signature="debug()const" remove="all"/> -->
        <modify-function signature="splitIntoSmallerRects(int)const" remove="all"/>
        <modify-function signature="intersect(Natron::RectI,Natron::RectI*)const">
            <modify-argument index="2">
@@ -271,7 +301,7 @@
    </object-type>
    <object-type name="RectD">
        <modify-function signature="operator=(Natron::RectD)" remove="all"/>
-       <modify-function signature="debug()const" remove="all"/>
+       <!-- <modify-function signature="debug()const" remove="all"/> -->
        <modify-function signature="toPixelEnclosing(unsigned int,double,Natron::RectI*)const" remove="all"/>
        <modify-function signature="intersect(Natron::RectD,Natron::RectD*)const">
            <modify-argument index="2">
@@ -304,7 +334,22 @@
     </object-type>
        
 
-    <namespace-type name="Python">
+    <namespace-type name="Python" generate="yes">
+        <!--
+	<modify-function signature="clearPythonStdErr()" remove="all"/>
+	<modify-function signature="clearPythonStdOut()" remove="all"/>
+	<modify-function signature="getPythonStdErr()" remove="all"/>
+	<modify-function signature="getPythonStdOut()" remove="all"/>
+        -->
+	<modify-function signature="PyStringToStdString(PyObject*)" remove="all"/>
+	<modify-function signature="getFunctionArguments(const std::string&amp;, std::string*, std::vector&lt;std::string&gt;*)" remove="all"/>
+        <modify-function signature="getAttrRecursive(const std::string&amp;, PyObject*, bool*)" remove="all"/>
+	<modify-function signature="getGroupInfos(std::string,std::string,std::string*,std::string*,std::string*,std::string*,std::string*,bool*,uint*)" remove="all"/>
+	<modify-function signature="getMainModule()" remove="all"/>
+	<modify-function signature="interpretPythonScript(std::string, std::string*, std::string*)" remove="all"/>
+	<modify-function signature="makeNameScriptFriendly(std::string)" remove="all"/>
+	<modify-function signature="makeNameScriptFriendlyWithDots(std::string)" remove="all"/>
+
    <object-type name="ExprUtils">
        <modify-function signature="noise(Natron::Python::Double2DTuple)">
            <modify-argument index="1">
@@ -772,7 +817,7 @@
 
    </object-type>
 
-    <value-type name="ImageLayer" copyable="true" hash-function="ImageLayer::getHash">
+    <value-type name="ImageLayer" copyable="true" hash-function="Natron::Python::ImageLayer::getHash">
     </value-type>
     
     <object-type name="Group" copyable="false">
@@ -1507,8 +1552,13 @@
 
                     for (int j = 0; j &lt; subSize; ++j) {
                         PyObject* pyString = PyList_GET_ITEM(subList,j);
+#if PY_MAJOR_VERSION >= 3
+                        if ( PyUnicode_Check(pyString) ) {
+                            const char* buf = PyUnicode_AsUTF8(pyString);
+#else
                         if ( PyString_Check(pyString) ) {
                             char* buf = PyString_AsString(pyString);
+#endif
                             if (buf) {
                                 std::string ret;
                                 ret.append(buf);
@@ -1769,7 +1819,7 @@
         </modify-function>
         <modify-function signature="getParams()const">
             <inject-code class="target" position="beginning">
-                std::list&lt;Param*&gt; params = %CPPSELF.%FUNCTION_NAME(%ARGUMENT_NAMES);
+                std::list&lt;Natron::Python::Param*&gt; params = %CPPSELF.%FUNCTION_NAME(%ARGUMENT_NAMES);
                 PyObject* ret = PyList_New((int) params.size());
                 int idx = 0;
                 for (std::list&lt;Natron::Python::Param*&gt;::iterator it = params.begin(); it!=params.end(); ++it,++idx) {

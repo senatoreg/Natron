@@ -25,6 +25,10 @@ MAINTAINER=$(shell /usr/bin/dpkg-parsechangelog -S Maintainer)
 #override_dh_auto_configure:
 #	dh_auto_configure -- #	-DCMAKE_LIBRARY_PATH=$(DEB_HOST_MULTIARCH)
 
+recreate_pyside_wrappers:
+	rm -rf Engine/NatronEngine/* Gui/NatronGui/* ; \
+	debian/recreate.sh
+
 opencolorio-config:
 	test -f debian/OpenColorIO-Natron-v$(OPENCOLORIO_VERSION).tar.gz || wget -O debian/OpenColorIO-Natron-v$(OPENCOLORIO_VERSION).tar.gz  https://github.com/NatronGitHub/OpenColorIO-Configs/archive/Natron-v$(OPENCOLORIO_VERSION).tar.gz
 	if test -h OpenColorIO-Configs ; then \
@@ -35,25 +39,25 @@ opencolorio-config:
 
 override_dh_auto_configure: opencolorio-config
 	cp debian/debian-config.pri $(CURDIR)/config.pri
-	mkdir build ; \
+	test -d build || mkdir build ; \
 	cd build ; \
 	qmake -r ../Project.pro \
 		BUILD=stable \
-		CONFIG+=release \
+		CONFIG+=relwithdebinfo \
 		CONFIG+=nostrip \
 		CONFIG_SET=custombuild \
 		BUILD_USER_NAME="$(MAINTAINER)" \
-		QMAKE_CC=/usr/bin/gcc-8 \
-		QMAKE_CXX=/usr/bin/g++-8 \
+		QMAKE_CC=/usr/bin/gcc \
+		QMAKE_CXX=/usr/bin/g++ \
 		PYTHON_CONFIG=/usr/bin/python3-config \
 		OpenGL_GL_PREFERENCE=GLVND \
 		DEFINES+=QT_NO_DEBUG_OUTPUT \
+		DEFINES+=USE_SYSTEM_PYTHON \
 		DEFINES+="NATRON_NAMESPACE=Natron" \
 		DEFINES+="NATRON_PYTHON_NAMESPACE=Python" \
 		PREFIX=/usr
 
 override_dh_auto_build:
-	mkdir build ; \
 	cd build ; \
 	make
 

@@ -125,7 +125,7 @@ static PyObject *Sbk_Natron_Python_TrackFunc_getParams(PyObject *self)
         if (!PyErr_Occurred()) {
             // getParams()const
             // Begin code injection
-            std::list<Param*> params = cppSelf->getParams();
+            std::list<Natron::Python::Param*> params = cppSelf->getParams();
             PyObject* ret = PyList_New((int) params.size());
             int idx = 0;
             for (std::list<Natron::Python::Param*>::iterator it = params.begin(); it!=params.end(); ++it,++idx) {

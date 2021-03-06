@@ -34,7 +34,7 @@
  **/
 
 //Defined to avoid including some headers when running shiboken which may crash shiboken (particularly boost headers)
-//#define SBK_RUN
+// #define SBK2_RUN
 
 #include <pyside2_global.h>
 #include <string>

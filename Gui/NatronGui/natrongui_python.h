@@ -6,8 +6,9 @@
 #include <sbkpython.h>
 #include <sbkconverter.h>
 // Module Includes
-#include <pyside2_qtgui_python.h>
 #include <pyside2_qtcore_python.h>
+#include <pyside2_qtgui_python.h>
+#include <pyside2_qtwidgets_python.h>
 #include <natronengine_python.h>
 
 // Bound library includes
@@ -64,11 +65,12 @@ enum : int {
     SBK_NATRONGUI_STD_LIST_QSTRING_IDX                       = 2, // std::list<QString >
     SBK_NATRONGUI_STD_LIST_INT_IDX                           = 3, // const std::list<int > &
     SBK_NATRONGUI_STD_VECTOR_STD_STRING_IDX                  = 4, // std::vector<std::string > *
-    SBK_NATRONGUI_STD_LIST_NATRON_PYTHON_PARAMPTR_IDX        = 5, // std::list<Natron::Python::Param* >
-    SBK_NATRONGUI_QLIST_QVARIANT_IDX                         = 6, // QList<QVariant >
-    SBK_NATRONGUI_QLIST_QSTRING_IDX                          = 7, // QList<QString >
-    SBK_NATRONGUI_QMAP_QSTRING_QVARIANT_IDX                  = 8, // QMap<QString,QVariant >
-    SBK_NatronGui_CONVERTERS_IDX_COUNT                       = 9
+    SBK_NATRONGUI_QLIST_QACTIONPTR_IDX                       = 5, // QList<QAction* >
+    SBK_NATRONGUI_STD_LIST_NATRON_PYTHON_PARAMPTR_IDX        = 6, // std::list<Natron::Python::Param* >
+    SBK_NATRONGUI_QLIST_QVARIANT_IDX                         = 7, // QList<QVariant >
+    SBK_NATRONGUI_QLIST_QSTRING_IDX                          = 8, // QList<QString >
+    SBK_NATRONGUI_QMAP_QSTRING_QVARIANT_IDX                  = 9, // QMap<QString,QVariant >
+    SBK_NatronGui_CONVERTERS_IDX_COUNT                       = 10
 };
 // Macros for type check
 

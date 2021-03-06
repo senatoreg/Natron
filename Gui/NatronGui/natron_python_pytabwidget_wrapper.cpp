@@ -27,6 +27,7 @@ QT_WARNING_DISABLE_DEPRECATED
 
 // Extra includes
 #include <PythonPanels.h>
+#include <qwidget.h>
 
 
 #include <cctype>
@@ -212,6 +213,31 @@ static PyObject *Sbk_Natron_Python_PyTabWidgetFunc_count(PyObject *self)
             // count()
             int cppResult = cppSelf->count();
             pyResult = Shiboken::Conversions::copyToPython(Shiboken::Conversions::PrimitiveTypeConverter<int>(), &cppResult);
+        }
+    }
+
+    if (PyErr_Occurred() || !pyResult) {
+        Py_XDECREF(pyResult);
+        return {};
+    }
+    return pyResult;
+}
+
+static PyObject *Sbk_Natron_Python_PyTabWidgetFunc_currentWidget(PyObject *self)
+{
+    if (!Shiboken::Object::isValid(self))
+        return {};
+    auto cppSelf = reinterpret_cast< ::Natron::Python::PyTabWidget *>(Shiboken::Conversions::cppPointer(SbkNatronGuiTypes[SBK_NATRON_PYTHON_PYTABWIDGET_IDX], reinterpret_cast<SbkObject *>(self)));
+    SBK_UNUSED(cppSelf)
+    PyObject *pyResult{};
+
+    // Call function/method
+    {
+
+        if (!PyErr_Occurred()) {
+            // currentWidget()
+            QWidget * cppResult = cppSelf->currentWidget();
+            pyResult = Shiboken::Conversions::pointerToPython(reinterpret_cast<SbkObjectType *>(SbkPySide2_QtWidgetsTypes[SBK_QWIDGET_IDX]), cppResult);
         }
     }
 
@@ -430,22 +456,42 @@ static PyObject *Sbk_Natron_Python_PyTabWidgetFunc_removeTab(PyObject *self, PyO
     SBK_UNUSED(pythonToCpp)
 
     // Overloaded function decisor
-    // 0: PyTabWidget::removeTab(int)
+    // 0: PyTabWidget::removeTab(QWidget*)
+    // 1: PyTabWidget::removeTab(int)
     if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(Shiboken::Conversions::PrimitiveTypeConverter<int>(), (pyArg)))) {
-        overloadId = 0; // removeTab(int)
+        overloadId = 1; // removeTab(int)
+    } else if ((pythonToCpp = Shiboken::Conversions::isPythonToCppPointerConvertible(reinterpret_cast<SbkObjectType *>(SbkPySide2_QtWidgetsTypes[SBK_QWIDGET_IDX]), (pyArg)))) {
+        overloadId = 0; // removeTab(QWidget*)
     }
 
     // Function signature not found.
     if (overloadId == -1) goto Sbk_Natron_Python_PyTabWidgetFunc_removeTab_TypeError;
 
     // Call function/method
-    {
-        int cppArg0;
-        pythonToCpp(pyArg, &cppArg0);
+    switch (overloadId) {
+        case 0: // removeTab(QWidget * tab)
+        {
+            if (!Shiboken::Object::isValid(pyArg))
+                return {};
+            ::QWidget *cppArg0;
+            pythonToCpp(pyArg, &cppArg0);
 
-        if (!PyErr_Occurred()) {
-            // removeTab(int)
-            cppSelf->removeTab(cppArg0);
+            if (!PyErr_Occurred()) {
+                // removeTab(QWidget*)
+                cppSelf->removeTab(cppArg0);
+            }
+            break;
+        }
+        case 1: // removeTab(int index)
+        {
+            int cppArg0;
+            pythonToCpp(pyArg, &cppArg0);
+
+            if (!PyErr_Occurred()) {
+                // removeTab(int)
+                cppSelf->removeTab(cppArg0);
+            }
+            break;
         }
     }
 
@@ -588,6 +634,7 @@ static PyMethodDef Sbk_Natron_Python_PyTabWidget_methods[] = {
     {"closePane", reinterpret_cast<PyCFunction>(Sbk_Natron_Python_PyTabWidgetFunc_closePane), METH_NOARGS},
     {"closeTab", reinterpret_cast<PyCFunction>(Sbk_Natron_Python_PyTabWidgetFunc_closeTab), METH_O},
     {"count", reinterpret_cast<PyCFunction>(Sbk_Natron_Python_PyTabWidgetFunc_count), METH_NOARGS},
+    {"currentWidget", reinterpret_cast<PyCFunction>(Sbk_Natron_Python_PyTabWidgetFunc_currentWidget), METH_NOARGS},
     {"floatCurrentTab", reinterpret_cast<PyCFunction>(Sbk_Natron_Python_PyTabWidgetFunc_floatCurrentTab), METH_NOARGS},
     {"floatPane", reinterpret_cast<PyCFunction>(Sbk_Natron_Python_PyTabWidgetFunc_floatPane), METH_NOARGS},
     {"getCurrentIndex", reinterpret_cast<PyCFunction>(Sbk_Natron_Python_PyTabWidgetFunc_getCurrentIndex), METH_NOARGS},
@@ -695,13 +742,15 @@ static const char *Natron_Python_PyTabWidget_SignatureStrings[] = {
     "NatronGui.PyTabWidget.closePane(self)",
     "NatronGui.PyTabWidget.closeTab(self,index:int)",
     "NatronGui.PyTabWidget.count(self)->int",
+    "NatronGui.PyTabWidget.currentWidget(self)->PySide2.QtWidgets.QWidget",
     "NatronGui.PyTabWidget.floatCurrentTab(self)",
     "NatronGui.PyTabWidget.floatPane(self)",
     "NatronGui.PyTabWidget.getCurrentIndex(self)->int",
     "NatronGui.PyTabWidget.getScriptName(self)->QString",
     "NatronGui.PyTabWidget.getTabLabel(self,index:int)->QString",
     "NatronGui.PyTabWidget.insertTab(self,index:int,tab:NatronGui.PyPanel)",
-    "NatronGui.PyTabWidget.removeTab(self,index:int)",
+    "1:NatronGui.PyTabWidget.removeTab(self,tab:PySide2.QtWidgets.QWidget)",
+    "0:NatronGui.PyTabWidget.removeTab(self,index:int)",
     "NatronGui.PyTabWidget.setCurrentIndex(self,index:int)",
     "NatronGui.PyTabWidget.setNextTabCurrent(self)",
     "NatronGui.PyTabWidget.splitHorizontally(self)->NatronGui.PyTabWidget",

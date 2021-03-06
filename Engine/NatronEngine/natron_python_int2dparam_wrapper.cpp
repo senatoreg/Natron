@@ -214,7 +214,7 @@ static PyObject *Sbk_Natron_Python_Int2DParamFunc_set(PyObject *self, PyObject *
             if (!PyErr_Occurred()) {
                 // set(int)
                 // Begin code injection
-                cppSelf->set(cppArg0);
+                reinterpret_cast<Natron::Python::IntParam *>(cppSelf)->set(cppArg0);
 
                 // End of code injection
 

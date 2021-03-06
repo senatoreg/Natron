@@ -172,49 +172,54 @@ static PyObject *Sbk_Natron_Python_PathParamFunc_setTable(PyObject *self, PyObje
             // Begin code injection
 
 
-            if (!PyList_Check(pyArg)) {
-                PyErr_SetString(PyExc_TypeError, "table must be a list of list objects.");
-                return 0;
-            }
-
-            std::list<std::vector<std::string> > table;
-
-            int size = (int)PyList_GET_SIZE(pyArg);
-            for (int i = 0; i < size; ++i) {
-
-
-                PyObject* subList = PyList_GET_ITEM(pyArg,i);
-                if (!subList || !PyList_Check(subList)) {
-                    PyErr_SetString(PyExc_TypeError, "table must be a list of list objects.");
-                    return 0;
-                }
-                int subSize = (int)PyList_GET_SIZE(subList);
-                std::vector<std::string> rowVec(subSize);
-
-                for (int j = 0; j < subSize; ++j) {
-                    PyObject* pyString = PyList_GET_ITEM(subList,j);
-                    if ( PyString_Check(pyString) ) {
-                        char* buf = PyString_AsString(pyString);
-                        if (buf) {
-                            std::string ret;
-                            ret.append(buf);
-                            rowVec[j] = ret;
+                            if (!PyList_Check(pyArg)) {
+                                PyErr_SetString(PyExc_TypeError, "table must be a list of list objects.");
+                                return 0;
                             }
-                    } else if (PyUnicode_Check(pyString) ) {
-                        PyObject* utf8pyobj = PyUnicode_AsUTF8String(pyString); // newRef
-                        if (utf8pyobj) {
-                            char* cstr = PyBytes_AS_STRING(utf8pyobj); // Borrowed pointer
-                            std::string ret;
-                            ret.append(cstr);
-                            Py_DECREF(utf8pyobj);
-                            rowVec[j] = ret;
-                        }
-                    }
-                }
-                table.push_back(rowVec);
-            }
 
-            cppSelf->setTable(table);
+                            std::list<std::vector<std::string> > table;
+
+                            int size = (int)PyList_GET_SIZE(pyArg);
+                            for (int i = 0; i < size; ++i) {
+
+
+                                PyObject* subList = PyList_GET_ITEM(pyArg,i);
+                                if (!subList || !PyList_Check(subList)) {
+                                    PyErr_SetString(PyExc_TypeError, "table must be a list of list objects.");
+                                    return 0;
+                                }
+                                int subSize = (int)PyList_GET_SIZE(subList);
+                                std::vector<std::string> rowVec(subSize);
+
+                                for (int j = 0; j < subSize; ++j) {
+                                    PyObject* pyString = PyList_GET_ITEM(subList,j);
+#if PY_MAJOR_VERSION >= 3
+                                    if ( PyUnicode_Check(pyString) ) {
+                                        const char* buf = PyUnicode_AsUTF8(pyString);
+#else
+                                    if ( PyString_Check(pyString) ) {
+                                        char* buf = PyString_AsString(pyString);
+#endif
+                                        if (buf) {
+                                            std::string ret;
+                                            ret.append(buf);
+                                            rowVec[j] = ret;
+                                            }
+                                    } else if (PyUnicode_Check(pyString) ) {
+                                        PyObject* utf8pyobj = PyUnicode_AsUTF8String(pyString); // newRef
+                                        if (utf8pyobj) {
+                                            char* cstr = PyBytes_AS_STRING(utf8pyobj); // Borrowed pointer
+                                            std::string ret;
+                                            ret.append(cstr);
+                                            Py_DECREF(utf8pyobj);
+                                            rowVec[j] = ret;
+                                        }
+                                    }
+                                }
+                                table.push_back(rowVec);
+                            }
+
+                            cppSelf->setTable(table);
 
             // End of code injection
 

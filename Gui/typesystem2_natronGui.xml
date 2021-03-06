@@ -19,14 +19,77 @@
    - ***** END LICENSE BLOCK ***** -->
 <typesystem package="NatronGui">
 
+    <!--Load QtCore typesystem-->
+    <load-typesystem name="typesystem_core.xml" generate="no" />
     <!--Load QtGui typesystem-->
     <load-typesystem name="typesystem_gui.xml" generate="no" />
+    <!--Load QtWidgets typesystem-->
+    <load-typesystem name="typesystem_widgets.xml" generate="no" />
     <!--Load Engine typesystem-->
     <load-typesystem name="typesystem2_engine.xml" generate="no" />
 
-
     <namespace-type name="Natron" generate="no">
+    <!--Enumerations already in Engine typesystem-->
+    <!--
+    <enum-type name="StatusEnum"/>
+    <enum-type name="MergingFunctionEnum"/>
+    <enum-type name="StandardButtonEnum" flags="StandardButtons"/>
+    <enum-type name="KeyframeTypeEnum"/>
+    <enum-type name="PixmapEnum"/>
+    <enum-type name="ValueChangedReasonEnum"/>
+    <enum-type name="AnimationLevelEnum"/>
+    <enum-type name="ImageBitDepthEnum"/>
+    <enum-type name="ImagePremultiplicationEnum"/>
+    <enum-type name="ViewerCompositingOperatorEnum"/>
+    <enum-type name="ViewerColorSpaceEnum"/>
+    <enum-type name="OrientationEnum"/>
+    <enum-type name="PlaybackModeEnum"/>
+    <enum-type name="DisplayChannelsEnum"/>
+
+    <enum-type name="TimelineStateEnum"/>
+    <enum-type name="TimelineChangeReasonEnum"/>
+    <enum-type name="MessageTypeEnum"/>
+    <enum-type name="ImagePlaneDescEnum"/>
+    <enum-type name="ImageFieldingOrderEnum"/>
+    <enum-type name="SequentialPreferenceEnum"/>
+    <enum-type name="StorageModeEnum"/>
+    <enum-type name="SchedulingPolicyEnum"/>
+    <enum-type name="ContextEnum"/>
+    <enum-type name="RotoStrokeType"/>
+    <enum-type name="RenderSafetyEnum"/>
+    <enum-type name="PenType"/>
+    <enum-type name="PluginOpenGLRenderSupport"/>
+    <enum-type name="CurveChangeReason"/>
+    <enum-type name="OpenGLRequirementsTypeEnum"/>
+    <enum-type name="DopeSheetItemType"/>
+    <enum-type name="CreateNodeReason"/>
+    <enum-type name="KnobClipBoardType"/>
+    <enum-type name="ValueIsNormalizedEnum"/>
+    <enum-type name="CursorEnum"/>
+    <enum-type name="Key"/>
+    <enum-type name="KeyboardModifierEnum"/>
+    <enum-type name="AppInstanceStatusEnum"/>
+    <enum-type name="ScaleTypeEnum"/>
+    -->
+    <modify-function signature="operator!=(Natron::RectD,Natron::RectD)" remove="all"/>
+    <modify-function signature="operator!=(Natron::RectI,Natron::RectI)" remove="all"/>
+    <modify-function signature="operator==(Natron::RectD,Natron::RectD)" remove="all"/>
+    <modify-function signature="operator==(Natron::RectI,Natron::RectI)" remove="all"/>
+    <modify-function signature="getAmountFreePhysicalRAM()" remove="all"/>
+    <modify-function signature="isApplication32Bits()" remove="all"/>
+    <modify-function signature="isFailureRetCode(Natron::StatusEnum)" remove="all"/>
+    <!-- </namespace-type> -->
+
     <namespace-type name="Python" generate="no">
+        <modify-function signature="PyStringToStdString(PyObject*)" remove="all"/>
+        <modify-function signature="getFunctionArguments(const std::string&amp;, std::string*, std::vector&lt;std::string&gt;*)" remove="all"/>
+        <modify-function signature="getAttrRecursive(const std::string&amp;, PyObject*, bool*)" remove="all"/>
+        <modify-function signature="getGroupInfos(std::string,std::string,std::string*,std::string*,std::string*,std::string*,std::string*,bool*,uint*)" remove="all"/>
+        <modify-function signature="interpretPythonScript(std::string, std::string*, std::string*)" remove="all"/>
+        <modify-function signature="getMainModule()" remove="all"/>
+        <modify-function signature="makeNameScriptFriendly(std::string)" remove="all"/>
+        <modify-function signature="makeNameScriptFriendlyWithDots(std::string)" remove="all"/>
+
     <object-type name="GuiApp">
         <modify-function signature="getTabWidget(QString)const">
             <modify-argument index="return">
