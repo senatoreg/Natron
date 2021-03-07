@@ -38,6 +38,7 @@ opencolorio-config:
 	fi
 
 override_dh_auto_configure: opencolorio-config
+	rm -rf libs/SequenceParsing/tinydir
 	cp debian/debian-config.pri $(CURDIR)/config.pri
 	test -d build || mkdir build ; \
 	cd build ; \

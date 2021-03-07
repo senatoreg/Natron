@@ -1,4 +1,8 @@
 #!/bin/sh 
+echo ====================================================
+echo Removing previous Engine and Gui wrapper directories
+echo ====================================================
+rm -rf Engine/NatronEngine/* Gui/NatronGui/*
 echo ===============
 echo Building Engine
 echo ===============
