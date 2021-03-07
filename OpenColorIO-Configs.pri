@@ -33,7 +33,7 @@ macx {
         isEmpty(PREFIX) {
             PREFIX = /usr/local
         }
-        OCIO.path = $${PREFIX}/share/OpenColorIO-Configs
+        OCIO.path = $${PREFIX}/share/Natron/Resources/OpenColorIO-Configs
     }
     INSTALLS += OCIO
     OCIO_extra.path = $$OUT_PWD/OpenColorIO-Configs

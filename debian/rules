@@ -31,8 +31,9 @@ recreate_pyside_wrappers:
 
 opencolorio-config:
 	test -f debian/OpenColorIO-Natron-v$(OPENCOLORIO_VERSION).tar.gz || wget -O debian/OpenColorIO-Natron-v$(OPENCOLORIO_VERSION).tar.gz  https://github.com/NatronGitHub/OpenColorIO-Configs/archive/Natron-v$(OPENCOLORIO_VERSION).tar.gz
-	if test -h OpenColorIO-Configs ; then \
-	   if ! test -d OpenColorIO-Configs-Natron-v$(OPENCOLORIO_VERSION) ; then \
+	gzip -dc debian/OpenColorIO-Natron-v$(OPENCOLORIO_VERSION).tar.gz | tar xf -
+	if ! test -h OpenColorIO-Configs ; then \
+	   if test -d OpenColorIO-Configs-Natron-v$(OPENCOLORIO_VERSION) ; then \
 	      ln -s OpenColorIO-Configs-Natron-v$(OPENCOLORIO_VERSION) OpenColorIO-Configs ; \
 	   fi ; \
 	fi

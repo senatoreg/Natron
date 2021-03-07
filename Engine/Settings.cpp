@@ -96,7 +96,7 @@ getDefaultOcioConfigPaths()
     QStringList ret;
     ret.push_back( QString::fromUtf8("/usr/share/OpenColorIO-Configs") );
     ret.push_back( QString( binaryPath + QString::fromUtf8("../share/OpenColorIO-Configs") ) );
-    ret.push_back( QString( binaryPath + QString::fromUtf8("../Resources/OpenColorIO-Configs") ) );
+    ret.push_back( QString( binaryPath + QString::fromUtf8("../share/Natron/Resources/OpenColorIO-Configs") ) );
 
     return ret;
 #elif defined(__NATRON_WIN32__)
